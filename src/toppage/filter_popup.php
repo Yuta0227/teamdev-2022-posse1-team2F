@@ -1,4 +1,4 @@
-<section><!--ポップアップ-->
+<section hidden><!--ポップアップ-->
 <?php 
 $conditions_array=[1,2,3,4,5];
 $conditions_type_array=[1,2];
