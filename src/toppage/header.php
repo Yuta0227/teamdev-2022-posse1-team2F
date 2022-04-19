@@ -1,7 +1,7 @@
 <header>
     <!-- ヘッダーの上側 -->
     <div>
-        <img alt="就活.com">
+        <img src="../img/syukatudotcom_logo.png" alt="就活.com">
     </div>
     <!-- ヘッダーの下側 -->
     <div>
