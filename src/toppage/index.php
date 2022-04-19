@@ -23,29 +23,8 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <a href="/admin/index.php">管理者ページ</a>
 </ul> -->
 <section>
-    <!--並び替え、就活ガイド、絞り込み-->
-    <div>
-        <!--並び替え-->
-        <div>
-            <!--横並び-->
-            <form>
-                <div>
-                    <select>
-                        <option>並び替え条件</option>
-                        <option>名前順</option>
-                    </select>
-                </div>
-                <div>
-                    <input type="submit" value="並び替える">
-                </div>
-            </form>
-        </div>
-        <!--絞り込み-->
-        <button>絞り込み</button>
-        <!--ガイド-->
-        <button>どの条件で絞り込めばいいかわからない方はこちら!</button>
-    </div>
-    <div>検索結果：<span>10</span>/<span>30</span>件</div><!--検索結果下の方に表示した方がいいと思った。レスポンシブの時文字数きついかも。-->
+<?php require "sort_filter_guide.php";?>
+<?php require "guide_popup.php";?>
 </section>
 
 <body>
