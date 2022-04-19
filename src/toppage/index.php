@@ -1,6 +1,6 @@
 <?php
 session_start();
-require(dirname(__FILE__) . "/dbconnect.php");
+require("../dbconnect.php");
 
 $stmt = $db->query('SELECT id, title FROM events');
 $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -12,16 +12,21 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>サンプル</title>
+    <title>トップページ</title>
 </head>
-<ul>
+<!-- <ul>
     <?php foreach ($events as $key => $event) : ?>
         <li>
             <?= $event["id"]; ?>:<?= $event["title"]; ?>
         </li>
     <?php endforeach; ?>
     <a href="/admin/index.php">管理者ページ</a>
-</ul>
+</ul> -->
+<section>
+<?php require "sort_filter_guide.php";?>
+<?php require "guide_popup.php";?>
+<?php require "filter_popup.php";?><!--場所変更の可能性大-->
+</section>
 
 <body>
 </body>
