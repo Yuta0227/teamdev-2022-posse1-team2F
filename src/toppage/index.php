@@ -27,6 +27,8 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <?php require "sort_filter_guide.php";?>
 <?php require "guide_popup.php";?>
 <?php require "filter_popup.php";?><!--場所変更の可能性大-->
+<?php require "agent_list.php";?>
+<?php require "agent_list_pagination.php";?>
 </section>
 
 <body>
