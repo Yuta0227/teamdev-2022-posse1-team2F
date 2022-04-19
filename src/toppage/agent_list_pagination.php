@@ -14,8 +14,12 @@
         <div>
         <?php
         if(isset($_GET["agent_list_pagination"])){
-            echo $_GET["agent_list_pagination"];//真ん中の数字
-        } 
+            if($_GET["agent_list_pagination"]!=NULL){
+                echo $_GET["agent_list_pagination"];//真ん中の数字
+            }else{
+                echo 1;
+            }
+        }
         ?> 
     </div>
     <?php 
