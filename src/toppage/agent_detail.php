@@ -45,6 +45,17 @@
                 };?>
             </div>
         </div>
+        <div>
+            <div>
+                <h2>エージェントの特徴</h2>
+            </div>
+            <div>
+                <p>
+                    <!--データベースに文章登録して引っ張ってくる-->
+                    テキスト
+                </p>
+            </div>
+        </div>
     </section>
 </body>
 <?php require "footer.php";?>
