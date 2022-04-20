@@ -12,7 +12,7 @@ $conditions_type_array=[1,2];
     <div>条件</div>
     <div>
         <div>
-            <?php for($i=0;$i<=count($conditions_array)/2;$i++){//条件の数を2で割ってその数分行をつくる
+            <?php for($i=0;$i<=floor(count($conditions_array)/2);$i++){//条件の数を2で割ってその数分行をつくる
                 echo "
                 <div style='display:flex;'>
                 <div>条件1</div>

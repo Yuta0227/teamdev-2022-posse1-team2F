@@ -14,6 +14,7 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>トップページ</title>
 </head>
+<?php require "header.php";?>
 <!-- <ul>
     <?php foreach ($events as $key => $event) : ?>
         <li>
@@ -30,5 +31,5 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <body>
 </body>
-
+<?php require "footer.php";?>
 </html>
