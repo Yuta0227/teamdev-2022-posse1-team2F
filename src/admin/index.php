@@ -29,8 +29,8 @@ if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
 </head>
 
 <body>
+    <?php require "header.php"; ?>
     <div>
-        <h1>管理者ページ</h1>
         <form action="/admin/index.php" method="POST">
             イベント名：<input type="text" name="title" required>
             <input type="submit" value="登録する">
