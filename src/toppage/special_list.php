@@ -19,13 +19,14 @@ $special_list_array = [
         '画像' => '',
     ],
 ]; //データベースから特集記事一覧取得。新しい順で。多次元多次元連想配列
-$specials_per_page=1;
+$specials_per_page=2;
 if(isset($_GET["special_list_pagination"])){
     $specials_pagination=$_GET["special_list_pagination"];
 }else{
-    $specials_pagination=1;
+    $specials_pagination=1;//パラメータ未セットの時のバグの対策
 }
-count($special_list_array)==$specials_per_page//この場合バグる
+count($special_list_array)==$specials_per_page
+//この場合バグる。最後のページで表示できるものがないと発生
 
 ?>
 <div>
