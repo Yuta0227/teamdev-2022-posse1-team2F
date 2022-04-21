@@ -19,6 +19,9 @@ $special_list_array = [
         '画像' => '',
     ],
 ]; //データベースから特集記事一覧取得。新しい順で。多次元多次元連想配列
+$specials_per_page=3;
+count($special_list_array)==$specials_per_page//この場合バグる
+
 ?>
 <div>
     <!--sectionに変えるべきかも-->

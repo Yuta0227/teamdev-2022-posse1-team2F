@@ -1,9 +1,10 @@
 <div>
     <!--エージェント一覧コンテナ-->
     <?php 
-    $all_agents=[1,2,3,4,5,6,7,8,9,10,11,12,13];//連想配列でエージェントの情報すべてが入る
+    $all_agents=[1,2,3,4,5,6];//連想配列でエージェントの情報すべてが入る
     $page_number=3;//URLからとってくる
-    $agents_per_page=13;//ページ毎に表示するエージェントの個数 
+    $agents_per_page=6;//ページ毎に表示するエージェントの個数 
+
     if($page_number-1!=floor(count($all_agents)/$agents_per_page)){//ページ番号が最後以外
         for ($i = 0; $i < $agents_per_page; $i++) {
             echo '<div>';

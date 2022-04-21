@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +7,9 @@
     <title>Document</title>
 </head>
 <body>
-    <?php require "special_list.php";?>
+    <?php 
+    require "special_list.php";
+    require "special_list_pagination.php";
+    ?>
 </body>
 </html>
