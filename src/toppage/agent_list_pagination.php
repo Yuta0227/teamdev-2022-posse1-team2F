@@ -19,6 +19,8 @@
             }else{
                 echo 1;
             }
+        }else{
+            echo 1;
         }
         ?> 
     </div>
@@ -34,6 +36,10 @@
             echo '<div><a href="index.php?agent_list_pagination='.ceil(count($all_agents)/$agents_per_page);
             echo '">&gt;&gt;</a></div>';//>>
         }
+    }else{
+        echo '<div><a href="index.php?agent_list_pagination=2">&gt;</a></div>';//>
+        echo '<div><a href="index.php?agent_list_pagination='.ceil(count($all_agents)/$agents_per_page);
+        echo '">&gt;&gt;</a></div>';//>>
     }
     ?>
     </div>
