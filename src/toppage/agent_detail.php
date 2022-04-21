@@ -31,6 +31,20 @@
                 </table>
             </div>
         </div>
+        <div>
+            <div>
+                <h2>こんな人におすすめ</h2>
+            </div>
+            <div>
+                <?php 
+                $recommend_array=['理系'];//データベースから取得する。テーブルのカラムはわかりやすくrecommendとかにする
+                foreach($recommend_array as $recommend){
+                    echo '<ul>';
+                    echo '<li>'.$recommend.'な人</li>';
+                    echo '</ul>';
+                };?>
+            </div>
+        </div>
     </section>
 </body>
 <?php require "footer.php";?>
