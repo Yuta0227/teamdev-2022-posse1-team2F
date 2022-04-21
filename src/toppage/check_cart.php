@@ -31,6 +31,13 @@
             echo '</div>';
         };?>
     </div>
+    <div>
+        <button>
+            <a href="">
+                情報を記入して上記のエージェントに申込する<br>->次のステップへ
+            </a>
+        </button>
+    </div>
     <?php require "footer.php";?>
 </body>
 </html>
