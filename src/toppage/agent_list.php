@@ -3,7 +3,8 @@
     <?php 
     $all_agents=[1,2,3,4,5,6];//連想配列でエージェントの情報すべてが入る
     $page_number=3;//URLからとってくる
-    $agents_per_page=6;//ページ毎に表示するエージェントの個数 
+
+    $agents_per_page=2;//ページ毎に表示するエージェントの個数 
 
     if($page_number-1!=floor(count($all_agents)/$agents_per_page)){//ページ番号が最後以外
         for ($i = 0; $i < $agents_per_page; $i++) {
@@ -11,7 +12,7 @@
             echo '<div style="display:flex;">';
             echo '<div><img alt="エージェントの画像"></div>';
             echo '<div>';
-            echo '<div>何が入るのか忘れたからとりあえずdiv</div>';
+            echo '<div>'.$all_agents[$i].'</div>';
             echo '<div>何が入るのか忘れたからとりあえずdiv</div>';
             echo '</div>';
             echo '</div>';
