@@ -31,6 +31,14 @@
         echo '</p></div>';
     };
     ?>
+    <form method="POST" style="display:flex;justify-content:center;">
+    <div>
+        <input style="color:white;background-color:green;" type="submit" value="このエージェントを選択">
+        <div>
+            <a href="">企業の詳細ページへ</a>
+        </div>
+    </div>
+    </form>
     <?php require "footer.php";?>
 </body>
 </html>
