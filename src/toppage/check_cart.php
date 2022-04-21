@@ -38,6 +38,24 @@
             </a>
         </button>
     </div>
+    <form action="" method="POST" >
+        <!--削除押したらhiddenはずれて、申込企業、選択済み企業一覧、ボタンにhiddenつく-->
+        <div>次の企業への申込をやめますか？</div>
+        <div style="display:flex;">
+            <div>
+                <img alt="企業の画像">
+            </div>
+            <div>
+                <div>1</div>
+                <div>2</div>
+                <div>3</div>
+            </div>
+        </div>
+        <div style="display:flex;">
+            <input type="submit" value="はい">
+            <input type="submit" value="いいえ">
+        </div>
+    </form>
     <?php require "footer.php";?>
 </body>
 </html>
