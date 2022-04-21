@@ -16,6 +16,21 @@
             <h1 style="border-bottom:1px solid black;">タイトル</h1>
         </div>
     </div>
+    <?php 
+    $question_answer_array=[
+        ["question"=>"質問文1","answer"=>"答え1"],
+        ["question"=>"質問文2","answer"=>"答え2"],
+        ["question"=>"最後に一言","answer"=>"答え3"],
+    ];//データベースからとってくる
+    foreach($question_answer_array as $question_answer){
+        echo '<div><p style="border-bottom:1px black solid;">Q.';
+        echo $question_answer["question"];
+        echo '</p></div>';
+        echo '<div><p>A.';
+        echo $question_answer["answer"];
+        echo '</p></div>';
+    };
+    ?>
     <?php require "footer.php";?>
 </body>
 </html>
