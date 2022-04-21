@@ -38,7 +38,7 @@
             </a>
         </button>
     </div>
-    <form action="" method="POST" >
+    <form action="" method="POST" hidden>
         <!--削除押したらhiddenはずれて、申込企業、選択済み企業一覧、ボタンにhiddenつく-->
         <div>次の企業への申込をやめますか？</div>
         <div style="display:flex;">
