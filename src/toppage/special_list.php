@@ -20,6 +20,11 @@ $special_list_array = [
     ],
 ]; //データベースから特集記事一覧取得。新しい順で。多次元多次元連想配列
 $specials_per_page=1;
+if(isset($_GET["special_list_pagination"])){
+    $specials_pagination=$_GET["special_list_pagination"];
+}else{
+    $specials_pagination=1;
+}
 count($special_list_array)==$specials_per_page//この場合バグる
 
 ?>
@@ -29,19 +34,19 @@ count($special_list_array)==$specials_per_page//この場合バグる
     <?php for ($i = 0; $i < $specials_per_page; $i++) {
         echo '<div>';
         echo '<div>';
-        echo '<img src="' . $special_list_array[($i+1)*$_GET["special_list_pagination"]-1]['画像'] . '" alt="特集記事用の画像'.($i+1)*$_GET["special_list_pagination"].'">';
+        echo '<img src="' . $special_list_array[($i+1)*$specials_pagination-1]['画像'] . '" alt="特集記事用の画像'.($i+1)*$specials_pagination.'">';
         echo '</div>';
         echo '<div>';
         echo '<div style="display:flex;">';
-        foreach ($special_list_array[($i+1)*$_GET["special_list_pagination"]-1]['ハッシュタグ'] as $data) {;
+        foreach ($special_list_array[($i+1)*$specials_pagination-1]['ハッシュタグ'] as $data) {;
             echo '<div style="border:1px black solid;">#' . $data . '</div>';
         };
         echo '</div>';
         echo '<div>';
-        echo $special_list_array[($i+1)*$_GET["special_list_pagination"]-1]['投稿日'];
+        echo $special_list_array[($i+1)*$specials_pagination-1]['投稿日'];
         echo '</div>';
         echo '<div>';
-        echo $special_list_array[($i+1)*$_GET["special_list_pagination"]-1]['テキスト'];
+        echo $special_list_array[($i+1)*$specials_pagination-1]['テキスト'];
         echo '</div>';
         echo '</div>';
         echo '</div>';
