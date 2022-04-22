@@ -46,9 +46,7 @@
                 <img alt="企業の画像">
             </div>
             <div>
-                <div>1</div>
-                <div>2</div>
-                <div>3</div>
+                <div>企業名</div>
             </div>
         </div>
         <div style="display:flex;">
