@@ -11,11 +11,12 @@ if (count($new_applies_array)!=0) {//新着があったら
     echo '</table>';
     $index=0;
     foreach($new_applies_array as $new_apply){
-        echo '<div style="padding:10px;align-items:center;display:flex;border:1px solid black;">';
+        echo '<form name="test'.$index.'" style="padding:10px;align-items:center;display:flex;border:1px solid black;">';
         echo '<div>10/20 10:50</div>';
         echo '<div>sample@gmail.com</div>';
-        echo '<div id="new'.$index.'">▽</div>';
-        echo '</div>';
+        echo '<div id="open'.$index.'">▽</div>';
+        echo '<div id="close'.$index.'" hidden>△</div>';
+        echo '</form>';
         echo '<div id="apply_detail'.$index.'" hidden style="border:1px solid black;">';
         echo '<div>漢字(フリガナ)</div>';
         echo '<div>電話番号</div>';
@@ -25,5 +26,14 @@ if (count($new_applies_array)!=0) {//新着があったら
         echo '<div>相談：</div>';
         echo '</div>';
         $index++;
+        //formにしてjsでsubmitするかしないか
+        //divでごり押しするか。できるかわからん。jsからphpに変数なげてそれで判定も可能。一番現実的かもしれない
+        //やること。▽おしたら詳細みせる△おしたら閉じて新着から消す
+
     }
 } ?>
+<script>
+    document.test0.onclick()=function(){
+        console.log('ok');
+    }
+</script>
