@@ -117,11 +117,11 @@ if (count($new_applies_array) != 0) { //新着があったら
             if ($year_month_parameter_set) {
                 //パラメータセット時
                 echo '<div id="date' . $i - 7 + 7 * $week . '" style="position:absolute;top:0;left:0;width:40%;height:40%;;text-align:center;">' . $calender_dates[$i - 7 + $week * 7 - 1] . '</div>';
-                echo '<div id="number' . $i - 7 + 7 * $week . '" style="position:absolute;bottom:0;right:0;width:60%;height:60%;text-align:center;">' . $number_of_applies[$calender_dates[$i - 7 + $week * 7 - 1]] . '</div>';
+                echo '<div id="number' . $i - 7 + 7 * $week . '" style="position:absolute;bottom:0;right:0;width:60%;height:60%;text-align:center;">' . $number_of_applies[$calender_dates[$i - 7 + $week * 7 - 1]] . '件</div>';
             } else {
                 //パラメータ未セット時
                 echo '<div style="position:absolute;top:0;left:0;width:40%;height:40%;text-align:center;">' . $calender_dates[$i - 7 + $week * 7 - 1] . '</div>';
-                echo '<div style="position:absolute;bottom:0;right:0;width:60%;height:60%;text-align:center;">' . $number_of_applies[$calender_dates[$i - 7 + $week * 7 - 1]] . '</div>';
+                echo '<div style="position:absolute;bottom:0;right:0;width:60%;height:60%;text-align:center;">' . $number_of_applies[$calender_dates[$i - 7 + $week * 7 - 1]] . '件</div>';
             }
             echo '</td>';
         };
@@ -184,6 +184,32 @@ if (count($new_applies_array) != 0) { //新着があったら
         } ?>
     </div>
 </div>
+<div>
+    <?php
+    if ($year_month_parameter_set) {
+        echo $_GET['year'] . '/' . $_GET['month'];
+    } else {
+        echo date('Y') . '/' . date('n');
+    } ?>
+    月の合計：
+    <?php 
+    echo 4;
+    ?>
+    人、
+    <?php
+    if ($year_month_parameter_set) {
+        echo $_GET['year'] . '/' . $_GET['month'];
+    } else {
+        echo date('Y') . '/' . date('n');
+    }?>
+    月の請求額：
+    <?php
+    echo 7;
+    ?>
+    万円
+</div>
+<canvas></canvas>
+
 <script>
     function submitEvent() {
         // https://brainlog.jp/programming/post-538/
