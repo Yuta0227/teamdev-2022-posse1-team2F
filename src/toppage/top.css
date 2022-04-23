@@ -1,0 +1,41 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.header-box{
+    background-color: #52a49a;
+}
+.logo-box{
+    text-align: center;
+}
+.header-logo{
+width: 150px;
+}
+.header-under{
+    display: flex;
+}
+.header-menu{
+padding-left: 20px;
+ /* gap: 20px; */
+ display: flex;
+ justify-content: space-between;
+ width: 60%;
+ color: #fff;
+ margin: 0;
+}
+
+.header-cart-box{
+    display: inline-block;
+}
+.header-cart{
+    display: inline-block;
+padding: 20px;
+position: relative;
+}
+
+.cart-count{
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
