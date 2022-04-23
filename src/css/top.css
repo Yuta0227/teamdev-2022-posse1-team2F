@@ -11,31 +11,43 @@
 .header-logo{
 width: 150px;
 }
-.header-under{
+.header-bottom-box{
     display: flex;
+    justify-content: space-between;
 }
 .header-menu{
-padding-left: 20px;
+padding-left: 5%;
  /* gap: 20px; */
  display: flex;
  justify-content: space-between;
- width: 60%;
+ width: 40%;
  color: #fff;
+ cursor: pointer;
  margin: 0;
+ align-items: center;
 }
 
 .header-cart-box{
     display: inline-block;
+    margin-right: 10px;
 }
 .header-cart{
     display: inline-block;
-padding: 20px;
-position: relative;
+    padding: 20px 20px 0px 20px;
+    position: relative;
 }
 
+.mail-icon{
+    color: #fff;
+}
 .cart-count{
     display: inline-block;
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 10px;
+    right: 8px;
+    color: #fff;
+    background-color: rgb(250, 53, 53);
+    width: 24px;
+    text-align: center;
+    border-radius: 12px;
 }
