@@ -8,6 +8,7 @@
 </head>
 <body>
     <?php 
+    require "../parts/url.php";
     require "../parts/agent_header.php";
     require "../parts/agent_upper.php";
     ?>
