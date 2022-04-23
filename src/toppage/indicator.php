@@ -19,3 +19,11 @@
         <div style="border-radius:50%;background-color:skyblue;">情報入力</div>
     </div>
 </div>
+
+<!-- コピペ -->
+<ul class="progressbar">
+    <li class="complete">STEP1</li>
+    <li class="complete">STEP2</li>
+    <li class="complete">STEP3</li>
+    <li class="active">STEP4</li>
+</ul>
