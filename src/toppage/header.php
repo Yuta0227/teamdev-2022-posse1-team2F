@@ -1,7 +1,7 @@
 <header class="header-box">
     <!-- ヘッダーの上側 -->
     <div class="logo-box">
-        <img class="header-logo" src="../img/syukatudotcom_logo.png" alt="就活.com">
+        <img class="header-logo" src="../img/syukatudotcom_logo_white.png" alt="就活.com">
     </div>
     <!-- ヘッダーの下側 -->
     <div class="header-bottom-box">
