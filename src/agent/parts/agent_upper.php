@@ -11,11 +11,11 @@ if (count($new_applies_array)!=0) {//新着があったら
     echo '</table>';
     $index=0;
     foreach($new_applies_array as $new_apply){
-        echo '<form name="test'.$index.'" style="padding:10px;align-items:center;display:flex;border:1px solid black;">';
+        echo '<form method="POST" onsubmit="submitEvent();return false;" id="test'.$index.'" style="padding:10px;align-items:center;display:flex;border:1px solid black;">';
         echo '<div>10/20 10:50</div>';
         echo '<div>sample@gmail.com</div>';
-        echo '<div id="open'.$index.'">▽</div>';
-        echo '<div id="close'.$index.'" hidden>△</div>';
+        echo '<input type="button" id="open'.$index.'" value="▽">';
+        echo '<input id="close'.$index.'" name="close'.$index.'" hidden value="△" type="submit">';
         echo '</form>';
         echo '<div id="apply_detail'.$index.'" hidden style="border:1px solid black;">';
         echo '<div>漢字(フリガナ)</div>';
@@ -26,14 +26,30 @@ if (count($new_applies_array)!=0) {//新着があったら
         echo '<div>相談：</div>';
         echo '</div>';
         $index++;
-        //formにしてjsでsubmitするかしないか
-        //divでごり押しするか。できるかわからん。jsからphpに変数なげてそれで判定も可能。一番現実的かもしれない
-        //やること。▽おしたら詳細みせる△おしたら閉じて新着から消す
-
+        //formにする
+        //divでごり押しするか。できるかわからん。divをクリック時jsからphpに変数なげてそれで判定も可能。一番現実的かもしれない
+        //やること。▽おしたら詳細みせる△おしたら閉じて新着テーブルから消して一覧テーブルに追加する
     }
 } ?>
 <script>
-    document.test0.onclick()=function(){
-        console.log('ok');
+    function submitEvent(){
+        // https://brainlog.jp/programming/post-538/
+        //ここで変数を別phpファイルと受け渡しをする
+        //そのファイルの変数が空っぽではなくなったら＝＝変数受け渡しがされたら新着一覧テーブルから学生の情報を消す
+        console.log('テスト');
     }
+    <?php 
+    $index=0;
+    foreach($new_applies_array as $new_apply){?>
+    document.getElementById('open<?php echo $index;?>').addEventListener('click',function(){
+        document.getElementById('close<?php echo $index;?>').removeAttribute('hidden');
+        document.getElementById('open<?php echo $index;?>').setAttribute('hidden','');
+        document.getElementById('apply_detail<?php echo $index;?>').removeAttribute('hidden');
+    });
+    document.getElementById('close<?php echo $index;?>').addEventListener('click',function(){
+        document.getElementById('close<?php echo $index;?>').setAttribute('hidden','');
+        document.getElementById('open<?php echo $index;?>').removeAttribute('hidden');
+        document.getElementById('apply_detail<?php echo $index;?>').setAttribute('hidden','');
+    });
+    <?php $index++;}?>
 </script>

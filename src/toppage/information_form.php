@@ -52,7 +52,7 @@ $prefecture_array = array(
 // https://ysklog.net/php/4532.html
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 
 <head>
     <meta charset="UTF-8">
