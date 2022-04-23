@@ -82,7 +82,6 @@ if (count($new_applies_array) != 0) { //新着があったら
             $number_of_applies += array($_GET['month'] . '/' . $day => 4);
             //4には申込件数代入
             array_push($calender_dates, (($_GET['month'] . '/' . $day)));
-            echo (($_GET['month'] . '/' . $day)) . PHP_EOL;
             //カレンダーで表示する日付を日付配列に追加
         }
         for ($day = 1; $day <= 6 - date('w', strtotime($year_month . '-' . date('t', strtotime($year_month)))); $day++) { //来月の何日分出力するか今月の最終日の曜日をもとにきめる
@@ -90,10 +89,6 @@ if (count($new_applies_array) != 0) { //新着があったら
             //来月の日付を日付配列に追加
             $number_of_applies += array(($increase_month . '/' . $day) => 6);
         }
-        echo '<pre>';
-        var_dump($calender_dates);
-        var_dump($number_of_applies);
-        echo '</pre>';
     } else {
         //パラメータ未セット時
         $year_month = date('Y') . '-' . date('n');
@@ -114,10 +109,6 @@ if (count($new_applies_array) != 0) { //新着があったら
             array_push($calender_dates, ((date('n') . '/' . $day)));
             //カレンダーで表示する日付を日付配列に追加
         }
-        echo '<pre>';
-        var_dump($calender_dates);
-        var_dump($number_of_applies);
-        echo '</pre>';
     }
     for ($week = 1; $week <= $weeks_per_month; $week++) {
         echo '<tr>';
