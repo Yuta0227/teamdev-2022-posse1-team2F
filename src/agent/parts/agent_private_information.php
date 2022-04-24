@@ -21,7 +21,7 @@
     </div>
     <div style="display:flex;justify-content:center;text-align:center;">担当者情報</div>
     <div>
-        <div style="width:max-content;left:40%;border:1px solid black;background-color:red;">追加</div>
+        <div id="add" style="width:max-content;left:40%;border:1px solid black;background-color:red;">追加</div>
         <!-- 位置調整任せる -->
     </div>
     <div style="display:flex;flex-direction:column;justify-content:center;">
