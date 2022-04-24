@@ -82,7 +82,7 @@ padding-left: 5%;
 /* indicator */
 .progressbar {
     position: relative;
-    margin: 0;
+    margin-top: 20px;
     padding: 0;
     display: flex;
     flex-wrap: wrap;
@@ -93,7 +93,7 @@ padding-left: 5%;
     list-style-type: none;
     text-align: center;
     text-transform: uppercase;
-    width: 33.333%;
+    width: 20%;
     color: #999999;
     font-weight: bold;
 }
@@ -122,21 +122,21 @@ padding-left: 5%;
 }
 .progressbar li.active,
 .progressbar li.complete{
-    color: #0070BD;
+    color: #008fb7;
 }
 .progressbar li.active:before,
 .progressbar li.complete:before {
-    background-color: #0070BD;
+    background-color: #008fb7;
 }
 .progressbar li.active:after,
 .progressbar li.complete:after {
-    background-color: #0070BD;
+    background-color: #008fb7;
 }
 
-/* 装飾 */
+/* 装飾
 ul{
   margin: 40px 0 !important;
-}
+} */
 /* body{
   margin: 40px 20px;
 } */
