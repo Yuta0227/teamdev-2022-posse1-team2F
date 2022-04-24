@@ -8,11 +8,11 @@
 </head>
 <body>
     <!-- セッションに入力内容保存してそこから引っ張ってくる -->
-    <form style="padding:10px;display:flex;flex-direction:column;">
+    <form action="" method="POST" style="padding:10px;display:flex;flex-direction:column;">
         <div style="text-align:center;">内容確認ページ</div>
         <table>
             <?php 
-            $array=[
+            $information_array=[
                 'お名前'=>'テキスト',
                 'フリガナ'=>'テキスト',
                 'メールアドレス'=>'テキスト',
@@ -27,15 +27,24 @@
                 '町域名'=>'テキスト',
                 '番地など'=>'テキスト',
             ];
+            $inquiry_array=[];
             for($i=1;$i<4;$i++){
-                $array+=array('自由記入欄'.$i=>$i);//どこに対して何を送ったかは記入内容から引っ張る
+                array_push($inquiry_array,['企業名'.$i,'テキスト'.$i]);
+                //どこに対して何を送ったかは記入内容から数字で引っ張る
             }
-            foreach($array as $column=>$data){
+            foreach($information_array as $column=>$data){
                 echo '<tr>';
                 echo '<th>'.$column.'</th>';
-                echo '<td>'.$data.'に対して「'.$data.'」</td>';
+                echo '<td>'.$data.'</td>';
                 echo '</tr>';
-            }?>
+            };
+            foreach($inquiry_array as $column=>$data){
+                echo '<tr>';
+                echo '<th>自由記入欄'.($column+1).'</th>';
+                echo '<td>'.$data[0].'に対して「'.$data[1].'」</td>';
+                echo '</tr>';
+            };
+            ?>
         </table>
         <div style="display:flex;">
             <input type="button" value="フォーム記入に戻る">
