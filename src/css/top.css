@@ -81,11 +81,22 @@ padding-left: 5%;
 
 }
 
+/* トップページの一覧とサイドバーのdiv */
+.main-informations{
+    display: flex;
+}
+.main-informations section{
+    width: 70%;
+}
+.filter-box{
+    width: 30%;
+}
 /* 絞り込みポップアップ */
 .filter{
-    width: 30%;
-    margin-left: auto;
     text-align: center;
+    margin:auto;
+    border: solid;
+    
 }
 
 .filter-contents{
