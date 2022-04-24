@@ -1,36 +1,3 @@
-<div><?php echo 'エージェント名'; ?>さんようこそ</div>
-<?php
-$new_applies_array = [1, 2, 3, 4, 5];
-if (count($new_applies_array) != 0) { //新着があったら
-    echo '<div>新着の申込一覧</div>';
-    echo '<table>';
-    echo '    <tr>';
-    echo '        <th>申込日時</th>';
-    echo '        <th>メールアドレス</th>';
-    echo '    </tr>';
-    echo '</table>';
-    $index = 0;
-    foreach ($new_applies_array as $new_apply) {
-        echo '<form method="POST" onsubmit="submitEvent();return false;" id="test' . $index . '" style="padding:10px;align-items:center;display:flex;border:1px solid black;">';
-        echo '<div>10/20 10:50</div>';
-        echo '<div>sample@gmail.com</div>';
-        echo '<input type="button" id="open' . $index . '" value="▽">';
-        echo '<input id="close' . $index . '" name="close' . $index . '" hidden value="△" type="submit">';
-        echo '</form>';
-        echo '<div id="apply_detail' . $index . '" hidden style="border:1px solid black;">';
-        echo '<div>漢字(フリガナ)</div>';
-        echo '<div>電話番号</div>';
-        echo '<div>大学名 学部名 学科名 何年卒</div>';
-        echo '<div>郵便番号</div>';
-        echo '<div>住所</div>';
-        echo '<div>相談：</div>';
-        echo '</div>';
-        $index++;
-        //formにする
-        //divでごり押しするか。できるかわからん。divをクリック時jsからphpに変数なげてそれで判定も可能。一番現実的かもしれない
-        //やること。▽おしたら詳細みせる△おしたら閉じて新着テーブルから消して一覧テーブルに追加する
-    }
-} ?>
 <div>
     <?php
     if (!isset($_GET['month'])) {
@@ -120,8 +87,8 @@ if (count($new_applies_array) != 0) { //新着があったら
                 echo '<div id="number' . $i - 7 + 7 * $week . '" style="position:absolute;bottom:0;right:0;width:60%;height:60%;text-align:center;">' . $number_of_applies[$calender_dates[$i - 7 + $week * 7 - 1]] . '件</div>';
             } else {
                 //パラメータ未セット時
-                echo '<div style="position:absolute;top:0;left:0;width:40%;height:40%;text-align:center;">' . $calender_dates[$i - 7 + $week * 7 - 1] . '</div>';
-                echo '<div style="position:absolute;bottom:0;right:0;width:60%;height:60%;text-align:center;">' . $number_of_applies[$calender_dates[$i - 7 + $week * 7 - 1]] . '件</div>';
+                echo '<div id="date'.$i-7+7*$week.'" style="position:absolute;top:0;left:0;width:40%;height:40%;text-align:center;">' . $calender_dates[$i - 7 + $week * 7 - 1] . '</div>';
+                echo '<div id="number'.$i-7+7*$week.'" style="position:absolute;bottom:0;right:0;width:60%;height:60%;text-align:center;">' . $number_of_applies[$calender_dates[$i - 7 + $week * 7 - 1]] . '件</div>';
             }
             echo '</td>';
         };
@@ -152,9 +119,9 @@ if (count($new_applies_array) != 0) { //新着があったら
     <div>
         <?php
         if ($year_month_parameter_set) {
-            echo $_GET['year'] . '/' . $_GET['month'];
+            echo '<span id="calender_year">'.$_GET['year'].'</span>' . '/' . $_GET['month'];
         } else {
-            echo date('Y') . '/' . date('n');
+            echo '<span id="calender_year">'.date('Y').'</span>' . '/' . date('n');
         }
         ?>
     </div>
@@ -211,25 +178,12 @@ if (count($new_applies_array) != 0) { //新着があったら
 <canvas></canvas>
 
 <script>
-    function submitEvent() {
-        // https://brainlog.jp/programming/post-538/
-        //ここで変数を別phpファイルと受け渡しをする
-        //そのファイルの変数が空っぽではなくなったら＝＝変数受け渡しがされたら新着一覧テーブルから学生の情報を消す
-        console.log('テスト');
+    for(let index=1;index<=35;index++){
+        document.getElementById(`each_day${index}`).addEventListener('click',function(){
+            let selected_year=document.getElementById('calender_year').innerHTML;
+            let selected_month=document.getElementById(`date${index}`).innerHTML.split('/')[0];
+            let selected_date=document.getElementById(`date${index}`).innerHTML.split('/')[1];
+            window.location=`agent_selected_date.php?year=${selected_year}&month=${selected_month}&date=${selected_date}`;
+        });
     }
-    <?php
-    $index = 0;
-    foreach ($new_applies_array as $new_apply) { ?>
-        document.getElementById('open<?php echo $index; ?>').addEventListener('click', function() {
-            document.getElementById('close<?php echo $index; ?>').removeAttribute('hidden');
-            document.getElementById('open<?php echo $index; ?>').setAttribute('hidden', '');
-            document.getElementById('apply_detail<?php echo $index; ?>').removeAttribute('hidden');
-        });
-        document.getElementById('close<?php echo $index; ?>').addEventListener('click', function() {
-            document.getElementById('close<?php echo $index; ?>').setAttribute('hidden', '');
-            document.getElementById('open<?php echo $index; ?>').removeAttribute('hidden');
-            document.getElementById('apply_detail<?php echo $index; ?>').setAttribute('hidden', '');
-        });
-    <?php $index++;
-    } ?>
 </script>
