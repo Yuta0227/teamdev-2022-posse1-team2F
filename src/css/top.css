@@ -2,6 +2,9 @@
     margin: 0;
     padding: 0;
 }
+
+/* header */
+
 .header-box{
     background-color: #52a49a;
 }
@@ -50,4 +53,30 @@ padding-left: 5%;
     width: 24px;
     text-align: center;
     border-radius: 12px;
+}
+
+/* footer */
+.footer-all-box{
+ background-color: #52a49a;
+}
+.footer-top-box{
+    padding: 10px 0 10px 0;
+    text-align: center;
+}
+.footer-img{
+    width: 200px;
+}
+
+.footer-links{
+    text-align: center;
+    padding: 10px 0 10px 0;
+}
+.footer-link{
+    display: inline-block;
+    margin: 0 10px 0 10px;
+}
+.footer-link a {
+    color: #fff;
+    text-decoration: none;
+
 }
