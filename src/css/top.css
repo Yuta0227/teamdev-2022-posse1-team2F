@@ -95,8 +95,8 @@ padding-left: 5%;
 .filter{
     text-align: center;
     margin:auto;
-    border: solid;
-    
+    border: solid; /*わかりやすいようにつけた、最終的には消す*/
+
 }
 
 .filter-contents{
