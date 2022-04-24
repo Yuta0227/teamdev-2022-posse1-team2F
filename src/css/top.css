@@ -78,8 +78,62 @@ padding-left: 5%;
 .footer-link a {
     color: #fff;
     text-decoration: none;
-
 }
+
+/* indicator */
+.progressbar {
+    position: relative;
+    margin-top: 20px;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.progressbar li {
+    position: relative;
+    list-style-type: none;
+    text-align: center;
+    text-transform: uppercase;
+    width: 20%;
+    color: #999999;
+    font-weight: bold;
+}
+.progressbar li:before {
+    display: block;
+    width: 18px;
+    height: 18px;
+    margin: 7px auto 20px auto;
+    content: '';
+    text-align: center;
+    border-radius: 50%;
+    background-color: #F5F5F5;
+}
+.progressbar li:after {
+    position: absolute;
+    z-index: -1;
+    top: 15px;
+    left: -50%;
+    width: 100%;
+    height: 2px;
+    content: '';
+    background-color: #F5F5F5;
+}
+.progressbar li:first-child:after {
+    content: none;
+}
+.progressbar li.active,
+.progressbar li.complete{
+    color: #008fb7;
+}
+.progressbar li.active:before,
+.progressbar li.complete:before {
+    background-color: #008fb7;
+}
+.progressbar li.active:after,
+.progressbar li.complete:after {
+    background-color: #008fb7;
+}
+
 
 /* トップページの一覧とサイドバーのdiv */
 .main-informations{
