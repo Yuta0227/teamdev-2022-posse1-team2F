@@ -80,3 +80,15 @@ padding-left: 5%;
     text-decoration: none;
 
 }
+
+/* 絞り込みポップアップ */
+.filter{
+    width: 30%;
+    margin-left: auto;
+    text-align: center;
+}
+
+.filter-contents{
+    display: flex;
+    justify-content: center;
+}

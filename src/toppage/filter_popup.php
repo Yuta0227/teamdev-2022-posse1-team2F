@@ -1,4 +1,4 @@
-<section hidden><!--ポップアップ-->
+<section class="filter"><!--ポップアップ-->
 <?php 
 $conditions_array=[1,2,3,4,5];
 $conditions_type_array=[1,2];
@@ -14,7 +14,7 @@ $conditions_type_array=[1,2];
         <div>
             <?php for($i=0;$i<=floor(count($conditions_array)/2);$i++){//条件の数を2で割ってその数分行をつくる
                 echo "
-                <div style='display:flex;'>
+                <div style='display:flex;' class='filter-contents'>
                 <div>条件1</div>
                 <div>条件2</div>
                 </div>
