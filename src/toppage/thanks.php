@@ -9,7 +9,7 @@
 <body>
     <?php 
     require "header.php";
-    //送信終わってるからインジケータいらないのでは?
+    require "indicator.php";
     ?>
     <div style="text-align:center;">
         送信完了!<br>
