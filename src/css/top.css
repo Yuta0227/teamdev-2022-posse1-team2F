@@ -4,6 +4,7 @@
 }
 
 /* header */
+
 .header-box{
     background-color: #52a49a;
 }
@@ -77,4 +78,5 @@ padding-left: 5%;
 .footer-link a {
     color: #fff;
     text-decoration: none;
+
 }
