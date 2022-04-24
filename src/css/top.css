@@ -4,6 +4,7 @@
 }
 
 /* header */
+
 .header-box{
     background-color: #52a49a;
 }
@@ -133,10 +134,4 @@ padding-left: 5%;
     background-color: #008fb7;
 }
 
-/* 装飾
-ul{
-  margin: 40px 0 !important;
-} */
-/* body{
-  margin: 40px 20px;
-} */
+
