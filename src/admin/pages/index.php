@@ -29,7 +29,12 @@ if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
 </head>
 
 <body>
-    <?php require "../parts/header.php"; ?>
+    <?php 
+    require "../parts/header.php"; 
+    require "../parts/admin_title_sort.php";
+    require "../parts/admin_agent_list.php";
+    ?>
+
     <div>
         <form action="/admin/index.php" method="POST">
             イベント名：<input type="text" name="title" required>
