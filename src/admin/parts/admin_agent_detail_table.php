@@ -59,7 +59,7 @@
                     '特色' => '特色サンプル',
                     '就活方式' => '就活方式サンプル',
                     'おすすめする学生の特徴' => 'おすすめサンプル',
-                ]; //データベースから取得
+                ]; //データベースから取得する
                 foreach ($agent_public_information_array as $column => $data) {
                     echo '<tr>';
                     echo '<th style="border:1px solid black;">' . $column . '</th>';
