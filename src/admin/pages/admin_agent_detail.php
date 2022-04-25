@@ -10,6 +10,7 @@
     <?php 
     require "../parts/header.php";
     require "../parts/admin_agent_detail_table.php";
+    require "../parts/admin_agent_detail_calender_graph.php";
     ?>
 
 </body>
