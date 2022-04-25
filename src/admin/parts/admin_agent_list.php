@@ -38,3 +38,15 @@
     }
     ?>
 </section>
+<script>
+    <?php 
+    for($agent_index=0+($page_number-1)*$agents_per_page;$agent_index<$agents_per_page*$page_number;$agent_index++) {
+        if($agent_index+1<=count($agent_list_array)){
+    ?>
+    document.getElementById('agent<?php echo $agent_index+1;?>').addEventListener('click',function(){
+        window.location="admin_agent_detail.php?agent_index=<?php echo $agent_index+1;?>";
+    })
+    <?php 
+        }}
+    ?>
+</script>
