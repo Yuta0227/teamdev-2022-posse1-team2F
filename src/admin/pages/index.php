@@ -28,12 +28,13 @@
     <title>管理者ログイン</title>
 </head>
 
-<body>
+<body style="position:relative;width:100vw;height:100vh;">
     <?php 
     require "../parts/header.php"; 
     require "../parts/admin_title_sort.php";
     require "../parts/admin_agent_list.php";
     require "../parts/admin_pagination.php";
+    require "../parts/admin_mail_popup.php";
     ?>
 
     <div>
