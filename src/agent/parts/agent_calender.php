@@ -110,6 +110,16 @@
                 $decrease_year = $_GET['year'] - 1;
             };
             echo $agent_toppage_url . '?year=' . $decrease_year . '&month=' . $decrease_month;
+        }else{
+            if (date('n') != 1) {
+                //パラメータのmonthが1じゃないなら普通に月減らす
+                $decrease_month = date('n') - 1;
+                $decrease_year = date('Y');
+            } else {
+                $decrease_month = 12;
+                $decrease_year = date('Y') - 1;
+            };
+            echo $agent_toppage_url . '?year=' . $decrease_year . '&month=' . $decrease_month;
         }
         ?>
         ">
@@ -175,7 +185,6 @@
     ?>
     万円
 </div>
-<canvas></canvas>
 
 <script>
     for(let index=1;index<=35;index++){
