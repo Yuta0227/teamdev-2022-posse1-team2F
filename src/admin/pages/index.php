@@ -1,23 +1,23 @@
 <?php
-session_start();
-require('../dbconnect.php');
-if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
-    $_SESSION['time'] = time();
+// session_start();
+// require('../dbconnect.php');
+// if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
+//     $_SESSION['time'] = time();
 
-    if (!empty($_POST)) {
-        $stmt = $db->prepare('INSERT INTO events SET title=?');
-        $stmt->execute(array(
-            $_POST['title']
-        ));
+//     if (!empty($_POST)) {
+//         $stmt = $db->prepare('INSERT INTO events SET title=?');
+//         $stmt->execute(array(
+//             $_POST['title']
+//         ));
 
-        header('Location: http://' . $_SERVER['HTTP_HOST'] . '/admin/index.php');
-        exit();
-    }
-} else {
-    header('Location: http://' . $_SERVER['HTTP_HOST'] . '/admin/login.php');
-    exit();
-}
-?>
+//         header('Location: http://' . $_SERVER['HTTP_HOST'] . '/admin/index.php');
+//         exit();
+//     }
+// } else {
+//     header('Location: http://' . $_SERVER['HTTP_HOST'] . '/admin/login.php');
+//     exit();
+// }
+// ?>
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -33,6 +33,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
     require "../parts/header.php"; 
     require "../parts/admin_title_sort.php";
     require "../parts/admin_agent_list.php";
+    require "../parts/admin_pagination.php";
     ?>
 
     <div>
