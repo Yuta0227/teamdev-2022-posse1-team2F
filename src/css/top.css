@@ -155,5 +155,16 @@ padding-left: 5%;
 
 .filter-contents{
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
+    margin: 10px;
 }
+.filter-content{
+    background-color: #ebebe6;
+    padding: 10px;
+    width: 40%;
+}
+
+.filter-topic{
+    background-color: #b5dad5;
+}
+/* 絞り込み条件のデザインやるところから続き */
