@@ -18,5 +18,5 @@
             ?>
         </table>
     </div>
-    <div style="text-align:center;">掲載情報変更申請はこちらまで<br><?php echo 'xxxx@gmail.com'; ?></div>
+
 </section>
