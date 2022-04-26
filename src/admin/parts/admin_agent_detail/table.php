@@ -70,14 +70,14 @@
             </table>
         </div>
         <div style="display:flex;justify-content:right;">
-            <button>編集</button>
+            <div id="edit_public_information_button">編集</div>
         </div>
     </form>
     <form style="background-color:blue;width:max-content;padding:20px;">
         <div style="display:flex;justify-content:center;">エージェント説明文</div>
         <div style="height:200px;width:400px;background-color:white;">テキスト</div>
         <div style="display:flex;justify-content:right;">
-            <button>編集</button>
+            <div id="edit_agent_explanation_button">編集</div>
         </div>
     </form>
 </section>

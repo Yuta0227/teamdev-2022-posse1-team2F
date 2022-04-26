@@ -14,6 +14,7 @@
     require "../parts/admin_agent_detail/calender.php";
     require "../parts/admin_agent_detail/graph.php";
     require "../parts/admin_agent_detail/mail_popup.php";
+    require "../parts/admin_agent_detail/edit_popup.php";
     ?>
 </body>
 </html>
