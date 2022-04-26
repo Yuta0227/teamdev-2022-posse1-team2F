@@ -46,13 +46,21 @@
                 echo '<table style="width:70%;">';
                 foreach($assignee as $column=>$data){
                     echo '<tr>';
-                    echo '<th style="border:1px solid black;">' . $column . '</th><td style="border:1px solid black;display:flex;"><div style="width:75%;">' . $data . '</div><button id="edit'.$assignee_id.'" style="width:25%;">編集</button></td>';
+                    echo '<th style="border:1px solid black;">' . $column . '</th>';
+                    echo '<td style="border:1px solid black;display:flex;">';
+                    echo '<div>' . $data . '</div>';
+                    echo '</td>';
                     echo '</tr>';
                 };
-                $assignee_id++;
                 echo '</table>';
-                echo '<div style="position:relative;width:30%;"><button style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background-color:red;">削除</button></div>';
+                echo '<div style="position:relative;width:30%;">';
+                echo '<div style="display:flex;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);">';
+                echo '<button id="edit'.$assignee_id.'">編集</button>';
+                echo '<button style="background-color:red;">削除</button>';
                 echo '</div>';
+                echo '</div>';
+                echo '</div>';
+                $assignee_id++;
             };
             ?>
     </div>
