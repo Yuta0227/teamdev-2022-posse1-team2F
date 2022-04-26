@@ -17,7 +17,8 @@
 //     header('Location: http://' . $_SERVER['HTTP_HOST'] . '/admin/login.php');
 //     exit();
 // }
-// ?>
+// 
+?>
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -29,12 +30,13 @@
 </head>
 
 <body style="position:relative;width:100vw;height:100vh;">
-    <?php 
-    require "../parts/header.php"; 
-    require "../parts/admin_title_sort.php";
-    require "../parts/admin_agent_list.php";
-    require "../parts/admin_pagination.php";
-    require "../parts/admin_mail_popup.php";
+    <?php
+    require "../parts/admin_url.php";
+    require "../parts/header.php";
+    require "../parts/admin_agent_list/title_sort.php";
+    require "../parts/admin_agent_list/agent_list.php";
+    require "../parts/admin_agent_list/pagination.php";
+    require "../parts/admin_agent_list/mail_popup.php";
     ?>
 
     <div>

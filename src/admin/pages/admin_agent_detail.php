@@ -6,12 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>管理者専用企業詳細画面</title>
 </head>
-<body>
+<body style="position:relative;">
     <?php 
+    require "../parts/admin_url.php";
     require "../parts/header.php";
-    require "../parts/admin_agent_detail_table.php";
-    require "../parts/admin_agent_detail_calender_graph.php";
+    require "../parts/admin_agent_detail/table.php";
+    require "../parts/admin_agent_detail/calender.php";
+    require "../parts/admin_agent_detail/graph.php";
+    require "../parts/admin_agent_detail/mail_popup.php";
     ?>
-
 </body>
 </html>

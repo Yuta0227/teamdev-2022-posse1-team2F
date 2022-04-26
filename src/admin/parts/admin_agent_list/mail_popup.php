@@ -42,9 +42,7 @@ echo '</form>';
         });
         document.getElementById('close_mail_form<?php echo $agent_index+1;?>').addEventListener('click',function(){
             document.getElementById('mail_popup_filter').setAttribute('hidden','');
-            document.getElementById('mail_form<?php echo $agent_index+1;?>').setAttribute('hidden','');
-            
-        })
-
+            document.getElementById('mail_form<?php echo $agent_index+1;?>').setAttribute('hidden',''); 
+        });
         <?php }};?>
 </script>

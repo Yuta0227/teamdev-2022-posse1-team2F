@@ -1,3 +1,0 @@
-<section>
-    <canvas></canvas>
-</section>
