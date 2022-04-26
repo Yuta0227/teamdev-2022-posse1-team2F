@@ -56,7 +56,7 @@
                 echo '<div style="position:relative;width:30%;">';
                 echo '<div style="display:flex;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);">';
                 echo '<button id="edit'.$assignee_id.'">編集</button>';
-                echo '<button style="background-color:red;">削除</button>';
+                echo '<button id="delete'.$assignee_id.'" style="background-color:red;">削除</button>';
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
