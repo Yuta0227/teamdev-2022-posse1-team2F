@@ -9,7 +9,7 @@
 </head>
 <body>
     <?php 
-    require "../parts/url.php";
+    require "../../url.php";
     require "../parts/agent_header.php";
     require "../parts/agent_new_apply.php";
     require "../parts/agent_calender.php";

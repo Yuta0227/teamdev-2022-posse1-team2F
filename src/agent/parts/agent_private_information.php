@@ -21,7 +21,7 @@
     </div>
     <div style="display:flex;justify-content:center;text-align:center;">担当者情報</div>
     <div>
-        <div style="width:max-content;left:40%;border:1px solid black;background-color:red;">追加</div>
+        <div id="add" style="width:max-content;left:40%;border:1px solid black;background-color:red;">追加</div>
         <!-- 位置調整任せる -->
     </div>
     <div style="display:flex;flex-direction:column;justify-content:center;">
@@ -31,13 +31,11 @@
                     '部署' => '部署サンプル',
                     '名前' => '名前サンプル',
                     'メールアドレス' => 'メールアドレスサンプル',
-                    'パスワード' => 'パスワードサンプル',
                 ],
                 [
                     '部署' => '部署サンプル2',
                     '名前' => '名前サンプル2',
                     'メールアドレス' => 'メールアドレスサンプル2',
-                    'パスワード' => 'パスワードサンプル2',
                 ],
             ]; //データベースから取得
             $assignee_id=0;
