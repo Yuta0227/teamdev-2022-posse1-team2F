@@ -5,11 +5,12 @@
         <label>並び替え：</label><select name="sort">
             <?php
             $default_sort_order_array = [
-                '契約新しい順', //デフォルトどれにしたい?
+                '契約新しい順', 
                 '契約古い順',
                 '企業名五十音昇順',
                 '企業名五十音降順',
-                '請求額順',
+                '請求額降順',
+                '請求額昇順',
             ];
             if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 $sort_order_array = []; //リセット
