@@ -135,3 +135,36 @@ padding-left: 5%;
 }
 
 
+/* トップページの一覧とサイドバーのdiv */
+.main-informations{
+    display: flex;
+}
+.main-informations section{
+    width: 70%;
+}
+.filter-box{
+    width: 30%;
+}
+/* 絞り込みポップアップ */
+.filter{
+    text-align: center;
+    margin:auto;
+    border: solid; /*わかりやすいようにつけた、最終的には消す*/
+
+}
+
+.filter-contents{
+    display: flex;
+    justify-content: space-around;
+    margin: 10px;
+}
+.filter-content{
+    background-color: #ebebe6;
+    padding: 10px;
+    width: 40%;
+}
+
+.filter-topic{
+    background-color: #b5dad5;
+}
+/* 絞り込み条件のデザインやるところから続き */
