@@ -19,6 +19,8 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="../css/top.css">
 </head>
 <?php require "header.php"; ?>
+<?php require "indicator.php"; ?>
+
 <!-- <ul>
     <?php foreach ($events as $key => $event) : ?>
         <li>
