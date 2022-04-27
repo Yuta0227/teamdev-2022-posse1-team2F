@@ -3,7 +3,7 @@
         <img src="" alt="企業の写真">
         <div>株式会社アンチパターン</div>
     </div>
-    <form style="background-color:blue;width:max-content;padding:20px;">
+    <form style="background-color:blue;width:600px;padding:20px;">
         <div style="display:flex;justify-content:center;">契約情報</div>
         <div style="display:flex;justify-content:center;">
             <table>
@@ -44,11 +44,8 @@
                 ?>
             </table>
         </div>
-        <div style="display:flex;justify-content:right;">
-            <button>編集</button>
-        </div>
     </form>
-    <form style="background-color:blue;width:max-content;padding:20px;">
+    <form style="background-color:blue;width:600px;padding:20px;">
         <div style="display:flex;justify-content:center;">掲載情報</div>
         <div style="display:flex;justify-content:center;">
             <table>
@@ -70,14 +67,14 @@
             </table>
         </div>
         <div style="display:flex;justify-content:right;">
-            <div id="edit_public_information_button">編集</div>
+            <div style="border:1px solid black;padding:5px;border-radius:10px;background-color:skyblue;" id="edit_public_information_button">編集</div>
         </div>
     </form>
-    <form style="background-color:blue;width:max-content;padding:20px;">
+    <form style="background-color:blue;width:600px;padding:20px;">
         <div style="display:flex;justify-content:center;">エージェント説明文</div>
         <div style="height:200px;width:400px;background-color:white;">テキスト</div>
         <div style="display:flex;justify-content:right;">
-            <div id="edit_agent_explanation_button">編集</div>
+            <div style="border:1px solid black;padding:5px;border-radius:10px;background-color:skyblue;" id="edit_agent_explanation_button">編集</div>
         </div>
     </form>
 </section>

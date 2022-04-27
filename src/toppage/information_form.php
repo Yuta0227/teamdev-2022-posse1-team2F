@@ -132,7 +132,7 @@ $prefecture_array = array(
     // https://into-the-program.com/javascript-get-address-zipcode-search-api/。
     // これでやるかPHPとスプレッドシート連携して非同期処理でやる。ページがリロードしてしまうため厳しそう。onsubmitでページリロードを阻止できたら可能かも
     // べつにプルダウンにする必要性はあまりないのでは？どうせ住所検索で自動で入力されるわけだし
-    var question_box=`<div style="display:flex;"><div>${document.getElementById('test2').value}</div><input name="<?php echo 1;?>"></div>`;
+    var question_box=`<div style="display:flex;"><div>${document.getElementById('test2').value}</div><textarea cols="50" rows="5" name="<?php echo 1;?>"></textarea></div>`;
     document.getElementById('button2').onclick=function(){
         console.log(document.getElementById('test2').value);
         document.getElementById('select_agent').insertAdjacentHTML('afterend',question_box);
