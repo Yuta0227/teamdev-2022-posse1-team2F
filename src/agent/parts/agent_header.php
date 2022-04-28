@@ -3,7 +3,7 @@
         <img alt="就活.com" src="../../img/syukatudotcom_logo.png">
     </div>
     <div>
-        <form style="display:flex;">
+        <form action="" method="POST" style="display:flex;">
             <input type="submit" value="プロフィール">
             <input type="submit" value="申込一覧">
             <input type="submit" value="ログアウト">

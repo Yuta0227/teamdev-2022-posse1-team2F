@@ -30,7 +30,7 @@ if (count($new_applies_array) != 0) { //新着があったら
     $index = 0;
     foreach ($new_applies_array as $new_apply) {
         ${'report_status' . $index} = 0;
-        echo '<form method="POST" onsubmit="submitEvent();return false;" id="test' . $index . '" style="padding:10px;align-items:center;display:flex;border:1px solid black;">';
+        echo '<form method="POST" onsubmit="return false;" id="test' . $index . '" style="padding:10px;align-items:center;display:flex;border:1px solid black;">';
         echo '<div>' . $new_apply['月'] . '/' . $new_apply['日'] . ' ' . $new_apply['時間'] . '</div>';
         echo '<div>' . $new_apply['メールアドレス'] . '</div>';
         echo '<input type="button" id="open_new_apply' . $index . '" value="詳細▽">';
@@ -82,42 +82,56 @@ if (count($new_applies_array) != 0) { //新着があったら
         //そのファイルの変数が空っぽではなくなったら＝＝変数受け渡しがされたら新着一覧テーブルから学生の情報を消す
         console.log('テスト');
     }
-    <?php for ($index = 0; $index < count($new_applies_array); $index++) {
-
-    ?>
+    <?php for ($index = 0; $index < count($new_applies_array); $index++) { ?>
         document.getElementById('open_new_apply<?php echo $index; ?>').addEventListener('click', function() {
+            //新着の詳細ボタン押すと
             document.getElementById('close_new_apply<?php echo $index; ?>').removeAttribute('hidden');
+            //新着の閉じるボタン出現
             document.getElementById('open_new_apply<?php echo $index; ?>').setAttribute('hidden', '');
+            //新着の詳細ボタンが消える
             document.getElementById('new_apply_detail<?php echo $index; ?>').removeAttribute('hidden');
+            //学生の情報が出現
             <?php if (${'report_status' . $index} == 0) { ?>
+                //通報済みステータスがゼロの場合==通報していない場合
                 document.getElementById('new_report<?php echo $index; ?>').removeAttribute('hidden');
+                //通報するボタン出現
             <?php } else { ?>
+                //通報済みの場合
                 document.getElementById('new_reported<?php echo $index; ?>').removeAttribute('hidden');
+                //通報済みボタンが出現
             <?php } ?>
         });
         document.getElementById('close_new_apply<?php echo $index; ?>').addEventListener('click', function() {
+            //新着の閉じるボタン押すと
             document.getElementById('close_new_apply<?php echo $index; ?>').setAttribute('hidden', '');
+            //新着の閉じるボタンが消える
             document.getElementById('open_new_apply<?php echo $index; ?>').removeAttribute('hidden');
+            //新着の詳細ボタン出現
             document.getElementById('new_apply_detail<?php echo $index; ?>').setAttribute('hidden', '');
+            //新着の学生の情報出現
             <?php if (${'report_status' . $index} == 0) { ?>
+                //通報済みステータスがゼロの場合==通報していない場合
                 document.getElementById('new_report<?php echo $index; ?>').setAttribute('hidden', '');
-                document.report_form<?php echo $index; ?>.submit();
+                //新着通報するボタンが消える
             <?php } else { ?>
+                //通報済みの場合
                 document.getElementById('new_reported<?php echo $index; ?>').setAttribute('hidden', '');
+                //新着通報済みボタンが消える
             <?php }; ?>
         });
         document.getElementById('new_report<?php echo $index; ?>').addEventListener('click', function() {
+            //新着通報するボタン押すと
             document.getElementById('new_report<?php echo $index; ?>').setAttribute('hidden', '');
+            //新着通報するボタンが消える
             document.getElementById('new_report_reason<?php echo $index; ?>').removeAttribute('hidden');
+            //新着通報理由記入フォーム出現
         });
         document.getElementById('cancel_new_report<?php echo $index; ?>').addEventListener('click', function() {
+            //新着通報キャンセル押すと
             document.getElementById('new_report_reason<?php echo $index; ?>').setAttribute('hidden', '');
+            //新着通報理由記入フォームが消える
             document.getElementById('new_report<?php echo $index; ?>').removeAttribute('hidden', '');
-        })
-
-        function submit_reason() {
-            document.getElementById('new_report_reason<?php echo $index; ?>').setAttribute('hidden', '');
-            document.getElementById('new_reported<?php echo $index; ?>').removeAttribute('hidden');
-        };
-    <?php }; ?>
+            //新着通報するボタン出現
+        });
+    <?php } ?>
 </script>
