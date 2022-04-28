@@ -174,13 +174,14 @@ padding-left: 5%;
     justify-content: space-between;
     padding-left: 5%;
 }
-.sort-informations :first-child{
+.sorts{
     background-color: #ebebe6;
 }
 .sort-condition{
     height: 40px;
     background-color: #fff;
 }
+
 .sort-box{
     display: flex;
     width: 50%;
@@ -191,6 +192,7 @@ padding-left: 5%;
     background-color: #fff;
     height: 40px;
     padding: 0 10px 0 10px;
+    border: none;
 }
 
 .beginner-button{
@@ -202,4 +204,5 @@ padding-left: 5%;
 .result-number{
  padding-top: 10px;
  padding-left: 5%;
+ font-weight: bolder;
 }

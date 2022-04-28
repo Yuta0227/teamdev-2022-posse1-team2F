@@ -1,7 +1,7 @@
     <!--並び替え、就活ガイド、絞り込み-->
     <div class="sort-informations">
         <!--並び替え-->
-        <div>
+        <div class="sorts">
             <!--横並び-->
             <form class="sort-box">
                 <div>
