@@ -10,9 +10,9 @@
         for ($i = 0; $i < $agents_per_page; $i++) {
             echo '<div>';
             echo '<div style="display:flex;">';
-            echo '<div><img alt="エージェントの画像"></div>';
+            echo '<div><img src="../img/dummy.png" alt="エージェントの画像"></div>';
             echo '<div>';
-            echo '<div>'.$all_agents[$i].'</div>';
+            echo '<div>企業'.$all_agents[$i].'</div>';
             echo '<div>何が入るのか忘れたからとりあえずdiv</div>';
             echo '</div>';
             echo '</div>';
