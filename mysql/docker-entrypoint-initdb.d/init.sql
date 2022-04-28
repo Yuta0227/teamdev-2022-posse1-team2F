@@ -4,6 +4,9 @@ CREATE SCHEMA shukatsu;
 
 USE shukatsu;
 
+drop table if exists apply_information(
+  
+)
 DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (

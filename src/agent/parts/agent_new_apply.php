@@ -3,7 +3,7 @@
 $new_applies_array = [ //データベースから取得
     [
         '年' => '2022',
-        '月' => '10',
+        '月' => '12',
         '日' => '20',
         '時間' => '10:50',
         'メールアドレス' => 'sample@gmail.com',
@@ -17,6 +17,8 @@ $new_applies_array = [ //データベースから取得
         '郵便番号' => '000-0000',
         '住所' => '住所サンプル',
         '相談' => '相談サンプル',
+        '履歴'=>'',
+        '通報ステータス'=>1
     ]
 ];
 if (count($new_applies_array) != 0) { //新着があったら
@@ -27,28 +29,33 @@ if (count($new_applies_array) != 0) { //新着があったら
     echo '        <th>メールアドレス</th>';
     echo '    </tr>';
     echo '</table>';
-    $index = 0;
-    foreach ($new_applies_array as $new_apply) {
-        ${'report_status' . $index} = 0;
+    for ($index=0;$index<count($new_applies_array);$index++) {        
         echo '<form method="POST" onsubmit="return false;" id="test' . $index . '" style="padding:10px;align-items:center;display:flex;border:1px solid black;">';
-        echo '<div>' . $new_apply['月'] . '/' . $new_apply['日'] . ' ' . $new_apply['時間'] . '</div>';
-        echo '<div>' . $new_apply['メールアドレス'] . '</div>';
+        echo '<div>' . $new_applies_array[$index]['月'] . '/' . $new_applies_array[$index]['日'] . ' ' . $new_applies_array[$index]['時間'] . '</div>';
+        echo '<div>' . $new_applies_array[$index]['メールアドレス'] . '</div>';
         echo '<input type="button" id="open_new_apply' . $index . '" value="詳細▽">';
         echo '<input id="close_new_apply' . $index . '" name="close' . $index . '" hidden value="閉じる△" type="submit">';
         echo '</form>';
         echo '<div id="new_apply_detail' . $index . '" hidden style="border:1px solid black;">';
-        echo '<div>' . $new_apply['漢字'] . '(' . $new_apply['フリガナ'] . ')</div>';
-        echo '<div>' . $new_apply['電話番号'] . '</div>';
-        echo '<div>' . $new_apply['大学名'] . ' ' . $new_apply['学部名'] . ' ' . $new_apply['学科名'] . ' ' . $new_apply['何年卒'] . '年卒</div>';
-        echo '<div>' . $new_apply['郵便番号'] . '</div>';
-        echo '<div>' . $new_apply['住所'] . '</div>';
-        echo '<div>相談：' . $new_apply['相談'] . '</div>';
+        echo '<div>' . $new_applies_array[$index]['漢字'] . '(' . $new_applies_array[$index]['フリガナ'] . ')</div>';
+        echo '<div>' . $new_applies_array[$index]['電話番号'] . '</div>';
+        echo '<div>' . $new_applies_array[$index]['大学名'] . ' ' . $new_applies_array[$index]['学部名'] . ' ' . $new_applies_array[$index]['学科名'] . ' ' . $new_applies_array[$index]['何年卒'] . '年卒</div>';
+        echo '<div>' . $new_applies_array[$index]['郵便番号'] . '</div>';
+        echo '<div>' . $new_applies_array[$index]['住所'] . '</div>';
+        echo '<div>' . $new_applies_array[$index]['履歴'] . '</div>';
+        echo '<div>相談：' . $new_applies_array[$index]['相談'] . '</div>';
         echo '</div>';
         echo '<form name="report_form' . $index . '" onsubmit="submit_reason();" action="" method="POST">';
         echo '<div style="justify-content:center;display:flex;border:1px solid black;">';
-        if (${"report_status" . $index} == 0) {
+        if ($new_applies_array[$index]['通報ステータス'] == 0) {
             //通報されていない場合
-            echo '<div id="new_report' . $index . '" hidden style="text-align:center;width:50%;padding:10px;border-radius:50%;background-color:red;">通報する(' . ($new_apply['月'] + 1) . '月1日23:59まで)</div>';
+            if($new_applies_array[$index]['月']!=12){
+                //申込の月が12月ではない場合
+                echo '<div id="new_report' . $index . '" hidden style="text-align:center;width:50%;padding:10px;border-radius:50%;background-color:red;">通報する('.$new_applies_array[$index]['年'].'年' . ($new_applies_array[$index]['月'] + 1) . '月1日23:59まで)</div>';
+            }else{
+                //申込の月が12の場合=>翌年の一月まで
+                echo '<div id="new_report' . $index . '" hidden style="text-align:center;width:50%;padding:10px;border-radius:50%;background-color:red;">通報する('.($new_applies_array[$index]['年']+1).'年1月1日23:59まで)</div>';
+            }
         } else {
             //通報されている場合
             echo '<div id="new_reported' . $index . '" hidden style="text-align:center;width:50%;padding:10px;border-radius:50%;background-color:blue;">通報済み</div>';
@@ -69,7 +76,6 @@ if (count($new_applies_array) != 0) { //新着があったら
         //         //通報テーブルにこのデータ送ってvalid=1のものの表示を切り替えたい
         //     }
         // }
-        $index++;
     };
 };
 ?>
@@ -91,7 +97,7 @@ if (count($new_applies_array) != 0) { //新着があったら
             //新着の詳細ボタンが消える
             document.getElementById('new_apply_detail<?php echo $index; ?>').removeAttribute('hidden');
             //学生の情報が出現
-            <?php if (${'report_status' . $index} == 0) { ?>
+            <?php if ($new_applies_array[$index]['通報ステータス'] == 0) { ?>
                 //通報済みステータスがゼロの場合==通報していない場合
                 document.getElementById('new_report<?php echo $index; ?>').removeAttribute('hidden');
                 //通報するボタン出現
@@ -109,7 +115,7 @@ if (count($new_applies_array) != 0) { //新着があったら
             //新着の詳細ボタン出現
             document.getElementById('new_apply_detail<?php echo $index; ?>').setAttribute('hidden', '');
             //新着の学生の情報出現
-            <?php if (${'report_status' . $index} == 0) { ?>
+            <?php if ($new_applies_array[$index]['通報ステータス'] == 0) { ?>
                 //通報済みステータスがゼロの場合==通報していない場合
                 document.getElementById('new_report<?php echo $index; ?>').setAttribute('hidden', '');
                 //新着通報するボタンが消える
