@@ -192,7 +192,7 @@
             let selected_year=document.getElementById('calender_year').innerHTML;
             let selected_month=document.getElementById(`date${index}`).innerHTML.split('/')[0];
             let selected_date=document.getElementById(`date${index}`).innerHTML.split('/')[1];
-            window.location=`agent_selected_date.php?year=${selected_year}&month=${selected_month}&date=${selected_date}`;
+            window.location=`selected_date.php?year=${selected_year}&month=${selected_month}&date=${selected_date}`;
         });
     }
 </script>

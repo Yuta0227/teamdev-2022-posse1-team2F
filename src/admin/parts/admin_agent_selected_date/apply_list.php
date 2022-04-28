@@ -29,7 +29,7 @@
             echo '<div>通報理由：テキストサンプル</div>';
             echo '<div style="display:flex;justify-content:center;">';
             echo '<div style="width:50%;display:flex;justify-content:center;align-items:center;height:200px;">';
-            echo '<input type="submit" name="accept_delete_request' . $index . '" value="削除申請承認">';
+            echo '<input type="submit" name="accept_delete_request' . $index . '" value="削除申請承認">';//自動でメール送信
             echo '</div>';
             echo '<div style="width:50%;display:flex;justify-content:center;align-items:center;height:200px;">';
             echo '<input type="submit" name="decline_delete_request' . $index . '" value="削除申請却下">';
