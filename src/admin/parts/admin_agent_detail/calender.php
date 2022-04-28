@@ -195,7 +195,7 @@
             let selected_year = document.getElementById('calender_year').innerHTML;
             let selected_month = document.getElementById(`date${index}`).innerHTML.split('/')[0];
             let selected_date = document.getElementById(`date${index}`).innerHTML.split('/')[1];
-            window.location = `<?php echo $admin_agent_selected_date_url; ?>?year=${selected_year}&month=${selected_month}&date=${selected_date}`;
+            window.location = `<?php echo $admin_agent_selected_date_url; ?>?agent_index=<?php $_GET['agent_index'];?>&year=${selected_year}&month=${selected_month}&date=${selected_date}`;
         });
     }
 </script>
