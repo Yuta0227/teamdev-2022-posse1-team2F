@@ -167,4 +167,17 @@ padding-left: 5%;
 .filter-topic{
     background-color: #b5dad5;
 }
-/* 絞り込み条件のデザインやるところから続き */
+
+/* 企業一覧 */
+.agent-whole-box{
+    display:flex;
+    gap: 10px;
+    padding: 20px 20px 0 20px;
+}
+.agent-overview-box{
+    border: solid;
+    border-color: #999999;
+}
+.agent-list-image{
+    width: 50%;
+}
