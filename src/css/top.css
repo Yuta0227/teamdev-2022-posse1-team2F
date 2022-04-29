@@ -181,3 +181,23 @@ padding-left: 5%;
 .agent-list-image{
     width: 50%;
 }
+.agent-name{
+    padding-left: 10px;
+    font-weight: bolder;
+    font-size: 30px;
+}
+.agent-short-explanation{
+    margin: 3% 5% 3% 5%;
+}
+.like-button{
+    display: inline-block;
+    border-radius: 30px;
+    background-color: #b5dad5;
+    padding: 5px;
+    margin: 5px;
+    color: white;
+}
+.like-icon{
+    padding-left: 5px;
+    color: red;
+}

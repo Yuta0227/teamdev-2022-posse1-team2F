@@ -12,12 +12,14 @@
             echo '<div style="display:flex;">';
             echo '<img class="agent-list-image" src="../img/dummy.png" alt="エージェントの画像">';
             echo '<div>';
-            echo '<div>企業'.$all_agents[$i].'</div>';
-            echo '<div>何が入るのか忘れたからとりあえずdiv</div>';
+            echo '<div class="agent-name">企業'.$all_agents[$i].'</div>';
+            echo '<div>#理系企業</div>';
+            echo '<div>#外資系企業</div>';
             echo '</div>';
             echo '</div>';
-            echo '<div>';
-            echo '<div>テキスト</div>';
+            echo '<div style="text-align:center;">';
+            echo '<div class="agent-short-explanation">テキスト<br>説明文<br>文章の長さにもよるけど3~4行目安</div>';
+            echo '<div class="like-button">お気に入りに追加<i class="fa-regular fa-heart like-icon"></i></div>';
             echo '</div>';
             echo '</div>';
         }; 
@@ -27,7 +29,7 @@
             echo '<div style="display:flex;">';
             echo '<img class="agent-list-image" src="../img/dummy.png" alt="エージェントの画像">';
             echo '<div>';
-            echo '<div>何が入るのか忘れたからとりあえずdiv</div>';
+            echo '<div class="agent-name">何が入るのか忘れたからとりあえずdiv</div>';
             echo '<div>何が入るのか忘れたからとりあえずdiv</div>';
             echo '</div>';
             echo '</div>';
