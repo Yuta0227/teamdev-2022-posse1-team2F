@@ -75,7 +75,7 @@ $prefecture_array = array(
         <input>
         <div>学部名<span>(必須)</span></div>
         <input>
-        <div>何年卒<span>(必須)</span></div>
+        <div>何年卒<span>(必須)(<?php echo date('Y');?>年に大学4年生の場合は<?php echo date('Y')+1;?>年卒)</span></div>
         <input id="test">
         <div>郵便番号<span>(必須)(半角)</span></div>
         <div style="display:flex;">
