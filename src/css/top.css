@@ -175,16 +175,33 @@ padding-left: 5%;
     padding: 20px 20px 0 20px;
 }
 .agent-overview-box{
+    padding: 5px;
     border: solid;
     border-color: #999999;
+    cursor: pointer;
 }
-.agent-list-image{
-    width: 50%;
+.agent-overview-box a{
+    color: black;
+    text-decoration: none;
 }
+
 .agent-name{
     padding-left: 10px;
     font-weight: bolder;
     font-size: 30px;
+}
+.agent-name:hover{
+    text-decoration: underline;
+}
+.agent-article{
+    width: 60%;
+}
+.agent-list-image{
+    width: 100%;
+}
+.image-box{
+    display: inline-block;
+    width: 50%;
 }
 .agent-short-explanation{
     margin: 3% 5% 3% 5%;
@@ -192,7 +209,7 @@ padding-left: 5%;
 .like-button{
     display: inline-block;
     border-radius: 30px;
-    background-color: #b5dad5;
+    background-color: #71ccc0;
     padding: 5px;
     margin: 5px;
     color: white;
