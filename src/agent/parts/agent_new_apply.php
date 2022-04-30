@@ -29,6 +29,7 @@ if (count($new_applies_array) != 0) { //新着があったら
     echo '</table>';
     $index = 0;
     foreach ($new_applies_array as $new_apply) {
+        ${'report_status'.$index}=0;
         echo '<form method="POST" onsubmit="submitEvent();return false;" id="test' . $index . '" style="padding:10px;align-items:center;display:flex;border:1px solid black;">';
         echo '<div>'.$new_apply['月'].'/'.$new_apply['日'].' '.$new_apply['時間'].'</div>';
         echo '<div>'.$new_apply['メールアドレス'].'</div>';
@@ -45,17 +46,21 @@ if (count($new_applies_array) != 0) { //新着があったら
         echo '</div>';
         echo '<form name="report_form'.$index.'" onsubmit="submit_reason();" action="" method="POST">';
         echo '<div style="justify-content:center;display:flex;border:1px solid black;">';
-        echo '<div id="new_report'.$index.'" hidden style="text-align:center;width:50%;padding:10px;border-radius:50%;background-color:red;">通報する('.($new_apply['月']+1).'月1日23:59まで)';
-        echo'</div>';
-        echo '<div id="new_reported'.$index.'" hidden style="text-align:center;width:50%;padding:10px;border-radius:50%;background-color:blue;">通報済み</div>';
-        echo '</div>';
-        echo '<div id="new_report_reason'.$index.'" style="border:1px solid black;" hidden><div style="display:flex;justify-content:center;align-items:center;"><span>通報理由：</span><textarea type="text" name="new_report_reason" required placeholder="理由を記入してください"></textarea></div>';
-        echo '<div style="display:flex;justify-content:center;"><input type="submit" name="report'.$index.'"></div></div>';
-        echo '</form>';
+        if(${"report_status".$index}==0){
+            //通報されていない場合
+            echo '<div id="new_report'.$index.'" hidden style="text-align:center;width:50%;padding:10px;border-radius:50%;background-color:red;">通報する('.($new_apply['月']+1).'月1日23:59まで)</div>';
+        }else{
+            //通報されている場合
+            echo '<div id="new_reported'.$index.'" hidden style="text-align:center;width:50%;padding:10px;border-radius:50%;background-color:blue;">通報済み</div>';
+        }
+            echo '</div>';
+            echo '<div id="new_report_reason'.$index.'" style="border:1px solid black;" hidden><div style="display:flex;justify-content:center;align-items:center;"><span>通報理由：</span><textarea type="text" name="new_report_reason" required placeholder="理由を記入してください"></textarea></div>';
+            echo '<div style="display:flex;justify-content:center;"><div id="cancel_new_report'.$index.'">キャンセル</div><input type="submit" name="report'.$index.'" value="通報"></div></div>';
+            echo '</form>';
+            
         //formにする
         //divでごり押しするか。できるかわからん。divをクリック時jsからphpに変数なげてそれで判定も可能。一番現実的かもしれない
         //やること。▽おしたら詳細みせる△おしたら閉じて新着テーブルから消して一覧テーブルに追加する
-        ${'report_status'.$index}=0;
         // if($_SERVER['REQUEST_METHOD']=='POST'){
         //     if($_POST['report_form'.$index]!=NULL){
         //         ${'report_status'.$index}=1;
@@ -95,18 +100,22 @@ if (count($new_applies_array) != 0) { //新着があったら
             document.getElementById('open_new_apply<?php echo $index; ?>').removeAttribute('hidden');
             document.getElementById('new_apply_detail<?php echo $index; ?>').setAttribute('hidden', '');
             document.getElementById('new_reported<?php echo $index;?>').setAttribute('hidden','');
+            document.getElementById('new_report<?php echo $index;?>').setAttribute('hidden','');
             <?php if( ${'report_status'.$index}==0){?>
                 document.report_form<?php echo $index;?>.submit();
             <?php }?>
-
         });
         document.getElementById('new_report<?php echo $index;?>').addEventListener('click',function(){
             document.getElementById('new_report<?php echo $index;?>').setAttribute('hidden','');
             document.getElementById('new_report_reason<?php echo $index;?>').removeAttribute('hidden');
+        });
+        document.getElementById('cancel_new_report<?php echo $index;?>').addEventListener('click',function(){
+            document.getElementById('new_report_reason<?php echo $index;?>').setAttribute('hidden','');
+            document.getElementById('new_report<?php echo $index;?>').removeAttribute('hidden','');
         })
         function submit_reason(){
             document.getElementById('new_report_reason<?php echo $index;?>').setAttribute('hidden','');
             document.getElementById('new_reported<?php echo $index;?>').removeAttribute('hidden');            
-        }
+        };
     <?php }; ?>
 </script>
