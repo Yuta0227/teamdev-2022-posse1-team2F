@@ -31,6 +31,7 @@
 
 <body style="position:relative;width:100vw;height:100vh;">
     <?php
+    require "../../dbconnect.php";
     require "../parts/admin_url.php";
     require "../parts/header.php";
     require "../parts/admin_agent_list/title_sort.php";

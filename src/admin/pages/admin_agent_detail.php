@@ -8,6 +8,7 @@
 </head>
 <body style="position:relative;">
     <?php 
+    require "../../dbconnect.php";
     require "../parts/admin_url.php";
     require "../parts/header.php";
     require "../parts/admin_agent_detail/table.php";
