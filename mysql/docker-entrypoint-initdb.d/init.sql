@@ -90,6 +90,85 @@ create table agent_public_information (
   agent_id int AUTO_INCREMENT not null primary key,
   agent_name varchar(255) not null,
   corporate_amount int not null,
-  agent_address varchar(255) not null,
-  
-)
+  agent_address varchar(255) not null
+  -- 決まったら追記していく
+);
+
+drop table if exists admin_agent_list;
+
+create table admin_agent_list (
+  agent_id int AUTO_INCREMENT not null primary key,
+  agent_name varchar(255) not null,
+  apply_amount int not null,
+  featured_article_bool boolean not null default false,
+  bool_updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+-- 管理者画面のエージェント一覧
+-- 上から企業ID、企業名、問い合わせ数、特集記事ステータス、特集記事掲載ステータス定期更新用の時間(phpで管理者画面アクセス時に時間取得して一年？半年？たってたらboolをupdateする)
+
+insert into admin_agent_list 
+(agent_name,apply_amount) 
+values
+('エージェント1',0),
+('エージェント2',0),
+('エージェント3',0);
+-- 問い合わせ来たらupdate admin_agent_list set apply_amount=apply_amount+1 where agent_id=?で問い合わせ数を増やせる
+
+drop table if exists apply_list;
+
+create table apply_list(
+  apply_id int auto_increment not null primary key,
+  agent_id int not null,
+  agent_name varchar(255) not null,
+  apply_time DATETIME default CURRENT_TIMESTAMP,
+  applicant_email_address varchar(255) not null,
+  applicant_name_kanji varchar(255) not null,
+  applicant_name_furigana varchar(255) not null,
+  applicant_phone_number varchar(255) not null,
+  applicant_university varchar(255) not null,
+  applicant_gakubu varchar(255) not null,
+  applicant_gakka varchar(255) not null,
+  applicant_graduation_year int not null,
+  applicant_postal_code varchar(255) not null,
+  applicant_address varchar(255) not null,
+  applicant_consultation varchar(255) not null,
+  applicant_other_agents varchar(255) not null,
+  applicant_report_status boolean default false
+);
+-- 申込一覧テーブル上から申込ID、企業ID、企業名、申込日時、申込者の=>メールアドレス、漢字の名前、フリガナ、電話番号、大学、学部、学科、何年卒、郵便番号、住所、相談内容、同時応募エージェント、通報ステータス
+insert into apply_list
+(agent_id,agent_name,applicant_email_address,applicant_name_kanji,applicant_name_furigana,applicant_phone_number,applicant_university,applicant_gakubu,applicant_gakka,applicant_graduation_year,applicant_postal_code,applicant_address,applicant_consultation,applicant_other_agents)
+values
+(1,'エージェント1','サンプルメアド1','就活1','シュウカツ1','サンプル電話番号1','サンプル大学1','サンプル学部1','サンプル学科1',2024,'サンプル郵便番号1','サンプル住所1','サンプル相談1','エージェント2,エージェント3'),
+(1,'エージェント1','サンプルメアド2','就活2','シュウカツ2','サンプル電話番号2','サンプル大学2','サンプル学部2','サンプル学科2',2024,'サンプル郵便番号2','サンプル住所2','サンプル相談2','エージェント4,エージェント5'),
+(1,'エージェント1','サンプルメアド3','就活3','シュウカツ3','サンプル電話番号3','サンプル大学3','サンプル学部3','サンプル学科3',2024,'サンプル郵便番号3','サンプル住所3','サンプル相談3','エージェント6,エージェント7');
+
+drop table if exists featured_article;
+
+create table featured_article (
+  featured_article_id int AUTO_INCREMENT not null primary key,
+  agent_id int not null,
+  agent_name varchar(255) not null,
+  questions_answers varchar(255) not null,
+  last_comment varchar(255) not null,
+  publish_date DATETIME default current_timestamp
+);
+-- 特集記事一覧テーブル上から特集記事ID、企業ID、企業名、質疑応答一覧、最後に一言、掲載日
+-- 下のようにphpで書くことで質問の数が増えても対応できる
+-- $test='質問1,回答1;質問2,回答2';
+-- $question_answer_sets=explode(';',$test);
+-- var_dump($question_answer_sets);
+-- $index=0;
+-- foreach($question_answer_sets as $question_answer_set){
+--     ${"question_answer".$index}=explode(',',$question_answer_set);
+--     echo ${"question_answer".$index}[0];
+--     echo ${"question_answer".$index}[1];
+--     $index++;
+-- }
+
+insert into featured_article
+(agent_id,agent_name,questions_answers,last_comment)
+values
+(1,'エージェント1','質問1,回答1;質問2,回答2','最後に一言サンプル1'),
+(2,'エージェント2','質問1,回答1;質問2,回答2;質問3,回答3','最後に一言サンプル2'),
+(3,'エージェント3','質問1,回答1;質問2,回答2;質問3,回答3;質問4,回答4','最後に一言サンプル3');
