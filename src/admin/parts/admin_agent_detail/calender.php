@@ -1,20 +1,74 @@
 <section>
-    <div>
-        <?php
-        //たぶんエラーの原因は月、日の0ついてるかどうか
-        if (!isset($_GET['month'])) {
-            echo date('n');
+    <div style="display:flex;width:100%;justify-content:center;">
+        <div>
+            <a href="
+            <?php
+            $number_of_applies = []; //月の申込件数
+            $calender_dates = []; //カレンダーで表示する日
+            $year_month_parameter_set = isset($_GET['year']) && isset($_GET['month']);
+        if ($year_month_parameter_set) {
+            if ($_GET['month'] != '1') {
+                //パラメータのmonthが1じゃないなら普通に月減らす
+                $decrease_month = $adjust->double($adjust->single($_GET['month']) - 1);
+                $decrease_year = $_GET['year'];
+            } else {
+                $decrease_month = '12';
+                $decrease_year = $_GET['year'] - 1;
+            };
+            echo $admin_agent_detail_url . '?year=' . $decrease_year . '&month=' . $decrease_month.'&agent_index='.$_GET['agent_index'];
         } else {
-            echo $_GET['month'];
+            if (date('n') != 1) {
+                //パラメータのmonthが1じゃないなら普通に月減らす
+                $decrease_month = date('n') - 1;
+                $decrease_year = date('Y');
+            } else {
+                $decrease_month = '12';
+                $decrease_year = date('Y') - 1;
+            };
+            echo $admin_agent_detail_url . '?year=' . $decrease_year . '&month=' . $decrease_month.'&agent_index='.$_GET['agent_index'];
         }
         ?>
-        月の申込一覧
+        ">
+                &lt;
+            </a>
+        </div>
+        <div>
+            <?php
+            if ($year_month_parameter_set) {
+                echo '<span id="calender_year">' . $_GET['year'] . '</span>' . '年' . $adjust->single($_GET['month']).'月の申込一覧';
+            } else {
+                echo '<span id="calender_year">' . date('Y') . '</span>' . '年' . date('n').'月の申込一覧';
+            }
+            ?>
+        </div>
+        <div>
+            <?php if ($year_month_parameter_set) {
+                if ($_GET['year'] . '/' . $_GET['month'] != date('Y') . '/' . date('m')) {
+                    //パラメータがあるかつそれがページを開いたときの年月と一致してないとき==最新月ではないときのみ矢印表示する
+            ?>
+                    <a href="
+        <?php
+                    if ($year_month_parameter_set) {
+                        if ($_GET['month'] != '12') {
+                            //パラメータのmonthが12じゃないなら普通に月増やす
+                            $increase_month = $adjust->double($adjust->single($_GET['month']) + 1);
+                            $increase_year = $_GET['year'];
+                        } else {
+                            $increase_month = '01';
+                            $increase_year = $_GET['year'] + 1;
+                        };
+                        echo $admin_agent_detail_url . '?year=' . $increase_year . '&month=' . $increase_month.'&agent_index='.$_GET['agent_index'];
+                    }
+
+        ?>">
+                        &gt;
+                    </a>
+            <?php }
+            } ?>
+        </div>
     </div>
     <table>
         <?php
-        $number_of_applies = []; //月の申込件数
-        $calender_dates = []; //カレンダーで表示する日
-        $year_month_parameter_set = isset($_GET['year']) && isset($_GET['month']);
         if ($year_month_parameter_set) {
             if ($_GET['month'] != '01') {
                 //パラメータのmonthが1じゃないなら普通に月減らす
@@ -59,8 +113,8 @@
                 //カレンダーで表示する日付を日付配列に追加
             }
             for ($day = 1; $day <= date('t', strtotime($year_month)); $day++) {
-                $start_year_month_date=$_GET['year']."-".$_GET['month']."-".$adjust->double($day)." 00:00:00";
-                $end_year_month_date=$_GET['year']."-".$_GET['month']."-".$adjust->double($day)." 23:59:59";
+                $start_year_month_date=$_GET['year']."-".$_GET['month']."-".$day." 00:00:00";
+                $end_year_month_date=$_GET['year']."-".$_GET['month']."-".$day." 23:59:59";
                 $applies_per_day_stmt=$db->prepare("select count(apply_id) from apply_list where agent_id=? and apply_time between ? and ?;");
                 $applies_per_day_stmt->bindValue(1,$_GET['agent_index']);                
                 $applies_per_day_stmt->bindValue(2,$start_year_month_date);                
@@ -136,88 +190,31 @@
         }
         ?>
     </table>
-    <div style="display:flex;width:100%;justify-content:center;">
-        <div>
-            <a href="
-        <?php
-        if ($year_month_parameter_set) {
-            if ($_GET['month'] != 1) {
-                //パラメータのmonthが1じゃないなら普通に月減らす
-                $decrease_month = $_GET['month'] - 1;
-                $decrease_year = $_GET['year'];
-            } else {
-                $decrease_month = 12;
-                $decrease_year = $_GET['year'] - 1;
-            };
-            echo $admin_agent_detail_url . '?year=' . $decrease_year . '&month=' . $decrease_month.'&agent_index='.$_GET['agent_index'];
-        } else {
-            if (date('n') != 1) {
-                //パラメータのmonthが1じゃないなら普通に月減らす
-                $decrease_month = date('n') - 1;
-                $decrease_year = date('Y');
-            } else {
-                $decrease_month = 12;
-                $decrease_year = date('Y') - 1;
-            };
-            echo $admin_agent_detail_url . '?year=' . $decrease_year . '&month=' . $decrease_month.'&agent_index='.$_GET['agent_index'];
-        }
-        ?>
-        ">
-                &lt;
-            </a>
-        </div>
-        <div>
-            <?php
-            if ($year_month_parameter_set) {
-                echo '<span id="calender_year">' . $_GET['year'] . '</span>' . '/' . $_GET['month'];
-            } else {
-                echo '<span id="calender_year">' . date('Y') . '</span>' . '/' . date('n');
-            }
-            ?>
-        </div>
-        <div>
-            <?php if ($year_month_parameter_set) {
-                if ($_GET['year'] . '/' . $_GET['month'] != date('Y') . '/' . date('n')) {
-                    //パラメータがあるかつそれがページを開いたときの年月と一致してないとき==最新月ではないときのみ矢印表示する
-            ?>
-                    <a href="
-        <?php
-                    if ($year_month_parameter_set) {
-                        if ($_GET['month'] != 12) {
-                            //パラメータのmonthが12じゃないなら普通に月増やす
-                            $increase_month = $_GET['month'] + 1;
-                            $increase_year = $_GET['year'];
-                        } else {
-                            $increase_month = 1;
-                            $increase_year = $_GET['year'] + 1;
-                        };
-                        echo $admin_agent_detail_url . '?year=' . $increase_year . '&month=' . $increase_month.'&agent_index='.$_GET['agent_index'];
-                    }
-
-        ?>">
-                        &gt;
-                    </a>
-            <?php }
-            } ?>
-        </div>
-    </div>
     <div>
         <?php
         if ($year_month_parameter_set) {
-            echo $_GET['year'] . '/' . $_GET['month'];
+            echo $_GET['year'] . '年' . $adjust->single($_GET['month']);
         } else {
-            echo date('Y') . '/' . date('n');
+            echo date('Y') . '年' . date('n');
         } ?>
         月の合計：
         <?php
-        echo 4;
+        $start_year_month=$year_month."-01 00:00:00";
+        $end_year_month=$year_month."-".date('t',strtotime($year_month))." 23:59:59";
+        $applies_per_month_stmt=$db->prepare("select count(apply_id) from apply_list where agent_id=? and apply_time between ? and ?;");
+        $applies_per_month_stmt->bindValue(1,$_GET['agent_index']);
+        $applies_per_month_stmt->bindValue(2,$start_year_month);
+        $applies_per_month_stmt->bindValue(3,$end_year_month);
+        $applies_per_month_stmt->execute();
+        $applies_per_month_data=$applies_per_month_stmt->fetchAll();
+        echo $applies_per_month_data[0]['count(apply_id)'];
         ?>
         人、
         <?php
         if ($year_month_parameter_set) {
-            echo $_GET['year'] . '/' . $_GET['month'];
+            echo $_GET['year'] . '年' . $adjust->single($_GET['month']);
         } else {
-            echo date('Y') . '/' . date('n');
+            echo date('Y') . '年' . date('n');
         } ?>
         月の請求額：
         <?php
@@ -232,7 +229,13 @@
         document.getElementById(`each_day${index}`).addEventListener('click', function() {
             let selected_year = document.getElementById('calender_year').innerHTML;
             let selected_month = document.getElementById(`date${index}`).innerHTML.split('/')[0];
+            if(selected_month<=9){
+                selected_month='0'+selected_month;
+            }
             let selected_date = document.getElementById(`date${index}`).innerHTML.split('/')[1];
+            if(selected_date<=9){
+                selected_date='0'+selected_date;
+            }
             window.location = `<?php echo $admin_agent_selected_date_url; ?>?agent_index=<?php $_GET['agent_index'];?>&year=${selected_year}&month=${selected_month}&date=${selected_date}`;
         });
     }
