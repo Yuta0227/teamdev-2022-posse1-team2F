@@ -218,7 +218,7 @@
         } ?>
         月の請求額：
         <?php
-        echo 7;
+        echo $applies_per_month_data[0]['count(apply_id)']*2;
         ?>
         万円
     </div>
