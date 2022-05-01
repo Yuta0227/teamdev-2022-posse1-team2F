@@ -1,5 +1,5 @@
 <div>
-    <div style="display:flex;">
+    <div style="display:flex;" class="top-pagenation">
         <!--緑の箱。paddingつける-->
         <!--hrefの中にagent_list_paginationのパラメータ取得していれる-->
         <?php 

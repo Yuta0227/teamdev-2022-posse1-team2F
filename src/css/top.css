@@ -150,7 +150,6 @@ padding-left: 5%;
     text-align: center;
     margin:auto;
     border: solid; /*わかりやすいようにつけた、最終的には消す*/
-
 }
 
 .filter-contents{
@@ -167,4 +166,106 @@ padding-left: 5%;
 .filter-topic{
     background-color: #b5dad5;
 }
-/* 絞り込み条件のデザインやるところから続き */
+
+/* 並び変え、初心者モーダルのCSS */
+.sort-informations{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 5%;
+}
+.sorts{
+    background-color: #ebebe6;
+}
+.sort-condition{
+    height: 40px;
+    background-color: #fff;
+}
+
+.sort-box{
+    display: flex;
+    width: 50%;
+    padding: 10px;
+    gap: 10px;
+}
+.sort-button{
+    background-color: #fff;
+    height: 40px;
+    padding: 0 10px 0 10px;
+    border: none;
+}
+
+.beginner-button{
+    border-radius: 20px;
+    padding: 0 15px 0 15px;
+    border: none;
+}
+
+.result-number{
+ padding-top: 10px;
+ padding-left: 5%;
+ font-weight: bolder;
+}
+
+/* 企業一覧 */
+.agent-whole-box{
+    display:flex;
+    gap: 10px;
+    padding-left: 5%;
+    margin-top: 20px;
+}
+.agent-overview-box{
+    padding: 5px;
+    border: solid;
+    border-color: #999999;
+    cursor: pointer;
+}
+.agent-overview-box a{
+    color: black;
+    text-decoration: none;
+}
+
+.agent-name{
+    padding-left: 10px;
+    font-weight: bolder;
+    font-size: 30px;
+}
+.agent-name:hover{
+    text-decoration: underline;
+}
+.agent-article{
+    width: 60%;
+}
+.agent-list-image{
+    width: 100%;
+}
+.image-box{
+    display: inline-block;
+    width: 50%;
+}
+.agent-short-explanation{
+    margin: 3% 5% 3% 5%;
+}
+.like-button{
+    display: inline-block;
+    border-radius: 30px;
+    background-color: #71ccc0;
+    padding: 5px;
+    margin: 5px;
+    color: white;
+}
+.like-icon{
+    padding-left: 5px;
+    color: red;
+}
+
+/* ページネーション */
+.top-pagenation{
+    justify-content: flex-end;
+}
+.top-pagenation a{
+    color: #000;
+}
+.top-pagenation a:first-child{
+    margin-left: 5px;
+}
+
