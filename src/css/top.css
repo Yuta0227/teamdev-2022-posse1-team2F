@@ -205,3 +205,67 @@ padding-left: 5%;
  padding-left: 5%;
  font-weight: bolder;
 }
+
+/* 企業一覧 */
+.agent-whole-box{
+    display:flex;
+    gap: 10px;
+    padding-left: 5%;
+    margin-top: 20px;
+}
+.agent-overview-box{
+    padding: 5px;
+    border: solid;
+    border-color: #999999;
+    cursor: pointer;
+}
+.agent-overview-box a{
+    color: black;
+    text-decoration: none;
+}
+
+.agent-name{
+    padding-left: 10px;
+    font-weight: bolder;
+    font-size: 30px;
+}
+.agent-name:hover{
+    text-decoration: underline;
+}
+.agent-article{
+    width: 60%;
+}
+.agent-list-image{
+    width: 100%;
+}
+.image-box{
+    display: inline-block;
+    width: 50%;
+}
+.agent-short-explanation{
+    margin: 3% 5% 3% 5%;
+}
+.like-button{
+    display: inline-block;
+    border-radius: 30px;
+    background-color: #71ccc0;
+    padding: 5px;
+    margin: 5px;
+    color: white;
+}
+.like-icon{
+    padding-left: 5px;
+    color: red;
+}
+
+/* ページネーション */
+.top-pagenation{
+    justify-content: flex-end;
+}
+.top-pagenation a{
+    color: #000;
+}
+.top-pagenation a:first-child{
+    margin-left: 5px;
+}
+
