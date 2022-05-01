@@ -1,4 +1,4 @@
-version: '3'
+version: '3.8'
 services:
   web:
     platform: linux/amd64
@@ -10,6 +10,7 @@ services:
     volumes:
       - ./nginx/etc/nginx/conf.d:/etc/nginx/conf.d
       - ./src:/var/www/html
+    
   app:
     platform: linux/amd64
     build: ./php
@@ -17,6 +18,7 @@ services:
       - db
     volumes:
       - ./src:/var/www/html
+    
   db:
     platform: linux/amd64
     image: mysql:8.0
@@ -29,3 +31,18 @@ services:
       - ./mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
       - ./mysql/etc/mysql/conf.d:/etc/mysql/conf.d
       - ./mysql/data:/var/lib/mysql
+    
+  #↓下記追記する↓
+    #メールサーバのコンテナ
+    # https://qiita.com/matsunao722/items/047b42a9d2007edc4e86ソース
+  mail:
+    image: mailhog/mailhog
+    container_name: mailhog
+    ports:
+      - '8025:8025'
+    environment:
+      MH_STORAGE: maildir
+      MH_MAILDIR_PATH: /tmp
+  # #↓追記する
+    volumes:
+      - ./maildir:/tmp
