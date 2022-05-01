@@ -46,6 +46,8 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
 <body>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="../js/script.js"></script>
 </body>
 <?php require "footer.php"; ?>
 

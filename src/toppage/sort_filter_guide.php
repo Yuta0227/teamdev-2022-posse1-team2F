@@ -18,6 +18,6 @@
         <!--絞り込み-->
         <button style="display: none;">絞り込み</button>
         <!--ガイド-->
-        <button class="beginner-button">どの条件で絞り込めばいいかわからない方はこちら!</button>
+        <button class="beginner-button" id="openModal">どの条件で絞り込めばいいかわからない方はこちら!</button>
     </div>
     <div class="result-number">検索結果：<span>10</span>/<span>30</span>件</div><!--検索結果下の方に表示した方がいいと思った。レスポンシブの時文字数きついかも。-->

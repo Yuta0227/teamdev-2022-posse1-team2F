@@ -209,11 +209,13 @@ padding-left: 5%;
 /* 企業一覧 */
 .agent-whole-box{
     display:flex;
+    flex-wrap: wrap;
     gap: 10px;
     padding-left: 5%;
     margin-top: 20px;
 }
 .agent-overview-box{
+    width: calc(50% - 10px);
     padding: 5px;
     border: solid;
     border-color: #999999;
@@ -269,3 +271,60 @@ padding-left: 5%;
     margin-left: 5px;
 }
 
+/* モーダルCSS */
+.modalArea {
+    display: none;
+    position: fixed;
+    z-index: 10; /*サイトによってここの数値は調整 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .modalBg {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(30,30,30,0.9);
+  }
+  
+  .modalWrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform:translate(-50%,-50%);
+    width: 70%;
+    max-width: 500px;
+    padding: 10px 30px;
+    background-color: #fff;
+  }
+  
+  .closeModal {
+    position: absolute;
+    top: 0.5rem;
+    right: 1rem;
+    cursor: pointer;
+  }
+  
+/* モーダル内タブ切り替え */
+..tab_wrap{width:500px; margin:80px auto;}
+input[type="radio"]{display:none;}
+.tab_area{font-size:0; margin:0 10px;}
+.tab_area label{width:150px; margin:0 5px; display:inline-block; padding:12px 0; color:#999; background:#ddd; text-align:center; font-size:13px; cursor:pointer; transition:ease 0.2s opacity;}
+.tb_area label:hover{opacity:0.5;}
+.panel_area{background:#fff;border-bottom-right-radius:10px; border-bottom-left-radius:10px; border-top:8px solid #d7e9ea;}
+.tab_panel{
+    width:100%; padding:80px 0; display:none;
+}
+.tab_panel p{
+    font-size:14px; 
+    letter-spacing:1px; 
+}
+
+#tab1:checked ~ .tab_area .tab1_label{background:#d7e9ea; color:#000;}
+#tab1:checked ~ .panel_area #panel1{display:block;}
+#tab2:checked ~ .tab_area .tab2_label{background:#d7e9ea; color:#000;}
+#tab2:checked ~ .panel_area #panel2{display:block;}
+#tab3:checked ~ .tab_area .tab3_label{background:#d7e9ea; color:#000;}
+#tab3:checked ~ .panel_area #panel3{display:block;}
+  
