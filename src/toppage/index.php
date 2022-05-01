@@ -18,8 +18,12 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/top.css">
 </head>
+
+<body>
+<div class="topbox">
 <?php require "header.php"; ?>
 <?php require "indicator.php"; ?>
+</div>
 
 <!-- <ul>
     <?php foreach ($events as $key => $event) : ?>
@@ -30,7 +34,7 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <a href="/admin/index.php">管理者ページ</a>
 </ul> -->
 <div class="main-informations">
-        <section>
+        <section class="modal-size">
             <?php require "sort_filter_guide.php"; ?>
             <?php require "guide_popup.php"; ?>
             
@@ -45,7 +49,7 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </div>
 
 
-<body>
+
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="../js/script.js"></script>
 </body>
