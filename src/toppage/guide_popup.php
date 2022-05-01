@@ -7,11 +7,10 @@
     </div> -->
 <!-- </div> -->
 
-<section id="modalArea" class="modalArea">
+<div id="modalArea" class="modalArea">
     <div id="modalBg" class="modalBg"></div>
     <div class="modalWrapper">
         <div class="modalContents">
-
             <div class="tab_wrap">
                 <input id="tab1" type="radio" name="tab_btn" checked>
                 <input id="tab2" type="radio" name="tab_btn">
@@ -70,4 +69,4 @@
             ×
         </div>
     </div>
-</section>
+</div>

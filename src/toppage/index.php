@@ -36,10 +36,10 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <div class="main-informations">
         <section class="modal-size">
             <?php require "sort_filter_guide.php"; ?>
-            <?php require "guide_popup.php"; ?>
             
             <!--場所変更の可能性大-->
             <?php require "agent_list.php"; ?>
+            <?php require "guide_popup.php"; ?>
             <?php require "agent_list_pagination.php"; ?>
         </section>
     

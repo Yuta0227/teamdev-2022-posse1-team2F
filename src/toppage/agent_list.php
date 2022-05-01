@@ -1,6 +1,7 @@
-<div class="agent-whole-box">
+<div class="agent-whole-box" style="position:relative;">
     <!--エージェント一覧コンテナ-->
     <?php 
+    require "guide_popup.php";
     $all_agents=[1,2,3,4,5,6];//連想配列でエージェントの情報すべてが入る
     $page_number=3;//URLからとってくる
 
