@@ -9,6 +9,7 @@
 
 <body style="display:flex;flex-direction:column;justify-content:center;width:100%;height:100%;position:relative;">
 <?php
+session_start();
 require "../parts/agent_header.php";
 ?>
     <section>

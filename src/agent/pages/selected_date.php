@@ -8,6 +8,7 @@
 </head>
 <body>
     <?php 
+    session_start();
     require "../parts/url.php";
     require "../parts/agent_header.php";
     require "../parts/agent_new_apply.php";
