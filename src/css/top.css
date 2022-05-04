@@ -279,7 +279,7 @@ padding-left: 5%;
 .modalArea {
     position: absolute;
     display: none;
-    z-index: 10; /*サイトによってここの数値は調整 */
+    z-index: 10; 
     top: 0;
     left: 0;
     width: 100%;
@@ -350,7 +350,7 @@ input[type="radio"]{
 }
 .tab_panel{
     width:100%;
-    padding:80px 0; 
+    padding:40px 0; 
     /* display:none; */
 }
 
@@ -378,6 +378,21 @@ input[type="radio"]{
 #tab3:checked ~ .panel_area #panel1{display:none;} 
 #tab3:checked ~ .panel_area #panel2{display:none;} 
   
-/* .modal-size{
-    position: relative;
-} */
+.tab_panel ul li {
+    line-height: 1.5;
+    padding: 0.5em 0;
+    list-style-position: inside;
+    /* list-style-type: none!important; */
+  }
+ .tabpanel ul{
+     margin-top: 20px;
+ }
+
+ .tabpanel ol li {
+    line-height: 1.5;
+    padding: 0.5em 0;
+     list-style-position: inside;
+ }
+ .panel_area :last-child{
+     list-style: none;
+ }
