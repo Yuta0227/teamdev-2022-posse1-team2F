@@ -216,6 +216,7 @@ padding-left: 5%;
     gap: 10px;
     padding-left: 5%;
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 .agent-overview-box{
     width: calc(50% - 10px);
