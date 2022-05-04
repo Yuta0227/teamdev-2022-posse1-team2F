@@ -1,7 +1,13 @@
+html{
+    height: 100%;
+}
+body{
+    height: 100%;
+}
 p{
     margin: 10px;
 }
-login-all-box{
+.login-all-box{
     text-align: center;
 }
 .login-form{
@@ -13,4 +19,14 @@ login-all-box{
 .login-form input{
     padding: 5px;
     margin-top: 10px;
+}
+
+.help{
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.help p{
+    text-align: center;
 }
