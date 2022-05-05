@@ -10,6 +10,7 @@
     <?php 
     require "../../dbconnect.php";
     require "../parts/admin_url.php";
+    require "../admin_function.php";
     require "../parts/header.php";
     require "../parts/admin_agent_detail/table.php";
     require "../parts/admin_agent_detail/calender.php";

@@ -17,7 +17,10 @@
 //     header('Location: http://' . $_SERVER['HTTP_HOST'] . '/admin/login.php');
 //     exit();
 // }
-// 
+//
+if(!isset($_GET['year'])||!isset($_GET['month'])||!isset($_GET['date'])){
+    header("Location:index.php?year=".date('Y')."&month=".date('m')."&date=".date('d'));
+} 
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -33,15 +36,17 @@
     <?php
     require "../../dbconnect.php";
     require "../parts/admin_url.php";
+    require "../admin_function.php";
     require "../parts/header.php";
-    require "../parts/admin_agent_list/title_sort.php";
-    require "../parts/admin_agent_list/agent_list.php";
-    require "../parts/admin_agent_list/pagination.php";
-    require "../parts/admin_agent_list/mail_popup.php";
+    require "../parts/index/title_sort.php";
+    require "../parts/index/agent_list.php";
+    require "../parts/index/pagination.php";
+    require "../parts/index/mail_popup.php";
     ?>
 
     <div>
         <form action="/admin/index.php" method="POST">
+            エージェント追加昨日追加したい
             イベント名：<input type="text" name="title" required>
             <input type="submit" value="登録する">
         </form>

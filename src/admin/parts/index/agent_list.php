@@ -44,7 +44,7 @@
         if($agent_index+1<=count($agent_list_array)){
     ?>
     document.getElementById('agent<?php echo $agent_index+1;?>').addEventListener('click',function(){
-        window.location="admin_agent_detail.php?agent_index=<?php echo $agent_index+1;?>";
+        window.location="admin_agent_detail.php?agent_index=<?php echo $agent_index+1;?>&year=<?php echo date('Y');?>&month=<?php echo date('m');?>";
     })
     <?php 
         }}
