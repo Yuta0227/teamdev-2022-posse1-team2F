@@ -6,8 +6,10 @@
             <form class="sort-box">
                 <div>
                     <select class="sort-condition">
-                        <option>並び替え条件</option>
-                        <option>名前順</option>
+                        <option></option>
+                        <option>エージェント拠点数</option>
+                        <option>内定率</option>
+                        <option>内定までの最短期間</option>
                     </select>
                 </div>
                 <div>
