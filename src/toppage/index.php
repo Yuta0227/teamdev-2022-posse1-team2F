@@ -2,8 +2,6 @@
 session_start();
 require("../dbconnect.php");
 
-$stmt = $db->query('SELECT id, title FROM events');
-$events = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 <!DOCTYPE html>
@@ -21,14 +19,6 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <?php require "header.php"; ?>
 <?php require "indicator.php"; ?>
 
-<!-- <ul>
-    <?php foreach ($events as $key => $event) : ?>
-        <li>
-            <?= $event["id"]; ?>:<?= $event["title"]; ?>
-        </li>
-    <?php endforeach; ?>
-    <a href="/admin/index.php">管理者ページ</a>
-</ul> -->
 <div class="main-informations">
         <section>
             <?php require "sort_filter_guide.php"; ?>
