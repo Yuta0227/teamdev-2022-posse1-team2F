@@ -269,3 +269,65 @@ padding-left: 5%;
     margin-left: 5px;
 }
 
+/* 企業詳細ページ */
+.agent-detail{
+    background: #eaedf2;
+    padding: 20px 0;
+}
+.agent-detail-box{
+    background: #fff;
+    width: 80%;
+    height: 90%;
+    margin: 0px auto;
+}
+.agent-detail-name h1{
+    width: 90%;
+    margin: auto;
+    text-decoration: underline;
+    text-decoration-color: #a5d0ca;
+    padding: 10px 10px;
+}
+.agent-detail-top-box{
+    display: flex;
+    margin: 0 5%;
+}
+
+.agent-detail-top-box img{
+    margin: 20px 20px 20px 0;
+    /* margin-left: 5%; */
+    width: 25%;
+}
+.agent-detail-table{
+    border: solid 1px;
+    padding: 10px;
+}
+.agent-detail-table-th{
+    background-color: #deeeec;
+}
+
+.detail-recomend{
+    margin: 5%;
+    background: #e5e5e5;
+    padding: 10px;
+}
+.detail-feature{
+    margin: 5%;
+}
+
+.detail-feature h2{
+    text-decoration: underline;
+    text-decoration-color: #a5d0ca;    
+}
+.agent-add-btn{
+    text-align: center;
+    padding: 20px 0;
+}
+.agent-add-btn button{
+    font-size: 20px;
+    font-weight: bold;
+    background: #93c9c2;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: none;
+}
