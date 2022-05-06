@@ -1,0 +1,36 @@
+html{
+    height: 100%;
+}
+body{
+    height: 100%;
+}
+p{
+    margin: 10px;
+}
+.login-all-box{
+    text-align: center;
+}
+.login-form{
+    width: 250px;
+    margin:20px auto 20px auto;
+    border: solid;
+    text-align: center;
+}
+.login-form input{
+    padding: 5px;
+    margin-top: 10px;
+}
+
+.help{
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.help p{
+    text-align: center;
+}
+.help-mail{
+    font-size: 20px;
+    font-weight: bold;
+}
