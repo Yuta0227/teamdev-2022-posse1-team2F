@@ -25,14 +25,6 @@ require("../dbconnect.php");
 <?php require "indicator.php"; ?>
 </div>
 
-<!-- <ul>
-    <?php foreach ($events as $key => $event) : ?>
-        <li>
-            <?= $event["id"]; ?>:<?= $event["title"]; ?>
-        </li>
-    <?php endforeach; ?>
-    <a href="/admin/index.php">管理者ページ</a>
-</ul> -->
 <div class="main-informations">
         <section class="modal-size">
             <?php require "sort_filter_guide.php"; ?>

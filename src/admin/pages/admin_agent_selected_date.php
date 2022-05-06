@@ -11,6 +11,7 @@
 <body>
     <?php
     require "../../dbconnect.php";
+    require "../admin_function.php";
     require "../parts/header.php";
     require "../parts/admin_agent_selected_date/apply_list.php";
     require "../parts/admin_agent_selected_date/apply_pagination.php";

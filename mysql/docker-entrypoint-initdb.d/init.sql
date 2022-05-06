@@ -9,13 +9,14 @@ DROP TABLE IF EXISTS admin_users;
 CREATE TABLE admin_users (
   user_id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
   user_email VARCHAR(255) UNIQUE NOT NULL,
-  user_password VARCHAR(255) NOT NULL,
+  user_password varbinary(200) NOT NULL,
+  user_login_bool boolean not null default false,
   user_created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   user_logged_in_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 -- 管理者のログイン情報テーブル上からユーザーID、ユーザーメールアドレス、ユーザーパスワード、ユーザー作成時刻、ユーザー最終ログイン時刻
 
-INSERT INTO admin_users SET user_email = 'test@posse-ap.com', user_password = sha1('root_password');
+INSERT INTO admin_users SET user_email = 'test@posse-ap.com', user_password = AES_ENCRYPT('root_password','ENCRYPT-KEY');
 -- 管理者追加
 
 drop table if exists agent_users;
@@ -23,18 +24,19 @@ drop table if exists agent_users;
 CREATE TABLE agent_users (
   user_id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
   user_email VARCHAR(255) UNIQUE NOT NULL,
-  user_password VARCHAR(255) NOT NULL,
+  user_password varbinary(200) NOT NULL,
+  user_login_bool boolean not null default false,
   user_created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   user_logged_in_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 -- エージェント担当者のログイン情報テーブル上からユーザーID、ユーザーメールアドレス、ユーザーパスワード、ユーザー作成時刻、ユーザー最終ログイン時刻
 
-insert into agent_users set user_email = 'assignee1@posse-ap.com',user_password = sha1('assignee_password1');
-insert into agent_users set user_email = 'assignee2@posse-ap.com',user_password = sha1('assignee_password2');
-insert into agent_users set user_email = 'assignee3@posse-ap.com',user_password = sha1('assignee_password3');
-insert into agent_users set user_email = 'assignee4@posse-ap.com',user_password = sha1('assignee_password4');
-insert into agent_users set user_email = 'assignee5@posse-ap.com',user_password = sha1('assignee_password5');
-insert into agent_users set user_email = 'assignee6@posse-ap.com',user_password = sha1('assignee_password6');
+insert into agent_users set user_email = 'assignee1@posse-ap.com',user_password = AES_ENCRYPT('assignee_password1','ENCRYPT-KEY');
+insert into agent_users set user_email = 'assignee2@posse-ap.com',user_password = AES_ENCRYPT('assignee_password2','ENCRYPT-KEY');
+insert into agent_users set user_email = 'assignee3@posse-ap.com',user_password = AES_ENCRYPT('assignee_password3','ENCRYPT-KEY');
+insert into agent_users set user_email = 'assignee4@posse-ap.com',user_password = AES_ENCRYPT('assignee_password4','ENCRYPT-KEY');
+insert into agent_users set user_email = 'assignee5@posse-ap.com',user_password = AES_ENCRYPT('assignee_password5','ENCRYPT-KEY');
+insert into agent_users set user_email = 'assignee6@posse-ap.com',user_password = AES_ENCRYPT('assignee_password6','ENCRYPT-KEY');
 -- 担当者追加
 
 DROP TABLE IF EXISTS agent_contract_information;
@@ -89,10 +91,23 @@ drop table if exists agent_public_information;
 create table agent_public_information (
   agent_id int AUTO_INCREMENT not null primary key,
   agent_name varchar(255) not null,
-  corporate_amount int not null,
-  agent_address varchar(255) not null
-  -- 決まったら追記していく
+  agent_corporate_amount int not null,
+  agent_base_number int not null,
+  agent_address varchar(255) not null,
+  agent_area varchar(255) not null,
+  agent_prefecture varchar(255) not null,
+  agent_meeting_type varchar(255) not null,
+  agent_main_corporate_size varchar (255) not null,
+  agent_student_type varchar(255) not null,
+  agent_corporate_type varchar(255) not null,
+  agent_job_offer_rate float not null,
+  agent_shortest_period int not null,
+  agent_simple_explanation varchar(255) not null,
+  agent_explanation text not null
 );
+-- 掲載情報テーブル上から企業ID、企業名、取り扱い企業数、拠点数、住所、地方、都道府県、面談方式、メインの企業規模、〇〇な人におすすめ、何系企業を扱う、内定率、内定までの最短期間（週単位）、一覧にのってる3－4行の説明、企業詳細の文章
+-- 企業規模は大手中心、中小中心、ベンチャー中心、総合の4パターン
+-- 何系企業は日系中心、外資系中心の2パターン
 
 drop table if exists admin_agent_list;
 
