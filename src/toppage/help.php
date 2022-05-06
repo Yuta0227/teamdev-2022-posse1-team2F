@@ -19,7 +19,7 @@
         <div>
             <p>就活エージェントへの応募に関するご不明点や企業様の掲載申込等の問い合わせは現在メールで受け付けております。</p>
             <p>お問い合わせ先はこちら</p>
-            <p>sample@gmail.com</p>
+            <p class="help-mail">sample@gmail.com</p>
         </div>
     </div>
     <?php require "footer.php"; ?>

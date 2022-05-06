@@ -30,3 +30,7 @@ p{
 .help p{
     text-align: center;
 }
+.help-mail{
+    font-size: 20px;
+    font-weight: bold;
+}
