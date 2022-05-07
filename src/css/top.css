@@ -443,7 +443,7 @@ input[type="radio"] {
 .guide-popup-sort-explanation {
 	list-style: none;
 }
-=======
+
 /* 企業詳細ページ */
 .agent-detail{
     background: #eaedf2;
@@ -487,10 +487,6 @@ input[type="radio"] {
     background-color: #deeeec;
 	width: 20%;
 }
-/* .agent-detail-table-td{
-	width: 80%;
-} */
-
 .detail-recomend{
     margin: 20px 0 20px 20px;
     background: #e5e5e5;
