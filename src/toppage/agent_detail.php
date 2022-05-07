@@ -23,20 +23,7 @@
             </div>
             <div class="agent-detail-top-box">
                 <img alt="企業の画像" src="../img/dummy.png">
-                <div>
-                    <table>
-                        <?php
-                        $table_array = ['取り扱い企業数', '特色', '就活方式', '何系の企業'];
-                        for ($i = 0; $i < count($table_array); $i++) { //ここ今は4だけど他に載せたい情報あったら変更できるように
-                            echo '<tr>';
-                            echo '<th class="agent-detail-table agent-detail-table-th">' . $table_array[$i] . '</th>';
-                            echo '<td class="agent-detail-table">' . $i . '</td>';
-                            echo '</tr>';
-                        }; ?>
-                    </table>
-                </div>
-            </div>
-            <div class="detail-recomend">
+                <div class="detail-recomend">
                 <div>
                     <h2>こんな人におすすめ</h2>
                 </div>
@@ -50,6 +37,20 @@
                     }; ?>
                 </div>
             </div>
+            </div>
+            <div class="agent-detail-table-box">
+                    <table class="agent-detail-table-whole">
+                        <?php
+                        $table_array = ['取り扱い企業数', '内定率', '面接方式', '何系の企業','内定が決まるまでの平均期間', '取り扱い業種', 'エージェント本拠地','求人エリア'];
+                        for ($i = 0; $i < count($table_array); $i++) { //ここ今は4だけど他に載せたい情報あったら変更できるように
+                            echo '<tr>';
+                            echo '<th class="agent-detail-table agent-detail-table-th">' . $table_array[$i] . '</th>';
+                            echo '<td class="agent-detail-table agent-detail-table-td">回答' . $i . '</td>';
+                            echo '</tr>';
+                        }; ?>
+                    </table>
+                </div>
+           
             <div class="detail-feature">
                 <div>
                     <h2>エージェントの特徴</h2>

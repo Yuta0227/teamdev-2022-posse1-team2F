@@ -289,7 +289,8 @@ padding-left: 5%;
 }
 .agent-detail-top-box{
     display: flex;
-    margin: 0 5%;
+    padding: 0 5%;
+	width: 100%;
 }
 
 .agent-detail-top-box img{
@@ -297,18 +298,29 @@ padding-left: 5%;
     /* margin-left: 5%; */
     width: 25%;
 }
+.agent-detail-table-box{
+	margin: 10px 5%;
+}
 .agent-detail-table{
     border: solid 1px;
     padding: 10px;
 }
+.agent-detail-table-whole{
+	width: 100%;
+}
 .agent-detail-table-th{
     background-color: #deeeec;
+	width: 20%;
 }
+/* .agent-detail-table-td{
+	width: 80%;
+} */
 
 .detail-recomend{
-    margin: 5%;
+    margin: 20px 0 20px 20px;
     background: #e5e5e5;
-    padding: 10px;
+    padding: 20px 0 20px 25px ;
+	width: 100%;
 }
 .detail-feature{
     margin: 5%;
