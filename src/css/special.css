@@ -1,0 +1,24 @@
+.special-list-section{
+    margin: auto;
+}
+.special-list-all{
+    width: 90%;
+    margin: auto;
+}
+.special-list-each-box{
+    border: solid;
+    margin: 10px 0;
+    display: flex;
+}
+.special-list-informations{
+    display: flex;
+    flex-wrap: wrap;
+}
+.special-list-information-tags{
+    display: flex;
+    width: 100%;
+    gap: 10px;
+}
+.special-list-information-explanation{
+    width: 100%;
+}
