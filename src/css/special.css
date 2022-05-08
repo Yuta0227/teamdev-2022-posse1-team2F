@@ -5,20 +5,44 @@
     width: 90%;
     margin: auto;
 }
+.special-list-all a{
+    width: 100%;
+    height: 100%;
+}
 .special-list-each-box{
     border: solid;
     margin: 10px 0;
+    padding: 10px;
     display: flex;
+    gap: 20px;
+    cursor: pointer;
+}
+.special-list-img-box{
+   width: 25%;
+}
+.special-list-img{
+    display: block;
+    object-fit: cover;
+    width: 100%;
+    /* margin: 10px; */
 }
 .special-list-informations{
     display: flex;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
+    flex-flow: column;
+    justify-content: space-between;
+}
+.special-list-information-header{
+    font-size: 30px;
 }
 .special-list-information-tags{
     display: flex;
     width: 100%;
+    height: 15%;
     gap: 10px;
+    font-size: 20px;
 }
 .special-list-information-explanation{
     width: 100%;
+    height: 40%;
 }
