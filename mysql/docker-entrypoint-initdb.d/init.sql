@@ -49,17 +49,16 @@ CREATE TABLE agent_contract_information (
   end_contract_date date not null,
   agent_phone_number varchar(255) not null,
   apply_email_address varchar(255) not null,
-  agent_address varchar(255) not null,
   agent_representative varchar(255) not null
 );
--- エージェント契約情報テーブル上から企業ID、企業名、契約締結日、契約開始日、契約終了日、企業電話番号、問い合わせ通知先メールアドレス、企業住所、企業代表者氏名
+-- エージェント契約情報テーブル上から企業ID、企業名、契約締結日、契約開始日、契約終了日、企業電話番号、問い合わせ通知先メールアドレス、企業代表者氏名
 
 INSERT INTO agent_contract_information 
-(agent_name,contract_date,start_contract_date,end_contract_date,agent_phone_number,apply_email_address,agent_address,agent_representative) 
+(agent_name,contract_date,start_contract_date,end_contract_date,agent_phone_number,apply_email_address,agent_representative) 
 values 
-('エージェント1','2022-03-10','2022-04-30','2023-04-29','000-0000-0000','問い合わせ通知先メールアドレス1','住所サンプル1','代表者サンプル1'),
-('エージェント2','2022-03-10','2022-04-30','2023-04-29','000-0000-0000','問い合わせ通知先メールアドレス2','住所サンプル2','代表者サンプル2'),
-('エージェント3','2022-03-10','2022-04-30','2023-04-29','000-0000-0000','問い合わせ通知先メールアドレス3','住所サンプル3','代表者サンプル3');
+('エージェント1','2022-03-10','2022-04-30','2023-04-29','000-0000-0000','問い合わせ通知先メールアドレス1','代表者サンプル1'),
+('エージェント2','2022-03-10','2022-04-30','2023-04-29','000-0000-0000','問い合わせ通知先メールアドレス2','代表者サンプル2'),
+('エージェント3','2022-03-10','2022-04-30','2023-04-29','000-0000-0000','問い合わせ通知先メールアドレス3','代表者サンプル3');
 
 drop table if exists agent_assignee_information;
 
@@ -76,15 +75,15 @@ create table agent_assignee_information (
 insert into agent_assignee_information 
 (agent_id,agent_name,assignee_email_address,assignee_department,assignee_name) 
 VALUES
-(1,'エージェント1','担当者メールアドレス1','担当者部署1','担当者氏名1'),
-(1,'エージェント1','担当者メールアドレス2','担当者部署2','担当者氏名2'),
-(2,'エージェント2','担当者メールアドレス1','担当者部署1','担当者氏名1'),
-(2,'エージェント2','担当者メールアドレス2','担当者部署2','担当者氏名2'),
-(2,'エージェント2','担当者メールアドレス3','担当者部署3','担当者氏名3'),
-(3,'エージェント3','担当者メールアドレス1','担当者部署1','担当者氏名1'),
-(3,'エージェント3','担当者メールアドレス2','担当者部署2','担当者氏名2'),
-(3,'エージェント3','担当者メールアドレス3','担当者部署3','担当者氏名3'),
-(3,'エージェント3','担当者メールアドレス4','担当者部署4','担当者氏名4');
+((select agent_id from agent_contract_information where agent_id=1),(select agent_name from agent_contract_information where agent_id=1),'担当者メールアドレス1','担当者部署1','担当者氏名1'),
+((select agent_id from agent_contract_information where agent_id=1),(select agent_name from agent_contract_information where agent_id=1),'担当者メールアドレス2','担当者部署2','担当者氏名2'),
+((select agent_id from agent_contract_information where agent_id=2),(select agent_name from agent_contract_information where agent_id=2),'担当者メールアドレス1','担当者部署1','担当者氏名1'),
+((select agent_id from agent_contract_information where agent_id=2),(select agent_name from agent_contract_information where agent_id=2),'担当者メールアドレス2','担当者部署2','担当者氏名2'),
+((select agent_id from agent_contract_information where agent_id=2),(select agent_name from agent_contract_information where agent_id=2),'担当者メールアドレス3','担当者部署3','担当者氏名3'),
+((select agent_id from agent_contract_information where agent_id=3),(select agent_name from agent_contract_information where agent_id=3),'担当者メールアドレス1','担当者部署1','担当者氏名1'),
+((select agent_id from agent_contract_information where agent_id=3),(select agent_name from agent_contract_information where agent_id=3),'担当者メールアドレス2','担当者部署2','担当者氏名2'),
+((select agent_id from agent_contract_information where agent_id=3),(select agent_name from agent_contract_information where agent_id=3),'担当者メールアドレス3','担当者部署3','担当者氏名3'),
+((select agent_id from agent_contract_information where agent_id=3),(select agent_name from agent_contract_information where agent_id=3),'担当者メールアドレス4','担当者部署4','担当者氏名4');
 
 drop table if exists agent_public_information;
 
@@ -93,9 +92,6 @@ create table agent_public_information (
   agent_name varchar(255) not null,
   agent_corporate_amount int not null,
   agent_base_number int not null,
-  agent_address varchar(255) not null,
-  agent_area varchar(255) not null,
-  agent_prefecture varchar(255) not null,
   agent_meeting_type varchar(255) not null,
   agent_main_corporate_size varchar (255) not null,
   agent_student_type varchar(255) not null,
@@ -105,16 +101,33 @@ create table agent_public_information (
   agent_simple_explanation varchar(255) not null,
   agent_explanation text not null
 );
--- 掲載情報テーブル上から企業ID、企業名、取り扱い企業数、拠点数、住所、地方、都道府県、面談方式、メインの企業規模、〇〇な人におすすめ、何系企業を扱う、内定率、内定までの最短期間（週単位）、一覧にのってる3－4行の説明、企業詳細の文章
+-- 掲載情報テーブル上から企業ID、企業名、取り扱い企業数、拠点数、面談方式、メインの企業規模、〇〇な人におすすめ、何系企業を扱う、内定率、内定までの最短期間（週単位）、一覧にのってる3－4行の説明、企業詳細の文章
 -- 企業規模は大手中心、中小中心、ベンチャー中心、総合の4パターン
 -- 何系企業は日系中心、外資系中心の2パターン
 
+drop table if exists agent_address;
+
+create table agent_address(
+  agent_id int not null primary key auto_increment,
+  agent_name varchar(255) not null,
+  agent_area varchar(255) not null,
+  agent_prefecture varchar(255) not null,
+  agent_postal_code varchar(255) not null,
+  agent_address varchar(255) not null
+);
+-- エージェント住所テーブル上から企業ID、企業名、企業地方、企業都道府県、企業郵便番号、企業住所 
+
+insert into agent_address (agent_name,agent_area,agent_prefecture,agent_postal_code,agent_address) values 
+((select agent_name from agent_contract_information where agent_id=1),'関東','神奈川','郵便番号サンプル1','住所サンプル1'),
+((select agent_name from agent_contract_information where agent_id=2),'関東','群馬','郵便番号サンプル2','住所サンプル2'),
+((select agent_name from agent_contract_information where agent_id=3),'北海道','北海道','郵便番号サンプル3','住所サンプル3')
+;
 drop table if exists admin_agent_list;
 
 create table admin_agent_list (
   agent_id int AUTO_INCREMENT not null primary key,
   agent_name varchar(255) not null,
-  apply_amount int not null,
+  apply_amount int not null default 0,
   featured_article_bool boolean not null default false,
   bool_updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
@@ -122,11 +135,8 @@ create table admin_agent_list (
 -- 上から企業ID、企業名、問い合わせ数、特集記事ステータス、特集記事掲載ステータス定期更新用の時間(phpで管理者画面アクセス時に時間取得して一年？半年？たってたらboolをupdateする)
 
 insert into admin_agent_list 
-(agent_name,apply_amount) 
-values
-('エージェント1',0),
-('エージェント2',0),
-('エージェント3',0);
+(agent_name) 
+select agent_name from shukatsu.agent_address;
 -- 問い合わせ来たらupdate admin_agent_list set apply_amount=apply_amount+1 where agent_id=?で問い合わせ数を増やせる
 
 drop table if exists apply_list;
@@ -184,6 +194,16 @@ create table featured_article (
 insert into featured_article
 (agent_id,agent_name,questions_answers,last_comment)
 values
-(1,'エージェント1','質問1,回答1;質問2,回答2','最後に一言サンプル1'),
-(2,'エージェント2','質問1,回答1;質問2,回答2;質問3,回答3','最後に一言サンプル2'),
-(3,'エージェント3','質問1,回答1;質問2,回答2;質問3,回答3;質問4,回答4','最後に一言サンプル3');
+((select agent_id from agent_contract_information where agent_id=1),(select agent_name from agent_contract_information where agent_id=1),'質問1,回答1;質問2,回答2','最後に一言サンプル1'),
+((select agent_id from agent_contract_information where agent_id=2),(select agent_name from agent_contract_information where agent_id=2),'質問1,回答1;質問2,回答2;質問3,回答3','最後に一言サンプル2'),
+((select agent_id from agent_contract_information where agent_id=3),(select agent_name from agent_contract_information where agent_id=3),'質問1,回答1;質問2,回答2;質問3,回答3;質問4,回答4','最後に一言サンプル3');
+
+drop table if exists mailing_list;
+
+create table mailing_list(
+  mail_id int not null AUTO_INCREMENT primary key,
+  agent_id int not null,
+  agent_name varchar(255) not null,
+  mail_address VARCHAR(255) not null 
+);
+-- メールID、エージェントID、エージェント名、特殊記事招待通知先メールアドレス
