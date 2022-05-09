@@ -15,6 +15,10 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
             $update_login_bool_stmt->execute();
             //管理者ログイン時ログインステータスtrueにする=>最終ログインの日時がわかる
             $_SESSION['admin_id']=$admin['user_id'];
+            //管理者idセッションに保存
+            $admin_agent_list_stmt=$db->query("select * from admin_agent_list order by agent_id desc;");
+            $_SESSION['admin_agent_list']=$admin_agent_list_stmt->fetchAll();
+            //エージェント一覧にのせる情報をセッションに保存
             header("Location:../admin/pages/index.php");
         }   
     }
@@ -34,22 +38,27 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
             $agent_contract_information_stmt=$db->prepare("select * from agent_contract_information where agent_id=?;");
             $agent_contract_information_stmt->bindValue(1,$_SESSION['assignee_id']);
             $agent_contract_information_stmt->execute();
-            $agent_contract_information_data=$agent_contract_information_stmt->fetchAll();
-            $_SESSION['agent_contract_information']=$agent_contract_information_data;
+            $_SESSION['agent_contract_information']=$agent_contract_information_stmt->fetchAll();
             //エージェント担当者の属するエージェントの契約情報をセッションに保存
             $agent_assignee_information_stmt=$db->prepare("select * from agent_assignee_information where agent_id=?;");
             $agent_assignee_information_stmt->bindValue(1,$_SESSION['agent_contract_information'][0]['agent_id']);
             $agent_assignee_information_stmt->execute();
-            $agent_assignee_information_data=$agent_assignee_information_stmt->fetchAll();
-            $_SESSION['agent_assignee_information']=$agent_assignee_information_data;
+            $_SESSION['agent_assignee_information']=$agent_assignee_information_stmt->fetchAll();
             //エージェント担当者の属するエージェントの担当者情報をセッションに保存
             $agent_public_information_stmt=$db->prepare("select * from agent_public_information where agent_id=?;");
             $agent_public_information_stmt->bindValue(1,$_SESSION['agent_contract_information'][0]['agent_id']);
             $agent_public_information_stmt->execute();
-            $agent_public_information_data=$agent_assignee_information_stmt->fetchAll();
-            $_SESSION['agent_public_information']=$agent_public_information_data;
-            var_dump($_SESSION['agent_public_information']);
+            $_SESSION['agent_public_information']=$agent_assignee_information_stmt->fetchAll();
             //エージェント担当者の属するエージェントの掲載情報をセッションに保存
+            $agent_address_information_stmt=$db->prepare("select * from agent_address where agent_id=?;");
+            $agent_address_information_stmt->bindValue(1,$_SESSION['agent_contract_information'][0]['agent_id']);
+            $agent_address_information_stmt->execute();
+            $_SESSION['agent_address_information']=$agent_address_information_stmt->fetchAll();
+            ///エージェント担当者の属するエージェントの住所情報をセッションに保存
+            $agent_mailing_list_stmt=$db->prepare("select * from mailing_list where agent_id=?;");
+            $agent_mailing_list_stmt->bindValue(1,$_SESSION['agent_contract_information'][0]['agent_id']);
+            $agent_mailing_list_stmt->execute();
+            $_SESSION['agent_mailing_list_information']=$agent_mailing_list_stmt->fetchAll();
             // header("Location:../agent/pages/index.php?year=".date('Y')."&month=".date('m')."&date=".date('d')."");
         }
     }
