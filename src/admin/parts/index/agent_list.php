@@ -5,8 +5,8 @@
     //エージェント一覧にのせる情報をセッションに保存
     $agent_list_array = $_SESSION['admin_agent_list'];
     $agents_per_page=2;
-    $pagination_paramater_set=isset($_GET['agent_list_pagination']);
-    if($pagination_paramater_set){
+    $pagination_parameter_set=isset($_GET['agent_list_pagination']);
+    if($pagination_parameter_set){
         if($_GET['agent_list_pagination']*$agents_per_page>count($agent_list_array)){
             $page_number=count($agent_list_array)/$agents_per_page;
         }
