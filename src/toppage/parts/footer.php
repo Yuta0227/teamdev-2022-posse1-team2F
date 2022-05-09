@@ -2,7 +2,7 @@
     <!--フッター上側-->
     <div class="footer-top-box">
         <!--中央寄せ-->
-        <img class="footer-img" src="../img/boozer_logo.png">
+        <img class="footer-img" src="../../../img/boozer_logo.png">
     </div>
     <!--フッター下側-->
     <div>
