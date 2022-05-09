@@ -1,5 +1,5 @@
 <?php
-// session_start();
+session_start();
 // require('../dbconnect.php');
 // if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
 //     $_SESSION['time'] = time();
@@ -18,9 +18,7 @@
 //     exit();
 // }
 //
-if(!isset($_GET['year'])||!isset($_GET['month'])||!isset($_GET['date'])){
-    header("Location:index.php?year=".date('Y')."&month=".date('m')."&date=".date('d'));
-} 
+
 ?>
 <!DOCTYPE html>
 <html lang="ja">
