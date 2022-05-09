@@ -15,6 +15,10 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
             $update_login_bool_stmt->execute();
             //管理者ログイン時ログインステータスtrueにする=>最終ログインの日時がわかる
             $_SESSION['admin_id']=$admin['user_id'];
+            //管理者idセッションに保存
+            $admin_agent_list_stmt=$db->query("select * from admin_agent_list order by agent_id desc;");
+            $_SESSION['admin_agent_list']=$admin_agent_list_stmt->fetchAll();
+            //エージェント一覧にのせる情報をセッションに保存
             header("Location:../admin/pages/index.php");
         }   
     }
@@ -40,9 +44,6 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
             $agent_assignee_information_stmt->bindValue(1,$_SESSION['agent_contract_information'][0]['agent_id']);
             $agent_assignee_information_stmt->execute();
             $_SESSION['agent_assignee_information']=$agent_assignee_information_stmt->fetchAll();
-            print_r('<pre>');
-            var_dump($_SESSION['agent_assignee_information']);
-            print_r('</pre>');
             //エージェント担当者の属するエージェントの担当者情報をセッションに保存
             $agent_public_information_stmt=$db->prepare("select * from agent_public_information where agent_id=?;");
             $agent_public_information_stmt->bindValue(1,$_SESSION['agent_contract_information'][0]['agent_id']);
