@@ -8,8 +8,8 @@
 </head>
 <body>
     <?php 
-    require "header.php";
-    require "indicator.php";
+    require "../parts/header.php";
+    require "../parts/indicator.php";
     ?>
     <div style="text-align:center;">
         送信完了!<br>
@@ -32,6 +32,6 @@
         }
         ?>
     </div>
-    <?php require "footer.php";?>
+    <?php require "../parts/footer.php";?>
 </body>
 </html>
