@@ -144,6 +144,7 @@ VALUES
 ((select agent_name from agent_contract_information where agent_id=1),(select agent_branch from agent_contract_information where agent_id=1),(select start_contract_date from agent_contract_information where agent_id=1)),
 ((select agent_name from agent_contract_information where agent_id=2),(select agent_branch from agent_contract_information where agent_id=2),(select start_contract_date from agent_contract_information where agent_id=2)),
 ((select agent_name from agent_contract_information where agent_id=3),(select agent_branch from agent_contract_information where agent_id=3),(select start_contract_date from agent_contract_information where agent_id=3));
+
 -- 問い合わせ来たらupdate admin_agent_list set apply_amount=apply_amount+1 where agent_id=?で問い合わせ数を増やせる
 
 drop table if exists apply_list;
