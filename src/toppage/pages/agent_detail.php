@@ -22,7 +22,7 @@
                 <h1>企業名1</h1>
             </div>
             <div class="agent-detail-top-box">
-                <img alt="企業の画像" src="../img/dummy.png">
+                <img alt="企業の画像" src="../../../img/dummy.png">
                 <div class="detail-recomend">
                 <div>
                     <h2>こんな人におすすめ</h2>
