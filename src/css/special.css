@@ -92,3 +92,14 @@
     font-weight: bold;
     margin: 20px 20px;
 }
+
+.special-detail-choice-btn{
+    padding: 10px 20px;
+    color: #fff;
+    background-color: #ff5940;
+    border: none;
+    border-radius: 20px;
+}
+.special-detail-transition{
+    padding: 10px;
+}

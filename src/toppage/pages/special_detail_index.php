@@ -41,9 +41,9 @@
             };
             ?>
             <form method="POST" style="display:flex;justify-content:center;">
-                <div>
-                    <input style="color:white;background-color:green;" type="submit" value="このエージェントを選択">
-                    <div>
+                <div style="text-align:center;">
+                    <input  class="special-detail-choice-btn" type="submit" value="このエージェントをお気に入りに追加">
+                    <div class="special-detail-transition">
                         <a href="">企業の詳細ページへ</a>
                     </div>
                 </div>
