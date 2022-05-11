@@ -1,7 +1,13 @@
 /* header */
 .admin-header-all{
 	background-color: #52a49a;
+    display: flex;
+    flex-wrap: wrap;
 }
 .admin-header-logo-box{
-    
+    display: inline-block;
+    height: 50%;
+}
+.admin-header-toplink-box{
+    display: inline-block;
 }

@@ -3,7 +3,7 @@
         <div class="admin-header-logo-box">
         <img src="../../img/syukatudotcom_logo_white.png" alt="logo">
         </div>
-        <div class="">
+        <div class="admin-header-toplink-box">
             <a href="index.php">
                 企業一覧
             </a>
