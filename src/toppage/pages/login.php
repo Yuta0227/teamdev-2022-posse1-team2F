@@ -16,10 +16,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
             //管理者ログイン時ログインステータスtrueにする=>最終ログインの日時がわかる
             $_SESSION['admin_id']=$admin['user_id'];
             //管理者idセッションに保存
-            $admin_agent_list_stmt=$db->query("select * from admin_agent_list order by agent_id desc;");
-            $_SESSION['admin_agent_list']=$admin_agent_list_stmt->fetchAll();
-            //エージェント一覧にのせる情報をセッションに保存
-            header("Location:../admin/pages/index.php");
+            header("Location:../admin/pages/index.php?year=".date('Y')."&month=".date('m')."&date=".date('d')."&agent_index=1");
         }   
     }
     $agent_assignee_login_stmt=$db->query("select user_id,user_email,AES_DECRYPT(`user_password`,'ENCRYPT-KEY') from agent_users;");
