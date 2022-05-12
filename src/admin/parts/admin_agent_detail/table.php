@@ -3,66 +3,149 @@
         <img src="" alt="企業の写真">
         <div>株式会社アンチパターン</div>
     </div>
-    <form style="background-color:blue;width:600px;padding:20px;">
+    <div style="background-color:blue;width:600px;padding:20px;">
         <div style="display:flex;justify-content:center;">契約情報</div>
         <div style="display:flex;justify-content:center;">
             <table>
                 <?php
-                $contract_information_array = [
-                    '契約日' => '契約日サンプル',
-                    '契約解除日' => '契約解除日サンプル',
-                    '電話番号' => '電話番号サンプル',
-                    '学生登録時の連絡先メールアドレス' => 'メールアドレスサンプル',
-                    '企業住所' => '住所サンプル',
-                    '代表者氏名' => '氏名サンプル',
-                ]; //データベースから取得
-                $agent_assignee_array = [
-                    [
-                        '部署' => '部署サンプル',
-                        '名前' => '名前サンプル',
-                        'メールアドレス' => 'メールアドレスサンプル',
-                        'パスワード' => 'パスワードサンプル',
-                    ],
-                    [
-                        '部署' => '部署サンプル2',
-                        '名前' => '名前サンプル2',
-                        'メールアドレス' => 'メールアドレスサンプル2',
-                        'パスワード' => 'パスワードサンプル2',
-                    ],
-                ]; //データベースから取得
-                for ($assignee_id = 1; $assignee_id <= count($agent_assignee_array); $assignee_id++) {
-                    $contract_information_array += array('担当者' . $assignee_id . '部署' => '部署' . $assignee_id);
-                    $contract_information_array += array('担当者' . $assignee_id . '氏名' => '氏名' . $assignee_id);
-                    $contract_information_array += array('担当者' . $assignee_id . 'メールアドレス' => 'メールアドレス' . $assignee_id);
-                }
-                foreach ($contract_information_array as $column => $data) {
+                $agent_id_stmt = $db->prepare("select agent_id from agent_contract_information where agent_branch_id=?;");
+                $agent_id_stmt->bindValue(1, $_GET['agent_branch_id']);
+                $agent_id_stmt->execute();
+                $agent_id = $agent_id_stmt->fetchAll();
+                //支店の属するエージェント名データベースからデータとってくる
+                $agent_contract_information_stmt = $db->prepare("select agent_name,agent_branch,contract_date,start_contract_date,end_contract_date,agent_phone_number,apply_email_address,agent_representative from agent_contract_information where agent_branch_id=?;");
+                $agent_contract_information_stmt->bindValue(1, $_GET['agent_branch_id']);
+                $agent_contract_information_stmt->execute();
+                $contract_information_array = $agent_contract_information_stmt->fetchAll();
+                //契約情報データベースからとってくる
+                $agent_address_stmt = $db->prepare("select agent_address from agent_address where agent_branch_id=?;");
+                $agent_address_stmt->bindValue(1, $_GET['agent_branch_id']);
+                $agent_address_stmt->execute();
+                $agent_address = $agent_address_stmt->fetchAll();
+                //住所データベースからデータとってくる
+                $recommend_student_stmt = $db->prepare("select student_type from agent_recommend_student_type where agent_branch_id=?;");
+                $recommend_student_stmt->bindValue(1, $_GET['agent_branch_id']);
+                $recommend_student_stmt->execute();
+                $recommend_student = $recommend_student_stmt->fetchAll();
+                //〇〇な人におすすめデータベースからデータとってくる      支店ごとではなくエージェントで共有ならwhere agent_branch_idではなくagent_id。init.sqlもかえる
+                $corporate_amount_stmt = $db->prepare("select manufacturer,retail,service,software_transmission,trading,finance,media,government from agent_corporate_amount where agent_id=?;");
+                $corporate_amount_stmt->bindValue(1, $agent_id[0]['agent_id']);
+                $corporate_amount_stmt->execute();
+                $corporate_amount = $corporate_amount_stmt->fetchAll();
+                //業界別取り扱い企業数データベースからデータとってくる
+                $assignee_stmt = $db->prepare("select assignee_department,assignee_name,assignee_email_address from agent_assignee_information where agent_branch_id=?;");
+                $assignee_stmt->bindValue(1, $_GET['agent_branch_id']);
+                $assignee_stmt->execute();
+                $assignee_array = $assignee_stmt->fetchAll();
+                //担当者データベースからデータとってくる
+                foreach ($contract_information_array[0] as $column => $data) {
+                    switch ($column) {
+                        case 'agent_id':
+                            $column = 'エージェントID';
+                            break;
+                        case 'agent_branch_id':
+                            $column = '支店ID';
+                            break;
+                        case 'agent_name':
+                            $column = 'エージェント名';
+                            break;
+                        case 'agent_branch':
+                            $column = '支店名';
+                            break;
+                        case 'contract_date':
+                            $column = '契約日締結日';
+                            break;
+                        case 'start_contract_date':
+                            $column = '契約開始日';
+                            break;
+                        case 'end_contract_date':
+                            $column = '契約終了日';
+                            break;
+                        case 'agent_phone_number':
+                            $column = '電話番号';
+                            break;
+                        case 'apply_email_address':
+                            $column = '問い合わせ通知先メールアドレス';
+                            break;
+                        case 'agent_representative':
+                            $column = '代表者氏名';
+                            break;
+                    }
                     echo '<tr>';
                     echo '<th style="border:1px solid black;">' . $column . '</th>';
                     echo '<td style="border:1px solid black;">' . $data . '</td>';
                     echo '</tr>';
                 }
+                echo '<tr>';
+                echo '<th style="border:1px solid black;">企業住所</th>';
+                echo '<td style="border:1px solid black;">' . $agent_address[0]['agent_address'] . '</td>';
+                echo '</tr>';
                 ?>
             </table>
         </div>
-    </form>
+    </div>
+    <div style="background-color:blue;width:600px;padding:20px;">
+        <div style="display:flex;justify-content:center;">担当者情報</div>
+        <div style="display:flex;justify-content:center;">
+            <table>
+                <?php
+                foreach ($assignee_array as $column => $data) {
+                    echo '<tr>';
+                    echo '<th style="border:1px solid black;">担当者部署</th>';
+                    echo '<td style="border:1px solid black;">' . $data['assignee_department'] . '</td>';
+                    echo '</tr>';
+                    echo '<tr>';
+                    echo '<th style="border:1px solid black;">担当者氏名</th>';
+                    echo '<td style="border:1px solid black;">' . $data['assignee_name'] . '</td>';
+                    echo '</tr>';
+                    echo '<tr>';
+                    echo '<th style="border:1px solid black;">担当者メールアドレス</th>';
+                    echo '<td style="border:1px solid black;">' . $data['assignee_email_address'] . '</td>';
+                    echo '</tr>';
+                }
+
+                ?>
+            </table>
+        </div>
+    </div>
+
     <form style="background-color:blue;width:600px;padding:20px;">
         <div style="display:flex;justify-content:center;">掲載情報</div>
         <div style="display:flex;justify-content:center;">
             <table>
                 <?php
-                $agent_public_information_array = [
-                    '取り扱い企業数' => '企業数サンプル',
-                    '住所' => '住所サンプル',
-                    '特色' => '特色サンプル',
-                    '就活方式' => '就活方式サンプル',
-                    'おすすめする学生の特徴' => 'おすすめサンプル',
-                ]; //データベースから取得する
-                foreach ($agent_public_information_array as $column => $data) {
+                $agent_public_information_stmt = $db->prepare("select agent_name,agent_meeting_type,agent_main_corporate_size,agent_corporate_type,agent_job_offer_rate,agent_shortest_period,agent_simple_explanation from agent_public_information where agent_branch_id=?;");
+                $agent_public_information_stmt->bindValue(1, $_GET['agent_branch_id']);
+                $agent_public_information_stmt->execute();
+                $agent_public_information_array = $agent_public_information_stmt->fetchAll();
+                foreach ($agent_public_information_array[0] as $column => $data) {
+                    $column = $translate->translate_column_to_japanese($column);
+                    //カラムを日本語に変換する
+                    $data = $translate->translate_data_to_japanese($column, $data);
+                    //データを必要に応じて数字から日本語に変換
                     echo '<tr>';
                     echo '<th style="border:1px solid black;">' . $column . '</th>';
                     echo '<td style="border:1px solid black;">' . $data . '</td>';
                     echo '</tr>';
                 }
+                echo '<tr>';
+                echo '<th style="border:1px solid black;">企業住所</th>';
+                echo '<td style="border:1px solid black;">' . $agent_address[0]['agent_address'] . '</td>';
+                echo '</tr>';
+                $index = 1;
+                foreach ($recommend_student as $data) {
+                    echo '<tr>';
+                    echo '<th style="border:1px solid black;">〇〇な人におすすめ' . $index . '</th>';
+                    echo '<td style="border:1px solid black;">';
+                    echo $data["student_type"];
+                    echo '</td>';
+                    echo '</tr>';
+                    $index++;
+                }
+                echo '<tr>';
+                echo '<th style="border:1px solid black;">業界別取り扱い企業数</th>';
+                echo '<td style="border:1px solid black;">メーカー(' . $corporate_amount[0]['manufacturer'] . ')、小売り(' . $corporate_amount[0]['retail'] . ')、サービス(' . $corporate_amount[0]['service'] . ')、ソフトウェア・通信(' . $corporate_amount[0]['software_transmission'] . ')、商社(' . $corporate_amount[0]['trading'] . ')、金融(' . $corporate_amount[0]['finance'] . ')、マスコミ(' . $corporate_amount[0]['media'] . ')、官公庁・公社・団体(' . $corporate_amount[0]['government'] . ')</td>';
+                echo '</tr>';
                 ?>
             </table>
         </div>
