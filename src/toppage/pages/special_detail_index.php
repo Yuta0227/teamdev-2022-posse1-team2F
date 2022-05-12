@@ -7,7 +7,7 @@
     <title>特集詳細</title>
 </head>
 <body>
-    <?php require "header.php";?>
+    <?php require "../parts/header.php";?>
     <div style="display:flex;">
         <div>
             <img alt="画像">
@@ -39,6 +39,6 @@
         </div>
     </div>
     </form>
-    <?php require "footer.php";?>
+    <?php require "../parts/footer.php";?>
 </body>
 </html>
