@@ -34,7 +34,7 @@ session_start();
     <title>管理者ログイン</title>
 </head>
 
-<body style="position:relative;width:100vw;height:100vh;">
+<body style="position:relative;height:100vh;">
     <?php
     require "../../dbconnect.php";
     require "../parts/admin_url.php";

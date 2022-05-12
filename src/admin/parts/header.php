@@ -7,7 +7,11 @@
             <a href="index.php">
                 企業一覧
             </a>
+            <a href="../../toppage/pages/index.php">
+            ログアウト
+            </a>
         </div>
-        <div>ログアウト</div>
+        <!-- <div class="admin-header-toplink-box">
+        </div> -->
     </div>
 </header>
