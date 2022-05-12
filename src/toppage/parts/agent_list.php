@@ -17,7 +17,7 @@
             echo '</div>';
             echo '<div style="display: flex;">';
             echo '<div class="image-box">';
-            echo '<img class="agent-list-image" src="../img/dummy.png" alt="エージェントの画像">';
+            echo '<img class="agent-list-image" src="../../../img/dummy.png" alt="エージェントの画像">';
             echo '</div>';
             echo '<div class="agent-article">';
             echo '<div class="agent-short-explanation">各エージェントの概要説明を記入する。文章の長さにもよるけど3~4行目安</div>';
@@ -39,7 +39,7 @@
             echo '</div>';
             echo '<div style="display: flex;">';
             echo '<div class="image-box">';
-            echo '<img class="agent-list-image" src="../img/dummy.png" alt="エージェントの画像">';
+            echo '<img class="agent-list-image" src="../../../img/dummy.png" alt="エージェントの画像">';
             echo '</div>';
             echo '<div class="agent-article">';
             echo '<div class="agent-short-explanation">各エージェントの概要説明を記入する。文章の長さにもよるけど3~4行目安</div>';
