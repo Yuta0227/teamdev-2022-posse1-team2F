@@ -155,7 +155,16 @@
     </form>
     <form style="background-color:blue;width:600px;padding:20px;">
         <div style="display:flex;justify-content:center;">エージェント説明文</div>
-        <div style="height:200px;width:400px;background-color:white;">テキスト</div>
+        <div style="height:200px;width:400px;background-color:white;">
+            <?php 
+            $explanation_stmt=$db->prepare("select agent_explanation from agent_explanation where agent_branch_id=?;");
+            $explanation_stmt->bindValue(1,$_GET['agent_branch_id']);
+            $explanation_stmt->execute();
+            $explanation=$explanation_stmt->fetchAll();
+            echo $explanation[0]['agent_explanation'];
+            //改行などは;とexplodeなどをつかって対策する。登録のときに工夫してもらう
+            ?>
+        </div>
         <div style="display:flex;justify-content:right;">
             <div style="border:1px solid black;padding:5px;border-radius:10px;background-color:skyblue;" id="edit_agent_explanation_button">編集</div>
         </div>
