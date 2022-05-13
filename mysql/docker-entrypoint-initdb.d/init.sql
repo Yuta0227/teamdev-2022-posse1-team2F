@@ -1,3 +1,4 @@
+set character_set_results='utf8';
 DROP SCHEMA IF EXISTS shukatsu;
 
 CREATE SCHEMA shukatsu;
@@ -222,7 +223,7 @@ create table apply_list(
   agent_branch_id int not null,
   agent_name varchar(255) not null,
   agent_branch varchar(255) not null,
-  apply_time DATETIME default CURRENT_TIMESTAMP,
+  apply_time DATETIME,
   applicant_email_address varchar(255) not null,
   applicant_name_kanji varchar(255) not null,
   applicant_name_furigana varchar(255) not null,
@@ -239,11 +240,16 @@ create table apply_list(
 );
 -- 申込一覧テーブル上から申込ID、企業ID、企業名、申込日時、申込者の=>メールアドレス、漢字の名前、フリガナ、電話番号、大学、学部、学科、何年卒、郵便番号、住所、相談内容、同時応募エージェント、通報ステータス
 insert into apply_list
-(agent_branch_id,agent_name,agent_branch,applicant_email_address,applicant_name_kanji,applicant_name_furigana,applicant_phone_number,applicant_university,applicant_gakubu,applicant_gakka,applicant_graduation_year,applicant_postal_code,applicant_address,applicant_consultation,applicant_other_agents)
+(agent_branch_id,agent_name,agent_branch,apply_time,applicant_email_address,applicant_name_kanji,applicant_name_furigana,applicant_phone_number,applicant_university,applicant_gakubu,applicant_gakka,applicant_graduation_year,applicant_postal_code,applicant_address,applicant_consultation,applicant_other_agents)
 values
-(1,'エージェント1','支店名1','サンプルメアド1','就活1','シュウカツ1','サンプル電話番号1','サンプル大学1','サンプル学部1','サンプル学科1',2024,'サンプル郵便番号1','サンプル住所1','サンプル相談1','エージェント2,エージェント3'),
-(2,'エージェント1','支店名2','サンプルメアド2','就活2','シュウカツ2','サンプル電話番号2','サンプル大学2','サンプル学部2','サンプル学科2',2024,'サンプル郵便番号2','サンプル住所2','サンプル相談2','エージェント4,エージェント5'),
-(3,'エージェント1','支店名3','サンプルメアド3','就活3','シュウカツ3','サンプル電話番号3','サンプル大学3','サンプル学部3','サンプル学科3',2024,'サンプル郵便番号3','サンプル住所3','サンプル相談3','エージェント6,エージェント7');
+(1,'エージェント1','支店名1','2022-05-13 01:00:12','サンプルメアド1','就活1','シュウカツ1','サンプル電話番号1','サンプル大学1','サンプル学部1','サンプル学科1',2024,'サンプル郵便番号1','サンプル住所1','サンプル相談1','エージェント2,エージェント3'),
+(2,'エージェント1','支店名2','2022-05-14 01:00:12','サンプルメアド2','就活2','シュウカツ2','サンプル電話番号2','サンプル大学2','サンプル学部2','サンプル学科2',2024,'サンプル郵便番号2','サンプル住所2','サンプル相談2','エージェント4,エージェント5'),
+(3,'エージェント1','支店名3','2022-05-14 01:00:12','サンプルメアド3','就活3','シュウカツ3','サンプル電話番号3','サンプル大学3','サンプル学部3','サンプル学科3',2024,'サンプル郵便番号3','サンプル住所3','サンプル相談3','エージェント6,エージェント7'),
+(3,'エージェント1','支店名3','2022-05-15 01:00:12','サンプルメアド4','就活4','シュウカツ4','サンプル電話番号4','サンプル大学4','サンプル学部4','サンプル学科4',2024,'サンプル郵便番号4','サンプル住所4','','エージェント6,エージェント7'),
+(3,'エージェント1','支店名3','2022-05-16 01:00:12','サンプルメアド5','就活5','シュウカツ5','サンプル電話番号5','サンプル大学5','サンプル学部5','サンプル学科5',2024,'サンプル郵便番号5','サンプル住所5','サンプル相談5','エージェント6,エージェント7'),
+(3,'エージェント1','支店名3','2022-05-15 01:00:12','サンプルメアド6','就活6','シュウカツ6','サンプル電話番号6','サンプル大学6','サンプル学部6','サンプル学科6',2024,'サンプル郵便番号6','サンプル住所6','サンプル相談6','エージェント6,エージェント7'),
+(3,'エージェント1','支店名3','2022-06-01 01:00:12','サンプルメアド7','就活7','シュウカツ7','サンプル電話番号7','サンプル大学7','サンプル学部7','サンプル学科7',2024,'サンプル郵便番号7','サンプル住所7','','エージェント6,エージェント7')
+;
 
 drop table if exists featured_article;
 
