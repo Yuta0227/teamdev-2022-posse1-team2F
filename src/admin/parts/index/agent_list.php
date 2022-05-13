@@ -1,4 +1,4 @@
-<section style="margin:0 50px;">
+<section>
     <?php
     $admin_agent_list_stmt=$db->query("select * from admin_agent_list order by agent_id desc;");
     $_SESSION['admin_agent_list']=$admin_agent_list_stmt->fetchAll();
@@ -16,7 +16,7 @@
     }
     for($agent_index=0+($page_number-1)*$agents_per_page;$agent_index<$agents_per_page*$page_number;$agent_index++) {
         if($agent_index+1<=count($agent_list_array)){
-            echo '<div style="display:flex;background-color:blue;margin-bottom:50px;">';
+            echo '<div class="admin-agent-list-box">';
             echo '    <div style="width:75%;">';
             echo '        <div>'.$agent_list_array[$agent_index]['agent_name'].$agent_list_array[$agent_index]['agent_branch'].'</div>';
             echo '        <div style="padding-left:20px;">';

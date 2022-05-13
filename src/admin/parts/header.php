@@ -9,6 +9,7 @@
             </a>
             <a href="../../toppage/pages/index.php">
             ログアウト
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
             </a>
         </div>
         <!-- <div class="admin-header-toplink-box">
