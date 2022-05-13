@@ -74,7 +74,7 @@
     };
     echo '<div style="text-align:center;">' . $_GET['month'] . '月' . $_GET['date'] . '日の合計：' . count($applies_array) . '人</div>';
     ?>
-    <div style="text-align:center;"><a href="admin_agent_detail.php?agent_index=<?php $_GET['agent_index']; ?>year=<?php echo $_GET['year']; ?>&month=<?php echo $_GET['month']; ?>">企業詳細ページに戻る</a></div>
+    <div style="text-align:center;"><a href="admin_agent_detail.php?agent_branch_id=<?php $_GET['agent_branch_id']; ?>year=<?php echo $_GET['year']; ?>&month=<?php echo $_GET['month']; ?>">企業詳細ページに戻る</a></div>
 </section>
 <script>
     <?php for ($index = 0; $index < count($applies_array); $index++) { ?>

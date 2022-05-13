@@ -16,7 +16,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
             //管理者ログイン時ログインステータスtrueにする=>最終ログインの日時がわかる
             $_SESSION['admin_id']=$admin['user_id'];
             //管理者idセッションに保存
-            header("Location:../admin/pages/index.php?year=".date('Y')."&month=".date('m')."&date=".date('d')."&agent_index=1");
+            header("Location:../admin/pages/index.php?year=".date('Y')."&month=".date('m')."&date=".date('d')."&agent_branch_id=1");
         }   
     }
     $agent_assignee_login_stmt=$db->query("select user_id,user_email,AES_DECRYPT(`user_password`,'ENCRYPT-KEY') from agent_users;");
@@ -32,31 +32,31 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
             $update_login_bool_stmt->bindValue(1,$assignee['user_id']);
             $update_login_bool_stmt->execute();
             //エージェント担当者ログイン時ログインステータスtrueにする=>最終ログインの日時がわかる
-            $agent_contract_information_stmt=$db->prepare("select * from agent_contract_information where agent_id=?;");
+            $agent_contract_information_stmt=$db->prepare("select * from agent_contract_information where agent_branch_id=?;");
             $agent_contract_information_stmt->bindValue(1,$_SESSION['assignee_id']);
             $agent_contract_information_stmt->execute();
             $_SESSION['agent_contract_information']=$agent_contract_information_stmt->fetchAll();
             //エージェント担当者の属するエージェントの契約情報をセッションに保存
-            $agent_assignee_information_stmt=$db->prepare("select * from agent_assignee_information where agent_id=?;");
-            $agent_assignee_information_stmt->bindValue(1,$_SESSION['agent_contract_information'][0]['agent_id']);
+            $agent_assignee_information_stmt=$db->prepare("select * from agent_assignee_information where agent_branch_id=?;");
+            $agent_assignee_information_stmt->bindValue(1,$_SESSION['agent_contract_information'][0]['agent_branch_id']);
             $agent_assignee_information_stmt->execute();
             $_SESSION['agent_assignee_information']=$agent_assignee_information_stmt->fetchAll();
             //エージェント担当者の属するエージェントの担当者情報をセッションに保存
-            $agent_public_information_stmt=$db->prepare("select * from agent_public_information where agent_id=?;");
-            $agent_public_information_stmt->bindValue(1,$_SESSION['agent_contract_information'][0]['agent_id']);
+            $agent_public_information_stmt=$db->prepare("select * from agent_public_information where agent_branch_id=?;");
+            $agent_public_information_stmt->bindValue(1,$_SESSION['agent_contract_information'][0]['agent_branch_id']);
             $agent_public_information_stmt->execute();
             $_SESSION['agent_public_information']=$agent_assignee_information_stmt->fetchAll();
             //エージェント担当者の属するエージェントの掲載情報をセッションに保存
-            $agent_address_information_stmt=$db->prepare("select * from agent_address where agent_id=?;");
-            $agent_address_information_stmt->bindValue(1,$_SESSION['agent_contract_information'][0]['agent_id']);
+            $agent_address_information_stmt=$db->prepare("select * from agent_address where agent_branch_id=?;");
+            $agent_address_information_stmt->bindValue(1,$_SESSION['agent_contract_information'][0]['agent_branch_id']);
             $agent_address_information_stmt->execute();
             $_SESSION['agent_address_information']=$agent_address_information_stmt->fetchAll();
             ///エージェント担当者の属するエージェントの住所情報をセッションに保存
-            $agent_mailing_list_stmt=$db->prepare("select * from mailing_list where agent_id=?;");
-            $agent_mailing_list_stmt->bindValue(1,$_SESSION['agent_contract_information'][0]['agent_id']);
+            $agent_mailing_list_stmt=$db->prepare("select * from mailing_list where agent_branch_id=?;");
+            $agent_mailing_list_stmt->bindValue(1,$_SESSION['agent_contract_information'][0]['agent_branch_id']);
             $agent_mailing_list_stmt->execute();
             $_SESSION['agent_mailing_list_information']=$agent_mailing_list_stmt->fetchAll();
-            // header("Location:../agent/pages/index.php?year=".date('Y')."&month=".date('m')."&date=".date('d')."");
+            header("Location:../agent/pages/index.php?year=".date('Y')."&month=".date('m')."&date=".date('d')."");
         }
     }
 }

@@ -21,7 +21,6 @@ services:
     
   db:
     platform: linux/amd64
-    image: mysql:8.0
     environment:
       MYSQL_ROOT_PASSWORD: password
       TZ: Asia/Tokyo
@@ -31,6 +30,7 @@ services:
       - ./mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
       - ./mysql/etc/mysql/conf.d:/etc/mysql/conf.d
       - ./mysql/data:/var/lib/mysql
+    build: ./mysql
     
   #↓下記追記する↓
     #メールサーバのコンテナ
