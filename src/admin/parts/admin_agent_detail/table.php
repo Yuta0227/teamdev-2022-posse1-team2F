@@ -23,7 +23,7 @@
                 $agent_address_stmt->execute();
                 $agent_address = $agent_address_stmt->fetchAll();
                 //住所データベースからデータとってくる
-                $recommend_student_stmt = $db->prepare("select student_type from agent_recommend_student_type where agent_branch_id=?;");
+                $recommend_student_stmt = $db->prepare("select student_type from agent_recommend_student_type where agent_id=?;");
                 $recommend_student_stmt->bindValue(1, $_GET['agent_branch_id']);
                 $recommend_student_stmt->execute();
                 $recommend_student = $recommend_student_stmt->fetchAll();
@@ -114,7 +114,7 @@
         <div style="display:flex;justify-content:center;">
             <table>
                 <?php
-                $agent_public_information_stmt = $db->prepare("select agent_name,agent_meeting_type,agent_main_corporate_size,agent_corporate_type,agent_job_offer_rate,agent_shortest_period,agent_simple_explanation from agent_public_information where agent_branch_id=?;");
+                $agent_public_information_stmt = $db->prepare("select agent_name,agent_meeting_type,agent_main_corporate_size,agent_corporate_type,agent_job_offer_rate,agent_shortest_period from agent_public_information where agent_branch_id=?;");
                 $agent_public_information_stmt->bindValue(1, $_GET['agent_branch_id']);
                 $agent_public_information_stmt->execute();
                 $agent_public_information_array = $agent_public_information_stmt->fetchAll();
