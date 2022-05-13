@@ -31,7 +31,7 @@ services:
       - ./mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
       - ./mysql/etc/mysql/conf.d:/etc/mysql/conf.d
       - ./mysql/data:/var/lib/mysql
-    
+    # れな
   #↓下記追記する↓
     #メールサーバのコンテナ
     # https://qiita.com/matsunao722/items/047b42a9d2007edc4e86ソース
