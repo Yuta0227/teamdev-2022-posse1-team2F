@@ -20,8 +20,6 @@
         $apply=array_merge($apply,array('time'=>$time));
 
 
-
-
         if ($apply['applicant_report_status'] == 1) {
             //通報されてる場合
             echo '<form method="POST" onsubmit="submitEvent();return false;" id="test' . $index . '" style="padding:10px;align-items:center;display:flex;border:1px solid black;">';
@@ -32,9 +30,9 @@
             echo '<input id="close_apply' . $index . '" name="close' . $index . '" hidden value="閉じる△" type="submit">';
             echo '</form>';
             echo '<div id="apply_detail' . $index . '" hidden style="border:1px solid black;">';
-            echo '<div>' . $apply['applicant_name_kanji'] . '(' . $apply['フリガナ'] . ')</div>';
+            echo '<div>' . $apply['applicant_name_kanji'] . '(' . $apply['applicant_name_furigana'] . ')</div>';
             echo '<div>' . $apply['applicant_phone_number'] . '</div>';
-            echo '<div>' . $apply['applicant_university'] . $apply['学部名'] . $apply['学科名'] . $apply['何年卒'] . '年卒</div>';
+            echo '<div>' . $apply['applicant_university'] . $apply['applicant_gakubu'] . $apply['applicant_gakka'] . $apply['applicant_graduation_year'] . '年卒</div>';
             echo '<div>' . $apply['applicant_postal_code'] . '</div>';
             echo '<div>' . $apply['applicant_address'] . '</div>';
             echo '<div>' . $apply['applicant_other_agents'] . '</div>';
@@ -60,12 +58,12 @@
             echo '<input id="close_apply' . $index . '" name="close' . $index . '" hidden value="閉じる△" type="submit">';
             echo '</form>';
             echo '<div id="apply_detail' . $index . '" hidden style="border:1px solid black;">';
-            echo '<div>漢字(フリガナ)</div>';
-            echo '<div>電話番号</div>';
-            echo '<div>大学名 学部名 学科名 何年卒</div>';
-            echo '<div>郵便番号</div>';
-            echo '<div>住所</div>';
-            echo '<div>相談：</div>';
+            echo '<div>'. $apply['applicant_name_kanji'] . '(' . $apply['applicant_name_furigana'] . ')</div>';
+            echo '<div>' . $apply['applicant_phone_number'] . '</div>';
+            echo '<div>' . $apply['applicant_university'] . $apply['applicant_gakubu'] . $apply['applicant_gakka'] . $apply['applicant_graduation_year'] . '年卒</div>';
+            echo '<div>' . $apply['applicant_postal_code'] . '</div>';
+            echo '<div>' . $apply['applicant_address'] . '</div>';
+            echo '<div>相談：' . $apply['applicant_consultation'] . '</div>';
             echo '</div>';
         }
         $index++;
