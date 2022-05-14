@@ -36,7 +36,9 @@
             echo '<div>' . $apply['applicant_postal_code'] . '</div>';
             echo '<div>' . $apply['applicant_address'] . '</div>';
             echo '<div>' . $apply['applicant_other_agents'] . '</div>';
-            echo '<div>相談：' . $apply['applicant_consultation'] . '</div>';
+            if($apply['applicant_consultation']!=''){
+                echo '<div>相談：' . $apply['applicant_consultation'] . '</div>';
+            }
             echo '</div>';
             echo '<form id="delete_form' . $index . '" action="" method="POST" hidden style="padding;10px;border:1px solid black;">';
             echo '<div>通報理由：テキストサンプル</div>';
@@ -63,14 +65,16 @@
             echo '<div>' . $apply['applicant_university'] . $apply['applicant_gakubu'] . $apply['applicant_gakka'] . $apply['applicant_graduation_year'] . '年卒</div>';
             echo '<div>' . $apply['applicant_postal_code'] . '</div>';
             echo '<div>' . $apply['applicant_address'] . '</div>';
-            echo '<div>相談：' . $apply['applicant_consultation'] . '</div>';
+            if($apply['applicant_consultation']!=''){
+                echo '<div>相談：' . $apply['applicant_consultation'] . '</div>';
+            }
             echo '</div>';
         }
         $index++;
     }
     echo '<div style="text-align:center;">' . $_GET['month'] . '月' . $_GET['date'] . '日の合計：' . count($applies_array) . '人</div>';
     ?>
-    <div style="text-align:center;"><a href="admin_agent_detail.php?agent_branch_id=<?php $_GET['agent_branch_id']; ?>year=<?php echo $_GET['year']; ?>&month=<?php echo $_GET['month']; ?>">企業詳細ページに戻る</a></div>
+    <div style="text-align:center;"><a href="admin_agent_detail.php?agent_branch_id=<?php echo $_GET['agent_branch_id']; ?>&year=<?php echo $_GET['year']; ?>&month=<?php echo $_GET['month']; ?>">企業詳細ページに戻る</a></div>
 </section>
 <script>
     <?php for ($index = 0; $index < count($applies_array); $index++) { ?>
