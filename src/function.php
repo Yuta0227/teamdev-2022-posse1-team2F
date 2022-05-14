@@ -33,8 +33,6 @@ class translate
         foreach($column_set as $english=>$japanese){
             if($column==$english){
                 return $japanese;
-            }else{
-                return $column;
             }
         }
     }
