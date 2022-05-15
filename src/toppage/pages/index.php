@@ -44,6 +44,7 @@ require("../../dbconnect.php");
 
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="../../../js/script.js"></script>
+
 </body>
 <?php require "../parts/footer.php"; ?>
 
