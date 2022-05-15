@@ -101,6 +101,32 @@ body{
 }
 
 /* ページネーション */
+.agent-pagenation-frame{
+    text-align: right;
+}
+.agent-pagenation-parent{
+    display: inline-block;
+    text-align: right;
+    background: #52a49a;
+    margin-right: 10%;
+    padding: 10px 10px;
+}
 .agent-pagenation-all-box{
+    display:flex;
     justify-content: flex-end;
+    /* margin-right: 10%; */
+    gap: 5px;
+}
+.admin-pagenation-number{
+    text-align: center;
+    width: 25px;
+    background: #fff;
+    /* border-radius: 20px; */
+    color: #000;
+    cursor: pointer;
+}
+.admin-pagenation-arrow{
+    color: #000;
+    text-decoration: none;
+    vertical-align: middle;
 }
