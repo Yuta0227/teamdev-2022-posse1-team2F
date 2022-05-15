@@ -1,6 +1,6 @@
-<header style="display:flex;background-color:greenyellow;">
+<header class="agent-header-all">
     <div>
-        <img alt="就活.com" src="../../img/syukatudotcom_logo.png">
+        <img alt="就活.com" src="../../img/syukatudotcom_logo_white.png">
     </div>
     <div>
         <form action="" method="POST" style="display:flex;">
