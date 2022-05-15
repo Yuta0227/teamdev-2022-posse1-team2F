@@ -49,5 +49,53 @@ body{
     display: flex;
     margin: 20px auto 30px auto;
     border: solid;
-    
+    background: #fff;
+}
+.admin-agent-name{
+    font-weight: bold;
+    margin: 10px;
+    font-size: 20px;
+}
+.admin-agent-detail{
+    padding-bottom:10px;
+    color:rgb(53, 52, 52);
+}
+.admin-agent-buttons{
+    padding:0 10px 10px 0;
+    width:30%;
+    display:flex;
+    flex-direction:column;
+    align-items:bottom;
+}
+.admin-agent-button-box{
+    height:50%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+}
+.admin-agent-detail-button{
+    width:95%;
+    border: none;
+    border-radius:10px;
+    height:30px;
+    color:white;
+    background-color:rgb(122, 211, 247);
+}
+.admin-agent-invitation-button{
+    width:95%;
+    border-radius:10px;
+    border: none;
+    height:30px;
+    color:white;
+    background-color:rgb(84, 216, 161);
+}
+.admin-agent-invited-button{
+    width:95%;
+    pointer-events:none;
+    border-radius:10px;
+    border: none;
+    height:30px;
+    color:white;
+    background-color:red;
 }
