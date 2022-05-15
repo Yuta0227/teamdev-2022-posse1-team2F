@@ -10,7 +10,6 @@ services:
     volumes:
       - ./nginx/etc/nginx/conf.d:/etc/nginx/conf.d
       - ./src:/var/www/html
-    
   app:
     platform: linux/amd64
     build: ./php
@@ -18,7 +17,6 @@ services:
       - db
     volumes:
       - ./src:/var/www/html
-    
   db:
     build: ./mysql
     platform: linux/amd64
@@ -47,3 +45,24 @@ services:
   # #↓追記する
     volumes:
       - ./maildir:/tmp
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
