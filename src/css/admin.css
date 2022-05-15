@@ -48,7 +48,7 @@ body{
     width: 80%;
     display: flex;
     margin: 20px auto 30px auto;
-    border: solid;
+    /* border: solid; */
     background: #fff;
 }
 .admin-agent-name{
@@ -80,7 +80,7 @@ body{
     border-radius:10px;
     height:30px;
     color:white;
-    background-color:rgb(122, 211, 247);
+    background-color:rgb(104, 182, 212);
 }
 .admin-agent-invitation-button{
     width:95%;
@@ -88,7 +88,7 @@ body{
     border: none;
     height:30px;
     color:white;
-    background-color:rgb(84, 216, 161);
+    background-color:rgb(75, 196, 146);
 }
 .admin-agent-invited-button{
     width:95%;
@@ -129,4 +129,12 @@ body{
     color: #000;
     text-decoration: none;
     vertical-align: middle;
+}
+
+/* エージェント追加機能 */
+.admin-add-agent{
+    margin-left: 10%;
+}
+.admin-event-link{
+    margin-left: 10%;
 }

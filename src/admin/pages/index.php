@@ -48,12 +48,13 @@ session_start();
     ?>
 
     <div>
-        <form action="/admin/index.php" method="POST">
+        <form class="admin-add-agent" action="/admin/index.php" method="POST">
             エージェント追加昨日追加したい
+            <br>
             イベント名：<input type="text" name="title" required>
             <input type="submit" value="登録する">
         </form>
-        <a href="/index.php">イベント一覧</a>
+        <a class="admin-event-link" href="/index.php">イベント一覧</a>
     </div>
 </body>
 
