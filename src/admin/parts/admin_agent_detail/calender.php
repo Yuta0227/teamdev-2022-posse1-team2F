@@ -236,7 +236,7 @@
             if(selected_date<=9){
                 selected_date='0'+selected_date;
             }
-            window.location = `<?php echo $admin_agent_selected_date_url; ?>?agent_branch_id=<?php $_GET['agent_branch_id'];?>&year=${selected_year}&month=${selected_month}&date=${selected_date}`;
+            window.location = `<?php echo $admin_agent_selected_date_url; ?>?agent_branch_id=<?php echo $_GET['agent_branch_id'];?>&year=${selected_year}&month=${selected_month}&date=${selected_date}`;
         });
     }
 </script>
