@@ -1,4 +1,5 @@
-<div><?php echo 'エージェント名'; ?>さんようこそ</div>
+<section class="agent-new-apply-unit">
+<div class="agent-welcome"><?php echo 'エージェント名'; ?>さんようこそ</div>
 <?php
 $new_applies_array = [ //データベースから取得
     [
@@ -22,15 +23,15 @@ $new_applies_array = [ //データベースから取得
     ]
 ];
 if (count($new_applies_array) != 0) { //新着があったら
-    echo '<div>新着の申込一覧</div>';
-    echo '<table>';
+    echo '<div class="agent-new-apply-header">新着の申込一覧</div>';
+    echo '<table class="agent-new-apply-explanations">';
     echo '    <tr>';
-    echo '        <th>申込日時</th>';
-    echo '        <th>メールアドレス</th>';
+    echo '        <th class="agent-new-apply-explanation">申込日時</th>';
+    echo '        <th class="agent-new-apply-explanation">メールアドレス</th>';
     echo '    </tr>';
     echo '</table>';
     for ($index=0;$index<count($new_applies_array);$index++) {        
-        echo '<form method="POST" onsubmit="return false;" id="test' . $index . '" style="padding:10px;align-items:center;display:flex;border:1px solid black;">';
+        echo '<form method="POST" onsubmit="return false;" id="test' . $index . '" class="agent-new-apply-info-box">';
         echo '<div>' . $new_applies_array[$index]['月'] . '/' . $new_applies_array[$index]['日'] . ' ' . $new_applies_array[$index]['時間'] . '</div>';
         echo '<div>' . $new_applies_array[$index]['メールアドレス'] . '</div>';
         echo '<input type="button" id="open_new_apply' . $index . '" value="詳細▽">';
@@ -79,7 +80,7 @@ if (count($new_applies_array) != 0) { //新着があったら
     };
 };
 ?>
-
+</section>
 
 <script>
     function submitEvent() {

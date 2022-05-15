@@ -24,3 +24,36 @@
     color: #fff;
     font-size: 20px;
 }
+
+/* エージェント申し込み一覧 */
+.agent-new-apply-unit{
+    background: #eaedf2;
+    padding: 20px 0;
+}
+.agent-welcome{
+    font-weight: bold;
+    font-size: 25px;
+    width: 80%;
+    margin-left: 5%;
+    margin-bottom: 20px;
+}
+.agent-new-apply-header{
+    font-size: 20px;
+    margin-left: 5%;
+}
+.agent-new-apply-explanations{
+    margin-left: 5%;
+}
+.agent-new-apply-explanation{
+    padding: 10px 10px 0px 10px;
+}
+.agent-new-apply-info-box{
+    padding:10px;
+    align-items:center;
+    display:flex;
+    border:1px solid black;
+    background: #fff;
+    width: 90%;
+    margin: auto;
+    justify-content: space-between;
+}
