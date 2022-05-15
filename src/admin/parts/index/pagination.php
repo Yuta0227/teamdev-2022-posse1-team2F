@@ -1,6 +1,6 @@
 <section>
     <!-- $agent_list_arrayの長さが$agents_per_pageを下回った際なんかバグってる -->
-    <div style="display:flex;">
+    <div style="display:flex;" class="agent-pagenation-all-box">
         <!--緑の箱。paddingつける-->
         <!--hrefの中にagent_list_paginationのパラメータ取得していれる-->
         <?php

@@ -99,3 +99,8 @@ body{
     color:white;
     background-color:red;
 }
+
+/* ページネーション */
+.agent-pagenation-all-box{
+    justify-content: flex-end;
+}
