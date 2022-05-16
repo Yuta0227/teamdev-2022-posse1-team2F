@@ -336,3 +336,17 @@ create table filter_corporate_type(
 insert into filter_corporate_type(corporate_type)
 VALUES
 ('外資系含む'),('外資系含まない');
+
+drop table if exists picture;
+
+create table picture(
+  picture_url varchar(255),
+  agent_id int AUTO_INCREMENT primary key,
+  agent_name varchar(255)
+);
+
+insert into picture(picture_url,agent_name)
+VALUES
+('picture1.jpg',(select agent_name from agent_contract_information where agent_id=1)),
+('picture2.jpg',(select agent_name from agent_contract_information where agent_id=1)),
+('picture3.jpg',(select agent_name from agent_contract_information where agent_id=1));
