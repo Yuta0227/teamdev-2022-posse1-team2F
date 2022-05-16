@@ -1,0 +1,140 @@
+html{
+    width: 100%;
+}
+body{
+    width: 100%;
+    background: #eaedf2;
+}
+/* header */
+.admin-header-all{
+	background-color: #52a49a;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 5%;
+}
+.admin-header-logo-box{
+    display: inline-block;
+    /* margin: 10px 0 10px 5%; */
+}
+.admin-header-logo-box img{
+    width: 50%;
+}
+.admin-header-toplink-box{
+    margin: 10px;
+    display: flex;
+    gap: 20px;
+}
+.admin-header-toplink-box a{
+    text-decoration: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+/* 並び替え */
+.admin-exclusive{
+    font-weight: bold;
+    font-size: 25px;
+    width: 80%;
+    margin-left: 5%;
+}
+.admin-sort{
+    width: 80%;
+    margin: 10px auto;
+}
+
+/* エージェント一覧 */
+.admin-agent-list-box{
+    width: 80%;
+    display: flex;
+    margin: 20px auto 30px auto;
+    /* border: solid; */
+    background: #fff;
+}
+.admin-agent-name{
+    font-weight: bold;
+    margin: 10px;
+    font-size: 20px;
+}
+.admin-agent-detail{
+    padding-bottom:10px;
+    color:rgb(53, 52, 52);
+}
+.admin-agent-buttons{
+    padding:0 10px 10px 0;
+    width:30%;
+    display:flex;
+    flex-direction:column;
+    align-items:bottom;
+}
+.admin-agent-button-box{
+    height:50%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+}
+.admin-agent-detail-button{
+    width:95%;
+    border: none;
+    border-radius:10px;
+    height:30px;
+    color:white;
+    background-color:rgb(104, 182, 212);
+}
+.admin-agent-invitation-button{
+    width:95%;
+    border-radius:10px;
+    border: none;
+    height:30px;
+    color:white;
+    background-color:rgb(75, 196, 146);
+}
+.admin-agent-invited-button{
+    width:95%;
+    pointer-events:none;
+    border-radius:10px;
+    border: none;
+    height:30px;
+    color:white;
+    background-color:red;
+}
+
+/* ページネーション */
+.agent-pagenation-frame{
+    text-align: right;
+}
+.agent-pagenation-parent{
+    display: inline-block;
+    text-align: right;
+    background: #52a49a;
+    margin-right: 10%;
+    padding: 10px 10px;
+}
+.agent-pagenation-all-box{
+    display:flex;
+    justify-content: flex-end;
+    /* margin-right: 10%; */
+    gap: 5px;
+}
+.admin-pagenation-number{
+    text-align: center;
+    width: 25px;
+    background: #fff;
+    /* border-radius: 20px; */
+    color: #000;
+    cursor: pointer;
+}
+.admin-pagenation-arrow{
+    color: #000;
+    text-decoration: none;
+    vertical-align: middle;
+}
+
+/* エージェント追加機能 */
+.admin-add-agent{
+    margin-left: 10%;
+}
+.admin-event-link{
+    margin-left: 10%;
+}

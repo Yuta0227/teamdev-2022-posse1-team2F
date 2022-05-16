@@ -1,8 +1,9 @@
 <!-- <section>
-    <div>管理者専用画面</div>
-    <form method="POST" action="">
+    <div class="admin-exclusive">管理者専用画面</div>
+    <form method="POST" action="" class="admin-sort">
 
-        <label>並び替え：</label><select name="sort">
+         <label>並び替え：</label> 
+        <select name="sort">
             <?php
             $default_sort_order_array = [
                 '契約新しい順', 
@@ -38,4 +39,4 @@
         </select>
         <input type="submit" value="並び替えする">
     </form>
-</section> -->
+</section>  -->

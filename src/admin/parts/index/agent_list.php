@@ -1,4 +1,4 @@
-<section style="margin:0 50px;">
+<section>
     <?php
     $admin_agent_list_stmt = $db->query("select * from admin_agent_list order by agent_id desc;");
     $_SESSION['admin_agent_list'] = $admin_agent_list_stmt->fetchAll();
@@ -20,26 +20,26 @@
         //2ページ目の時、初期値2,条件式3まで(2,3)
         if ($agent_id  < count($agent_list_array)) {
             //掛け算から企業数を引いて余った分を出力しないようにしてる
-            echo '<div style="display:flex;background-color:blue;margin-bottom:50px;">';
+            echo '<div class="admin-agent-list-box">';
             echo '    <div style="width:75%;">';
-            echo '        <div>' . $agent_list_array[$agent_id]['agent_name']. '</div>';
+            echo '        <div class="admin-agent-name">' . $agent_list_array[$agent_id]['agent_name']. '</div>';
             echo '        <div style="padding-left:20px;">';
-            echo '            <div style="padding-bottom:10px;color:gray;">契約日：' . $agent_list_array[$agent_id]['start_contract'] . '</div>';
-            echo '            <div style="padding-bottom:10px;color:gray;">学生：' . $agent_list_array[$agent_id]['apply_amount'] . '人登録</div>';
-            echo '            <div style="padding-bottom:10px;color:gray;">今月の請求額：' . $agent_list_array[$agent_id]['apply_amount']*$price_per_apply . '円</div>';
+            echo '            <div class="admin-agent-detail">契約日：' . $agent_list_array[$agent_id]['start_contract'] . '</div>';
+            echo '            <div class="admin-agent-detail">学生：' . $agent_list_array[$agent_id]['apply_amount'] . '人登録</div>';
+            echo '            <div class="admin-agent-detail">今月の請求額：' . $agent_list_array[$agent_id]['apply_amount']*$price_per_apply . '円</div>';
             echo '        </div>';
             echo '    </div>';
-            echo '    <div style="padding:0 10px 10px 0;width:30%;display:flex;flex-direction:column;align-items:bottom;">';
-            echo '<div style="height:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;">';
-            echo '<button id="agent' . $agent_list_array[$agent_id]['agent_id'] . '" style="width:95%;border-radius:10px;height:30px;color:white;background-color:skyblue;">エージェント詳細を見る</button>';
+            echo '    <div class="admin-agent-buttons">';
+            echo '<div class="admin-agent-button-box">';
+            echo '<button id="agent' . $agent_list_array[$agent_id]['agent_id'] . '" class="admin-agent-detail-button">エージェント詳細を見る</button>';
             echo '</div>';
-            echo '<div style="height:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;">';
+            echo '<div class="admin-agent-button-box">';
             if ($agent_list_array[$agent_id]['featured_article_bool'] == 0) {
                 //特集記事お願い済みステータスがゼロの場合＝＝お願いしてない
-                echo '        <button id="invitation_button' . $agent_list_array[$agent_id]['agent_id'] . '" style="width:95%;border-radius:10px;height:30px;color:white;background-color:lightgreen;">特集記事をお願いする</button>';
+                echo '        <button id="invitation_button' . $agent_list_array[$agent_id]['agent_id'] . '" class="admin-agent-invitation-button">特集記事をお願いする</button>';
             } else {
                 //特集記事お願い済みステータスがゼロではない場合＝＝お願い済み
-                echo '        <button id="already_invited' . $agent_list_array[$agent_id]['agent_id'] . '" style="width:95%;pointer-events:none;border-radius:10px;height:30px;color:white;background-color:red;">特集記事をお願い済み</button>';
+                echo '        <button id="already_invited' . $agent_list_array[$agent_id]['agent_id'] . '" class="admin-agent-invited-button">特集記事をお願い済み</button>';
             }
             echo '</div>';
             echo '</div>';
