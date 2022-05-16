@@ -6,6 +6,7 @@
     $agent_list_array = $_SESSION['admin_agent_list'];
     $agents_per_page = 2;
     $pagination_parameter_set = isset($_GET['agent_list_pagination']);
+    $_SESSION['price_per_apply']=$price_per_apply=20000;
     if ($pagination_parameter_set) {
         if ($_GET['agent_list_pagination'] * $agents_per_page > count($agent_list_array)) {
             $page_number = count($agent_list_array) / $agents_per_page;
@@ -25,7 +26,7 @@
             echo '        <div style="padding-left:20px;">';
             echo '            <div style="padding-bottom:10px;color:gray;">契約日：' . $agent_list_array[$agent_id]['start_contract'] . '</div>';
             echo '            <div style="padding-bottom:10px;color:gray;">学生：' . $agent_list_array[$agent_id]['apply_amount'] . '人登録</div>';
-            echo '            <div style="padding-bottom:10px;color:gray;">今月の請求額：' . $agent_list_array[$agent_id]['apply_amount'] . '円</div>';
+            echo '            <div style="padding-bottom:10px;color:gray;">今月の請求額：' . $agent_list_array[$agent_id]['apply_amount']*$price_per_apply . '円</div>';
             echo '        </div>';
             echo '    </div>';
             echo '    <div style="padding:0 10px 10px 0;width:30%;display:flex;flex-direction:column;align-items:bottom;">';

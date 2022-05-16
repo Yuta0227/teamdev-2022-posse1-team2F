@@ -218,9 +218,9 @@
         } ?>
         月の請求額：
         <?php
-        echo $applies_per_month_data[0]['count(apply_id)']*2;
+        echo $applies_per_month_data[0]['count(apply_id)']*$_SESSION['price_per_apply'];
         ?>
-        万円
+        円
     </div>
 </section>
 
