@@ -38,6 +38,9 @@ insert into agent_users set user_email = 'assignee3@posse-ap.com',user_password 
 insert into agent_users set user_email = 'assignee4@posse-ap.com',user_password = AES_ENCRYPT('assignee_password4','ENCRYPT-KEY');
 insert into agent_users set user_email = 'assignee5@posse-ap.com',user_password = AES_ENCRYPT('assignee_password5','ENCRYPT-KEY');
 insert into agent_users set user_email = 'assignee6@posse-ap.com',user_password = AES_ENCRYPT('assignee_password6','ENCRYPT-KEY');
+insert into agent_users set user_email = 'assignee7@posse-ap.com',user_password = AES_ENCRYPT('assignee_password7','ENCRYPT-KEY');
+insert into agent_users set user_email = 'assignee8@posse-ap.com',user_password = AES_ENCRYPT('assignee_password8','ENCRYPT-KEY');
+insert into agent_users set user_email = 'assignee9@posse-ap.com',user_password = AES_ENCRYPT('assignee_password9','ENCRYPT-KEY');
 -- 担当者追加
 
 DROP TABLE IF EXISTS agent_contract_information;
@@ -191,13 +194,13 @@ create table apply_list(
 insert into apply_list
 (agent_id,agent_name,apply_time,applicant_email_address,applicant_name_kanji,applicant_name_furigana,applicant_phone_number,applicant_university,applicant_gakubu,applicant_gakka,applicant_graduation_year,applicant_postal_code,applicant_address,applicant_consultation,applicant_other_agents)
 values
-(1,'エージェント1','2022-05-13 01:00:12','サンプルメアド1','就活1','シュウカツ1','サンプル電話番号1','サンプル大学1','サンプル学部1','サンプル学科1',2024,'サンプル郵便番号1','サンプル住所1','サンプル相談1','エージェント2,エージェント3'),
-(2,'エージェント2','2022-05-14 01:00:12','サンプルメアド2','就活2','シュウカツ2','サンプル電話番号2','サンプル大学2','サンプル学部2','サンプル学科2',2024,'サンプル郵便番号2','サンプル住所2','サンプル相談2','エージェント4,エージェント5'),
-(3,'エージェント3','2022-05-14 01:00:12','サンプルメアド3','就活3','シュウカツ3','サンプル電話番号3','サンプル大学3','サンプル学部3','サンプル学科3',2024,'サンプル郵便番号3','サンプル住所3','サンプル相談3','エージェント6,エージェント7'),
-(3,'エージェント3','2022-05-15 01:00:12','サンプルメアド4','就活4','シュウカツ4','サンプル電話番号4','サンプル大学4','サンプル学部4','サンプル学科4',2024,'サンプル郵便番号4','サンプル住所4','','エージェント6,エージェント7'),
-(3,'エージェント3','2022-05-16 01:00:12','サンプルメアド5','就活5','シュウカツ5','サンプル電話番号5','サンプル大学5','サンプル学部5','サンプル学科5',2024,'サンプル郵便番号5','サンプル住所5','サンプル相談5','エージェント6,エージェント7'),
-(3,'エージェント3','2022-05-15 01:00:12','サンプルメアド6','就活6','シュウカツ6','サンプル電話番号6','サンプル大学6','サンプル学部6','サンプル学科6',2024,'サンプル郵便番号6','サンプル住所6','サンプル相談6','エージェント6,エージェント7'),
-(3,'エージェント3','2022-06-01 01:00:12','サンプルメアド7','就活7','シュウカツ7','サンプル電話番号7','サンプル大学7','サンプル学部7','サンプル学科7',2024,'サンプル郵便番号7','サンプル住所7','','エージェント6,エージェント7')
+(1,'エージェント1','2022-05-13 01:00:12','user1@gmail.com','就活1','シュウカツ1','サンプル電話番号1','サンプル大学1','サンプル学部1','サンプル学科1',2024,'サンプル郵便番号1','サンプル住所1','サンプル相談1','エージェント2,エージェント3'),
+(2,'エージェント2','2022-05-14 01:00:12','user2@gmail.com','就活2','シュウカツ2','サンプル電話番号2','サンプル大学2','サンプル学部2','サンプル学科2',2024,'サンプル郵便番号2','サンプル住所2','サンプル相談2','エージェント4,エージェント5'),
+(3,'エージェント3','2022-05-14 01:00:12','user3@gmail.com','就活3','シュウカツ3','サンプル電話番号3','サンプル大学3','サンプル学部3','サンプル学科3',2024,'サンプル郵便番号3','サンプル住所3','サンプル相談3','エージェント6,エージェント7'),
+(3,'エージェント3','2022-05-15 01:00:12','user4@gmail.com','就活4','シュウカツ4','サンプル電話番号4','サンプル大学4','サンプル学部4','サンプル学科4',2024,'サンプル郵便番号4','サンプル住所4','','エージェント6,エージェント7'),
+(3,'エージェント3','2022-05-16 01:00:12','user5@gmail.com','就活5','シュウカツ5','サンプル電話番号5','サンプル大学5','サンプル学部5','サンプル学科5',2024,'サンプル郵便番号5','サンプル住所5','サンプル相談5','エージェント6,エージェント7'),
+(3,'エージェント3','2022-05-15 01:00:12','user6@gmail.com','就活6','シュウカツ6','サンプル電話番号6','サンプル大学6','サンプル学部6','サンプル学科6',2024,'サンプル郵便番号6','サンプル住所6','サンプル相談6','エージェント6,エージェント7'),
+(3,'エージェント3','2022-06-01 01:00:12','user7@gmail.com','就活7','シュウカツ7','サンプル電話番号7','サンプル大学7','サンプル学部7','サンプル学科7',2024,'サンプル郵便番号7','サンプル住所7','','エージェント6,エージェント7')
 ;
 
 drop table if exists featured_article;
@@ -235,10 +238,10 @@ values
 drop table if exists agent_assignee_information;
 
 create table agent_assignee_information (
+  user_id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
   agent_id int not null,
   agent_name varchar(255) not null,
-  agent_branch varchar(255) not null,
-  assignee_id int not null AUTO_INCREMENT primary key,
+  agent_branch varchar(255) not null,    
   assignee_email_address varchar(255) not null,
   assignee_name varchar(255) not null
 );
@@ -247,15 +250,15 @@ create table agent_assignee_information (
 insert into agent_assignee_information 
 (agent_id,agent_name,agent_branch,assignee_email_address,assignee_name) 
 VALUES
-(1,(select agent_name from agent_contract_information where agent_id=1),'支店1','メールアドレス1','氏名1'),
-(1,(select agent_name from agent_contract_information where agent_id=1),'支店2','メールアドレス2','氏名2'),
-(2,(select agent_name from agent_contract_information where agent_id=2),'支店1','メールアドレス1','氏名3'),
-(2,(select agent_name from agent_contract_information where agent_id=2),'支店2','メールアドレス2','氏名4'),
-(2,(select agent_name from agent_contract_information where agent_id=2),'支店3','メールアドレス3','氏名5'),
-(3,(select agent_name from agent_contract_information where agent_id=3),'支店1','メールアドレス1','氏名6'),
-(3,(select agent_name from agent_contract_information where agent_id=3),'支店2','メールアドレス2','氏名7'),
-(3,(select agent_name from agent_contract_information where agent_id=3),'支店3','メールアドレス3','氏名8'),
-(3,(select agent_name from agent_contract_information where agent_id=3),'支店4','メールアドレス4','氏名9');
+(1,(select agent_name from agent_contract_information where agent_id=1),'支店1',(select user_email from agent_users where user_id=1),'氏名1'),
+(1,(select agent_name from agent_contract_information where agent_id=1),'支店2',(select user_email from agent_users where user_id=2),'氏名2'),
+(2,(select agent_name from agent_contract_information where agent_id=2),'支店1',(select user_email from agent_users where user_id=3),'氏名3'),
+(2,(select agent_name from agent_contract_information where agent_id=2),'支店2',(select user_email from agent_users where user_id=4),'氏名4'),
+(2,(select agent_name from agent_contract_information where agent_id=2),'支店3',(select user_email from agent_users where user_id=5),'氏名5'),
+(3,(select agent_name from agent_contract_information where agent_id=3),'支店1',(select user_email from agent_users where user_id=6),'氏名6'),
+(3,(select agent_name from agent_contract_information where agent_id=3),'支店2',(select user_email from agent_users where user_id=7),'氏名7'),
+(3,(select agent_name from agent_contract_information where agent_id=3),'支店3',(select user_email from agent_users where user_id=8),'氏名8'),
+(3,(select agent_name from agent_contract_information where agent_id=3),'支店4',(select user_email from agent_users where user_id=9),'氏名9');
 
 drop table if exists agent_public_information;
 
