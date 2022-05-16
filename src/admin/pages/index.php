@@ -1,5 +1,6 @@
 <?php
 session_start();
+require "../parts/admin_post.php";
 // require('../dbconnect.php');
 // if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
 //     $_SESSION['time'] = time();

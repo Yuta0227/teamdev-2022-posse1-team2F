@@ -1,5 +1,7 @@
 <?php 
 session_start();
+require "../parts/admin_post.php";
+
 ?>
 <!DOCTYPE html>
 <html lang="ja">

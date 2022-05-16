@@ -16,7 +16,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
             //管理者ログイン時ログインステータスtrueにする=>最終ログインの日時がわかる
             $_SESSION['admin_id']=$admin['user_id'];
             //管理者idセッションに保存
-            header("Location:../admin/pages/index.php?year=".date('Y')."&month=".date('m')."&date=".date('d')."&agent_id=1");
+            header("Location:/admin/pages/index.php?year=".date('Y')."&month=".date('m')."&date=".date('d')."&agent_id=1");
         }   
     }
     $agent_assignee_login_stmt=$db->query("select user_id,user_email,AES_DECRYPT(`user_password`,'ENCRYPT-KEY') from agent_users;");
