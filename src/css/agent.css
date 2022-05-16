@@ -1,0 +1,85 @@
+.agent-header-all{
+    display:flex;
+    background-color:#52a49a;
+    padding: 0 5%;
+    justify-content: space-between;
+}
+.agent-header-logo-box{
+    margin: auto 0;
+}
+.agent-header-all img{
+    width: 50%;
+}
+.agent-header-menu-box{
+    display: inline-block;
+}
+.agent-header-menu-all{
+    display:flex;
+    gap: 20px;
+    margin: 10px;
+}
+.agent-header-each-menu{
+    background: #52a49a;
+    border: none;
+    color: #fff;
+    font-size: 20px;
+}
+
+/* エージェント申し込み一覧 */
+.agent-new-apply-unit{
+    background: #eaedf2;
+    padding: 20px 0;
+}
+.agent-welcome{
+    font-weight: bold;
+    font-size: 25px;
+    width: 80%;
+    margin-left: 5%;
+    margin-bottom: 20px;
+}
+.agent-new-apply-header{
+    font-size: 20px;
+    margin-left: 5%;
+}
+.agent-new-apply-explanations{
+    margin-left: 5%;
+}
+.agent-new-apply-explanation{
+    padding: 10px 10px 0px 10px;
+}
+.agent-new-apply-info-box{
+    padding:10px;
+    align-items:center;
+    display:flex;
+    border:1px solid black;
+    background: #fff;
+    width: 80%;
+    margin: auto;
+    justify-content: space-between;
+}
+
+.agent-apply-detail-box{
+    border:1px solid black; 
+    width: 80%;
+    margin: auto;
+    padding: 10px;
+    background: #fff;
+}
+.report-box{
+    justify-content:center;
+    display:flex;
+}
+.agent-report-not-yet{
+    text-align:center;
+    width:50%;
+    padding:10px;
+    background-color:red;
+    color: #fff;
+}
+.agent-report-done{
+    text-align:center;
+    width:50%;
+    padding:10px;
+    background-color:blue;
+    color: #fff;
+}
