@@ -1,4 +1,4 @@
-<section>
+<!-- <section>
     <div>管理者専用画面</div>
     <form method="POST" action="">
 
@@ -38,4 +38,4 @@
         </select>
         <input type="submit" value="並び替えする">
     </form>
-</section>
+</section> -->

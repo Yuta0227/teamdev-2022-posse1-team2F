@@ -188,7 +188,8 @@ create table apply_list(
   applicant_address varchar(255) not null,
   applicant_consultation varchar(255) not null,
   applicant_other_agents varchar(255) not null,
-  applicant_report_status boolean default false
+  applicant_report_status boolean default false,
+  apply_new_status boolean default true
 );
 -- 申込一覧テーブル上から申込ID、企業ID、企業名、申込日時、申込者の=>メールアドレス、漢字の名前、フリガナ、電話番号、大学、学部、学科、何年卒、郵便番号、住所、相談内容、同時応募エージェント、通報ステータス
 insert into apply_list

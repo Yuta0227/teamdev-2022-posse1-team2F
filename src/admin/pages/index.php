@@ -34,14 +34,14 @@ session_start();
     <?php
     require "../../dbconnect.php";
     require "../parts/admin_url.php";
-    require "../admin_function.php";
+    require "../../function.php";
     require "../parts/header.php";
     require "../parts/index/title_sort.php";
     require "../parts/index/agent_list.php";
     require "../parts/index/pagination.php";
     require "../parts/index/mail_popup.php";
     ?>
-
+<!-- 
     <div>
         <form action="/admin/index.php" method="POST">
             エージェント追加昨日追加したい
@@ -49,7 +49,7 @@ session_start();
             <input type="submit" value="登録する">
         </form>
         <a href="/index.php">イベント一覧</a>
-    </div>
+    </div> -->
 </body>
 
 </html>

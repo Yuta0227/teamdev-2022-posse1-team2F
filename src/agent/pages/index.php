@@ -1,3 +1,7 @@
+<?php
+session_start();
+require "../parts/agent_post.php";
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -9,7 +13,7 @@
 </head>
 <body>
     <?php 
-    require "../parts/url.php";
+    require "../../function.php";
     require "../parts/agent_header.php";
     require "../parts/agent_new_apply.php";
     require "../parts/agent_calender.php";

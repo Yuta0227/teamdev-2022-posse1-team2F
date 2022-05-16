@@ -52,11 +52,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
             $agent_address_information_stmt->execute();
             $_SESSION['agent_address_information']=$agent_address_information_stmt->fetchAll();
             ///エージェント担当者の属するエージェントの住所情報をセッションに保存
-            $agent_mailing_list_stmt=$db->prepare("select * from mailing_list where agent_id=?;");
-            $agent_mailing_list_stmt->bindValue(1,$_SESSION['agent_contract_information'][0]['agent_id']);
-            $agent_mailing_list_stmt->execute();
-            $_SESSION['agent_mailing_list_information']=$agent_mailing_list_stmt->fetchAll();
-            header("Location:../agent/pages/index.php?year=".date('Y')."&month=".date('m')."&date=".date('d')."");
+            header("Location:/agent/pages/index.php?year=".date('Y')."&month=".date('m')."&date=".date('d')."");
         }
     }
 }

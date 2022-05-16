@@ -15,8 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if(!mb_send_mail($to,$subject,$msg,$header)){
             echo 'メール送信失敗';
         } 
-    }
-    
+    } 
 }
 for ($agent_id = ($page_number - 1) * $agents_per_page; $agent_id < $agents_per_page * $page_number; $agent_id++) {
     if ($agent_id  < count($agent_list_array)) {

@@ -15,7 +15,7 @@ session_start();
     <?php
     require "../../dbconnect.php";
     require "../../function.php";
-    require "../admin_function.php";
+    require "../../function.php";
     require "../parts/header.php";
     require "../parts/admin_agent_selected_date/apply_list.php";
     ?>
