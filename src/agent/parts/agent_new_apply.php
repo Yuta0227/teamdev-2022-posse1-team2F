@@ -8,15 +8,15 @@ $new_applies_array = [ //データベースから取得
         '日' => '20',
         '時間' => '10:50',
         'メールアドレス' => 'sample@gmail.com',
-        '漢字' => '漢字サンプル',
-        'フリガナ' => 'フリガナサンプル',
-        '電話番号' => '000-0000-0000',
-        '大学名' => '大学名サンプル',
-        '学部名' => '学部名サンプル',
+        '漢字' => '山田太郎',
+        'フリガナ' => 'ヤマダタロウ',
+        '電話番号' => '090-0000-0000',
+        '大学名' => '慶応義塾大学',
+        '学部名' => '経済学部',
         '学科名' => '学科名サンプル',
         '何年卒' => '24',
-        '郵便番号' => '000-0000',
-        '住所' => '住所サンプル',
+        '郵便番号' => '160-0000',
+        '住所' => '東京都港区南青山1-3',
         '相談' => '相談サンプル',
         '履歴'=>'',
         '通報ステータス'=>1
@@ -37,7 +37,7 @@ if (count($new_applies_array) != 0) { //新着があったら
         echo '<input type="button" id="open_new_apply' . $index . '" value="詳細▽">';
         echo '<input id="close_new_apply' . $index . '" name="close' . $index . '" hidden value="閉じる△" type="submit">';
         echo '</form>';
-        echo '<div id="new_apply_detail' . $index . '" hidden style="border:1px solid black;">';
+        echo '<div id="new_apply_detail' . $index . '" hidden class="agent-apply-detail-box">';
         echo '<div>' . $new_applies_array[$index]['漢字'] . '(' . $new_applies_array[$index]['フリガナ'] . ')</div>';
         echo '<div>' . $new_applies_array[$index]['電話番号'] . '</div>';
         echo '<div>' . $new_applies_array[$index]['大学名'] . ' ' . $new_applies_array[$index]['学部名'] . ' ' . $new_applies_array[$index]['学科名'] . ' ' . $new_applies_array[$index]['何年卒'] . '年卒</div>';
@@ -45,27 +45,27 @@ if (count($new_applies_array) != 0) { //新着があったら
         echo '<div>' . $new_applies_array[$index]['住所'] . '</div>';
         echo '<div>' . $new_applies_array[$index]['履歴'] . '</div>';
         echo '<div>相談：' . $new_applies_array[$index]['相談'] . '</div>';
-        echo '</div>';
+        
         echo '<form name="report_form' . $index . '" onsubmit="submit_reason();" action="" method="POST">';
-        echo '<div style="justify-content:center;display:flex;border:1px solid black;">';
+        echo '<div class="report-box">';
         if ($new_applies_array[$index]['通報ステータス'] == 0) {
             //通報されていない場合
             if($new_applies_array[$index]['月']!=12){
                 //申込の月が12月ではない場合
-                echo '<div id="new_report' . $index . '" hidden style="text-align:center;width:50%;padding:10px;border-radius:50%;background-color:red;">通報する('.$new_applies_array[$index]['年'].'年' . ($new_applies_array[$index]['月'] + 1) . '月1日23:59まで)</div>';
+                echo '<div id="new_report' . $index . '" hidden class="agent-report-not-yet">通報する('.$new_applies_array[$index]['年'].'年' . ($new_applies_array[$index]['月'] + 1) . '月1日23:59まで)</div>';
             }else{
                 //申込の月が12の場合=>翌年の一月まで
-                echo '<div id="new_report' . $index . '" hidden style="text-align:center;width:50%;padding:10px;border-radius:50%;background-color:red;">通報する('.($new_applies_array[$index]['年']+1).'年1月1日23:59まで)</div>';
+                echo '<div id="new_report' . $index . '" hidden class="agent-report-not-yet">通報する('.($new_applies_array[$index]['年']+1).'年1月1日23:59まで)</div>';
             }
         } else {
             //通報されている場合
-            echo '<div id="new_reported' . $index . '" hidden style="text-align:center;width:50%;padding:10px;border-radius:50%;background-color:blue;">通報済み</div>';
+            echo '<div id="new_reported' . $index . '" class="agent-report-done" hidden>通報済み</div>';
         }
         echo '</div>';
         echo '<div id="new_report_reason' . $index . '" style="border:1px solid black;" hidden><div style="display:flex;justify-content:center;align-items:center;"><span>通報理由：</span><textarea type="text" name="new_report_reason" required placeholder="理由を記入してください"></textarea></div>';
         echo '<div style="display:flex;justify-content:center;"><div id="cancel_new_report' . $index . '">キャンセル</div><input type="submit" name="report' . $index . '" value="通報"></div></div>';
         echo '</form>';
-
+        echo '</div>';
         //formにする
         //divでごり押しするか。できるかわからん。divをクリック時jsからphpに変数なげてそれで判定も可能。一番現実的かもしれない
         //やること。▽おしたら詳細みせる△おしたら閉じて新着テーブルから消して一覧テーブルに追加する

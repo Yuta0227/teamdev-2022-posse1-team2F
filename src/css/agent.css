@@ -53,7 +53,33 @@
     display:flex;
     border:1px solid black;
     background: #fff;
-    width: 90%;
+    width: 80%;
     margin: auto;
     justify-content: space-between;
+}
+
+.agent-apply-detail-box{
+    border:1px solid black; 
+    width: 80%;
+    margin: auto;
+    padding: 10px;
+    background: #fff;
+}
+.report-box{
+    justify-content:center;
+    display:flex;
+}
+.agent-report-not-yet{
+    text-align:center;
+    width:50%;
+    padding:10px;
+    background-color:red;
+    color: #fff;
+}
+.agent-report-done{
+    text-align:center;
+    width:50%;
+    padding:10px;
+    background-color:blue;
+    color: #fff;
 }
