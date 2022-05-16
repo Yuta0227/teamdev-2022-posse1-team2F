@@ -2,8 +2,8 @@
 <section>
     <div style="text-align:center;"><?php echo $_GET['year'] . '年' . $_GET['month'] . '月' . $_GET['date'] . '日'; ?>の申込学生情報一覧</div>
     <?php
-    $applies_stmt=$db->prepare("select * from apply_list where agent_branch_id=? and apply_time between ? and ?;");
-    $applies_stmt->bindValue(1,$_GET['agent_branch_id']);
+    $applies_stmt=$db->prepare("select * from apply_list where agent_id=? and apply_time between ? and ?;");
+    $applies_stmt->bindValue(1,$_GET['agent_id']);
     $applies_stmt->bindValue(2,$_GET['year'].'-'.$_GET['month'].'-'.$_GET['date'].' 00:00:00');
     $applies_stmt->bindValue(3,$_GET['year'].'-'.$_GET['month'].'-'.$_GET['date'].' 23:59:59');
     $applies_stmt->execute();
@@ -32,7 +32,7 @@
             echo '<div id="apply_detail' . $index . '" hidden style="border:1px solid black;">';
             echo '<div>' . $apply['applicant_name_kanji'] . '(' . $apply['applicant_name_furigana'] . ')</div>';
             echo '<div>' . $apply['applicant_phone_number'] . '</div>';
-            echo '<div>' . $apply['applicant_university'] . $apply['applicant_gakubu'] . $apply['applicant_gakka'] . $apply['applicant_graduation_year'] . '年卒</div>';
+            echo '<div>' . $apply['applicant_university'] . ','.$apply['applicant_gakubu'] .','. $apply['applicant_gakka'] .','. $apply['applicant_graduation_year'] . '年卒</div>';
             echo '<div>' . $apply['applicant_postal_code'] . '</div>';
             echo '<div>' . $apply['applicant_address'] . '</div>';
             echo '<div>' . $apply['applicant_other_agents'] . '</div>';
@@ -62,7 +62,7 @@
             echo '<div id="apply_detail' . $index . '" hidden style="border:1px solid black;">';
             echo '<div>'. $apply['applicant_name_kanji'] . '(' . $apply['applicant_name_furigana'] . ')</div>';
             echo '<div>' . $apply['applicant_phone_number'] . '</div>';
-            echo '<div>' . $apply['applicant_university'] . $apply['applicant_gakubu'] . $apply['applicant_gakka'] . $apply['applicant_graduation_year'] . '年卒</div>';
+            echo '<div>' . $apply['applicant_university'] .','. $apply['applicant_gakubu'] . ','.$apply['applicant_gakka'] .','. $apply['applicant_graduation_year'] . '年卒</div>';
             echo '<div>' . $apply['applicant_postal_code'] . '</div>';
             echo '<div>' . $apply['applicant_address'] . '</div>';
             if($apply['applicant_consultation']!=''){
@@ -74,7 +74,7 @@
     }
     echo '<div style="text-align:center;">' . $_GET['month'] . '月' . $_GET['date'] . '日の合計：' . count($applies_array) . '人</div>';
     ?>
-    <div style="text-align:center;"><a href="admin_agent_detail.php?agent_branch_id=<?php echo $_GET['agent_branch_id']; ?>&year=<?php echo $_GET['year']; ?>&month=<?php echo $_GET['month']; ?>">企業詳細ページに戻る</a></div>
+    <div style="text-align:center;"><a href="admin_agent_detail.php?agent_id=<?php echo $_GET['agent_id']; ?>&year=<?php echo $_GET['year']; ?>&month=<?php echo $_GET['month']; ?>">企業詳細ページに戻る</a></div>
 </section>
 <script>
     <?php for ($index = 0; $index < count($applies_array); $index++) { ?>

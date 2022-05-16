@@ -15,7 +15,7 @@
                 $decrease_month = '12';
                 $decrease_year = $_GET['year'] - 1;
             };
-            echo $admin_agent_detail_url . '?year=' . $decrease_year . '&month=' . $decrease_month.'&agent_branch_id='.$_GET['agent_branch_id'];
+            echo $admin_agent_detail_url . '?year=' . $decrease_year . '&month=' . $decrease_month.'&agent_id='.$_GET['agent_id'];
         } else {
             if (date('n') != 1) {
                 //パラメータのmonthが1じゃないなら普通に月減らす
@@ -25,7 +25,7 @@
                 $decrease_month = '12';
                 $decrease_year = date('Y') - 1;
             };
-            echo $admin_agent_detail_url . '?year=' . $decrease_year . '&month=' . $decrease_month.'&agent_branch_id='.$_GET['agent_branch_id'];
+            echo $admin_agent_detail_url . '?year=' . $decrease_year . '&month=' . $decrease_month.'&agent_id='.$_GET['agent_id'];
         }
         ?>
         ">
@@ -57,7 +57,7 @@
                             $increase_month = '01';
                             $increase_year = $_GET['year'] + 1;
                         };
-                        echo $admin_agent_detail_url . '?year=' . $increase_year . '&month=' . $increase_month.'&agent_branch_id='.$_GET['agent_branch_id'];
+                        echo $admin_agent_detail_url . '?year=' . $increase_year . '&month=' . $increase_month.'&agent_id='.$_GET['agent_id'];
                     }
 
         ?>">
@@ -102,7 +102,7 @@
                 $start_decrease_year_month_date=$decrease_year."-".$decrease_month."-".$decrease_date." 00:00:00";
                 $end_decrease_year_month_date=$decrease_year."-".$decrease_month."-".$decrease_date." 23:59:59";
                 $applies_per_day_stmt=$db->prepare("select count(apply_id) from apply_list where apply_id=? and apply_time between ? and ?;");
-                $applies_per_day_stmt->bindValue(1,$_GET['agent_branch_id']);                
+                $applies_per_day_stmt->bindValue(1,$_GET['agent_id']);                
                 $applies_per_day_stmt->bindValue(2,$start_decrease_year_month_date);     
                 $applies_per_day_stmt->bindValue(3,$end_decrease_year_month_date);
                 $applies_per_day_stmt->execute();
@@ -115,8 +115,8 @@
             for ($day = 1; $day <= date('t', strtotime($year_month)); $day++) {
                 $start_year_month_date=$_GET['year']."-".$_GET['month']."-".$day." 00:00:00";
                 $end_year_month_date=$_GET['year']."-".$_GET['month']."-".$day." 23:59:59";
-                $applies_per_day_stmt=$db->prepare("select count(apply_id) from apply_list where agent_branch_id=? and apply_time between ? and ?;");
-                $applies_per_day_stmt->bindValue(1,$_GET['agent_branch_id']);                
+                $applies_per_day_stmt=$db->prepare("select count(apply_id) from apply_list where agent_id=? and apply_time between ? and ?;");
+                $applies_per_day_stmt->bindValue(1,$_GET['agent_id']);                
                 $applies_per_day_stmt->bindValue(2,$start_year_month_date);                
                 $applies_per_day_stmt->bindValue(3,$end_year_month_date);
                 $applies_per_day_stmt->execute();
@@ -129,8 +129,8 @@
             for ($day = 1; $day <= 6 - date('w', strtotime($year_month . '-' . date('t', strtotime($year_month)))); $day++) { //来月の何日分出力するか今月の最終日の曜日をもとにきめる
                 $start_increase_year_month_date=$increase_year."-".$increase_month."-".$adjust->double($day)." 00:00:00";
                 $end_increase_year_month_date=$increase_year."-".$increase_month."-".$adjust->double($day)." 23:59:59";
-                $applies_per_day_stmt=$db->prepare("select count(apply_id) from apply_list where agent_branch_id=? and apply_time between ? and ?;");
-                $applies_per_day_stmt->bindValue(1,$_GET['agent_branch_id']);                
+                $applies_per_day_stmt=$db->prepare("select count(apply_id) from apply_list where agent_id=? and apply_time between ? and ?;");
+                $applies_per_day_stmt->bindValue(1,$_GET['agent_id']);                
                 $applies_per_day_stmt->bindValue(2,$start_increase_year_month_date);                
                 $applies_per_day_stmt->bindValue(3,$end_increase_year_month_date);
                 $applies_per_day_stmt->execute();
@@ -149,7 +149,7 @@
         //     $weeks_per_month = ceil((date('d', strtotime($date)) - date('w', strtotime($date)) - 1) / 7) + 1; //月における週の数をとる
         //     //該当月の1日の曜日を数字で取得して先月の最後の方を配列に追加する
         //     for ($i = date('w', strtotime($year_month . '-01')) - 1; $i >= 0; $i--) { //今月の一日の曜日をもとに先月の何日分出力するか
-        //         $applies_per_day_stmt->bindValue(1,$_GET['agent_branch_id']);                
+        //         $applies_per_day_stmt->bindValue(1,$_GET['agent_id']);                
         //         $applies_per_day_stmt->bindValue(2,$year_last_month.'-'.date('t',strtotime($year_last_month)-$i));                
         //         $applies_per_day_stmt->bindValue(3,$year_last_month.'-'.date('t',strtotime($year_last_month)-$i));
         //         $applies_per_day_stmt->execute();
@@ -160,7 +160,7 @@
         //         //カレンダーで表示する日付を日付配列に追加
         //     }
         //     for ($day = 1; $day <= date('t'); $day++) {
-        //         $applies_per_day_stmt->bindValue(1,$_GET['agent_branch_id']);                
+        //         $applies_per_day_stmt->bindValue(1,$_GET['agent_id']);                
         //         $applies_per_day_stmt->bindValue(2,$year_month.'-'.$day);                
         //         $applies_per_day_stmt->bindValue(3,$year_month.'-'.$day);
         //         $applies_per_day_stmt->execute();
@@ -201,8 +201,8 @@
         <?php
         $start_year_month=$year_month."-01 00:00:00";
         $end_year_month=$year_month."-".date('t',strtotime($year_month))." 23:59:59";
-        $applies_per_month_stmt=$db->prepare("select count(apply_id) from apply_list where agent_branch_id=? and apply_time between ? and ?;");
-        $applies_per_month_stmt->bindValue(1,$_GET['agent_branch_id']);
+        $applies_per_month_stmt=$db->prepare("select count(apply_id) from apply_list where agent_id=? and apply_time between ? and ?;");
+        $applies_per_month_stmt->bindValue(1,$_GET['agent_id']);
         $applies_per_month_stmt->bindValue(2,$start_year_month);
         $applies_per_month_stmt->bindValue(3,$end_year_month);
         $applies_per_month_stmt->execute();
@@ -218,9 +218,9 @@
         } ?>
         月の請求額：
         <?php
-        echo $applies_per_month_data[0]['count(apply_id)']*2;
+        echo $applies_per_month_data[0]['count(apply_id)']*$_SESSION['price_per_apply'];
         ?>
-        万円
+        円
     </div>
 </section>
 
@@ -236,7 +236,7 @@
             if(selected_date<=9){
                 selected_date='0'+selected_date;
             }
-            window.location = `<?php echo $admin_agent_selected_date_url; ?>?agent_branch_id=<?php echo $_GET['agent_branch_id'];?>&year=${selected_year}&month=${selected_month}&date=${selected_date}`;
+            window.location = `<?php echo $admin_agent_selected_date_url; ?>?agent_id=<?php echo $_GET['agent_id'];?>&year=${selected_year}&month=${selected_month}&date=${selected_date}`;
         });
     }
 </script>

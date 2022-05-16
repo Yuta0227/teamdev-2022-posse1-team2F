@@ -17,6 +17,8 @@ services:
       - db
     volumes:
       - ./src:/var/www/html
+      - ./php/mailhog.ini:/etc/php.d/mail.ini:ro
+    
   db:
     build: ./mysql
     platform: linux/amd64
@@ -39,6 +41,7 @@ services:
     container_name: mailhog
     ports:
       - '8025:8025'
+      - '1025:1025'
     environment:
       MH_STORAGE: maildir
       MH_MAILDIR_PATH: /tmp

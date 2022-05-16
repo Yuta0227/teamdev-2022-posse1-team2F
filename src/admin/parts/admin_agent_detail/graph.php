@@ -7,8 +7,8 @@
 $calender_array = [];
 for ($month = 1; $month <= 12; $month++) {
     $month = $adjust->double($month);
-    $calender_stmt = $db->prepare("select count(apply_id) from apply_list where agent_branch_id=? and apply_time between ? and ?;");
-    $calender_stmt->bindValue(1, $_GET['agent_branch_id']);
+    $calender_stmt = $db->prepare("select count(apply_id) from apply_list where agent_id=? and apply_time between ? and ?;");
+    $calender_stmt->bindValue(1, $_GET['agent_id']);
     $calender_stmt->bindValue(2, $_GET['year'] . '-' . $month . '-01 00:00:00');
     $calender_stmt->bindValue(3, $_GET['year'] . '-' . $month . '-' . date('t', strtotime($_GET['year'] . '-' . $month)) . ' 23:59:59');
     $calender_stmt->execute();

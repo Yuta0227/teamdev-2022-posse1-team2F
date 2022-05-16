@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -13,12 +16,10 @@
     require "../../dbconnect.php";
     require "../../function.php";
     require "../parts/admin_url.php";
-    require "../admin_function.php";
     require "../parts/header.php";
     require "../parts/admin_agent_detail/table.php";
     require "../parts/admin_agent_detail/calender.php";
     require "../parts/admin_agent_detail/graph.php";
-    require "../parts/admin_agent_detail/mail_popup.php";
     require "../parts/admin_agent_detail/edit_popup.php";
     ?>
 </body>
