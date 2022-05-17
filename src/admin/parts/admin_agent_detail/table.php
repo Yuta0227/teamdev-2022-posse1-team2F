@@ -178,7 +178,7 @@
             $explanation_stmt->bindValue(1,$_GET['agent_id']);
             $explanation_stmt->execute();
             $explanation=$explanation_stmt->fetchAll();
-            echo $explanation[0]['agent_explanation'];
+            echo nl2br($explanation[0]['agent_explanation']);
             //改行などは;とexplodeなどをつかって対策する。登録のときに工夫してもらう
             ?>
         </div>

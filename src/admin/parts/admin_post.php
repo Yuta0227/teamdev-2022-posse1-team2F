@@ -55,5 +55,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
         header("Location:/admin/pages/admin_agent_detail.php?agent_id=".$_GET['agent_id']."&year=".date('Y')."&month=".date('m'));
     }
+    if(isset($_POST['agent_explanation'])){
+        //説明文編集
+        $update_explanation_stmt=$db->prepare("update agent_explanation set agent_explanation=? where agent_id=?;");
+        $update_explanation_stmt->bindValue(1,$_POST['agent_explanation']);
+        $update_explanation_stmt->bindValue(2,$_GET['agent_id']);
+        $update_explanation_stmt->execute();
+    }
 }
 ?>
