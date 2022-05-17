@@ -131,23 +131,6 @@ values
 ('あｆふふぁひうあｈふぁｈふぇあえふいあっひうｒふいはういｈふぇあういｈふぅｈ');
 
 
-drop table if exists agent_address;
-
-create table agent_address(
-  agent_id int not null,
-  agent_name varchar(255) not null,
-  agent_area varchar(255) not null,
-  agent_prefecture varchar(255) not null
-);
--- エージェント住所テーブル上から企業ID、企業名、企業地方、企業都道府県、企業郵便番号、企業住所 
-
-insert into agent_address (agent_id,agent_name,agent_area,agent_prefecture) values 
-(1,(select agent_name from agent_contract_information where agent_id=1),'関東','神奈川'),
-(1,(select agent_name from agent_contract_information where agent_id=1),'北海道','北海道'),
-(2,(select agent_name from agent_contract_information where agent_id=2),'関東','群馬'),
-(2,(select agent_name from agent_contract_information where agent_id=2),'北海道','北海道'),
-(3,(select agent_name from agent_contract_information where agent_id=3),'北海道','北海道')
-;
 drop table if exists admin_agent_list;
 
 create table admin_agent_list (
@@ -351,3 +334,20 @@ VALUES
 ('picture1.jpg',(select agent_name from agent_contract_information where agent_id=1)),
 ('picture2.jpg',(select agent_name from agent_contract_information where agent_id=1)),
 ('picture3.jpg',(select agent_name from agent_contract_information where agent_id=1));
+
+drop table if exists agent_address;
+
+create table agent_address(
+  prefecture_id int not null,
+  agent_id int not null,
+  agent_area varchar(255) not null,
+  agent_prefecture varchar(255) not null
+);
+-- エージェント住所テーブル上から企業ID、企業名、企業地方、企業都道府県、企業郵便番号、企業住所 
+
+insert into agent_address (prefecture_id,agent_id,agent_area,agent_prefecture) values 
+(30,1,(select area_name from filter_prefecture where prefecture_id=30),(select prefecture_name from filter_prefecture where prefecture_id=30)),
+(44,1,(select area_name from filter_prefecture where prefecture_id=44),(select prefecture_name from filter_prefecture where prefecture_id=44)),
+(3,2,(select area_name from filter_prefecture where prefecture_id=3),(select prefecture_name from filter_prefecture where prefecture_id=3)),
+(26,2,(select area_name from filter_prefecture where prefecture_id=26),(select prefecture_name from filter_prefecture where prefecture_id=26)),
+(23,3,(select area_name from filter_prefecture where prefecture_id=23),(select prefecture_name from filter_prefecture where prefecture_id=23));
