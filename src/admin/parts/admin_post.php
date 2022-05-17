@@ -62,5 +62,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $update_explanation_stmt->bindValue(2,$_GET['agent_id']);
         $update_explanation_stmt->execute();
     }
+    $count_assignee_stmt = $db->prepare("select count(user_id) from agent_assignee_information where agent_id=?;");
+    $count_assignee_stmt->bindValue(1, $_POST['agent_id']);
+    $count_assignee_stmt->execute();
+    $count_assignee_data = $count_assignee_stmt->fetchAll();
+    for ($index = 0; $index < $count_assignee_data[0]['count(user_id)']; $index++) {
+        mb_language("ja");
+        mb_internal_encoding("utf-8");
+        $to=$_POST['address'.$index];
+        $subject="特集記事招待メール";
+        $msg=$_POST['text'.$index];
+        $from = "admin@gmail.com";
+        $header="From: {$from}\nReply-To: {$from}\nContent-Transfer-Encoding:8bit\r\nContent-Type: text/plain;charset=UTF-8\r\n";
+        if(!mb_send_mail($to,$subject,$msg,$header)){
+            echo 'メール送信失敗';
+        } 
+    } 
+    //業界別取り扱い企業の編集反映できてない
 }
 ?>

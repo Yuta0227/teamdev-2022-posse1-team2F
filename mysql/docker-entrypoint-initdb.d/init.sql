@@ -351,3 +351,4 @@ insert into agent_address (prefecture_id,agent_id,agent_area,agent_prefecture) v
 (3,2,(select area_name from filter_prefecture where prefecture_id=3),(select prefecture_name from filter_prefecture where prefecture_id=3)),
 (26,2,(select area_name from filter_prefecture where prefecture_id=26),(select prefecture_name from filter_prefecture where prefecture_id=26)),
 (23,3,(select area_name from filter_prefecture where prefecture_id=23),(select prefecture_name from filter_prefecture where prefecture_id=23));
+
