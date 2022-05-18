@@ -112,3 +112,40 @@ p{
     color: #fff;
     text-decoration: none;
 }
+/* .check-cart-delete-check-unit{
+    background: #fff;
+    width: 60%;
+    margin: auto;
+} */
+.check-cart-delete-check-text{
+    background: #fff;
+    width: 50%;
+    margin: 10px auto;
+    text-align: center;
+    padding: 10px;
+}
+.check-cart-delete-check-infos{
+    width: 60%;
+    display:flex;
+    margin: auto;
+    background: #fff;
+    align-items: center;
+    /* gap: 10%; */
+}
+.check-cart-delete-check-img-box{
+    width: 30%;
+    margin: 10px;
+}
+.check-cart-delete-check-img-box img{
+    object-fit: cover;
+    width: 100%;
+}
+.check-cart-delete-check-agent-name-box{
+    width: 60%;
+}
+.check-cart-delete-check-agent-name{
+    font-weight: bold;
+    font-size: 25px;
+    width: 100%;
+    text-align: center;
+}

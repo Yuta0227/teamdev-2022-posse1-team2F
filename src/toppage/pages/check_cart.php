@@ -46,15 +46,16 @@
             </a>
         </button>
     </div>
-    <form action="" method="POST" hidden>
+    <!-- <form action="" method="POST" hidden> -->
+    <form class="check-cart-delete-check-unit" action="" method="POST">
         <!--削除押したらhiddenはずれて、申込企業、選択済み企業一覧、ボタンにhiddenつく-->
-        <div>次の企業への申込をやめますか？</div>
-        <div style="display:flex;">
-            <div>
-                <img alt="企業の画像">
+        <div class="check-cart-delete-check-text">次の企業への申込をやめますか？</div>
+        <div class="check-cart-delete-check-infos">
+            <div class="check-cart-delete-check-img-box">
+                <img alt="企業の画像" src="../../img/dummy.png">
             </div>
-            <div>
-                <div>企業名</div>
+            <div class="check-cart-delete-check-agent-name-box">
+                <div class="check-cart-delete-check-agent-name">企業名</div>
             </div>
         </div>
         <div style="display:flex;">
