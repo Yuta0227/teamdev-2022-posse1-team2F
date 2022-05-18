@@ -34,3 +34,57 @@ p{
     font-size: 20px;
     font-weight: bold;
 }
+
+/* 申し込みカート内 */
+.check-cart-unit{
+    background: #eaedf2;
+    padding: 10px;
+}
+.check-cart-header{
+    text-align: center;
+    width: 30%;
+    margin: 10px auto;
+    padding: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    background: #fff;
+}
+.check-cart-agent-all{
+    margin: 10px;
+    padding: 10px 0;
+}
+.check-cart-each-agent-box{
+    padding: 15px;
+    width: 60%;
+    margin: 10px auto;
+    background: #fff;
+}
+.check-cart-each-agent-info-box{
+    display: flex;
+    justify-content: center;
+    gap: 10%;
+}
+.check-cart-agent-img-box{
+    /* display: inline-block; */
+    width: 40%;
+}
+.check-cart-each-agent-box img{
+    /* width: 50%; */
+    object-fit: cover;
+    width: 100%;
+}
+.check-cart-agent-name{
+    margin: 10px;
+    font-weight: bold;
+    font-size: 20px;
+}
+.check-cart-agent-delete-btn-box{
+    text-align: center;
+    padding: 10px 10px 0 10px;
+}
+.check-cart-agent-delete-btn{
+    width: 40%;
+    padding: 10px;
+    background: red;
+    color: #fff;
+}

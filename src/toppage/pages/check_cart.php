@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="../../css/top.css">
+    <link rel="stylesheet" href="../../css/others.css">
     <title>買い物カート</title>
 </head>
 <body>
@@ -15,22 +16,25 @@
     require "../parts/header.php";
     require "../parts/indicator.php";
     ?>
-    <div>申込企業</div>
-    <div>
+    <section class="check-cart-unit">
+    <div class="check-cart-header">申込企業</div>
+    <div class="check-cart-agent-all">
         <?php
         $selected_agents_array=[1,2,3,4,5];//連想か多次元。これ専用のテーブルつくるけどどの情報をひっぱるかはまだ考えていない
         foreach($selected_agents_array as $selected_agent){
-            echo '<div style="display:flex;">';
-            echo '<div>';
-            echo '<img alt="企業の画像">';
+            echo '<div class="check-cart-each-agent-box">';
+            echo '<div class="check-cart-agent-name">企業名</div>';
+            echo '<div class="check-cart-each-agent-info-box">';
+            echo '<div class="check-cart-agent-img-box">';
+            echo '<img alt="企業の画像" src="../../img/dummy.png">';
             echo '</div>';
             echo '<div>';
-            echo '<div>企業名</div>';
-            echo '<div>簡単な説明</div>';
+            echo '<div>簡単な説明を記入</div>';
             echo '<div>タグ</div>';
             echo '</div>';
-            echo '<div>';
-            echo '<button id="">削除</button>';
+            echo '</div>';
+            echo '<div class="check-cart-agent-delete-btn-box">';
+            echo '<button class="check-cart-agent-delete-btn" id="">削除</button>';
             echo '</div>';
             echo '</div>';
         };?>
@@ -58,6 +62,7 @@
             <input type="submit" value="いいえ">
         </div>
     </form>
+    </section>
     <?php require "../parts/footer.php";?>
 </body>
 </html>
