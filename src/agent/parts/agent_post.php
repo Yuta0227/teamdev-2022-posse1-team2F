@@ -104,7 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         $to.=$_SESSION['admin_email'][$mail_index];
                         break;
                     default:
-                    $to.=$_SESSION['admin_email'].',';
+                    $to.=$_SESSION['admin_email'][$mail_index].',';
                     break;
                 }
             }
