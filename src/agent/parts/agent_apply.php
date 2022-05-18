@@ -1,9 +1,9 @@
 <div>
-    <?php 
-    $year=$_GET['year'];
-    $month=$adjust->single($_GET['month']);
-    $date=$adjust->single($_GET['date']);
-    echo $year . '年' . $month . '月' . $date . '日の申込一覧'; 
+    <?php
+    $year = $_GET['year'];
+    $month = $adjust->single($_GET['month']);
+    $date = $adjust->single($_GET['date']);
+    echo $year . '年' . $month . '月' . $date . '日の申込一覧';
     ?></div>
 <table>
     <tr>
@@ -13,47 +13,55 @@
 </table>
 <?php
 $applies_array = $db->prepare("select * from apply_list where agent_id=? and apply_time between ? and ?;");
-$applies_array->bindValue(1,$_SESSION['agent_id']);
-$applies_array->bindValue(2,$_GET['year'].'-'.$_GET['month'].'-'.$_GET['date'].' 00:00:00');
-$applies_array->bindValue(3,$_GET['year'].'-'.$_GET['month'].'-'.$_GET['date'].' 23:59:59');
+$applies_array->bindValue(1, $_SESSION['agent_id']);
+$applies_array->bindValue(2, $_GET['year'] . '-' . $_GET['month'] . '-' . $_GET['date'] . ' 00:00:00');
+$applies_array->bindValue(3, $_GET['year'] . '-' . $_GET['month'] . '-' . $_GET['date'] . ' 23:59:59');
 $applies_array->execute();
-$applies_array=$applies_array->fetchAll();
+$applies_array = $applies_array->fetchAll();
 print_r('<pre>');
 // var_dump($applies_array);
 print_r('</pre>');
 for ($index = 0; $index < count($applies_array); $index++) {
-    $year=explode('-',explode(' ',$applies_array[$index]['apply_time'])[0])[0];
-    $month=$adjust->single(explode('-',explode(' ',$applies_array[$index]['apply_time'])[0])[1]);
-    $date=$adjust->single(explode('-',explode(' ',$applies_array[$index]['apply_time'])[0])[2]);
-    $hour=explode(':',explode(' ',$applies_array[$index]['apply_time'])[1])[0];
-    $minute=explode(':',explode(' ',$applies_array[$index]['apply_time'])[1])[1];
+    $year = explode('-', explode(' ', $applies_array[$index]['apply_time'])[0])[0];
+    $month = $adjust->single(explode('-', explode(' ', $applies_array[$index]['apply_time'])[0])[1]);
+    $date = $adjust->single(explode('-', explode(' ', $applies_array[$index]['apply_time'])[0])[2]);
+    $hour = explode(':', explode(' ', $applies_array[$index]['apply_time'])[1])[0];
+    $minute = explode(':', explode(' ', $applies_array[$index]['apply_time'])[1])[1];
     echo '<form method="POST" action="" id="test' . $index . '" class="agent-new-apply-info-box">';
-    echo '<div>' . $month.'/'.$date . ' '.$hour.':'.$minute.'</div>';
+    echo '<div>' . $month . '/' . $date . ' ' . $hour . ':' . $minute . '</div>';
     echo '<div>' . $applies_array[$index]['applicant_email_address'] . '</div>';
     echo '<input type="button" id="open_apply' . $index . '" value="詳細▽">';
-    echo '<input hidden name="close_apply_id'.$index.'" value="'.$applies_array[$index]['apply_id'].'">';
+    echo '<input hidden name="close_apply_id' . $index . '" value="' . $applies_array[$index]['apply_id'] . '">';
     echo '<input id="close_apply' . $index . '" hidden value="閉じる△" type="submit">';
     echo '</form>';
     echo '<div id="apply_detail' . $index . '" hidden class="agent-apply-detail-box">';
-    echo '<div>'.$applies_array[$index]['applicant_name_kanji'].'('.$applies_array[$index]['applicant_name_furigana'].')</div>';
-    echo '<div>'.$applies_array[$index]['applicant_phone_number'].'</div>';
-    echo '<div>'.$applies_array[$index]['applicant_university'].$applies_array[$index]['applicant_gakubu'].$applies_array[$index]['applicant_gakka'].$applies_array[$index]['applicant_graduation_year'].'年卒</div>';
-    echo '<div>'.$applies_array[$index]['applicant_postal_code'].'</div>';
-    echo '<div>'.$applies_array[$index]['applicant_address'].'</div>';
-    echo '<div>'.$applies_array[$index]['applicant_other_agents'].'</div>';
-    echo '<div>相談：'.$applies_array[$index]['applicant_consultation'].'</div>';
+    echo '<div>' . $applies_array[$index]['applicant_name_kanji'] . '(' . $applies_array[$index]['applicant_name_furigana'] . ')</div>';
+    echo '<div>' . $applies_array[$index]['applicant_phone_number'] . '</div>';
+    echo '<div>' . $applies_array[$index]['applicant_university'] . $applies_array[$index]['applicant_gakubu'] . $applies_array[$index]['applicant_gakka'] . $applies_array[$index]['applicant_graduation_year'] . '年卒</div>';
+    echo '<div>' . $applies_array[$index]['applicant_postal_code'] . '</div>';
+    echo '<div>' . $applies_array[$index]['applicant_address'] . '</div>';
+    echo '<div>' . $applies_array[$index]['applicant_other_agents'] . '</div>';
+    echo '<div>相談：' . $applies_array[$index]['applicant_consultation'] . '</div>';
     echo '<form name="report_form' . $index . '"  action="" method="POST">';
     echo '<div style="justify-content:center;display:flex;">';
-    if ($applies_array[$index]['applicant_report_status'] == 0) {
+    if ($applies_array[$index]['apply_report_status'] == 0) {
         //通報していない場合
-        echo '<input hidden name="report_apply_id'.$index.'" value="'.$applies_array[$index]['apply_id'].'">';
-        echo '<div id="report' . $index . '" hidden style="text-align:center;width:50%;padding:10px;border-radius:50%;background-color:red;">通報する('.$_GET['year'].'年'.$_GET['month'].'月1日23:59まで)</div>';
+        $current_datetime = new DateTime(date('Y-m-d H:i:s'));
+        $deadline_datetime = new DateTime($applies_array[$index]['apply_report_deadline']);
+        $diff = $deadline_datetime->diff($current_datetime);
+        //期限から現在日時をひく
+        if ($diff->format('%a') >= 0) {
+            echo '<input hidden name="report_apply_id' . $index . '" value="' . $applies_array[$index]['apply_id'] . '">';
+            echo '<div id="report' . $index . '" hidden style="text-align:center;width:50%;padding:10px;border-radius:50%;background-color:red;">通報する(' . $_GET['year'] . '年' . $_GET['month'] . '月1日23:59まで)</div>';
+        } else {
+            echo '<div class="agent-report-done" >通報期限過ぎてます</div>';
+        }
     } else {
         //通報した場合
         echo '<div id="reported' . $index . '" hidden style="text-align:center;width:50%;padding:10px;border-radius:50%;background-color:blue;">通報済み</div>';
     }
     echo '</div>';
-    echo '<div id="report_reason' . $index . '" style="border:1px solid black;" hidden><div style="display:flex;justify-content:center;align-items:center;"><span>通報理由：</span><textarea type="text" name="report_reason'.$index.'" required placeholder="理由を記入してください"></textarea></div>';
+    echo '<div id="report_reason' . $index . '" style="border:1px solid black;" hidden><div style="display:flex;justify-content:center;align-items:center;"><span>通報理由：</span><textarea type="text" name="report_reason' . $index . '" required placeholder="理由を記入してください"></textarea></div>';
     echo '<div style="display:flex;justify-content:center;"><div id="cancel_report' . $index . '">キャンセル</div><input type="submit" value="送信する"></div></div>';
     echo '</form>';
     echo '</div>';
@@ -70,7 +78,7 @@ echo '<div>' . $month . '月' . $date . '日の合計：' . count($applies_array
             //詳細ボタンが消える
             document.getElementById('apply_detail<?php echo $index; ?>').removeAttribute('hidden');
             //学生の情報が出現
-            <?php if ($applies_array[$index]['applicant_report_status'] == 0) { ?>
+            <?php if ($applies_array[$index]['apply_report_status'] == 0) { ?>
                 //通報済みステータスがゼロの場合
                 document.getElementById('report<?php echo $index; ?>').removeAttribute('hidden');
                 //通報するボタンが出現
@@ -87,7 +95,7 @@ echo '<div>' . $month . '月' . $date . '日の合計：' . count($applies_array
             //詳細ボタンが出現
             document.getElementById('apply_detail<?php echo $index; ?>').setAttribute('hidden', '');
             //学生の情報が消える
-            <?php if ($applies_array[$index]['applicant_report_status'] == 0) { ?>
+            <?php if ($applies_array[$index]['apply_report_status'] == 0) { ?>
                 //通報済みステータスがゼロの場合==通報してない場合
                 document.getElementById('report<?php echo $index; ?>').setAttribute('hidden', '');
                 //通報するボタンが消える
@@ -104,13 +112,14 @@ echo '<div>' . $month . '月' . $date . '日の合計：' . count($applies_array
             document.getElementById('report<?php echo $index; ?>').removeAttribute('hidden', '');
             //通報するボタンが出現する
         });
-        <?php if($applies_array[$index]['applicant_report_status']==0){?>
-        document.getElementById('report<?php echo $index; ?>').addEventListener('click', function() {
-            //通報するボタン押すと
-            document.getElementById('report<?php echo $index; ?>').setAttribute('hidden', '');
-            //通報するボタンが消える
-            document.getElementById('report_reason<?php echo $index; ?>').removeAttribute('hidden');
-            //通報理由記入フォームが出現する
-        });
-    <?php }}; ?>
+        <?php if ($applies_array[$index]['apply_report_status'] == 0) { ?>
+            document.getElementById('report<?php echo $index; ?>').addEventListener('click', function() {
+                //通報するボタン押すと
+                document.getElementById('report<?php echo $index; ?>').setAttribute('hidden', '');
+                //通報するボタンが消える
+                document.getElementById('report_reason<?php echo $index; ?>').removeAttribute('hidden');
+                //通報理由記入フォームが出現する
+            });
+    <?php }
+    }; ?>
 </script>

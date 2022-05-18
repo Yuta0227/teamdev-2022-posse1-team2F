@@ -20,7 +20,7 @@
         $apply=array_merge($apply,array('time'=>$time));
 
 
-        if ($apply['applicant_report_status'] == 1) {
+        if ($apply['apply_report_status'] == 1) {
             //通報されてる場合
             echo '<form method="POST" onsubmit="submitEvent();return false;" id="test' . $index . '" style="padding:10px;align-items:center;display:flex;border:1px solid black;">';
             echo '<div style="background-color:red;">通報申請きてます!!!</div>';

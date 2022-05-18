@@ -16,18 +16,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $count_new_data = $count_new_stmt->fetchAll()[0]['count(apply_id)'];
 
     for ($index = 0; $index < $count_new_data; $index++) {
-        if (isset($_POST['new_report_reason' . $index]) && isset($_POST['update_apply_id' . $index])) {
+        if (isset($_POST['new_report_reason' . $index]) && isset($_POST['report_new_apply_id' . $index])) {
             //新着通報されたら
-            ${"applicant_stmt" . $index} = $db->prepare("select apply_id,agent_id,agent_name,apply_time,applicant_email_address,applicant_name_kanji,applicant_name_furigana,applicant_phone_number,applicant_university,applicant_gakubu,applicant_gakka,applicant_graduation_year,applicant_postal_code,applicant_address,applicant_consultation,applicant_other_agents from apply_list where apply_id=?;");
-            ${"applicant_stmt" . $index}->bindValue(1, $_POST['update_apply_id' . $index]);
-            ${"applicant_stmt" . $index}->execute();
-            ${"applicant_data" . $index} = ${"applicant_stmt" . $index}->fetchAll();
+            $applicant_stmt = $db->prepare("select apply_id,agent_id,agent_name,apply_time,applicant_email_address,applicant_name_kanji,applicant_name_furigana,applicant_phone_number,applicant_university,applicant_gakubu,applicant_gakka,applicant_graduation_year,applicant_postal_code,applicant_address,applicant_consultation,applicant_other_agents,apply_report_deadline from apply_list where apply_id=?;");
+            $applicant_stmt->bindValue(1, $_POST['report_new_apply_id' . $index]);
+            $applicant_stmt->execute();
+            $applicant_data = $applicant_stmt->fetchAll();
+
+            //通報期限より前なら
+            //日数の差を取得
             mb_language("ja");
             mb_internal_encoding("utf-8");
             $to = 'admin@gmail.com';
             $subject = "通報";
             $msg = '';
-            foreach (${"applicant_data" . $index}[0] as $column => $data) {
+            foreach ($applicant_data[$index] as $column => $data) {
                 $column = $translate->translate_column_to_japanese($column);
                 $msg .= $column . ':' . $data . "\n";
             }
@@ -37,15 +40,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (!mb_send_mail($to, $subject, $msg, $header)) {
                 echo 'メール送信失敗';
             }
+
             //通報メールに記入する学生の情報を取得
             //メール関数書く
-            $update_stmt = $db->prepare("update apply_list set applicant_report_status=1, apply_new_status=0 where apply_id=?;");
-            $update_stmt->bindValue(1, $_POST['update_apply_id' . $index]);
+            $update_stmt = $db->prepare("update apply_list set apply_report_status=1, apply_new_status=0 where apply_id=?;");
+            $update_stmt->bindValue(1, $_POST['report_new_apply_id' . $index]);
             $update_stmt->execute();
             //通報押して新着から消す・通報ステータスtrueにする
             break;
         }
-        if(isset($_POST['close_new_apply_id'.$index])){
+        if (isset($_POST['close_new_apply_id' . $index])) {
             $update_stmt = $db->prepare("update apply_list set apply_new_status=0 where apply_id=?;");
             $update_stmt->bindValue(1, $_POST['close_new_apply_id' . $index]);
             $update_stmt->execute();
@@ -72,8 +76,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $applicant_stmt->bindValue(1, $_POST['report_apply_id' . $index]);
             $applicant_stmt->execute();
             $applicant_data = $applicant_stmt->fetchAll();
-            $update_stmt=$db->prepare("update apply_list set applicant_report_status=1 where apply_id=?;");
-            $update_stmt->bindValue(1,$_POST['report_apply_id'.$index]);
+            $update_stmt = $db->prepare("update apply_list set apply_report_status=1 where apply_id=?;");
+            $update_stmt->bindValue(1, $_POST['report_apply_id' . $index]);
             $update_stmt->execute();
             mb_language("ja");
             mb_internal_encoding("utf-8");
