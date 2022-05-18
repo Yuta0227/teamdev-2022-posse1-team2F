@@ -1,13 +1,17 @@
 <?php
 session_start();
 require "../../dbconnect.php";
+$_SESSION['price_per_apply']=$price_per_apply=20000;
+$admin_login_stmt=$db->query("select user_id,user_email,AES_DECRYPT(`user_password`,'ENCRYPT-KEY') from admin_users;");
+$admin_login_data=$admin_login_stmt->fetchAll();
+$_SESSION['admin_email']=[];
+foreach($admin_login_data as $admin){
+    array_push($_SESSION['admin_email'],$admin['user_email']);
+}
 if($_SERVER['REQUEST_METHOD']=='POST'){
-    $_SESSION['price_per_apply']=$price_per_apply=20000;
-    $admin_login_stmt=$db->query("select user_id,user_email,AES_DECRYPT(`user_password`,'ENCRYPT-KEY') from admin_users;");
-    $admin_login_data=$admin_login_stmt->fetchAll();
-    //管理者メール、パスワード
     foreach($admin_login_data as $admin){
         if($_POST['user_email']==$admin['user_email']&&$_POST['user_password']==$admin["AES_DECRYPT(`user_password`,'ENCRYPT-KEY')"]){
+            //管理者メール、パスワード
             //入力されたメールアドレスと管理者のメールアドレスが一致していた場合
             //かつパスワードが一致していた場合
             $update_login_bool_stmt=$db->prepare("update admin_users set user_login_bool=true where user_id=?;");

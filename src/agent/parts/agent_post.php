@@ -27,7 +27,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             //日数の差を取得
             mb_language("ja");
             mb_internal_encoding("utf-8");
-            $to = 'admin@gmail.com';
+            $to='';
+            for($mail_index=0;$mail_index<count($_SESSION['admin_email']);$mail_index++){
+                switch($mail_index){
+                    case count($_SESSION['admin_email'])-1:
+                        $to.=$_SESSION['admin_email'][$mail_index];
+                        break;
+                    default:
+                    $to.=$_SESSION['admin_email'][$mail_index].',';
+                    break;
+                }
+            }
             $subject = "通報";
             $msg = '';
             foreach ($applicant_data[$index] as $column => $data) {
@@ -40,7 +50,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (!mb_send_mail($to, $subject, $msg, $header)) {
                 echo 'メール送信失敗';
             }
-
+            $delete_request_stmt=$db->prepare("insert into delete_request (apply_id,agent_id,request_reason,assignee_email) values (?,?,?,?);");
+            $delete_request_stmt->bindValue(1,$_POST['report_new_apply_id'.$index]);
+            $delete_request_stmt->bindValue(2,$_SESSION['agent_id']);
+            $delete_request_stmt->bindValue(3,$_POST['new_report_reason'.$index]);
+            $delete_request_stmt->bindValue(4,$_SESSION['agent_email']);
+            $delete_request_stmt->execute();
+            //通報を通報テーブルに追加
             //通報メールに記入する学生の情報を取得
             //メール関数書く
             $update_stmt = $db->prepare("update apply_list set apply_report_status=1, apply_new_status=0 where apply_id=?;");
@@ -81,7 +97,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $update_stmt->execute();
             mb_language("ja");
             mb_internal_encoding("utf-8");
-            $to = 'admin@gmail.com';
+            $to='';
+            for($mail_index=0;$mail_index<count($_SESSION['admin_email']);$mail_index++){
+                switch($mail_index){
+                    case count($_SESSION['admin_email'])-1:
+                        $to.=$_SESSION['admin_email'][$mail_index];
+                        break;
+                    default:
+                    $to.=$_SESSION['admin_email'].',';
+                    break;
+                }
+            }
             $subject = "通報";
             $msg = '';
             foreach ($applicant_data[0] as $column => $data) {
@@ -94,6 +120,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (!mb_send_mail($to, $subject, $msg, $header)) {
                 echo 'メール送信失敗';
             }
+            $delete_request_stmt=$db->prepare("insert into delete_request (apply_id,agent_id,request_reason,assignee_email) values (?,?,?,?);");
+            $delete_request_stmt->bindValue(1,$_POST['report_apply_id'.$index]);
+            $delete_request_stmt->bindValue(2,$_SESSION['agent_id']);
+            $delete_request_stmt->bindValue(3,$_POST['report_reason'.$index]);
+            $delete_request_stmt->bindValue(4,$_SESSION['agent_email']);
+            $delete_request_stmt->execute();
+            //通報を通報テーブルに追加
         }
     }
 }

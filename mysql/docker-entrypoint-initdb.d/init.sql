@@ -17,7 +17,8 @@ CREATE TABLE admin_users (
 );
 -- 管理者のログイン情報テーブル上からユーザーID、ユーザーメールアドレス、ユーザーパスワード、ユーザー作成時刻、ユーザー最終ログイン時刻
 
-INSERT INTO admin_users SET user_email = 'test@posse-ap.com', user_password = AES_ENCRYPT('root_password','ENCRYPT-KEY');
+INSERT INTO admin_users SET user_email = 'test1@posse-ap.com', user_password = AES_ENCRYPT('root_password1','ENCRYPT-KEY');
+INSERT INTO admin_users SET user_email = 'test2@posse-ap.com', user_password = AES_ENCRYPT('root_password2','ENCRYPT-KEY');
 -- 管理者追加
 
 drop table if exists agent_users;
@@ -352,3 +353,13 @@ insert into agent_address (prefecture_id,agent_id,agent_area,agent_prefecture) v
 (26,2,(select area_name from filter_prefecture where prefecture_id=26),(select prefecture_name from filter_prefecture where prefecture_id=26)),
 (23,3,(select area_name from filter_prefecture where prefecture_id=23),(select prefecture_name from filter_prefecture where prefecture_id=23));
 
+drop table if exists delete_request;
+
+create table delete_request(
+  apply_id int primary key,
+  agent_id int,
+  request_reason text,
+  assignee_email varchar(255),
+  approve_status boolean default false,
+  check_status boolean default false
+);
