@@ -19,11 +19,6 @@ $applies_array->bindValue(3, $_GET['year'] . '-' . $_GET['month'] . '-' . $_GET[
 $applies_array->execute();
 $applies_array = $applies_array->fetchAll();
 for ($index = 0; $index < count($applies_array); $index++) {
-    $check_delete_request_stmt=$db->prepare("select check_status from delete_request where apply_id=?;");
-    $check_delete_request_stmt->bindValue(1,$applies_array[$index]['apply_id']);
-    $check_delete_request_stmt->execute();
-    $check_delete_request_data=$check_delete_request_stmt->fetchAll();
-    //delete_requestテーブルを参照しadminが確認してるか判定
     $year = explode('-', explode(' ', $applies_array[$index]['apply_time'])[0])[0];
     $month = $adjust->single(explode('-', explode(' ', $applies_array[$index]['apply_time'])[0])[1]);
     $date = $adjust->single(explode('-', explode(' ', $applies_array[$index]['apply_time'])[0])[2]);
@@ -52,21 +47,26 @@ for ($index = 0; $index < count($applies_array); $index++) {
         $deadline_datetime = new DateTime($applies_array[$index]['apply_report_deadline']);
         $diff = $deadline_datetime->diff($current_datetime);
         //期限から現在日時をひく
+        if ($diff->format('%a') >= 0) {
+            echo '<input hidden name="report_apply_id' . $index . '" value="' . $applies_array[$index]['apply_id'] . '">';
+            echo '<div id="report' . $index . '" hidden style="text-align:center;width:50%;padding:10px;border-radius:50%;background-color:red;">通報する(' . $_GET['year'] . '年' . $_GET['month'] . '月1日23:59まで)</div>';
+        } else {
+            echo '<div class="agent-report-done" >通報期限過ぎてます</div>';
+        }
+    } else {
+        //通報した場合
+        $check_delete_request_stmt=$db->prepare("select check_status from delete_request where apply_id=?;");
+        $check_delete_request_stmt->bindValue(1,$applies_array[$index]['apply_id']);
+        $check_delete_request_stmt->execute();
+        $check_delete_request_data=$check_delete_request_stmt->fetchAll();
+        //delete_requestテーブルを参照しadminが確認してるか判定
         if($check_delete_request_data[0]['check_status']==0){
             //未確認だったら
-            if ($diff->format('%a') >= 0) {
-                echo '<input hidden name="report_apply_id' . $index . '" value="' . $applies_array[$index]['apply_id'] . '">';
-                echo '<div id="report' . $index . '" hidden style="text-align:center;width:50%;padding:10px;border-radius:50%;background-color:red;">通報する(' . $_GET['year'] . '年' . $_GET['month'] . '月1日23:59まで)</div>';
-            } else {
-                echo '<div class="agent-report-done" >通報期限過ぎてます</div>';
-            }
+            echo '<div id="reported' . $index . '" hidden style="text-align:center;width:50%;padding:10px;border-radius:50%;background-color:blue;">通報済み</div>';
         }else{
             //確認済みだったら
             echo '<div class="agent-report-done" >通報却下されました</div>';
         }
-    } else {
-        //通報した場合
-        echo '<div id="reported' . $index . '" hidden style="text-align:center;width:50%;padding:10px;border-radius:50%;background-color:blue;">通報済み</div>';
     }
     echo '</div>';
     echo '<div id="report_reason' . $index . '" style="border:1px solid black;" hidden><div style="display:flex;justify-content:center;align-items:center;"><span>通報理由：</span><textarea type="text" name="report_reason' . $index . '" required placeholder="理由を記入してください"></textarea></div>';
