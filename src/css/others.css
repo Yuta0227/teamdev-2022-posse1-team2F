@@ -87,4 +87,28 @@ p{
     padding: 10px;
     background: red;
     color: #fff;
+    border: none;
+    cursor: pointer;
+}
+.check-cart-agent-delete-btn:hover{
+    text-decoration: underline;
+}
+.check-cart-next-btn-box{
+    text-align: center;
+    padding-bottom: 10px;
+}
+.check-cart-next-btn{
+    width: 50%;
+    background: #2eb2f0;
+    border: none;
+    border-radius: 30px;
+    padding: 10px;
+    cursor: pointer;
+}
+.check-cart-next-btn:hover{
+    text-decoration: underline;
+}
+.check-cart-next-btn a{
+    color: #fff;
+    text-decoration: none;
 }

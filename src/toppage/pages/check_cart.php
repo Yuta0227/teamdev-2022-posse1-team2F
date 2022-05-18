@@ -39,8 +39,8 @@
             echo '</div>';
         };?>
     </div>
-    <div>
-        <button>
+    <div class="check-cart-next-btn-box">
+        <button class="check-cart-next-btn">
             <a href="">
                 情報を記入して上記のエージェントに申込する<br>->次のステップへ
             </a>
