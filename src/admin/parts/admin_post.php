@@ -62,22 +62,73 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $update_explanation_stmt->bindValue(2,$_GET['agent_id']);
         $update_explanation_stmt->execute();
     }
-    $count_assignee_stmt = $db->prepare("select count(user_id) from agent_assignee_information where agent_id=?;");
-    $count_assignee_stmt->bindValue(1, $_POST['agent_id']);
-    $count_assignee_stmt->execute();
-    $count_assignee_data = $count_assignee_stmt->fetchAll();
-    for ($index = 0; $index < $count_assignee_data[0]['count(user_id)']; $index++) {
+    if(isset($_POST['agent_id'])){
+        $count_assignee_stmt = $db->prepare("select count(user_id) from agent_assignee_information where agent_id=?;");
+        $count_assignee_stmt->bindValue(1, $_POST['agent_id']);
+        $count_assignee_stmt->execute();
+        $count_assignee_data = $count_assignee_stmt->fetchAll();
+        for ($index = 0; $index < $count_assignee_data[0]['count(user_id)']; $index++) {
+            if(isset($_POST['address'.$index])&&isset($_POST['text'.$index])){
+                mb_language("ja");
+                mb_internal_encoding("utf-8");
+                $to=$_POST['address'.$index];
+                $subject="特集記事招待メール";
+                $msg=$_POST['text'.$index];
+                $from = $_SESSION['login_admin_email'];
+                $header="From: {$from}\nReply-To: {$from}\nContent-Transfer-Encoding:8bit\r\nContent-Type: text/plain;charset=UTF-8\r\n";
+                if(!mb_send_mail($to,$subject,$msg,$header)){
+                echo 'メール送信失敗';
+                }
+            } 
+        } 
+    }
+    if(isset($_POST['approve_decline_apply_id'])){
+        if(isset($_POST['accept_delete_request'])){
+            $delete_apply_stmt=$db->prepare("delete from apply_list where apply_id=?;");
+            $delete_apply_stmt->bindValue(1,$_POST['approve_decline_apply_id']);
+            $delete_apply_stmt->execute();
+            //apply_listから消す
+            $update_delete_request_stmt=$db->prepare("update delete_request set approve_status=true,check_status=true where apply_id=?;");
+            $update_delete_request_stmt->bindValue(1,$_POST['approve_decline_apply_id']);
+            $update_delete_request_stmt->execute();
+            //delete_requestテーブル更新
+            $report_assignee_stmt=$db->prepare("select assignee_email from delete_request where apply_id=?;");
+            $report_assignee_stmt->bindValue(1,$_POST['approve_decline_apply_id']);
+            $report_assignee_stmt->execute();
+            $report_assignee_data=$report_assignee_stmt->fetchAll();
+            mb_language("ja");
+            mb_internal_encoding("utf-8");
+            $to=$report_assignee_data[0]['assignee_email'];
+            $subject="通報承認のメール";
+            $msg='通報を承認しました。問い合わせ一覧から削除しました。';
+            $from = $_SESSION['login_admin_email'];
+            $header="From: {$from}\nReply-To: {$from}\nContent-Transfer-Encoding:8bit\r\nContent-Type: text/plain;charset=UTF-8\r\n";
+            if(!mb_send_mail($to,$subject,$msg,$header)){
+            echo 'メール送信失敗';
+        }
+        //メール送信
+    }
+    if(isset($_POST['decline_delete_request'])){
+        $update_delete_request_stmt=$db->prepare("update delete_request set check_status=true where apply_id=?;");
+        $update_delete_request_stmt->bindValue(1,$_POST['approve_decline_apply_id']);
+        $update_delete_request_stmt->execute();
+        //delete_requestテーブル更新
+        $report_assignee_stmt=$db->prepare("select assignee_email from delete_request where apply_id=?;");
+        $report_assignee_stmt->bindValue(1,$_POST['approve_decline_apply_id']);
+        $report_assignee_stmt->execute();
+        $report_assignee_data=$report_assignee_stmt->fetchAll();
         mb_language("ja");
         mb_internal_encoding("utf-8");
-        $to=$_POST['address'.$index];
-        $subject="特集記事招待メール";
-        $msg=$_POST['text'.$index];
-        $from = "admin@gmail.com";
+        $to=$report_assignee_data[0]['assignee_email'];
+        $subject="通報却下のメール";
+        $msg='通報を却下しました。問い合わせ一覧から削除してないです。';
+        $from = $_SESSION['login_admin_email'];
         $header="From: {$from}\nReply-To: {$from}\nContent-Transfer-Encoding:8bit\r\nContent-Type: text/plain;charset=UTF-8\r\n";
         if(!mb_send_mail($to,$subject,$msg,$header)){
-            echo 'メール送信失敗';
-        } 
-    } 
+        echo 'メール送信失敗';
+    }
+        
+        }
+    }
     //業界別取り扱い企業の編集反映できてない
 }
-?>

@@ -10,6 +10,10 @@
     $applies_array=$applies_stmt->fetchAll();
     $index=0;
     foreach($applies_array as $apply){
+        $delete_request_stmt=$db->prepare("select * from delete_request where apply_id=?;");
+        $delete_request_stmt->bindValue(1,$apply['apply_id']);
+        $delete_request_stmt->execute();
+        $delete_request_data=$delete_request_stmt->fetchAll();
         $year=explode('-',explode(' ',$apply['apply_time'])[0])[0];
         $month=explode('-',explode(' ',$apply['apply_time'])[0])[1];
         $date=explode('-',explode(' ',$apply['apply_time'])[0])[2];
@@ -41,13 +45,14 @@
             }
             echo '</div>';
             echo '<form id="delete_form' . $index . '" action="" method="POST" hidden style="padding;10px;border:1px solid black;">';
-            echo '<div>通報理由：テキストサンプル</div>';
+            echo '<div>通報理由：'.$delete_request_data[0]['request_reason'].'</div>';
             echo '<div style="display:flex;justify-content:center;">';
             echo '<div style="width:50%;display:flex;justify-content:center;align-items:center;height:200px;">';
-            echo '<input type="submit" name="accept_delete_request' . $index . '" value="削除申請承認">'; //自動でメール送信
+            echo '<input hidden name="approve_decline_apply_id" value="'.$apply['apply_id'].'">';
+            echo '<input type="submit" name="accept_delete_request" value="削除申請承認">'; //自動でメール送信
             echo '</div>';
             echo '<div style="width:50%;display:flex;justify-content:center;align-items:center;height:200px;">';
-            echo '<input type="submit" name="decline_delete_request' . $index . '" value="削除申請却下">';
+            echo '<input type="submit" name="decline_delete_request" value="削除申請却下">';
             echo '</div>';
             echo '</div>';
             echo '</form>';

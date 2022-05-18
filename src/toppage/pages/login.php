@@ -1,7 +1,7 @@
 <?php
 session_start();
 require "../../dbconnect.php";
-$_SESSION['price_per_apply']=$price_per_apply=20000;
+$_SESSION['price_per_apply']=20000;
 $admin_login_stmt=$db->query("select user_id,user_email,AES_DECRYPT(`user_password`,'ENCRYPT-KEY') from admin_users;");
 $admin_login_data=$admin_login_stmt->fetchAll();
 $_SESSION['admin_email']=[];
@@ -19,6 +19,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
             $update_login_bool_stmt->execute();
             //管理者ログイン時ログインステータスtrueにする=>最終ログインの日時がわかる
             $_SESSION['admin_id']=$admin['user_id'];
+            $_SESSION['login_admin_email']=$admin['user_email'];
             //管理者idセッションに保存
             header("Location:/admin/pages/index.php?year=".date('Y')."&month=".date('m')."&date=".date('d')."&agent_id=1");
             break;
