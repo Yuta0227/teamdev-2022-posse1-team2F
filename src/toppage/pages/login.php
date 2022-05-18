@@ -2,6 +2,7 @@
 session_start();
 require "../../dbconnect.php";
 if($_SERVER['REQUEST_METHOD']=='POST'){
+    $_SESSION['price_per_apply']=$price_per_apply=20000;
     $admin_login_stmt=$db->query("select user_id,user_email,AES_DECRYPT(`user_password`,'ENCRYPT-KEY') from admin_users;");
     $admin_login_data=$admin_login_stmt->fetchAll();
     //管理者メール、パスワード
