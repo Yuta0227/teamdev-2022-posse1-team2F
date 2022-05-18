@@ -25,7 +25,7 @@ if (count($new_applies_array) != 0) {
         echo '<div>' . $month . '/' .  $date. ' ' .  $hour. ':'. $minute .'</div>';
         echo '<div>' . $new_applies_array[$index]['applicant_email_address'] . '</div>';
         echo '<input type="button" id="open_new_apply' . $index . '" value="詳細▽">';
-        echo '<input hidden name="close_apply_id'.$index.'" value="'.$new_applies_array[$index]['apply_id'].'">';
+        echo '<input hidden name="close_new_apply_id'.$index.'" value="'.$new_applies_array[$index]['apply_id'].'">';
         echo '<input id="close_new_apply' . $index . '" hidden value="閉じる△" type="submit">';
         echo '</form>';
         echo '<div id="new_apply_detail' . $index . '" hidden class="agent-apply-detail-box">';
@@ -67,12 +67,6 @@ if (count($new_applies_array) != 0) {
 </section>
 
 <script>
-    function submitEvent() {
-        // https://brainlog.jp/programming/post-538/
-        //ここで変数を別phpファイルと受け渡しをする
-        //そのファイルの変数が空っぽではなくなったら＝＝変数受け渡しがされたら新着一覧テーブルから学生の情報を消す
-        console.log('テスト');
-    }
     <?php for ($index = 0; $index < count($new_applies_array); $index++) { ?>
         document.getElementById('open_new_apply<?php echo $index; ?>').addEventListener('click', function() {
             //新着の詳細ボタン押すと
