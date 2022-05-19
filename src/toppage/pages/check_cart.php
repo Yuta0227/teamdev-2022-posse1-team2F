@@ -34,7 +34,7 @@
             echo '</div>';
             echo '</div>';
             echo '<div class="check-cart-agent-delete-btn-box">';
-            echo '<button class="check-cart-agent-delete-btn" id="">削除</button>';
+            echo '<button class="check-cart-agent-delete-btn" id="check_cart_delete_btn">削除</button>';
             echo '</div>';
             echo '</div>';
         };?>
@@ -47,7 +47,7 @@
         </button>
     </div>
     <!-- <form action="" method="POST" hidden> -->
-    <form class="check-cart-delete-check-unit" action="" method="POST">
+    <form class="check-cart-delete-check-unit" action="" method="POST" hidden>
         <!--削除押したらhiddenはずれて、申込企業、選択済み企業一覧、ボタンにhiddenつく-->
         <div class="check-cart-delete-check-text">次の企業への申込をやめますか？</div>
         <div class="check-cart-delete-check-infos">
@@ -58,12 +58,19 @@
                 <div class="check-cart-delete-check-agent-name">企業名</div>
             </div>
         </div>
-        <div style="display:flex;">
-            <input type="submit" value="はい">
-            <input type="submit" value="いいえ">
+        <div class="check-cart-delete-check-choices">
+            <input class="check-cart-delete-check-yes" type="submit" value="はい">
+            <input class="check-cart-delete-check-no" type="submit" value="いいえ">
         </div>
     </form>
     </section>
     <?php require "../parts/footer.php";?>
+
+    <script>
+       const delete_btn = document.getElementById('check_cart_delete_btn');
+       delete_btn.addEventListener('click', function(){
+           
+       })
+    </script>
 </body>
 </html>

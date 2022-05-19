@@ -119,10 +119,11 @@ p{
 } */
 .check-cart-delete-check-text{
     background: #fff;
-    width: 50%;
+    width: 40%;
     margin: 10px auto;
     text-align: center;
     padding: 10px;
+    font-weight: bold;
 }
 .check-cart-delete-check-infos{
     width: 60%;
@@ -134,7 +135,7 @@ p{
 }
 .check-cart-delete-check-img-box{
     width: 30%;
-    margin: 10px;
+    margin: 15px;
 }
 .check-cart-delete-check-img-box img{
     object-fit: cover;
@@ -148,4 +149,26 @@ p{
     font-size: 25px;
     width: 100%;
     text-align: center;
+}
+.check-cart-delete-check-choices{
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+    gap: 10px;
+}
+.check-cart-delete-check-yes{
+    width: 20%;
+    background: #fff;
+    padding: 10px;
+    border: none;
+    color: red;
+    border: solid;
+    border-color: red;
+}
+.check-cart-delete-check-no{
+    width: 20%;
+    background: red;
+    padding: 10px;
+    border: none;
+    color: #fff;
 }
