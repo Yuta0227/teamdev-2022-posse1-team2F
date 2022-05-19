@@ -18,7 +18,7 @@
     ?>
     <section class="check-cart-unit">
     <div class="check-cart-header">申込企業</div>
-    <div class="check-cart-agent-all">
+    <div class="check-cart-agent-all" id="check_cart_each_agent">
         <?php
         $selected_agents_array=[1,2,3,4,5];//連想か多次元。これ専用のテーブルつくるけどどの情報をひっぱるかはまだ考えていない
         foreach($selected_agents_array as $selected_agent){
@@ -34,12 +34,12 @@
             echo '</div>';
             echo '</div>';
             echo '<div class="check-cart-agent-delete-btn-box">';
-            echo '<button class="check-cart-agent-delete-btn" id="check_cart_delete_btn">削除</button>';
+            echo '<button class="check-cart-agent-delete-btn" id="check_cart_delete_btn_<?php echo $selected_agent;?>">削除</button>';
             echo '</div>';
             echo '</div>';
         };?>
     </div>
-    <div class="check-cart-next-btn-box">
+    <div class="check-cart-next-btn-box" id="check_cart_next">
         <button class="check-cart-next-btn">
             <a href="">
                 情報を記入して上記のエージェントに申込する<br>->次のステップへ
@@ -47,7 +47,7 @@
         </button>
     </div>
     <!-- <form action="" method="POST" hidden> -->
-    <form class="check-cart-delete-check-unit" action="" method="POST" hidden>
+    <form class="check-cart-delete-check-unit hide" action="" method="POST" id="check_cart_delete_unit">
         <!--削除押したらhiddenはずれて、申込企業、選択済み企業一覧、ボタンにhiddenつく-->
         <div class="check-cart-delete-check-text">次の企業への申込をやめますか？</div>
         <div class="check-cart-delete-check-infos">
@@ -60,7 +60,7 @@
         </div>
         <div class="check-cart-delete-check-choices">
             <input class="check-cart-delete-check-yes" type="submit" value="はい">
-            <input class="check-cart-delete-check-no" type="submit" value="いいえ">
+            <input class="check-cart-delete-check-no" type="submit" value="いいえ" id="check_cart_delete_no">
         </div>
     </form>
     </section>
@@ -69,8 +69,25 @@
     <script>
        const delete_btn = document.getElementById('check_cart_delete_btn');
        delete_btn.addEventListener('click', function(){
-           
+          document.getElementById('check_cart_delete_unit').classList.remove("hide");
+          document.getElementById('check_cart_each_agent').classList.add("hide");
+          document.getElementById('check_cart_next').classList.add("hide");
        })
+       
+       function click_delete() {
+          document.getElementById('check_cart_delete_unit').classList.add("hide");
+          document.getElementById('check_cart_each_agent').classList.remove("hide");
+          document.getElementById('check_cart_next').classList.remove("hide");
+       }
+       <?php for($s = 1; $s<6; $s++){;?>
+            document.getElementById("check_cart_delete_no_<?php echo $s;?>").addEventListener('click', function() {
+                document.getElementById('check_cart_delete_unit').classList.add("hide");
+          document.getElementById('check_cart_each_agent').classList.remove("hide");
+          document.getElementById('check_cart_next').classList.remove("hide");
+            });
+      <?php };?>
+    // document.getElementById('check_cart_delete_no').addEventListener('click', click_delete)
+
     </script>
 </body>
 </html>

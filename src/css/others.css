@@ -172,3 +172,6 @@ p{
     border: none;
     color: #fff;
 }
+.hide{
+    display: none;
+}
