@@ -8,7 +8,7 @@ $conditions_type_array=[1,2];
     echo "テスト";//2個出力できた
     //11から26行==条件というinnerhtmlのdivの親要素のdivを8行のechoの中に入れる。これはコメントアウトを消し終わったら
 }?>
-<div>
+<div id="filter">
     <div class="filter-topic">条件</div>
     <div>
         <div>
