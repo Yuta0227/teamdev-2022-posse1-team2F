@@ -8,15 +8,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         session_destroy();
         header("Location: ../../toppage/pages/login.php");
     }
-    if(isset($_POST['面談方式'])&&isset($_POST['主な取り扱い企業規模'])&&isset($_POST['取り扱い企業カテゴリー'])&&isset($_POST['内定率(%)'])&&isset($_POST['内定最短期間(週)'])&&isset($_POST['prefecture'])&&isset($_POST['student_type'])&&isset($_POST['manufacturer'])&&isset($_POST['retail'])&&isset($_POST['service'])&isset($_POST['software_transmission'])&&isset($_POST['trading'])&&isset($_POST['finance'])&&isset($_POST['media'])&&isset($_POST['government'])){
-        $edit_public_stmt=$db->prepare("update agent_public_information set agent_meeting_type=?,agent_main_corporate_size=?,agent_corporate_type=?,agent_job_offer_rate=?,agent_shortest_period=? where agent_id=?;");
+    if(isset($_POST['面談方式'])&&isset($_POST['主な取り扱い企業規模'])&&isset($_POST['取り扱い企業カテゴリー'])&&isset($_POST['内定率(%)'])&&isset($_POST['内定最短期間(週)'])&&isset($_POST['prefecture'])&&isset($_POST['○○向き'])&&isset($_POST['manufacturer'])&&isset($_POST['retail'])&&isset($_POST['service'])&isset($_POST['software_transmission'])&&isset($_POST['trading'])&&isset($_POST['finance'])&&isset($_POST['media'])&&isset($_POST['government'])&&isset($_POST['sales_copy'])){
+        $edit_public_stmt=$db->prepare("update agent_public_information set agent_meeting_type=?,agent_main_corporate_size=?,agent_corporate_type=?,agent_job_offer_rate=?,agent_shortest_period=?,agent_recommend_student_type=? where agent_id=?;");
         $edit_public_stmt->bindValue(1,$_POST['面談方式']);
         $edit_public_stmt->bindValue(2,$_POST['主な取り扱い企業規模']);
         $edit_public_stmt->bindValue(3,$_POST['取り扱い企業カテゴリー']);
         $edit_public_stmt->bindValue(4,$_POST['内定率(%)']);
         $edit_public_stmt->bindValue(5,$_POST['内定最短期間(週)']);
-        $edit_public_stmt->bindValue(6,$_GET['agent_id']);
+        $edit_public_stmt->bindValue(6,$_POST['○○向き']);
+        $edit_public_stmt->bindValue(7,$_GET['agent_id']);
         $edit_public_stmt->execute();
+        //掲載情報編集
+        $edit_corporate_amount_stmt=$db->prepare("update agent_corporate_amount set manufacturer=?,retail=?,service=?,software_transmission=?,trading=?,finance=?,media=?,government=? where agent_id=?");
+        $edit_corporate_amount_stmt->bindValue(1,$_POST['manufacturer']);
+        $edit_corporate_amount_stmt->bindValue(2,$_POST['retail']);
+        $edit_corporate_amount_stmt->bindValue(3,$_POST['service']);
+        $edit_corporate_amount_stmt->bindValue(4,$_POST['software_transmission']);
+        $edit_corporate_amount_stmt->bindValue(5,$_POST['trading']);
+        $edit_corporate_amount_stmt->bindValue(6,$_POST['finance']);
+        $edit_corporate_amount_stmt->bindValue(7,$_POST['media']);
+        $edit_corporate_amount_stmt->bindValue(8,$_POST['government']);
+        $edit_corporate_amount_stmt->bindValue(9,$_GET['agent_id']);
+        $edit_corporate_amount_stmt->execute();
+        //業界別取り扱い企業数編集
+        $edit_sales_copy_stmt=$db->prepare("update sales_copy set sales_copy=? where agent_id=?;");
+        $edit_sales_copy_stmt->bindValue(1,$_POST['sales_copy']);
+        $edit_sales_copy_stmt->bindValue(2,$_GET['agent_id']);
+        $edit_sales_copy_stmt->execute();
+        //キャッチコピー編集
         //存在する拠点取得
         $check_prefecture_stmt=$db->prepare("select prefecture_id from agent_address where agent_id=?;");
         $check_prefecture_stmt->bindValue(1,$_GET['agent_id']);

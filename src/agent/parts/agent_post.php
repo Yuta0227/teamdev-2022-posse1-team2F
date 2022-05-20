@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     for ($index = 0; $index < $count_new_data; $index++) {
         if (isset($_POST['new_report_reason' . $index]) && isset($_POST['report_new_apply_id' . $index])) {
             //新着通報されたら
-            $applicant_stmt = $db->prepare("select apply_id,agent_id,agent_name,apply_time,applicant_email_address,applicant_name_kanji,applicant_name_furigana,applicant_phone_number,applicant_university,applicant_gakubu,applicant_gakka,applicant_graduation_year,applicant_postal_code,applicant_address,applicant_consultation,applicant_other_agents,apply_report_deadline from apply_list where apply_id=?;");
+            $applicant_stmt = $db->prepare("select apply_id,agent_id,agent_name,apply_time,applicant_email_address,applicant_name_kanji,applicant_name_furigana,applicant_phone_number,applicant_university,applicant_gakubu,applicant_gakka,applicant_graduation_year,applicant_postal_code,applicant_address,applicant_consultation,applicant_other_agents from apply_list where apply_id=?;");
             $applicant_stmt->bindValue(1, $_POST['report_new_apply_id' . $index]);
             $applicant_stmt->execute();
             $applicant_data = $applicant_stmt->fetchAll();
@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 }
             }
             $subject = "通報";
-            $msg = '';
+            $msg = $_SESSION['agent_name'].$_SESSION['agent_branch'].'の'.$_SESSION['assignee_name']."です。\n";
             foreach ($applicant_data[$index] as $column => $data) {
                 $column = $translate->translate_column_to_japanese($column);
                 $msg .= $column . ':' . $data . "\n";
@@ -109,7 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 }
             }
             $subject = "通報";
-            $msg = '';
+            $msg = $_SESSION['agent_name'].$_SESSION['agent_branch'].'の'.$_SESSION['assignee_name']."です。\n";
             foreach ($applicant_data[0] as $column => $data) {
                 $column = $translate->translate_column_to_japanese($column);
                 $msg .= $column . ':' . $data . "\n";
