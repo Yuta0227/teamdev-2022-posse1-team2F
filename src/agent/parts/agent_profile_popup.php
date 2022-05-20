@@ -8,40 +8,36 @@
             <table>
                 <?php
                 foreach ($assignee as $column => $data) {
-                    echo '<tr>';
-                    echo '<th>' . $column . '</th><td>' . $data . '</td>';
-                    echo '</tr>';
-                    //編集前情報
-                }
-                ?>
-            </table>
-            <div style="text-align:center;">↓↓</div>
-            <table>
-                <?php
-                foreach ($assignee as $column => $data) {
-                    echo '<tr>';
-                    echo '<th>' . $column . '</th><td><input name="' . $column . '" value="' . $data . '"></td>';
-                    echo '</tr>';
+                    if($column=='メールアドレス'){
+                        echo '<tr>';
+                        echo '<th>' . $column . '</th><td>'.$data.'</td>';
+                        echo '</tr>';
+                    }else{
+                        echo '<tr>';
+                        echo '<th>' . $column . '</th><td><input name="' . $column . '" value="' . $data . '"></td>';
+                        echo '</tr>';
+                    }
                     //編集内容記入欄
                 }
                 ?>
             </table>
             <div style="display:flex;justify-content:center;">
+                <div>編集キャンセル</div>
                 <input type="submit" value="編集確定">
             </div>
         </form>
 
         <!-- 削除ポップアップ -->
-        <form action="" method="POST" id="delete_form" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background-color:white;width:400px;height:400px;opacity:100%;z-index:5;" hidden>
+        <!-- <form action="" method="POST" id="delete_form" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background-color:white;width:400px;height:400px;opacity:100%;z-index:5;" hidden>
             <div id="close_delete_form">×</div>
             <table>
                 <?php
-                foreach ($assignee as $column => $data) {
-                    echo '<tr>';
-                    echo '<th>' . $column . '</th><td>' . $data . '</td>';
-                    echo '</tr>';
-                    //編集前情報
-                }
+                // foreach ($assignee as $column => $data) {
+                //     echo '<tr>';
+                //     echo '<th>' . $column . '</th><td>' . $data . '</td>';
+                //     echo '</tr>';
+                //     //編集前情報
+                // }
                 ?>
             </table>
             <div style="text-align:center;">本当に削除しますか?</div>
@@ -49,8 +45,8 @@
                 <input type="submit" value="はい">
                 <div style="color:white;background-color:blue;border-radius:50%;" id="cancel_delete">いいえ</div>
             </div>
-        </form>
-    <form action="" method="POST" id="add_form" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background-color:white;width:400px;height:400px;opacity:100%;z-index:5;" hidden>
+        </form> -->
+    <!-- <form action="" method="POST" id="add_form" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background-color:white;width:400px;height:400px;opacity:100%;z-index:5;" hidden>
         <div id="close_add_form">×</div>
         <table>
             <tr>
@@ -71,7 +67,7 @@
             </tr>
         </table>
         <input style="background-color:blue;color:white;border-radius:50%;" type="submit" value="追加する">
-    </form>
+    </form> -->
     <!-- 追加ポップアップ -->
 </section>
 <script>
