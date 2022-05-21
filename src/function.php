@@ -26,6 +26,13 @@ class translate
         global $column_set;
         $column_set = [
             'agent_name' => 'エージェント名',
+            'contract_date'=>'契約締結日',
+            'start_contract_date'=>'契約開始日',
+            'end_contract_date'=>'契約終了日',
+            'contract_address'=>'本社住所',
+            'agent_phone_number'=>'電話番号',
+            'apply_email_address'=>'問い合わせ通知先メールアドレス',
+            'agent_representative'=>'代表者氏名',
             'agent_meeting_type' => '面談方式',
             'agent_main_corporate_size' => '主な取り扱い企業規模',
             'agent_corporate_type' => '取り扱い企業カテゴリー',
