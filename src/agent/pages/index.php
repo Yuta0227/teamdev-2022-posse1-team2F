@@ -3,7 +3,9 @@ session_start();
 require "../../function.php";
 require "../../dbconnect.php";
 require "../parts/agent_post.php";
-
+if(!isset($_SESSION['user_id'])){
+    header("Location: /toppage/pages/login.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="ja">
