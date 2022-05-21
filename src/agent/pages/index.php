@@ -1,6 +1,9 @@
 <?php
 session_start();
+require "../../function.php";
+require "../../dbconnect.php";
 require "../parts/agent_post.php";
+
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -17,7 +20,6 @@ require "../parts/agent_post.php";
 </head>
 <body>
     <?php 
-    require "../../function.php";
     require "../parts/agent_header.php";
     require "../parts/agent_new_apply.php";
     require "../parts/agent_calender.php";

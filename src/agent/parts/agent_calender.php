@@ -3,7 +3,7 @@
     if (!isset($_GET['month'])) {
         echo date('n');
     } else {
-        echo $_GET['month'];
+        echo $adjust->single($_GET['month']);
     }
     ?>
     月の申込一覧
@@ -14,9 +14,9 @@
     $calender_dates = []; //カレンダーで表示する日
     $year_month_parameter_set = isset($_GET['year']) && isset($_GET['month']);
     if ($year_month_parameter_set) {
-        if ($_GET['month'] != 1) {
+        if ($adjust->single($_GET['month']) != 1) {
             //パラメータのmonthが1じゃないなら普通に月減らす
-            $decrease_month = $_GET['month'] - 1;
+            $decrease_month = $adjust->single($_GET['month']) - 1;
             $decrease_year = $_GET['year'];
         } else {
             $decrease_month = 12;
@@ -26,7 +26,7 @@
     if ($year_month_parameter_set) {
         if ($_GET['month'] != 12) {
             //パラメータのmonthが12じゃないなら普通に月増やす
-            $increase_month = $_GET['month'] + 1;
+            $increase_month = $adjust->single($_GET['month']) + 1;
             $increase_year = $_GET['year'];
         } else {
             $increase_month = 1;

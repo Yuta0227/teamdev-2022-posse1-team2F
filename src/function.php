@@ -48,7 +48,7 @@ class translate
             'applicant_address' => '住所',
             'applicant_consultation' => '相談',
             'applicant_other_agents' => '同時問い合わせ',
-            'applicant_report_status' => '通報ステータス',
+            'apply_report_status' => '通報ステータス',
         ];
         foreach ($column_set as $english => $japanese) {
             if ($column == $english) {
