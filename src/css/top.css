@@ -632,7 +632,19 @@
         width: 70%;
     }
     .filter-box {
-        width: 30%;
+        position: fixed;
+        z-index: 100000;
+        top: 50%;
+        left: 50%;
+        transform: translateY(-50%) translateX(-50%);
+        -webkit-transform: translateY(-50%) translateX(-50%);
+        background-color: #999;
+        overflow-y: auto;
+        /* スマホ用スクロール */
+        -webkit-overflow-scrolling: touch;
+        overflow-scrolling: touch;
+        /* お好みで */
+        width: 90%;
     }
     /* 絞り込みポップアップ */
     .none {
