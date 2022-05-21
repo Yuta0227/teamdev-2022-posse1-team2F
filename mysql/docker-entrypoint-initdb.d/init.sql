@@ -17,7 +17,8 @@ CREATE TABLE admin_users (
 );
 -- 管理者のログイン情報テーブル上からユーザーID、ユーザーメールアドレス、ユーザーパスワード、ユーザー作成時刻、ユーザー最終ログイン時刻
 
-INSERT INTO admin_users SET user_email = 'test@posse-ap.com', user_password = AES_ENCRYPT('root_password','ENCRYPT-KEY');
+INSERT INTO admin_users SET user_email = 'test1@posse-ap.com', user_password = AES_ENCRYPT('root_password1','ENCRYPT-KEY');
+INSERT INTO admin_users SET user_email = 'test2@posse-ap.com', user_password = AES_ENCRYPT('root_password2','ENCRYPT-KEY');
 -- 管理者追加
 
 drop table if exists agent_users;
@@ -64,32 +65,6 @@ values
 ('エージェント1','2022-03-10','2022-04-30','2023-04-29','本社住所1','000-0000-0000','問い合わせ通知先メールアドレス1','代表者サンプル1'),
 ('エージェント2','2022-03-10','2022-04-30','2023-04-29','本社住所2','000-0000-0000','問い合わせ通知先メールアドレス2','代表者サンプル2'),
 ('エージェント3','2022-03-10','2022-04-30','2023-04-29','本社住所3','000-0000-0000','問い合わせ通知先メールアドレス3','代表者サンプル3');
-
-
-
-drop table if exists agent_recommend_student_type;
-
-create table agent_recommend_student_type(
-  student_type_id int AUTO_INCREMENT primary key,
-  agent_id int not null,
-  student_type varchar(255) not null
-);
--- ００な人におすすめ
-
-insert into agent_recommend_student_type (agent_id,student_type)
-VALUES
-(1,'性格1'),
-(1,'性格2'),
-(1,'性格3'),
-(2,'性格4'),
-(2,'性格5'),
-(2,'性格6'),
-(2,'性格7'),
-(2,'性格8'),
-(3,'性格9'),
-(3,'性格10'),
-(3,'性格11'),
-(3,'性格12');
 
 drop table if exists agent_corporate_amount;
 
@@ -253,18 +228,19 @@ create table agent_public_information (
   agent_main_corporate_size int not null,
   agent_corporate_type int not null,
   agent_job_offer_rate float not null,
-  agent_shortest_period int not null
+  agent_shortest_period int not null,
+  agent_recommend_student_type int not null
 );
 -- 掲載情報テーブル上から企業ID、企業名、面談方式(int)phpの方で文字列に変換(対面のみ、オンライン可、オンラインのみ)、メインの企業規模(int)phpの方で文字列に変換（大手、中小、ベンチャー、総合）、外資系含むか否か(int)phpの方で文字列に変換(0,1)、内定率、内定までの最短期間（週単位)
 -- 企業規模は大手中心、中小中心、ベンチャー中心、総合の4パターン
 
 
 insert into agent_public_information
-(agent_id,agent_name,agent_meeting_type,agent_main_corporate_size,agent_corporate_type,agent_job_offer_rate,agent_shortest_period)
+(agent_id,agent_name,agent_meeting_type,agent_main_corporate_size,agent_corporate_type,agent_job_offer_rate,agent_shortest_period,agent_recommend_student_type)
 VALUES
-(1,(select agent_name from agent_contract_information where agent_id=1),0,1,0,20.7,3),
-(2,(select agent_name from agent_contract_information where agent_id=2),1,2,1,45.8,7),
-(3,(select agent_name from agent_contract_information where agent_id=3),2,3,0,73.5,4)
+(1,(select agent_name from agent_contract_information where agent_id=1),0,1,0,20.7,3,0),
+(2,(select agent_name from agent_contract_information where agent_id=2),1,2,1,45.8,7,1),
+(3,(select agent_name from agent_contract_information where agent_id=3),2,3,0,73.5,4,0)
 ;
 drop table if exists filter_condition;
 
@@ -308,7 +284,9 @@ create table filter_student_type(
   student_type varchar(255) not null 
 );
 
--- 学生の詳細きまったらinsertする
+insert into filter_student_type (student_type)
+VALUES
+('理系'),('文系');
 
 drop table if exists filter_corporate_type;
 
@@ -352,3 +330,26 @@ insert into agent_address (prefecture_id,agent_id,agent_area,agent_prefecture) v
 (26,2,(select area_name from filter_prefecture where prefecture_id=26),(select prefecture_name from filter_prefecture where prefecture_id=26)),
 (23,3,(select area_name from filter_prefecture where prefecture_id=23),(select prefecture_name from filter_prefecture where prefecture_id=23));
 
+drop table if exists delete_request;
+
+create table delete_request(
+  apply_id int primary key,
+  agent_id int,
+  request_reason text,
+  assignee_email varchar(255),
+  approve_status boolean default false,
+  check_status boolean default false
+);
+
+drop table if exists header;
+
+create table sales_copy(
+  agent_id int primary key auto_increment,
+  sales_copy varchar(255)
+);
+
+insert into sales_copy(sales_copy)
+VALUES
+('キャッチコピー1'),
+('キャッチコピー2'),
+('キャッチコピー3');

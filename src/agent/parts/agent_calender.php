@@ -1,5 +1,6 @@
 <div>
     <?php
+    echo $_GET['year'].'年';
     if (!isset($_GET['month'])) {
         echo date('n');
     } else {
@@ -104,7 +105,7 @@
     </div>
     <div>
         <?php
-        echo '<span id="calender_year">' . $_GET['year'] . '</span>' . '/' . $adjust->single($_GET['month']);
+        echo '<span id="calender_year">' . $_GET['year'] . '</span>' . '年' . $adjust->single($_GET['month']).'月';
         ?>
     </div>
     <div>
@@ -134,7 +135,7 @@
 </div>
 <div>
     <?php
-    echo $_GET['year'] . '/' . $adjust->single($_GET['month']);
+    echo $_GET['year'] . '年' . $adjust->single($_GET['month']);
     ?>
     月の請求額：
     <?php

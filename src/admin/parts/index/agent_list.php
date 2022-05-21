@@ -25,7 +25,7 @@
             echo '        <div style="padding-left:20px;">';
             echo '            <div class="admin-agent-detail">契約日：' . $agent_list_array[$agent_id]['start_contract'] . '</div>';
             echo '            <div class="admin-agent-detail">学生：' . $agent_list_array[$agent_id]['apply_amount'] . '人登録</div>';
-            echo '            <div class="admin-agent-detail">今月の請求額：' . $agent_list_array[$agent_id]['apply_amount']*$price_per_apply . '円</div>';
+            echo '            <div class="admin-agent-detail">今月の請求額：' . $agent_list_array[$agent_id]['apply_amount']*$_SESSION['price_per_apply'] . '円</div>';
             echo '        </div>';
             echo '    </div>';
             echo '    <div class="admin-agent-buttons">';

@@ -31,7 +31,6 @@ class translate
             'agent_corporate_type' => '取り扱い企業カテゴリー',
             'agent_job_offer_rate' => '内定率(%)',
             'agent_shortest_period' => '内定最短期間(週)',
-            'agent_simple_explanation' => '短い説明文',
             'apply_id' => '問い合わせID',
             'agent_id' => 'エージェントID',
             'agent_branch' => '支店名',
@@ -49,6 +48,8 @@ class translate
             'applicant_consultation' => '相談',
             'applicant_other_agents' => '同時問い合わせ',
             'apply_report_status' => '通報ステータス',
+            'agent_recommend_student_type'=>'○○向き',
+            'sales_copy'=>'キャッチコピー'
         ];
         foreach ($column_set as $english => $japanese) {
             if ($column == $english) {
@@ -63,9 +64,6 @@ class translate
         global $category_array;
         global $db;
         switch ($column) {
-            case 'エージェント名':
-                return $data;
-                break;
             case '面談方式':
                 // $meeting_array = ['対面のみ', 'オンライン可', 'オンラインのみ'];
                 $meeting_array = $db->query("select meeting_type from filter_meeting;")->fetchAll();
@@ -85,9 +83,12 @@ class translate
             case '内定最短期間(週)':
                 return $data;
                 break;
-            case '短い説明文':
-                return $data;
-                break;
+            case '○○向き':
+                $student_type_array=$db->query("select student_type from filter_student_type;")->fetchAll();
+                return $student_type_array[$data]['student_type'];
+            default:
+            return $data;
+            break;
         }
     }
 }
