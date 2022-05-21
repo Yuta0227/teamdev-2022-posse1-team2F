@@ -7,17 +7,21 @@
     <div class="header-bottom-box">
         <!--ヘッダーの下側の左側-->
         <div class="header-menu">
-            <div class="each-menu">TOP</div>
-            <div class="each-menu">特集記事</div>
-            <div class="each-menu">ヘルプ</div>
-            <div class="each-menu">企業様のログインはこちら</div>
+            <div class="each-menu"><a style="text-decoration:none;color:white;" href="index.php">TOP</a></div>
+            <div class="each-menu"><a style="text-decoration:none;color:white;" href="special_list_index.php">特集記事</a></div>
+            <div class="each-menu"><a style="text-decoration:none;color:white;" href="help.php">ヘルプ</a></div>
+            <div class="each-menu"><a style="text-decoration:none;color:white;" href="login.php">企業様のログインはこちら</a></div>
         </div>
         <!--ヘッダーの下側の右側-->
         <div class="header-cart-box">
-            <div class="header-cart">
-            <i class="fa-solid fa-envelope fa-2x mail-icon"></i><!--position:relative-->
-                <div class="cart-count">1</div><!--position:absoluteでごり押し-->
-            </div>
+            <a href="check_cart.php">
+                <div class="header-cart">
+                    <i class="fa-solid fa-envelope fa-2x mail-icon"></i>
+                    <!--position:relative-->
+                    <div class="cart-count">1</div>
+                    <!--position:absoluteでごり押し-->
+                </div>
+            </a>
         </div>
     </div>
 </header>
