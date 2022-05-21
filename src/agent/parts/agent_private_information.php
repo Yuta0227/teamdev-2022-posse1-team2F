@@ -23,10 +23,14 @@
         // print_r('<pre>');
         // var_dump($_SESSION);
         // print_r('</pre>');
+        $assignee_stmt=$db->prepare("select * from agent_assignee_information where user_id=?;");
+        $assignee_stmt->bindValue(1,$_SESSION['user_id']);
+        $assignee_stmt->execute();
+        $assignee_data=$assignee_stmt->fetchAll()[0];
         $assignee = [
-            '部署' => $_SESSION['agent_branch'],
-            '名前' => $_SESSION['assignee_name'],
-            'メールアドレス' => $_SESSION['agent_email']
+            '部署' => $assignee_data['agent_branch'],
+            '名前' => $assignee_data['assignee_name'],
+            'メールアドレス' => $assignee_data['assignee_email_address']
         ];
         // $login_assignee_stmt=$db->prepare("");
         echo '<table style="width:70%;">';

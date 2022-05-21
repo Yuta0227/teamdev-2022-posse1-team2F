@@ -4,7 +4,11 @@
     <!-- クリックした編集ボタンのidで表示するポップアップ変更 -->
         <!-- 編集ポップアップ -->
         <form action="" method="POST" id="edit_form" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background-color:white;width:400px;height:400px;opacity:100%;z-index:5;" hidden>
-            <div id="close_edit_form">×</div>
+            <div style="display:flex;justify-content:right;">
+                <div id="close_edit_form">
+                ×
+                </div>
+            </div>
             <table>
                 <?php
                 foreach ($assignee as $column => $data) {

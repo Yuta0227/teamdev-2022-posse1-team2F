@@ -34,30 +34,24 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         if($_POST['user_email']==$assignee['user_email']&&$_POST['user_password']==$assignee["AES_DECRYPT(`user_password`,'ENCRYPT-KEY')"]){
             //入力されたメールアドレスとエージェントのメールアドレスが一致していた場合
             //かつパスワードが一致していた場合
+            $_SESSION['user_id']=$assignee['user_id'];
             $_SESSION['agent_email']=$_POST['user_email'];
             $update_login_bool_stmt=$db->prepare("update agent_users set user_login_bool=true where user_id=?;");
             $update_login_bool_stmt->bindValue(1,$assignee['user_id']);
             $update_login_bool_stmt->execute();
             //エージェント担当者ログイン時ログインステータスtrueにする=>最終ログインの日時がわかる
-            $agent_id_stmt=$db->prepare("select * from agent_assignee_information where user_id=?;");
+            $agent_id_stmt=$db->prepare("select user_id,agent_id,agent_name from agent_assignee_information where user_id=?;");
             $agent_id_stmt->bindValue(1,$assignee['user_id']);
             $agent_id_stmt->execute();
             $agent_id_data=$agent_id_stmt->fetchAll();
             $_SESSION['agent_id']=$agent_id_data[0]['agent_id'];
             $_SESSION['agent_name']=$agent_id_data[0]['agent_name'];
-            $_SESSION['agent_branch']=$agent_id_data[0]['agent_branch'];
-            $_SESSION['assignee_name']=$agent_id_data[0]['assignee_name'];
             //担当者の所属するエージェントID取得
             $agent_contract_information_stmt=$db->prepare("select * from agent_contract_information where agent_id=?;");
             $agent_contract_information_stmt->bindValue(1,$_SESSION['agent_id']);
             $agent_contract_information_stmt->execute();
             $_SESSION['agent_contract_information']=$agent_contract_information_stmt->fetchAll();
             //エージェント担当者の属するエージェントの契約情報をセッションに保存
-            $agent_assignee_information_stmt=$db->prepare("select * from agent_assignee_information where agent_id=?;");
-            $agent_assignee_information_stmt->bindValue(1,$_SESSION['agent_id']);
-            $agent_assignee_information_stmt->execute();
-            $_SESSION['agent_assignee_information']=$agent_assignee_information_stmt->fetchAll();
-            //エージェント担当者の属するエージェントの担当者情報をセッションに保存
             $agent_public_information_stmt=$db->prepare("select * from agent_public_information where agent_id=?;");
             $agent_public_information_stmt->bindValue(1,$_SESSION['agent_id']);
             $agent_public_information_stmt->execute();
