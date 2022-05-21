@@ -5,6 +5,17 @@ CREATE SCHEMA shukatsu;
 
 USE shukatsu;
 
+drop table if exists help_email;
+
+create table help_email(
+  email_id int AUTO_INCREMENT primary KEY,
+  email varchar(255)
+);
+
+insert into help_email (email)
+values 
+('help@gmail.com');
+
 DROP TABLE IF EXISTS admin_users;
 
 CREATE TABLE admin_users (
