@@ -8,12 +8,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="../../css/top.css">
-    <title>内容確認画面</title>
+    <link rel="stylesheet" href="../../css/others.css">
+    <title>入力内容確認画面</title>
 </head>
 <body>
+<?php
+    require "../parts/header.php";
+    require "../parts/indicator.php";
+    ?>
     <!-- セッションに入力内容保存してそこから引っ張ってくる -->
-    <form action="" method="POST" style="padding:10px;display:flex;flex-direction:column;">
-        <div style="text-align:center;">内容確認ページ</div>
+    <form action="" method="POST" class="check-information-unit">
+        <div class="check-information-head">入力情報確認</div>
         <table>
             <?php 
             $information_array=[
@@ -55,5 +60,6 @@
             <input type="submit" value="この内容で送る">
         </div>
     </form>
+    <?php require "../parts/footer.php"; ?>
 </body>
 </html>
