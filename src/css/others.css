@@ -199,11 +199,11 @@ p{
     margin: 10px;
 }
 .info-form-each-form{
-    margin: 0 20px;
+    margin: 0 10px 0 10%;
     background: #edf6ff;
     border-width: 1px;
     padding: 5px;
-    width: 50%;
+    width: 80%;
 }
 .info-form-adress-search-btn{
     padding: 5px;
@@ -215,6 +215,28 @@ p{
     font-size: .84rem;
     font-weight: bold;
 }
+.info-form-privacy-box{
+    text-align: center;
+}
+.info-form-privacy{
+    text-decoration: none;
+    color: grey;
+    cursor: pointer;
+}
+.info-form-privacy:hover{
+    text-decoration: underline;
+}
+.info-form-privacy-agree{
+    display: block;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    cursor: pointer;
+}
+.info-form-free-box{
+    display:flex;
+    margin-left: 10%;
+}
 .info-form-check-btn{
     margin: 10px auto;
     padding: 10px;
@@ -222,16 +244,63 @@ p{
     color: #fff;
     width: 30%;
     border: 1px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+.info-form-check-btn:hover{
+    text-decoration: underline
 }
 /* 情報確認画面 */
 .check-information-unit{
     padding:10px;
     display:flex;
     flex-direction:column;
+    background: #edf6ff;
 }
 .check-information-head{
     text-align: left;
     font-weight: bold;
     font-size: 20px;
     padding-left: 5%;
+}
+.check-info-alert{
+    background: #fff;
+    /* color: #fff; */
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    display: inline-block;
+    padding: 10px;
+    margin: 20px auto;
+    border: solid 1px;
+}
+.check-info-table{
+    background: #fff;
+    text-align: center;
+    width: 80%;
+    margin: auto;
+    border: solid;
+    border-color: grey;
+}
+.check-info-table-text{
+    padding: 10px;
+    border: solid 1px;
+    border-color: grey;
+    background: #b5f3ed;
+    /* color: ; */
+}
+.check-info-table-content{
+    border: solid 1px;
+    border-color: grey;
+}
+.check-info-check-btns{
+    display: flex;
+    justify-content: space-evenly;
+    margin: 20px;
+}
+.check-info-back-btn{
+    padding: 10px;
+    color: #2eb2f0;
+    background: #fff;
+    border: none;
 }

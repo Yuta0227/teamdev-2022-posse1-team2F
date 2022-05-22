@@ -74,7 +74,7 @@ $prefecture_array = array(
     ?>
     <div class="info-form-all">
         <div class="info-form-head">申し込み情報入力画面</div>
-        <form class="info-form-unit">
+        <form class="info-form-unit" action="./check_information.php">
             <div class="info-form-each-box-text">お名前<span>(必須)</span></div>
             <input class="info-form-each-form">
             <div class="info-form-each-box-text">フリガナ<span>(必須)</span></div>
@@ -104,14 +104,8 @@ $prefecture_array = array(
             <input id="address3" type="text" name="address3" value="" name="町域名" class="info-form-each-form">
             <div class="info-form-each-box-text">番地など<span>(必須)</span></div>
             <input name="番地など" class="info-form-each-form">
-            <div class="info-form-each-box-text">プライバシーポリシーに同意<span>(必須)</span></div>
-            <div>&gt;&gt;<a href="privacy_policy.php" target="_blank" rel="noopener noreferrer">プライバシーポリシーはこちら</a></div>
-            <label>
-                <input name="プライバシーポリシー" type="checkbox">
-                私はプライバシーポリシーに同意します
-            </label>
             <div class="info-form-each-box-text">自由記入欄</div>
-            <div id="select_agent" style="display:flex;">
+            <div id="select_agent" class="info-form-free-box">
                 <select id="test2">
                     <?php
                     $array = [1, 2, 3,];
@@ -131,6 +125,12 @@ $prefecture_array = array(
                 //POSTではinputのvalueと一致する$_POST['consultation'.$index]をfor文を回すことでさがす。さがすとき選択しているエージェント一覧の配列をforeachで回すと処理数少なくできる
                 ?>
             </div>
+            <div class="info-form-each-box-text">プライバシーポリシーに同意<span>(必須)</span></div>
+            <label class="info-form-privacy-agree">
+                <input name="プライバシーポリシー" type="checkbox">
+                私はプライバシーポリシーに同意します
+            </label>
+            <div class="info-form-privacy-box">&gt;&gt;<a href="privacy_policy.php" target="_blank" rel="noopener noreferrer" class="info-form-privacy">プライバシーポリシーはこちら</a></div>
             <div style="text-align:center;">
             <input type="submit" value="内容確認へ" class="info-form-check-btn">
             </div>
@@ -178,10 +178,10 @@ $prefecture_array = array(
             });
     }, false);
 
-    document.getElementById('button').onclick = function() {
-        document.getElementById('test').setAttribute("value", "567");
-        document.getElementById('神奈川県').setAttribute("selected", "");
-    }
+    // document.getElementById('button').onclick = function() {
+    //     document.getElementById('test').setAttribute("value", "567");
+    //     document.getElementById('神奈川県').setAttribute("selected", "");
+    // }
     //動きはする。住所検索をクリックすると何年卒というところに567と入り、都道府県に神奈川県が入る。これをサンプルにする。住所検索をクリックしたら住所にsetAttributeで代入
     // https://into-the-program.com/javascript-get-address-zipcode-search-api/。
     // これでやるかPHPとスプレッドシート連携して非同期処理でやる。ページがリロードしてしまうため厳しそう。onsubmitでページリロードを阻止できたら可能かも

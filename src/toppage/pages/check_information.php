@@ -19,7 +19,8 @@
     <!-- セッションに入力内容保存してそこから引っ張ってくる -->
     <form action="" method="POST" class="check-information-unit">
         <div class="check-information-head">入力情報確認</div>
-        <table>
+        <div class="check-info-alert">＊送信は完了しておりません</div>
+        <table class="check-info-table">
             <?php 
             $information_array=[
                 'お名前'=>'テキスト',
@@ -43,20 +44,20 @@
             }
             foreach($information_array as $column=>$data){
                 echo '<tr>';
-                echo '<th>'.$column.'</th>';
-                echo '<td>'.$data.'</td>';
+                echo '<th class="check-info-table-text">'.$column.'</th>';
+                echo '<td class="check-info-table-content">'.$data.'</td>';
                 echo '</tr>';
             };
             foreach($inquiry_array as $column=>$data){
                 echo '<tr>';
-                echo '<th>自由記入欄'.($column+1).'</th>';
-                echo '<td>'.$data[0].'に対して「'.$data[1].'」</td>';
+                echo '<th class="check-info-table-text">自由記入欄'.($column+1).'</th>';
+                echo '<td class="check-info-table-content">'.$data[0].'に対して「'.$data[1].'」</td>';
                 echo '</tr>';
             };
             ?>
         </table>
-        <div style="display:flex;">
-            <input type="button" value="フォーム記入に戻る">
+        <div style="display:flex;" class="check-info-check-btns">
+            <input class="check-info-back-btn" type="button" value="フォーム記入に戻る">
             <input type="submit" value="この内容で送る">
         </div>
     </form>
