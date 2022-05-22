@@ -1,6 +1,12 @@
-<div id="edit_popup_filter" style="position:absolute;width:100%;height:100%;background-color:red;top:0;left:0;opacity:50%;" hidden>
-    <!-- ページ全体にかかるフィルターつける -->
-</div>
+<?php 
+if(isset($_POST['delete_assignee_id'])||isset($_POST['add_assignee'])){
+    echo '<div id="edit_popup_filter" style="position:absolute;width:100%;height:100%;background-color:red;top:0;left:0;opacity:50%;"></div>';
+    //  ページ全体にかかるフィルターつける 
+}else{
+    echo '<div id="edit_popup_filter" style="position:absolute;width:100%;height:100%;background-color:red;top:0;left:0;opacity:50%;" hidden></div>';
+}
+?>
+
 <form id="edit_public_information_form" style="position:absolute;background-color:white;top:50%;left:50%;transform:translate(-50%,-50%);" hidden method="post" action="">
     <div style="text-align:center;">掲載情報編集</div>
     <table>
@@ -157,6 +163,7 @@
         </div>
     </div>
 </form>
+
 <script>
     //契約情報に編集ボタンの必要性を感じなかった。担当者についてはエージェント画面で編集追加削除できるし契約情報そんな簡単に触れちゃうのよくない気がする。間違えて契約解除日いじったら取返しつかないし
     document.getElementById('edit_public_information_button').addEventListener('click', function() {
