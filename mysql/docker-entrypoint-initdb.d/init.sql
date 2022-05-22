@@ -230,29 +230,8 @@ VALUES
 (3,(select agent_name from agent_contract_information where agent_id=3),'支店3',(select user_email from agent_users where user_id=8),'氏名8'),
 (3,(select agent_name from agent_contract_information where agent_id=3),'支店4',(select user_email from agent_users where user_id=9),'氏名9');
 
-drop table if exists agent_public_information;
-
-create table agent_public_information (
-  agent_id int not null auto_increment primary key,
-  agent_name varchar(255) not null,
-  agent_meeting_type int not null,
-  agent_main_corporate_size int not null,
-  agent_corporate_type int not null,
-  agent_job_offer_rate float not null,
-  agent_shortest_period int not null,
-  agent_recommend_student_type int not null
-);
--- 掲載情報テーブル上から企業ID、企業名、面談方式(int)phpの方で文字列に変換(対面のみ、オンライン可、オンラインのみ)、メインの企業規模(int)phpの方で文字列に変換（大手、中小、ベンチャー、総合）、外資系含むか否か(int)phpの方で文字列に変換(0,1)、内定率、内定までの最短期間（週単位)
--- 企業規模は大手中心、中小中心、ベンチャー中心、総合の4パターン
 
 
-insert into agent_public_information
-(agent_id,agent_name,agent_meeting_type,agent_main_corporate_size,agent_corporate_type,agent_job_offer_rate,agent_shortest_period,agent_recommend_student_type)
-VALUES
-(1,(select agent_name from agent_contract_information where agent_id=1),0,1,0,20.7,3,0),
-(2,(select agent_name from agent_contract_information where agent_id=2),1,2,1,45.8,7,1),
-(3,(select agent_name from agent_contract_information where agent_id=3),2,3,0,73.5,4,0)
-;
 drop table if exists filter_condition;
 
 create table filter_prefecture(
@@ -327,6 +306,7 @@ VALUES
 drop table if exists agent_address;
 
 create table agent_address(
+  branch_id int AUTO_INCREMENT primary key,
   prefecture_id int not null,
   agent_id int not null,
   agent_area varchar(255) not null,
@@ -364,3 +344,26 @@ VALUES
 ('キャッチコピー1'),
 ('キャッチコピー2'),
 ('キャッチコピー3');
+
+drop table if exists agent_public_information;
+
+create table agent_public_information (
+  agent_id int not null auto_increment primary key,
+  agent_name varchar(255) not null,
+  agent_meeting_type int not null,
+  agent_main_corporate_size int not null,
+  agent_corporate_type int not null,
+  agent_job_offer_rate float not null,
+  agent_shortest_period int not null,
+  agent_recommend_student_type int not null
+);
+-- 掲載情報テーブル上から企業ID、企業名、面談方式(int)phpの方で文字列に変換(対面のみ、オンライン可、オンラインのみ)、メインの企業規模(int)phpの方で文字列に変換（大手、中小、ベンチャー、総合）、外資系含むか否か(int)phpの方で文字列に変換(0,1)、内定率、内定までの最短期間（週単位)
+-- 企業規模は大手中心、中小中心、ベンチャー中心、総合の4パターン
+
+
+insert into agent_public_information
+(agent_name,agent_meeting_type,agent_main_corporate_size,agent_corporate_type,agent_job_offer_rate,agent_shortest_period,agent_recommend_student_type)
+VALUES
+((select agent_name from agent_contract_information where agent_id=1),0,1,0,20.7,3,0),
+((select agent_name from agent_contract_information where agent_id=2),1,2,1,45.8,7,1),
+((select agent_name from agent_contract_information where agent_id=3),2,3,0,73.5,4,0);

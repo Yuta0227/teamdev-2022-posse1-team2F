@@ -1,6 +1,7 @@
 <?php
 session_start();
 require("../../dbconnect.php");
+require "../parts/toppage_post.php";
 ?>
 <!DOCTYPE html>
 <html lang="ja">

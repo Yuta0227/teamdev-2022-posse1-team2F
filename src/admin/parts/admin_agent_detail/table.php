@@ -24,7 +24,7 @@
                 $agent_contract_information_stmt->execute();
                 $contract_information_array = $agent_contract_information_stmt->fetchAll();
                 //契約情報データベースからとってくる
-                $agent_address_stmt = $db->prepare("select agent_prefecture,prefecture_id from agent_address where agent_id=?;");
+                $agent_address_stmt = $db->prepare("select distinct agent_prefecture,prefecture_id from agent_address where agent_id=?;");
                 $agent_address_stmt->bindValue(1, $_GET['agent_id']);
                 $agent_address_stmt->execute();
                 $agent_address = $agent_address_stmt->fetchAll();
