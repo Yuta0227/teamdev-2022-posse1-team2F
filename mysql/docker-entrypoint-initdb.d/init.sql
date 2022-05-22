@@ -321,8 +321,8 @@ create table picture(
 insert into picture(picture_url,agent_name)
 VALUES
 ('picture1.jpg',(select agent_name from agent_contract_information where agent_id=1)),
-('picture2.jpg',(select agent_name from agent_contract_information where agent_id=1)),
-('picture3.jpg',(select agent_name from agent_contract_information where agent_id=1));
+('picture2.jpg',(select agent_name from agent_contract_information where agent_id=2)),
+('picture3.jpg',(select agent_name from agent_contract_information where agent_id=3));
 
 drop table if exists agent_address;
 
