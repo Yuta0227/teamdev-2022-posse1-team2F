@@ -57,8 +57,8 @@
             ?>
         </table>
         <div style="display:flex;" class="check-info-check-btns">
-            <input class="check-info-back-btn" type="button" value="フォーム記入に戻る">
-            <input type="submit" value="この内容で送る">
+            <input class="check-info-back-btn" type="button" value="フォーム記入に戻る" onclick="location.href='./information_form.php'">
+            <input class="check-info-ok-btn" type="submit" formaction="./thanks.php" value="この内容で送る">
         </div>
     </form>
     <?php require "../parts/footer.php"; ?>

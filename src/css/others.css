@@ -265,7 +265,7 @@ p{
 }
 .check-info-alert{
     background: #fff;
-    /* color: #fff; */
+    color: rgb(250, 103, 103);
     text-align: center;
     font-weight: bold;
     font-size: 18px;
@@ -295,12 +295,50 @@ p{
 }
 .check-info-check-btns{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
+    gap: 5%;
     margin: 20px;
 }
 .check-info-back-btn{
     padding: 10px;
+    /* color: #008fb7; */
     color: #2eb2f0;
+
     background: #fff;
-    border: none;
+    font-weight: bold;
+    border: solid 1px;
+    width: 20%;
+}
+.check-info-ok-btn{
+    /* background: #008fb7; */
+    background: #2eb2f0;
+
+    font-weight: bold;
+    border: solid 1px;
+    width: 20%;
+    padding: 10px;
+    color: #fff;
+}
+
+/* 送信完了画面 */
+.thanks-unit{
+    background: #edf6ff;
+    padding: 20px;
+}
+.thanks-texts{
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    background: #fff;
+    margin: 20px auto;
+    padding: 20px;
+    width: 80%;
+}
+.thanks-message{
+    color: #5bbda5;
+    font-size: 25px;
+}
+.thanks-agent-lists{
+    font-weight: normal;
+
 }
