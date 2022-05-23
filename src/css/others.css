@@ -351,4 +351,21 @@ p{
     border: solid 1px;
     width: 20%;
     text-align: center;
+=======
+/* プライバシーポリシー */
+.privacy-policy-unit{
+    background: #eaedf2;
+    padding: 20px;
+}
+.privacy-policy-all-box{
+    width: 80%;
+    background: #fff;
+    margin: auto;
+    padding: 25px;
+}
+.privacy-policy-each-section{
+    padding: 10px;
+}
+.privacy-policy-each-section-head{
+    font-size: 30px;
 }
