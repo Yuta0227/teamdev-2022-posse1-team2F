@@ -367,3 +367,16 @@ VALUES
 ((select agent_name from agent_contract_information where agent_id=1),0,1,0,20.7,3,0),
 ((select agent_name from agent_contract_information where agent_id=2),1,2,1,45.8,7,1),
 ((select agent_name from agent_contract_information where agent_id=3),2,3,0,73.5,4,0);
+
+drop table if exists apply_notice_email;
+
+create table apply_notice_email(
+  agent_id int AUTO_INCREMENT primary key,
+  email_address varchar(255)
+);
+
+insert into apply_notice_email(email_address)
+VALUES
+('apply1@gmail.com'),
+('apply2@gmail.com'),
+('apply3@gmail.com');
