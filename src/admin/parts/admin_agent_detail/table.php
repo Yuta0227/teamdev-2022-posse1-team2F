@@ -150,7 +150,18 @@
                 echo '</tr>';
                 echo '<tr>';
                 echo '<th style="border:1px solid black;">業界別取り扱い企業数</th>';
-                echo '<td style="border:1px solid black;">メーカー(' . $corporate_amount[0]['manufacturer'] . ')、小売り(' . $corporate_amount[0]['retail'] . ')、サービス(' . $corporate_amount[0]['service'] . ')、ソフトウェア・通信(' . $corporate_amount[0]['software_transmission'] . ')、商社(' . $corporate_amount[0]['trading'] . ')、金融(' . $corporate_amount[0]['finance'] . ')、マスコミ(' . $corporate_amount[0]['media'] . ')、官公庁・公社・団体(' . $corporate_amount[0]['government'] . ')</td>';
+                echo '<td style="border:1px solid black;">';
+                $index = 0;
+                foreach ($corporate_amount[0] as $column => $data) {
+                    $column = $translate->translate_column_to_japanese($column);
+                    if ($index == count($corporate_amount) - 1) {
+                        echo $column . '(' . $data . ')';
+                    } else {
+                        echo $column . '(' . $data . '),';
+                    }
+                    $index++;
+                }
+                echo '</td>';
                 echo '</tr>';
                 ?>
             </table>
@@ -277,12 +288,12 @@
     </div>
 </section>
 <script>
-    <?php if(isset($_POST['add_assignee'])){?>
-    document.getElementById('cancel_add_assignee').addEventListener('click', function() {
-        document.getElementById('add_assignee_form').setAttribute('hidden', '');
-        document.getElementById('edit_popup_filter').setAttribute('hidden', '');
-    });
-    <?php }?>
+    <?php if (isset($_POST['add_assignee'])) { ?>
+        document.getElementById('cancel_add_assignee').addEventListener('click', function() {
+            document.getElementById('add_assignee_form').setAttribute('hidden', '');
+            document.getElementById('edit_popup_filter').setAttribute('hidden', '');
+        });
+    <?php } ?>
     <?php if (isset($_POST['delete_assignee_id'])) { ?>
         document.getElementById('cancel_delete').addEventListener('click', function() {
             document.getElementById('delete_assignee_form').setAttribute('hidden', '');

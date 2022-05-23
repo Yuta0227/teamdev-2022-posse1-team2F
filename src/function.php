@@ -56,7 +56,15 @@ class translate
             'applicant_other_agents' => '同時問い合わせ',
             'apply_report_status' => '通報ステータス',
             'agent_recommend_student_type'=>'○○向き',
-            'sales_copy'=>'キャッチコピー'
+            'sales_copy'=>'キャッチコピー',
+            'manufacturer'=>'メーカー',
+            'retail'=>'小売り',
+            'service'=>'サービス',
+            'software_transmission'=>'ソフトウェア・通信',
+            'trading'=>'商社',
+            'finance'=>'金融',
+            'media'=>'マスコミ',
+            'government'=>'官公庁・公社・団体'
         ];
         foreach ($column_set as $english => $japanese) {
             if ($column == $english) {
