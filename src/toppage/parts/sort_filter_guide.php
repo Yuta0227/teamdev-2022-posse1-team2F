@@ -41,6 +41,7 @@
                     <input class="sort-button" type="submit" value="並び替える">
                 </div>
             </form>
+            <button type="button" id="filter-btn" class="filter-btn">絞り込む</button>
         </div>
         <!--絞り込み-->
         <button style="display: none;">絞り込み</button>

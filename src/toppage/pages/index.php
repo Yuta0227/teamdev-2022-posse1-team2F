@@ -16,7 +16,7 @@ if(!isset($_SESSION['selected_agents'])){
     <link rel="stylesheet" href="../../css/reset.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="../../css/top.css">
+    <link rel="stylesheet" href="../../css/top.css?v=<?php echo date('s');?>">
 </head>
 
 <body>
@@ -35,7 +35,7 @@ if(!isset($_SESSION['selected_agents'])){
             <?php require "../parts/agent_list_pagination.php"; ?>
         </section>
     
-    <div class="filter-box">
+    <div class="filter-box none" id="filter-box">
         <?php require "../parts/filter_popup.php"; ?>
     </div>
 </div>
@@ -43,7 +43,7 @@ if(!isset($_SESSION['selected_agents'])){
 
 
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="../../../js/script.js"></script>
+<script src="../../../js/script.js?v=<?php echo date('s');?>"></script>
 
 </body>
 <?php require "../parts/footer.php"; ?>
