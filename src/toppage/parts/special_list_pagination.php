@@ -3,7 +3,7 @@
         <!--緑の箱。paddingつける-->
         <!--hrefの中にspecial_list_paginationのパラメータ取得していれる-->
         <?php
-        if (count($special_list_array) == $specials_per_page) {
+        if (count($special_list_array) <= $specials_per_page) {
             //特集の数と一ページに表示する記事の数が同じだったらページネーションなし
         } elseif (isset($_GET["special_list_pagination"])) {
             if ($_GET["special_list_pagination"] != 1 && $_GET["special_list_pagination"] != NULL) {
@@ -15,7 +15,7 @@
         ?>
         <div>
             <?php
-            if (count($special_list_array) == $specials_per_page) {
+            if (count($special_list_array) <= $specials_per_page) {
                 //特集の数と一ページに表示する記事の数が同じだったらページネーションなし
             } elseif (isset($_GET["special_list_pagination"])) {
                 if ($_GET["special_list_pagination"] != NULL) {
@@ -29,7 +29,7 @@
             ?>
         </div>
         <?php
-        if (count($special_list_array) == $specials_per_page) {
+        if (count($special_list_array) <= $specials_per_page) {
             //特集の数と一ページに表示する記事の数が同じだったらページネーションなし
         } elseif (isset($_GET["special_list_pagination"])) {
             if ($_GET["special_list_pagination"] != ceil(count($special_list_array) / $specials_per_page)) {

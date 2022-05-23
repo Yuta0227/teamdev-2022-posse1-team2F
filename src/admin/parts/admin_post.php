@@ -5,7 +5,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         header("Location: index.php");
     }
     if (isset($_POST['logout'])) {
-        session_destroy();
+        unset($_SESSION['admin_id']);
+        unset($_SESSION['login_admin_email']);
+        unset($_SESSION['admin_agent_list']);
         header("Location: ../../toppage/pages/login.php");
     }
     if (isset($_POST['面談方式']) && isset($_POST['主な取り扱い企業規模']) && isset($_POST['取り扱い企業カテゴリー']) && isset($_POST['内定率(%)']) && isset($_POST['内定最短期間(週)']) && isset($_POST['prefecture']) && isset($_POST['○○向き']) && isset($_POST['manufacturer']) && isset($_POST['retail']) && isset($_POST['service']) & isset($_POST['software_transmission']) && isset($_POST['trading']) && isset($_POST['finance']) && isset($_POST['media']) && isset($_POST['government']) && isset($_POST['sales_copy'])) {

@@ -1,4 +1,7 @@
 <?php
+
+session_start();
+
 $prefecture_array = array(
     '北海道',
     '青森県',

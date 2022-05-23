@@ -1,6 +1,10 @@
 <?php
 session_start();
 require("../../dbconnect.php");
+require "../parts/toppage_post.php";
+if(!isset($_SESSION['selected_agents'])){
+    $_SESSION['selected_agents']=[];
+}
 ?>
 <!DOCTYPE html>
 <html lang="ja">
