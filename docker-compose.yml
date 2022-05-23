@@ -29,7 +29,7 @@ services:
       - "3306:3306"
     volumes:
       - ./mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
-      - ./mysql/etc/mysql/conf.d:/etc/mysql/conf.d
+      - ./mysql/etc/mysql/conf.d/my.cnf:/etc/mysql/conf.d/my.cnf
       - ./mysql/data:/var/lib/mysql
     tty: true
     stdin_open: true

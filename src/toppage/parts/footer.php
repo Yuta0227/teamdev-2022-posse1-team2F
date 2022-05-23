@@ -12,9 +12,6 @@
                 <a href="">就活.com</a>
             </div>
             <div class="footer-link">
-                <a href="">お問い合わせ</a>
-            </div>
-            <div class="footer-link">
                 <a href="">プライバシーポリシー</a>
             </div>
         </div>

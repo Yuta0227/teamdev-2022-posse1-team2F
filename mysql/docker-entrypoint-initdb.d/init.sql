@@ -5,6 +5,17 @@ CREATE SCHEMA shukatsu;
 
 USE shukatsu;
 
+drop table if exists help_email;
+
+create table help_email(
+  email_id int AUTO_INCREMENT primary KEY,
+  email varchar(255)
+);
+
+insert into help_email (email)
+values 
+('help@gmail.com');
+
 DROP TABLE IF EXISTS admin_users;
 
 CREATE TABLE admin_users (
@@ -17,7 +28,8 @@ CREATE TABLE admin_users (
 );
 -- 管理者のログイン情報テーブル上からユーザーID、ユーザーメールアドレス、ユーザーパスワード、ユーザー作成時刻、ユーザー最終ログイン時刻
 
-INSERT INTO admin_users SET user_email = 'test@posse-ap.com', user_password = AES_ENCRYPT('root_password','ENCRYPT-KEY');
+INSERT INTO admin_users SET user_email = 'test1@posse-ap.com', user_password = AES_ENCRYPT('root_password1','ENCRYPT-KEY');
+INSERT INTO admin_users SET user_email = 'test2@posse-ap.com', user_password = AES_ENCRYPT('root_password2','ENCRYPT-KEY');
 -- 管理者追加
 
 drop table if exists agent_users;
@@ -65,32 +77,6 @@ values
 ('エージェント2','2022-03-10','2022-04-30','2023-04-29','本社住所2','000-0000-0000','問い合わせ通知先メールアドレス2','代表者サンプル2'),
 ('エージェント3','2022-03-10','2022-04-30','2023-04-29','本社住所3','000-0000-0000','問い合わせ通知先メールアドレス3','代表者サンプル3');
 
-
-
-drop table if exists agent_recommend_student_type;
-
-create table agent_recommend_student_type(
-  student_type_id int AUTO_INCREMENT primary key,
-  agent_id int not null,
-  student_type varchar(255) not null
-);
--- ００な人におすすめ
-
-insert into agent_recommend_student_type (agent_id,student_type)
-VALUES
-(1,'性格1'),
-(1,'性格2'),
-(1,'性格3'),
-(2,'性格4'),
-(2,'性格5'),
-(2,'性格6'),
-(2,'性格7'),
-(2,'性格8'),
-(3,'性格9'),
-(3,'性格10'),
-(3,'性格11'),
-(3,'性格12');
-
 drop table if exists agent_corporate_amount;
 
 create table agent_corporate_amount(
@@ -131,23 +117,6 @@ values
 ('あｆふふぁひうあｈふぁｈふぇあえふいあっひうｒふいはういｈふぇあういｈふぅｈ');
 
 
-drop table if exists agent_address;
-
-create table agent_address(
-  agent_id int not null,
-  agent_name varchar(255) not null,
-  agent_area varchar(255) not null,
-  agent_prefecture varchar(255) not null
-);
--- エージェント住所テーブル上から企業ID、企業名、企業地方、企業都道府県、企業郵便番号、企業住所 
-
-insert into agent_address (agent_id,agent_name,agent_area,agent_prefecture) values 
-(1,(select agent_name from agent_contract_information where agent_id=1),'関東','神奈川'),
-(1,(select agent_name from agent_contract_information where agent_id=1),'北海道','北海道'),
-(2,(select agent_name from agent_contract_information where agent_id=2),'関東','群馬'),
-(2,(select agent_name from agent_contract_information where agent_id=2),'北海道','北海道'),
-(3,(select agent_name from agent_contract_information where agent_id=3),'北海道','北海道')
-;
 drop table if exists admin_agent_list;
 
 create table admin_agent_list (
@@ -188,21 +157,21 @@ create table apply_list(
   applicant_address varchar(255) not null,
   applicant_consultation varchar(255) not null,
   applicant_other_agents varchar(255) not null,
-  applicant_report_status boolean default false,
-  apply_new_status boolean default true
+  apply_report_status boolean default false,
+  apply_new_status boolean default true,
+  apply_report_deadline datetime
 );
 -- 申込一覧テーブル上から申込ID、企業ID、企業名、申込日時、申込者の=>メールアドレス、漢字の名前、フリガナ、電話番号、大学、学部、学科、何年卒、郵便番号、住所、相談内容、同時応募エージェント、通報ステータス
 insert into apply_list
-(agent_id,agent_name,apply_time,applicant_email_address,applicant_name_kanji,applicant_name_furigana,applicant_phone_number,applicant_university,applicant_gakubu,applicant_gakka,applicant_graduation_year,applicant_postal_code,applicant_address,applicant_consultation,applicant_other_agents)
+(agent_id,agent_name,apply_time,applicant_email_address,applicant_name_kanji,applicant_name_furigana,applicant_phone_number,applicant_university,applicant_gakubu,applicant_gakka,applicant_graduation_year,applicant_postal_code,applicant_address,applicant_consultation,applicant_other_agents,apply_report_deadline)
 values
-(1,'エージェント1','2022-05-13 01:00:12','user1@gmail.com','就活1','シュウカツ1','サンプル電話番号1','サンプル大学1','サンプル学部1','サンプル学科1',2024,'サンプル郵便番号1','サンプル住所1','サンプル相談1','エージェント2,エージェント3'),
-(2,'エージェント2','2022-05-14 01:00:12','user2@gmail.com','就活2','シュウカツ2','サンプル電話番号2','サンプル大学2','サンプル学部2','サンプル学科2',2024,'サンプル郵便番号2','サンプル住所2','サンプル相談2','エージェント4,エージェント5'),
-(3,'エージェント3','2022-05-14 01:00:12','user3@gmail.com','就活3','シュウカツ3','サンプル電話番号3','サンプル大学3','サンプル学部3','サンプル学科3',2024,'サンプル郵便番号3','サンプル住所3','サンプル相談3','エージェント6,エージェント7'),
-(3,'エージェント3','2022-05-15 01:00:12','user4@gmail.com','就活4','シュウカツ4','サンプル電話番号4','サンプル大学4','サンプル学部4','サンプル学科4',2024,'サンプル郵便番号4','サンプル住所4','','エージェント6,エージェント7'),
-(3,'エージェント3','2022-05-16 01:00:12','user5@gmail.com','就活5','シュウカツ5','サンプル電話番号5','サンプル大学5','サンプル学部5','サンプル学科5',2024,'サンプル郵便番号5','サンプル住所5','サンプル相談5','エージェント6,エージェント7'),
-(3,'エージェント3','2022-05-15 01:00:12','user6@gmail.com','就活6','シュウカツ6','サンプル電話番号6','サンプル大学6','サンプル学部6','サンプル学科6',2024,'サンプル郵便番号6','サンプル住所6','サンプル相談6','エージェント6,エージェント7'),
-(3,'エージェント3','2022-06-01 01:00:12','user7@gmail.com','就活7','シュウカツ7','サンプル電話番号7','サンプル大学7','サンプル学部7','サンプル学科7',2024,'サンプル郵便番号7','サンプル住所7','','エージェント6,エージェント7')
-;
+(1,'エージェント1','2022-05-13 01:00:12','user1@gmail.com','就活1','シュウカツ1','サンプル電話番号1','サンプル大学1','サンプル学部1','サンプル学科1',2024,'サンプル郵便番号1','サンプル住所1','サンプル相談1','エージェント2,エージェント3','2022-06-01 23:59:59'),
+(2,'エージェント2','2022-05-14 01:00:12','user2@gmail.com','就活2','シュウカツ2','サンプル電話番号2','サンプル大学2','サンプル学部2','サンプル学科2',2024,'サンプル郵便番号2','サンプル住所2','サンプル相談2','エージェント4,エージェント5','2022-06-01 23:59:59'),
+(3,'エージェント3','2022-05-14 01:00:12','user3@gmail.com','就活3','シュウカツ3','サンプル電話番号3','サンプル大学3','サンプル学部3','サンプル学科3',2024,'サンプル郵便番号3','サンプル住所3','サンプル相談3','エージェント6,エージェント7','2022-06-01 23:59:59'),
+(3,'エージェント3','2022-05-15 01:00:12','user4@gmail.com','就活4','シュウカツ4','サンプル電話番号4','サンプル大学4','サンプル学部4','サンプル学科4',2024,'サンプル郵便番号4','サンプル住所4','','エージェント6,エージェント7','2022-06-01 23:59:59'),
+(3,'エージェント3','2022-05-16 01:00:12','user5@gmail.com','就活5','シュウカツ5','サンプル電話番号5','サンプル大学5','サンプル学部5','サンプル学科5',2024,'サンプル郵便番号5','サンプル住所5','サンプル相談5','エージェント6,エージェント7','2022-06-01 23:59:59'),
+(3,'エージェント3','2022-05-15 01:00:12','user6@gmail.com','就活6','シュウカツ6','サンプル電話番号6','サンプル大学6','サンプル学部6','サンプル学科6',2024,'サンプル郵便番号6','サンプル住所6','サンプル相談6','エージェント6,エージェント7','2022-06-01 23:59:59'),
+(3,'エージェント3','2022-06-01 01:00:12','user7@gmail.com','就活7','シュウカツ7','サンプル電話番号7','サンプル大学7','サンプル学部7','サンプル学科7',2024,'サンプル郵便番号7','サンプル住所7','','エージェント6,エージェント7','2022-07-01 23:59:59');
 
 drop table if exists featured_article;
 
@@ -270,18 +239,19 @@ create table agent_public_information (
   agent_main_corporate_size int not null,
   agent_corporate_type int not null,
   agent_job_offer_rate float not null,
-  agent_shortest_period int not null
+  agent_shortest_period int not null,
+  agent_recommend_student_type int not null
 );
 -- 掲載情報テーブル上から企業ID、企業名、面談方式(int)phpの方で文字列に変換(対面のみ、オンライン可、オンラインのみ)、メインの企業規模(int)phpの方で文字列に変換（大手、中小、ベンチャー、総合）、外資系含むか否か(int)phpの方で文字列に変換(0,1)、内定率、内定までの最短期間（週単位)
 -- 企業規模は大手中心、中小中心、ベンチャー中心、総合の4パターン
 
 
 insert into agent_public_information
-(agent_id,agent_name,agent_meeting_type,agent_main_corporate_size,agent_corporate_type,agent_job_offer_rate,agent_shortest_period)
+(agent_id,agent_name,agent_meeting_type,agent_main_corporate_size,agent_corporate_type,agent_job_offer_rate,agent_shortest_period,agent_recommend_student_type)
 VALUES
-(1,(select agent_name from agent_contract_information where agent_id=1),0,1,0,20.7,3),
-(2,(select agent_name from agent_contract_information where agent_id=2),1,2,1,45.8,7),
-(3,(select agent_name from agent_contract_information where agent_id=3),2,3,0,73.5,4)
+(1,(select agent_name from agent_contract_information where agent_id=1),0,1,0,20.7,3,0),
+(2,(select agent_name from agent_contract_information where agent_id=2),1,2,1,45.8,7,1),
+(3,(select agent_name from agent_contract_information where agent_id=3),2,3,0,73.5,4,0)
 ;
 drop table if exists filter_condition;
 
@@ -325,7 +295,9 @@ create table filter_student_type(
   student_type varchar(255) not null 
 );
 
--- 学生の詳細きまったらinsertする
+insert into filter_student_type (student_type)
+VALUES
+('理系'),('文系');
 
 drop table if exists filter_corporate_type;
 
@@ -351,3 +323,44 @@ VALUES
 ('picture1.jpg',(select agent_name from agent_contract_information where agent_id=1)),
 ('picture2.jpg',(select agent_name from agent_contract_information where agent_id=1)),
 ('picture3.jpg',(select agent_name from agent_contract_information where agent_id=1));
+
+drop table if exists agent_address;
+
+create table agent_address(
+  prefecture_id int not null,
+  agent_id int not null,
+  agent_area varchar(255) not null,
+  agent_prefecture varchar(255) not null
+);
+-- エージェント住所テーブル上から企業ID、企業名、企業地方、企業都道府県、企業郵便番号、企業住所 
+
+insert into agent_address (prefecture_id,agent_id,agent_area,agent_prefecture) values 
+(30,1,(select area_name from filter_prefecture where prefecture_id=30),(select prefecture_name from filter_prefecture where prefecture_id=30)),
+(44,1,(select area_name from filter_prefecture where prefecture_id=44),(select prefecture_name from filter_prefecture where prefecture_id=44)),
+(3,2,(select area_name from filter_prefecture where prefecture_id=3),(select prefecture_name from filter_prefecture where prefecture_id=3)),
+(26,2,(select area_name from filter_prefecture where prefecture_id=26),(select prefecture_name from filter_prefecture where prefecture_id=26)),
+(23,3,(select area_name from filter_prefecture where prefecture_id=23),(select prefecture_name from filter_prefecture where prefecture_id=23));
+
+drop table if exists delete_request;
+
+create table delete_request(
+  apply_id int primary key,
+  agent_id int,
+  request_reason text,
+  assignee_email varchar(255),
+  approve_status boolean default false,
+  check_status boolean default false
+);
+
+drop table if exists header;
+
+create table sales_copy(
+  agent_id int primary key auto_increment,
+  sales_copy varchar(255)
+);
+
+insert into sales_copy(sales_copy)
+VALUES
+('キャッチコピー1'),
+('キャッチコピー2'),
+('キャッチコピー3');

@@ -1,13 +1,19 @@
 <?php
+session_start();
 require "../../dbconnect.php";
-$_SESSION['admin_id']=NULL;
-$_SESSION['assignee_id']=NULL;
+$_SESSION['price_per_apply']=20000;
+$admin_login_stmt=$db->query("select user_id,user_email,AES_DECRYPT(`user_password`,'ENCRYPT-KEY') from admin_users;");
+$admin_login_data=$admin_login_stmt->fetchAll();
+$_SESSION['help_email']='help@gmail.com';
+//問い合わせ窓口と管理者ログインメアド別にする
+$_SESSION['admin_email']=[];
+foreach($admin_login_data as $admin){
+    array_push($_SESSION['admin_email'],$admin['user_email']);
+}
 if($_SERVER['REQUEST_METHOD']=='POST'){
-    $admin_login_stmt=$db->query("select user_id,user_email,AES_DECRYPT(`user_password`,'ENCRYPT-KEY') from admin_users;");
-    $admin_login_data=$admin_login_stmt->fetchAll();
-    //管理者メール、パスワード
     foreach($admin_login_data as $admin){
         if($_POST['user_email']==$admin['user_email']&&$_POST['user_password']==$admin["AES_DECRYPT(`user_password`,'ENCRYPT-KEY')"]){
+            //管理者メール、パスワード
             //入力されたメールアドレスと管理者のメールアドレスが一致していた場合
             //かつパスワードが一致していた場合
             $update_login_bool_stmt=$db->prepare("update admin_users set user_login_bool=true where user_id=?;");
@@ -15,8 +21,10 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
             $update_login_bool_stmt->execute();
             //管理者ログイン時ログインステータスtrueにする=>最終ログインの日時がわかる
             $_SESSION['admin_id']=$admin['user_id'];
+            $_SESSION['login_admin_email']=$admin['user_email'];
             //管理者idセッションに保存
-            header("Location:../admin/pages/index.php?year=".date('Y')."&month=".date('m')."&date=".date('d')."&agent_id=1");
+            header("Location:/admin/pages/index.php?year=".date('Y')."&month=".date('m')."&date=".date('d')."&agent_id=1");
+            break;
         }   
     }
     $agent_assignee_login_stmt=$db->query("select user_id,user_email,AES_DECRYPT(`user_password`,'ENCRYPT-KEY') from agent_users;");
@@ -26,33 +34,36 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         if($_POST['user_email']==$assignee['user_email']&&$_POST['user_password']==$assignee["AES_DECRYPT(`user_password`,'ENCRYPT-KEY')"]){
             //入力されたメールアドレスとエージェントのメールアドレスが一致していた場合
             //かつパスワードが一致していた場合
-            $_SESSION['assignee_id']=$assignee['user_id'];
-            //担当者IDをセッションに保存
+            $_SESSION['user_id']=$assignee['user_id'];
+            $_SESSION['agent_email']=$_POST['user_email'];
             $update_login_bool_stmt=$db->prepare("update agent_users set user_login_bool=true where user_id=?;");
             $update_login_bool_stmt->bindValue(1,$assignee['user_id']);
             $update_login_bool_stmt->execute();
             //エージェント担当者ログイン時ログインステータスtrueにする=>最終ログインの日時がわかる
+            $agent_id_stmt=$db->prepare("select user_id,agent_id,agent_name from agent_assignee_information where user_id=?;");
+            $agent_id_stmt->bindValue(1,$assignee['user_id']);
+            $agent_id_stmt->execute();
+            $agent_id_data=$agent_id_stmt->fetchAll();
+            $_SESSION['agent_id']=$agent_id_data[0]['agent_id'];
+            $_SESSION['agent_name']=$agent_id_data[0]['agent_name'];
+            //担当者の所属するエージェントID取得
             $agent_contract_information_stmt=$db->prepare("select * from agent_contract_information where agent_id=?;");
-            $agent_contract_information_stmt->bindValue(1,$_SESSION['assignee_id']);
+            $agent_contract_information_stmt->bindValue(1,$_SESSION['agent_id']);
             $agent_contract_information_stmt->execute();
             $_SESSION['agent_contract_information']=$agent_contract_information_stmt->fetchAll();
             //エージェント担当者の属するエージェントの契約情報をセッションに保存
-            $agent_assignee_information_stmt=$db->prepare("select * from agent_assignee_information where agent_id=?;");
-            $agent_assignee_information_stmt->bindValue(1,$_SESSION['agent_contract_information'][0]['agent_id']);
-            $agent_assignee_information_stmt->execute();
-            $_SESSION['agent_assignee_information']=$agent_assignee_information_stmt->fetchAll();
-            //エージェント担当者の属するエージェントの担当者情報をセッションに保存
             $agent_public_information_stmt=$db->prepare("select * from agent_public_information where agent_id=?;");
-            $agent_public_information_stmt->bindValue(1,$_SESSION['agent_contract_information'][0]['agent_id']);
+            $agent_public_information_stmt->bindValue(1,$_SESSION['agent_id']);
             $agent_public_information_stmt->execute();
-            $_SESSION['agent_public_information']=$agent_assignee_information_stmt->fetchAll();
+            $_SESSION['agent_public_information']=$agent_public_information_stmt->fetchAll();
             //エージェント担当者の属するエージェントの掲載情報をセッションに保存
             $agent_address_information_stmt=$db->prepare("select * from agent_address where agent_id=?;");
-            $agent_address_information_stmt->bindValue(1,$_SESSION['agent_contract_information'][0]['agent_id']);
+            $agent_address_information_stmt->bindValue(1,$_SESSION['agent_id']);
             $agent_address_information_stmt->execute();
             $_SESSION['agent_address_information']=$agent_address_information_stmt->fetchAll();
             ///エージェント担当者の属するエージェントの住所情報をセッションに保存
             header("Location:/agent/pages/index.php?year=".date('Y')."&month=".date('m')."&date=".date('d')."");
+            break;
         }
     }
 }
@@ -86,7 +97,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         </div>
         <input type="submit" value="ログイン">
         <p>パスワード忘れた場合はこちら</p>
-        <p>sample@gmail.com</p>
+        <p><?php echo $_SESSION['help_email']?></p>
     </form>
     </div>
     <?php require "../parts/footer.php";?>
