@@ -15,11 +15,18 @@
 
 <body>
     <?php require "../parts/header.php"; ?>
+    <?php require "../../dbconnect.php";?>
     <div class="help">
         <div>
             <p>就活エージェントへの応募に関するご不明点や企業様の掲載申込等の問い合わせは現在メールで受け付けております。</p>
             <p>お問い合わせ先はこちら</p>
-            <p class="help-mail">sample@gmail.com</p>
+            <p class="help-mail">
+                <?php
+                $help_email_stmt=$db->query("select * from help_email;");
+                $help_email=$help_email_stmt->fetchAll()[0];
+                echo $help_email['email'];
+                ?>
+            </p>
         </div>
     </div>
     <?php require "../parts/footer.php"; ?>

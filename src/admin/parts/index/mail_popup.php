@@ -1,22 +1,4 @@
 <?php
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $count_assignee_stmt = $db->prepare("select count(user_id) from agent_assignee_information where agent_id=?;");
-    $count_assignee_stmt->bindValue(1, $_POST['agent_id']);
-    $count_assignee_stmt->execute();
-    $count_assignee_data = $count_assignee_stmt->fetchAll();
-    for ($index = 0; $index < $count_assignee_data[0]['count(user_id)']; $index++) {
-        mb_language("ja");
-        mb_internal_encoding("utf-8");
-        $to=$_POST['address'.$index];
-        $subject="特集記事招待メール";
-        $msg=$_POST['text'.$index];
-        $from = "admin@gmail.com";
-        $header="From: {$from}\nReply-To: {$from}\nContent-Transfer-Encoding:8bit\r\nContent-Type: text/plain;charset=UTF-8\r\n";
-        if(!mb_send_mail($to,$subject,$msg,$header)){
-            echo 'メール送信失敗';
-        } 
-    } 
-}
 for ($agent_id = ($page_number - 1) * $agents_per_page; $agent_id < $agents_per_page * $page_number; $agent_id++) {
     if ($agent_id  < count($agent_list_array)) {
         ${"mail_stmt" . $agent_list_array[$agent_id]['agent_id']} = $db->prepare("select * from agent_assignee_information where agent_id=?;");
