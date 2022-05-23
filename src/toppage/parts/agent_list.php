@@ -2,16 +2,16 @@
     <!--エージェント一覧コンテナ-->
     <?php 
     require "guide_popup.php";
-    $page_number=3;//URLからとってくる
+    $page_number=$_GET['agent_list_pagination'];//URLからとってくる
 
     $agents_per_page=6;//ページ毎に表示するエージェントの個数 
 
     if($page_number-1!=floor(count($all_agents)/$agents_per_page)){//ページ番号が最後以外
         for ($i = 0; $i < $agents_per_page; $i++) {
             echo '<div class="agent-overview-box">';
-            echo '<a href="#" target="_blank" class="agent-overview-link">';
+            echo '<a href="./agent_detail.php?agent_id='.$all_agents[$i]['agent_id'].'" target="_blank" class="agent-overview-link">';
             echo '<div>';
-            echo '<div class="agent-name">企業'.$all_agents[$i].'</div>';
+            echo '<div class="agent-name">'.$all_agents[$i]['agent_name'].'</div>';
             echo '<div>#理系企業#外資系企業</div>';
             echo '</div>';
             echo '<div style="display: flex;">';
@@ -31,9 +31,9 @@
     }elseif($page_number-1==floor(count($all_agents)/$agents_per_page)){//ページ番号が最後の場合。数字にずれたぶんある。0か1。
         for ($i = 0; $i < count($all_agents)%$agents_per_page; $i++) {//余りの個数出力
             echo '<div class="agent-overview-box">';
-            echo '<a href="#" target="_blank" class="agent-overview-link">';
+            echo '<a href="./agent_detail.php?agent_id='.$all_agents[$i]['agent_id'].'" target="_blank" class="agent-overview-link">';
             echo '<div>';
-            echo '<div class="agent-name">企業'.$all_agents[$i].'</div>';
+            echo '<div class="agent-name">企業'.$all_agents[$i]['agent_name'].'</div>';
             echo '<div>#理系企業#外資系企業</div>';
             echo '</div>';
             echo '<div style="display: flex;">';
@@ -48,7 +48,7 @@
             echo '</div>';
             echo '</div>';
             echo '</a>';
-            echo '</div>';         
+            echo '</div>';  
         }; 
     }
     ?>

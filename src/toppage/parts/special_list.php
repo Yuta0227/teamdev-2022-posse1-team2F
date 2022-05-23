@@ -28,7 +28,7 @@ $special_list_array = [
         'ページアドレス' => '',
     ],
 ]; //データベースから特集記事一覧取得。新しい順で。多次元多次元連想配列
-$specials_per_page = 2;
+$specials_per_page = 4;
 if (isset($_GET["special_list_pagination"])) {
     $specials_pagination = $_GET["special_list_pagination"];
 } else {
@@ -42,35 +42,71 @@ count($special_list_array) == $specials_per_page
 <div class="special-list-all">
     <!--sectionに変えるべきかも-->
     <!-- php for文はif。一ページにのせる数で割り切れる場合はその数をすべてのページでfor。割り切れないときは最後のページのみ余りの数分出力 -->
-    <?php for ($i = 0; $i < $specials_per_page; $i++) {
-        echo '<div>';
-        echo '<a src="' . $special_list_array[($i + 1) * $specials_pagination - 1]['ページアドレス'] . '">';
-        echo '<div class="special-list-each-box">';
-        echo '<div class="special-list-img-box">';
-        echo '<img class="special-list-img" src="' . $special_list_array[($i + 1) * $specials_pagination - 1]['画像'] . '" alt="特集記事用の画像' . ($i + 1) * $specials_pagination . '">';
-        echo '</div>';
-        echo '<div class="special-list-informations">';
-        echo '<h1 class="special-list-information-header">';
-        echo $special_list_array[($i + 1) * $specials_pagination - 1]['記事タイトル'];
-        echo '</h1>';
-        echo '<div class="special-list-information-tags">';
-        foreach ($special_list_array[($i + 1) * $specials_pagination - 1]['ハッシュタグ'] as $data) {;
-            echo '<div>#' . $data . '</div>';
-        };
-        echo '</div>';
-        echo '<div class="special-list-information-explanation">';
-        echo $special_list_array[($i + 1) * $specials_pagination - 1]['テキスト'];
-        echo '</div>';
-        echo '<div>';
-        echo $special_list_array[($i + 1) * $specials_pagination - 1]['企業名'];
-        echo '</div>';
-        echo '<div>';
-        echo $special_list_array[($i + 1) * $specials_pagination - 1]['投稿日'] . '投稿';
-        echo '</div>';
-        echo '</div>';
-        echo '</div>';
-        echo '</a>';
-        echo '</div>';
-    }; ?>
+    <?php 
+    if($specials_pagination-1!=floor(count($special_list_array)/$specials_per_page)){
+        for ($i = 0; $i < $specials_per_page; $i++) {
+            echo '<div>';
+            echo '<a src="' . $special_list_array[($i + 1) * $specials_pagination - 1]['ページアドレス'] . '">';
+            echo '<div class="special-list-each-box">';
+            echo '<div class="special-list-img-box">';
+            echo '<img class="special-list-img" src="' . $special_list_array[($i + 1) * $specials_pagination - 1]['画像'] . '" alt="特集記事用の画像' . ($i + 1) * $specials_pagination . '">';
+            echo '</div>';
+            echo '<div class="special-list-informations">';
+            echo '<h1 class="special-list-information-header">';
+            echo $special_list_array[($i + 1) * $specials_pagination - 1]['記事タイトル'];
+            echo '</h1>';
+            echo '<div class="special-list-information-tags">';
+            foreach ($special_list_array[($i + 1) * $specials_pagination - 1]['ハッシュタグ'] as $data) {;
+                echo '<div>#' . $data . '</div>';
+            };
+            echo '</div>';
+            echo '<div class="special-list-information-explanation">';
+            echo $special_list_array[($i + 1) * $specials_pagination - 1]['テキスト'];
+            echo '</div>';
+            echo '<div>';
+            echo $special_list_array[($i + 1) * $specials_pagination - 1]['企業名'];
+            echo '</div>';
+            echo '<div>';
+            echo $special_list_array[($i + 1) * $specials_pagination - 1]['投稿日'] . '投稿';
+            echo '</div>';
+            echo '</div>';
+            echo '</div>';
+            echo '</a>';
+            echo '</div>';
+        }
+    }else{
+        for ($i = 0; $i < count($special_list_array)%$specials_per_page; $i++) {
+            echo '<div>';
+            echo '<a src="' . $special_list_array[($i + 1) * $specials_pagination - 1]['ページアドレス'] . '">';
+            echo '<div class="special-list-each-box">';
+            echo '<div class="special-list-img-box">';
+            echo '<img class="special-list-img" src="' . $special_list_array[($i + 1) * $specials_pagination - 1]['画像'] . '" alt="特集記事用の画像' . ($i + 1) * $specials_pagination . '">';
+            echo '</div>';
+            echo '<div class="special-list-informations">';
+            echo '<h1 class="special-list-information-header">';
+            echo $special_list_array[($i + 1) * $specials_pagination - 1]['記事タイトル'];
+            echo '</h1>';
+            echo '<div class="special-list-information-tags">';
+            foreach ($special_list_array[($i + 1) * $specials_pagination - 1]['ハッシュタグ'] as $data) {;
+                echo '<div>#' . $data . '</div>';
+            };
+            echo '</div>';
+            echo '<div class="special-list-information-explanation">';
+            echo $special_list_array[($i + 1) * $specials_pagination - 1]['テキスト'];
+            echo '</div>';
+            echo '<div>';
+            echo $special_list_array[($i + 1) * $specials_pagination - 1]['企業名'];
+            echo '</div>';
+            echo '<div>';
+            echo $special_list_array[($i + 1) * $specials_pagination - 1]['投稿日'] . '投稿';
+            echo '</div>';
+            echo '</div>';
+            echo '</div>';
+            echo '</a>';
+            echo '</div>';
+        }
+
+    }
+    ; ?>
 </div>
 </section>

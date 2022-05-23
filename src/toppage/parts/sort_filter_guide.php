@@ -10,7 +10,7 @@
                         $sort_type = [
                             '<option value="default">デフォルト</option>',
                             '<option value="job_offer_rate">内定率</option>',
-                            '<option value="shortest_period">内定までの最短期間</option>'
+                            '<option value="shortest_period">内定最短期間</option>'
                         ];
                         if (isset($_POST['sort'])) {
                             switch ($_POST['sort']) {
@@ -23,8 +23,8 @@
                                     array_unshift($sort_type, '<option value="job_offer_rate">内定率</option>');
                                     break;
                                 case 'shortest_period':
-                                    $sort_type = array_diff($sort_type, array('<option value="shortest_period">内定までの最短期間</option>'));
-                                    array_unshift($sort_type, '<option value="shortest_period">内定までの最短期間</option>');
+                                    $sort_type = array_diff($sort_type, array('<option value="shortest_period">内定最短期間</option>'));
+                                    array_unshift($sort_type, '<option value="shortest_period">内定最短期間</option>');
                                     break;
                             }
                             foreach ($sort_type as $sort) {
@@ -47,5 +47,5 @@
         <!--ガイド-->
         <button class="beginner-button" id="openModal">どの条件で絞り込めばいいかわからない方はこちら!</button>
     </div>
-    <div class="result-number">検索結果：<span>10</span>/<span>30</span>件</div>
+    <div class="result-number">検索結果：<span><?php echo count($all_agents);?></span>件</div>
     <!--検索結果下の方に表示した方がいいと思った。レスポンシブの時文字数きついかも。-->
