@@ -38,7 +38,11 @@
         メールが届かないなど、ご不明な点等ございましたら以下のメールアドレスにご連絡ください<br>
         boozer-dummy@mail.com
     </div>
-    </section>
+    <a  class="thanks-top-back-btn"  href="./index.php">
+        <div>
+        トップページに戻る
+    </div>
+</a>
     <?php require "../parts/footer.php";?>
 </body>
 </html>

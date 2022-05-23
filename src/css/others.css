@@ -301,7 +301,6 @@ p{
 }
 .check-info-back-btn{
     padding: 10px;
-    /* color: #008fb7; */
     color: #2eb2f0;
 
     background: #fff;
@@ -341,4 +340,15 @@ p{
 .thanks-agent-lists{
     font-weight: normal;
 
+}
+.thanks-top-back-btn{
+    display: block;
+    margin: 10px auto;
+    padding: 10px;
+    color: #2eb2f0;
+    background: #fff;
+    font-weight: bold;
+    border: solid 1px;
+    width: 20%;
+    text-align: center;
 }
