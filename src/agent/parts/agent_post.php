@@ -129,4 +129,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             //通報を通報テーブルに追加
         }
     }
+    if(isset($_POST['部署'])&&isset($_POST['名前'])){
+        $edit_assignee=$db->prepare("update agent_assignee_information set agent_branch=?,assignee_name=? where user_id=?;");
+        $edit_assignee->bindValue(1,$_POST['部署']);
+        $edit_assignee->bindValue(2,$_POST['名前']);
+        $edit_assignee->bindValue(3,$_SESSION['user_id']);
+        $edit_assignee->execute();
+
+    }
 }
