@@ -188,10 +188,13 @@
         padding: 0 10px 0 10px;
         border: none;
     }
-    .beginner-button {
+    .beginner-button-pc {
         border-radius: 20px;
         padding: 0 15px 0 15px;
         border: none;
+    }
+    .beginner-button-sp {
+        display: none;
     }
     .result-number {
         padding-top: 10px;
@@ -575,6 +578,11 @@
     /* header */
     .header-box {
         background-color: #52a49a;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        height: 100px;
+        z-index: 100;
     }
     .logo-box {
         text-align: center;
@@ -646,11 +654,12 @@
     /* indicator */
     .progressbar {
         position: relative;
-        margin-top: 20px;
+        margin-top: 100px;
         padding: 0;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
+        margin-bottom: 10px;
     }
     .progressbar li {
         position: relative;
@@ -665,7 +674,7 @@
         display: block;
         width: 18px;
         height: 18px;
-        margin: 7px auto 20px auto;
+        margin: 7px auto 10px auto;
         content: "";
         text-align: center;
         border-radius: 50%;
@@ -701,7 +710,7 @@
         display: flex;
     }
     .main-informations section {
-        width: 70%;
+        width: 95%;
     }
     .filter-box {
         position: fixed;
@@ -741,6 +750,12 @@
     .filter-topic {
         background-color: #b5dad5;
     }
+    .filter-btn {
+        background-color: #fff;
+        height: 40px;
+        padding: 10px;
+        border: none;
+    }
     .none {
         display: none;
     }
@@ -748,20 +763,21 @@
     .sort-informations {
         justify-content: space-between;
         padding-left: 5%;
-        height: 5%
+        height: 4%;
     }
     .sorts {
         background-color: #ebebe6;
     }
     .sort-condition {
-        /* height: 40px; */
+        height: 40px;
         background-color: #fff;
     }
     .sort-box {
         display: flex;
-        width: 50%;
         padding: 10px;
         gap: 10px;
+        display: flex;
+        justify-content: space-around;
     }
     .sort-button {
         background-color: #fff;
@@ -769,15 +785,26 @@
         padding: 0 10px 0 10px;
         border: none;
     }
-    .beginner-button {
+    .beginner-button-pc {
+        display: none;
+    }
+    .beginner-button-sp {
         border-radius: 20px;
-        padding: 0 15px 0 15px;
+        padding: 1%;
+        width: 45%;
         border: none;
     }
     .result-number {
         padding-top: 10px;
         padding-left: 5%;
         font-weight: bolder;
+        font-size: x-large;
+    }
+    .result-beginner {
+        display: flex;
+        justify-content: space-around;
+        margin: 0%;
+        align-items: flex-end;
     }
     /* 企業一覧 */
     .agent-whole-box {
@@ -788,7 +815,7 @@
         flex-wrap: wrap;
         gap: 10px;
         padding-left: 5%;
-        margin-top: 20px;
+        margin-top: 2%;
         margin-bottom: 20px;
         /* width: 100%; */
     }
@@ -799,6 +826,7 @@
         border-color: #999999;
         cursor: pointer;
         width: 100%;
+        margin-bottom: 2%;
     }
     .agent-overview-box a {
         color: black;
