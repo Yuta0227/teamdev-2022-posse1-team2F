@@ -26,53 +26,10 @@
                 ?>
             </table>
             <div style="display:flex;justify-content:center;">
-                <div>編集キャンセル</div>
+                <div id="cancel_edit" style="border:1px solid black;padding:5px;border-radius:10px;">編集キャンセル</div>
                 <input type="submit" value="編集確定">
             </div>
         </form>
-
-        <!-- 削除ポップアップ -->
-        <!-- <form action="" method="POST" id="delete_form" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background-color:white;width:400px;height:400px;opacity:100%;z-index:5;" hidden>
-            <div id="close_delete_form">×</div>
-            <table>
-                <?php
-                // foreach ($assignee as $column => $data) {
-                //     echo '<tr>';
-                //     echo '<th>' . $column . '</th><td>' . $data . '</td>';
-                //     echo '</tr>';
-                //     //編集前情報
-                // }
-                ?>
-            </table>
-            <div style="text-align:center;">本当に削除しますか?</div>
-            <div style="display:flex;justify-content:center;">
-                <input type="submit" value="はい">
-                <div style="color:white;background-color:blue;border-radius:50%;" id="cancel_delete">いいえ</div>
-            </div>
-        </form> -->
-    <!-- <form action="" method="POST" id="add_form" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background-color:white;width:400px;height:400px;opacity:100%;z-index:5;" hidden>
-        <div id="close_add_form">×</div>
-        <table>
-            <tr>
-                <th>部署</th>
-                <td><input></td>
-            </tr>
-            <tr>
-                <th>名前</th>
-                <td><input></td>
-            </tr>
-            <tr>
-                <th>メールアドレス</th>
-                <td><input></td>
-            </tr>
-            <tr>
-                <th>パスワード</th>
-                <td><input></td>
-            </tr>
-        </table>
-        <input style="background-color:blue;color:white;border-radius:50%;" type="submit" value="追加する">
-    </form> -->
-    <!-- 追加ポップアップ -->
 </section>
 <script>
         function show_form(form_type_assignee_id) {
@@ -94,21 +51,7 @@
             hide_form('edit_form');
             //×押すと編集フォームが消える
         });
-        document.getElementById('close_delete_form').addEventListener('click', function() {
-            hide_form('delete_form');
-            //×押すと削除フォームが消える
+        document.getElementById('cancel_edit').addEventListener('click',function(){
+            location.reload();
         });
-        document.getElementById('cancel_delete').addEventListener('click', function() {
-            hide_form('delete_form');
-            //×押すと削除フォームが消える
-        });
-        document.getElementById('delete').addEventListener('click', function() {
-            show_form('delete_form');
-        });
-        document.getElementById('close_add_form').addEventListener('click',function(){
-            hide_form('add_form');
-        })
-        document.getElementById('add').addEventListener('click',function(){
-            show_form('add_form');
-        })
 </script>

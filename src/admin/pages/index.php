@@ -2,6 +2,9 @@
 session_start();
 require "../../dbconnect.php";
 require "../parts/admin_post.php";
+if(!isset($_SESSION['admin_id'])||!isset($_SESSION['login_admin_email'])||!isset($_SESSION['admin_agent_list'])){
+    header("Location: /toppage/pages/login.php");
+}
 // require('../dbconnect.php');
 // if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
 //     $_SESSION['time'] = time();
