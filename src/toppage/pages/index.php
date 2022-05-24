@@ -28,6 +28,9 @@ if (isset($_POST['remove_from_apply']) && isset($_POST['agent_id'])) {
     header("Location:index.php?agent_list_pagination=".$_GET['agent_list_pagination']);
     //削除押したら問い合わせリストから削除される
 }
+if(isset($_POST['jump_to_comparison'])){
+    header("Location:comparison.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="ja">
