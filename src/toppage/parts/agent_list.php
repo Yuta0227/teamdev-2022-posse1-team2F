@@ -26,7 +26,11 @@
             echo '<img class="agent-list-image" src="../../../img/dummy.png" alt="エージェントの画像">';
             echo '</div>';
             echo '<div class="agent-article">';
-            echo '<div class="agent-short-explanation">各エージェントの概要説明を記入する。文章の長さにもよるけど3~4行目安</div>';
+            echo '<div class="agent-short-explanation"><table>';
+            //てーぶる
+            echo '<tr><th>面談方式</th><th>主な取り扱い企業規模</th><th>取り扱い企業カテゴリー</th><th>内定率</th><th>内定最短期間</th><th>○○向き</th></tr>';
+            echo '<tr><td>'.$all_agents[$i]['agent_meeting_type'].'</td><td>'.$all_agents[$i]['agent_main_corporate_size'].'</td><td>'.$all_agents[$i]['agent_corporate_type'].'</td><td>'.$all_agents[$i]['agent_job_offer_rate'].'</td><td>'.$all_agents[$i]['agent_shortest_period'].'</td><td>'.$all_agents[$i]['agent_recommend_student_type'].'</td></tr>';
+            echo '</table></div>';
             echo '<div style="text-align: center;">';
             echo '<input name="agent_id" value="' . $all_agents[$i]['agent_id'] . '" hidden>';
             if (isset($_SESSION['apply_list'])) {
@@ -67,7 +71,11 @@
             echo '<img class="agent-list-image" src="../../../img/dummy.png" alt="エージェントの画像">';
             echo '</div>';
             echo '<div class="agent-article">';
-            echo '<div class="agent-short-explanation">各エージェントの概要説明を記入する。文章の長さにもよるけど3~4行目安</div>';
+            echo '<div class="agent-short-explanation"><table>';
+            //テーブル
+            echo '<tr><th>面談方式</th><th>主な取り扱い企業規模</th><th>取り扱い企業カテゴリー</th><th>内定率</th><th>内定最短期間</th><th>○○向き</th></tr>';
+            echo '<tr><td>'.$all_agents[$i]['agent_meeting_type'].'</td><td>'.$all_agents[$i]['agent_main_corporate_size'].'</td><td>'.$all_agents[$i]['agent_corporate_type'].'</td><td>'.$all_agents[$i]['agent_job_offer_rate'].'</td><td>'.$all_agents[$i]['agent_shortest_period'].'</td><td>'.$all_agents[$i]['agent_recommend_student_type'].'</td></tr>';
+            echo '</table></div>';
             echo '<div style="text-align: center;">';
             echo '<input name="agent_id" value="' . $all_agents[$i]['agent_id'] . '" hidden>';
             if (isset($_SESSION['apply_list'])) {
