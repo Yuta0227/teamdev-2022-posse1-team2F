@@ -69,9 +69,9 @@
             <?php  for ($i = 0; $i < 4; $i++){;?>
                 <!-- <div class="top-compare-each-box-all"> -->
                     <div class="top-compare-each-box">
-                        <div style="text-align: right;">
+                        <!-- <div style="text-align: right;"> -->
                         <span class="compare-each-close-btn"><i class="fa-solid fa-xmark compare-each-close-btn-icon"></i></span>
-                        </div>
+                        <!-- </div> -->
                         <div style="display: flex;">
                         <img class="top-compare-each-img" src="../../img/dummy.png" alt="">
                         <p class="top-compare-each-name">企業名</p>
