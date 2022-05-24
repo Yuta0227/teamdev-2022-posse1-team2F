@@ -23,6 +23,9 @@
             echo '<div style="text-align: center;">';
             echo '<div class="like-button">お気に入りに追加<i class="fa-regular fa-heart like-icon"></i></div>';
             echo '</div>';
+            echo '<label for="compare'.$all_agents[$i]['agent_id'].'">';
+            echo '<input id="compare'.$all_agents[$i]['agent_id'].'" type="checkbox" name="" value="" method="POST">比較する';
+            echo '</label>';
             echo '</div>';
             echo '</div>';
             echo '</a>';
@@ -45,6 +48,8 @@
             echo '<div style="text-align: center;">';
             echo '<div class="like-button">お気に入りに追加<i class="fa-regular fa-heart like-icon"></i></div>';
             echo '</div>';
+            echo '<input id="compare'.$all_agents[$i]['agent_id'].'" type="checkbox" name="" value="" method="POST">';
+            echo '<label for="compare'.$all_agents[$i]['agent_id'].'">比較する</label>';
             echo '</div>';
             echo '</div>';
             echo '</a>';
@@ -52,4 +57,35 @@
         }; 
     }
     ?>
+    <div class="top-compare-over-lay">
+        <span class="compare-over-lay-close-btn"><i class="fa-solid fa-xmark compare-close-btn-icon"></i></span>
+        <p class="top-compare-head">
+            比較企業全？件
+        </p>
+        <div>
+
+        </div>
+        <div class="top-compare-in-box">
+            <?php  for ($i = 0; $i < 4; $i++){;?>
+                <!-- <div class="top-compare-each-box-all"> -->
+                    <div class="top-compare-each-box">
+                        <!-- <div style="text-align: right;"> -->
+                        <span class="compare-each-close-btn"><i class="fa-solid fa-xmark compare-each-close-btn-icon"></i></span>
+                        <!-- </div> -->
+                        <div style="display: flex;">
+                        <img class="top-compare-each-img" src="../../img/dummy.png" alt="">
+                        <p class="top-compare-each-name">企業名</p>
+                        </div>
+            </div>
+            <!-- </div> -->
+        <?php };?>
+        </div>
+        <form action="" class="top-compare-btn-box">
+        <input class="top-compare-compare-btn" type="submit" value="以上の企業を比較する">
+        </form>
+    </div>
 </div>
+
+<script>
+
+</script>
