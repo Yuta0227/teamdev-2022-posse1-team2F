@@ -256,13 +256,13 @@
 	.top-compare-over-lay{
 		border: solid 1px;	
 		width: 80%;
-		height: 30%;
 		margin: auto;
 		bottom: 0;
 		position: fixed;
+		background: #fff;
 	}
 	.top-compare-head{
-		font-size: 25px;
+		font-size: 22px;
 		font-weight: bold;
 		margin: 20px;
 	}
@@ -270,7 +270,7 @@
 	margin: 5px;
 	width: 30px;
 	position: absolute;
-    right: 10%;
+    right: 0%;
     cursor: pointer;
 	font-size: 20px;
 	text-align: center;
@@ -285,7 +285,7 @@
 		flex-wrap: wrap;
 	}
 	.top-compare-each-box{
-		width: calc((100% - 60px) / 3);
+		width: calc((100% - 100px) / 5);
 		display: block;
 		padding: 0 0px 10px 10px;
 		margin: 10px;
