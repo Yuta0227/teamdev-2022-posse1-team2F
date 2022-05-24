@@ -38,6 +38,7 @@ class translate
             'agent_corporate_type' => '取り扱い企業カテゴリー',
             'agent_job_offer_rate' => '内定率(%)',
             'agent_shortest_period' => '内定最短期間(週)',
+            'agent_prefecture'=>'拠点地',
             'apply_id' => '問い合わせID',
             'agent_id' => 'エージェントID',
             'agent_branch' => '支店名',
@@ -57,6 +58,7 @@ class translate
             'apply_report_status' => '通報ステータス',
             'agent_recommend_student_type'=>'○○向き',
             'sales_copy'=>'キャッチコピー',
+            'total'=>'取り扱い企業数合計',
             'manufacturer'=>'メーカー',
             'retail'=>'小売り',
             'service'=>'サービス',
@@ -108,3 +110,19 @@ class translate
     }
 }
 $translate = new translate;
+class check{
+    public function exists_in_array($array,$event){
+        $count=0;
+        foreach($array as $data){
+            if($data==$event){
+                $count++;
+            }
+        }
+        if($count==0){
+            return false;
+        }else{
+            return true;
+        }
+    }
+}
+$check=new check;

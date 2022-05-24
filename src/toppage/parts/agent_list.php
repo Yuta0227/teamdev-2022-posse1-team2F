@@ -1,18 +1,25 @@
 <div class="agent-whole-box" style="position:relative;">
     <!--エージェント一覧コンテナ-->
-    <?php 
+    <?php
     require "guide_popup.php";
-    $page_number=$_GET['agent_list_pagination'];//URLからとってくる
-
-    $agents_per_page=6;//ページ毎に表示するエージェントの個数 
-
-    if($page_number-1!=floor(count($all_agents)/$agents_per_page)){//ページ番号が最後以外
+    $page_number = $_GET['agent_list_pagination']; //URLからとってくる
+    $agents_per_page = 6; //ページ毎に表示するエージェントの個数
+    if(!isset($_SESSION['apply_list'])){
+        //配列のセッション登録されてなかったら初期化
+        $_SESSION['apply_list']=[];
+    }
+    if(!isset($_SESSION['comparison_list'])){
+        //配列のセッション登録されてなかったら初期化
+        $_SESSION['comparison_list']=[];
+    }
+    
+    if ($page_number - 1 != floor(count($all_agents) / $agents_per_page)) {
+        //ページ番号が最後以外
         for ($i = 0; $i < $agents_per_page; $i++) {
-            echo '<div class="agent-overview-box">';
-            echo '<a href="./agent_detail.php?agent_id='.$all_agents[$i]['agent_id'].'" target="_blank" class="agent-overview-link">';
+            echo '<form class="agent-overview-box" method="POST" action="">';
+            echo '<a href="./agent_detail.php?agent_id=' . $all_agents[$i]['agent_id'] . '" target="_blank" class="agent-overview-link">';
             echo '<div>';
-            echo '<div class="agent-name">'.$all_agents[$i]['agent_name'].'</div>';
-            echo '<div>#理系企業#外資系企業</div>';
+            echo '<div class="agent-name">' . $all_agents[$i]['agent_name'] . '</div>';
             echo '</div>';
             echo '<div style="display: flex;">';
             echo '<div class="image-box">';
@@ -21,20 +28,39 @@
             echo '<div class="agent-article">';
             echo '<div class="agent-short-explanation">各エージェントの概要説明を記入する。文章の長さにもよるけど3~4行目安</div>';
             echo '<div style="text-align: center;">';
-            echo '<div class="like-button">お気に入りに追加<i class="fa-regular fa-heart like-icon"></i></div>';
+            echo '<input name="agent_id" value="' . $all_agents[$i]['agent_id'] . '" hidden>';
+            if (isset($_SESSION['apply_list'])) {
+                if ($check->exists_in_array($_SESSION['apply_list'], $all_agents[$i]['agent_id']) == true) {
+                    echo '<input type="submit" name="remove_from_apply" class="like-button" value="問い合わせリストから削除">';
+                } else {
+                    echo '<input type="submit" name="add_to_apply" class="like-button" value="問い合わせリストに追加">';
+                }
+            } else {
+                echo '<input type="submit" name="add_to_apply" class="like-button" value="問い合わせリストに追加">';
+            }
+            if (isset($_SESSION['comparison_list'])) {
+                if ($check->exists_in_array($_SESSION['comparison_list'], $all_agents[$i]['agent_id']) == true) {
+                    echo '<input type="submit" name="remove_from_comparison" class="like-button" value="比較リストから削除">';
+                }else{
+                    echo '<input type="submit" name="add_to_comparison" class="like-button" value="比較リストに追加">';
+                }
+            } else {
+                echo '<input type="submit" name="add_to_comparison" class="like-button" value="比較リストに追加">';
+            };
             echo '</div>';
             echo '</div>';
             echo '</div>';
             echo '</a>';
-            echo '</div>';
-        }; 
-    }elseif($page_number-1==floor(count($all_agents)/$agents_per_page)){//ページ番号が最後の場合。数字にずれたぶんある。0か1。
-        for ($i = 0; $i < count($all_agents)%$agents_per_page; $i++) {//余りの個数出力
-            echo '<div class="agent-overview-box">';
-            echo '<a href="./agent_detail.php?agent_id='.$all_agents[$i]['agent_id'].'" target="_blank" class="agent-overview-link">';
+            echo '</form>';
+        };
+    } elseif ($page_number - 1 == floor(count($all_agents) / $agents_per_page)) {
+        //ページ番号が最後の場合。
+        for ($i = 0; $i < count($all_agents) % $agents_per_page; $i++) {
+            //余りの個数出力
+            echo '<form class="agent-overview-box" method="POST" action="">';
+            echo '<a href="./agent_detail.php?agent_id=' . $all_agents[$i]['agent_id'] . '" target="_blank" class="agent-overview-link">';
             echo '<div>';
-            echo '<div class="agent-name">企業'.$all_agents[$i]['agent_name'].'</div>';
-            echo '<div>#理系企業#外資系企業</div>';
+            echo '<div class="agent-name">企業' . $all_agents[$i]['agent_name'] . '</div>';
             echo '</div>';
             echo '<div style="display: flex;">';
             echo '<div class="image-box">';
@@ -43,13 +69,31 @@
             echo '<div class="agent-article">';
             echo '<div class="agent-short-explanation">各エージェントの概要説明を記入する。文章の長さにもよるけど3~4行目安</div>';
             echo '<div style="text-align: center;">';
-            echo '<div class="like-button">お気に入りに追加<i class="fa-regular fa-heart like-icon"></i></div>';
+            echo '<input name="agent_id" value="' . $all_agents[$i]['agent_id'] . '" hidden>';
+            if (isset($_SESSION['apply_list'])) {
+                if ($check->exists_in_array($_SESSION['apply_list'], $all_agents[$i]['agent_id']) == true) {
+                    echo '<input type="submit" name="remove_from_apply" class="like-button" value="問い合わせリストから削除">';
+                } else {
+                    echo '<input type="submit" name="add_to_apply" class="like-button" value="問い合わせリストに追加">';
+                }
+            } else {
+                echo '<input type="submit" name="add_to_apply" class="like-button" value="問い合わせリストに追加">';
+            }
+            if (isset($_SESSION['comparison_list'])) {
+                if ($check->exists_in_array($_SESSION['comparison_list'], $all_agents[$i]['agent_id']) == true) {
+                    echo '<input type="submit" name="remove_from_comparison" class="like-button" value="比較リストから削除">';
+                }else{
+                    echo '<input type="submit" name="add_to_comparison" class="like-button" value="比較リストに追加">';
+                }
+            } else {
+                echo '<input type="submit" name="add_to_comparison" class="like-button" value="比較リストに追加">';
+            };
             echo '</div>';
             echo '</div>';
             echo '</div>';
             echo '</a>';
-            echo '</div>';  
-        }; 
+            echo '</form>';
+        };
     }
     ?>
 </div>
