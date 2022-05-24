@@ -503,6 +503,11 @@
     /* header */
     .header-box {
         background-color: #52a49a;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        height: 100px;
+        z-index: 100;
     }
     .logo-box {
         text-align: center;
@@ -574,11 +579,12 @@
     /* indicator */
     .progressbar {
         position: relative;
-        margin-top: 20px;
+        margin-top: 100px;
         padding: 0;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
+        margin-bottom: 10px;
     }
     .progressbar li {
         position: relative;
@@ -593,7 +599,7 @@
         display: block;
         width: 18px;
         height: 18px;
-        margin: 7px auto 20px auto;
+        margin: 7px auto 10px auto;
         content: "";
         text-align: center;
         border-radius: 50%;
