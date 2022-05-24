@@ -82,30 +82,7 @@
             </table>
         </div>
     </div>
-    <div style="background-color:blue;width:600px;padding:20px;">
-        <div style="display:flex;justify-content:center;">担当者情報</div>
-        <div style="display:flex;justify-content:center;">
-            <table>
-                <?php
-                foreach ($assignee_array as $column => $data) {
-                    echo '<tr>';
-                    echo '<th style="border:1px solid black;">担当者支店</th>';
-                    echo '<td style="border:1px solid black;">' . $data['agent_branch'] . '</td>';
-                    echo '</tr>';
-                    echo '<tr>';
-                    echo '<th style="border:1px solid black;">担当者氏名</th>';
-                    echo '<td style="border:1px solid black;">' . $data['assignee_name'] . '</td>';
-                    echo '</tr>';
-                    echo '<tr>';
-                    echo '<th style="border:1px solid black;">担当者メールアドレス</th>';
-                    echo '<td style="border:1px solid black;">' . $data['assignee_email_address'] . '</td>';
-                    echo '</tr>';
-                }
 
-                ?>
-            </table>
-        </div>
-    </div>
 
     <form style="background-color:blue;width:600px;padding:20px;">
         <div style="display:flex;justify-content:center;">掲載情報</div>
