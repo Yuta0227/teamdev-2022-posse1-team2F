@@ -251,6 +251,65 @@
         padding-left: 5px;
         color: red;
     }
+	
+	/* 企業比較 */
+	.top-compare-over-lay{
+		border: solid 1px;	
+		width: 80%;
+		margin: auto;
+	}
+	.top-compare-head{
+		font-size: 25px;
+		font-weight: bold;
+		margin: 20px;
+	}
+	.compare-over-lay-close-btn{
+	margin: 5px;
+	width: 30px;
+	position: absolute;
+    right: 10%;
+    cursor: pointer;
+	font-size: 20px;
+	text-align: center;
+	border-radius: 15px;
+	background: #ddd;
+	}
+	.compare-close-btn-icon{
+		color: #fff;
+	}
+	.top-compare-in-box{
+		display: flex;
+		flex-wrap: wrap;
+	}
+	.top-compare-each-box{
+		width: calc((100% - 60px) / 3);
+		display: block;
+		padding: 0 0px 10px 10px;
+		margin: 10px;
+		border: solid 1px;
+		border-color: #ddd;
+	}
+	.compare-each-close-btn{
+		width: 40px;
+		background: #ddd;
+	}
+	.top-compare-each-img{
+		width: 50%;
+	}
+	.top-compare-each-name{
+		display: inline-block;
+	}
+	.top-compare-btn-box{
+		text-align: center;
+	}
+	.top-compare-compare-btn{
+		padding: 10px 20px;
+		margin: 10px;
+		background: #ffab40;
+		color: #fff;
+		border: none;
+		border-radius: 20px;
+	}
     /* ページネーション */
     .top-pagenation {
         justify-content: flex-end;
