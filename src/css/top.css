@@ -3,6 +3,9 @@
         margin: 0;
         padding: 0;
     }
+	p{
+		margin: 0;
+	}
     /* header */
     .header-box {
         background-color: #52a49a;
@@ -197,6 +200,7 @@
     }
     /* 企業一覧 */
     .agent-whole-box {
+		background: #e;
         position: relative;
         top: 0;
         left: 0;
@@ -256,6 +260,7 @@
 	.top-compare-over-lay{
 		border: solid 1px;	
 		width: 80%;
+		/* height: 20%; */
 		margin: auto;
 		bottom: 0;
 		position: fixed;
@@ -264,7 +269,7 @@
 	.top-compare-head{
 		font-size: 22px;
 		font-weight: bold;
-		margin: 20px;
+		margin: 0px;
 	}
 	.compare-over-lay-close-btn{
 	margin: 5px;
