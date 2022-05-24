@@ -3,7 +3,7 @@
         <!--緑の箱。paddingつける-->
         <!--hrefの中にagent_list_paginationのパラメータ取得していれる-->
         <?php 
-        if(count($all_agents)==$agents_per_page){
+        if(count($all_agents)<=$agents_per_page){
         }//エージェントの数が一ページに表示するエージェントの数と同じだったらページネーション表示しない
         elseif(isset($_GET["agent_list_pagination"])){
             if($_GET["agent_list_pagination"]!=1&&$_GET["agent_list_pagination"]!=NULL){
@@ -15,7 +15,7 @@
         ?>
         <div>
         <?php
-        if(count($all_agents)==$agents_per_page){
+        if(count($all_agents)<=$agents_per_page){
         }//エージェントの数が一ページに表示するエージェントの数と同じだったらページネーション表示しない
         elseif(isset($_GET["agent_list_pagination"])){
             if($_GET["agent_list_pagination"]!=NULL){
@@ -29,7 +29,7 @@
         ?> 
     </div>
     <?php 
-    if(count($all_agents)==$agents_per_page){
+    if(count($all_agents)<=$agents_per_page){
     }//エージェントの数が一ページに表示するエージェントの数と同じだったらページネーション表示しない
     elseif(isset($_GET["agent_list_pagination"])){
         if($_GET["agent_list_pagination"]!=ceil(count($all_agents)/$agents_per_page)){

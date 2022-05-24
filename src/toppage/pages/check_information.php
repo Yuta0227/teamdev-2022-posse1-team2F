@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -8,13 +11,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="../../css/top.css">
-    <title>内容確認画面</title>
+    <link rel="stylesheet" href="../../css/others.css">
+    <title>入力内容確認画面</title>
 </head>
 <body>
+<?php
+    require "../parts/header.php";
+    require "../parts/indicator.php";
+    ?>
     <!-- セッションに入力内容保存してそこから引っ張ってくる -->
-    <form action="" method="POST" style="padding:10px;display:flex;flex-direction:column;">
-        <div style="text-align:center;">内容確認ページ</div>
-        <table>
+    <form action="" method="POST" class="check-information-unit">
+        <div class="check-information-head">入力情報確認</div>
+        <div class="check-info-alert">＊送信は完了しておりません</div>
+        <table class="check-info-table">
             <?php 
             $information_array=[
                 'お名前'=>'テキスト',
@@ -38,22 +47,23 @@
             }
             foreach($information_array as $column=>$data){
                 echo '<tr>';
-                echo '<th>'.$column.'</th>';
-                echo '<td>'.$data.'</td>';
+                echo '<th class="check-info-table-text">'.$column.'</th>';
+                echo '<td class="check-info-table-content">'.$data.'</td>';
                 echo '</tr>';
             };
             foreach($inquiry_array as $column=>$data){
                 echo '<tr>';
-                echo '<th>自由記入欄'.($column+1).'</th>';
-                echo '<td>'.$data[0].'に対して「'.$data[1].'」</td>';
+                echo '<th class="check-info-table-text">自由記入欄'.($column+1).'</th>';
+                echo '<td class="check-info-table-content">'.$data[0].'に対して「'.$data[1].'」</td>';
                 echo '</tr>';
             };
             ?>
         </table>
-        <div style="display:flex;">
-            <input type="button" value="フォーム記入に戻る">
-            <input type="submit" value="この内容で送る">
+        <div style="display:flex;" class="check-info-check-btns">
+            <input class="check-info-back-btn" type="button" value="フォーム記入に戻る" onclick="location.href='./information_form.php'">
+            <input class="check-info-ok-btn" type="submit" formaction="./thanks.php" value="この内容で送る">
         </div>
     </form>
+    <?php require "../parts/footer.php"; ?>
 </body>
 </html>

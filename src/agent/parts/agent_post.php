@@ -7,8 +7,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         header("Location:/agent/pages/index.php?year=" . $_GET['year'] . "&month=" . $_GET['month'] . "&date=" . $_GET['date']);
     }
     if (isset($_POST['logout'])) {
+        unset($_SESSION['user_id']);
+        unset($_SESSION['agent_contract_information']);
+        unset($_SESSION['agent_public_information']);
+        unset($_SESSION['agent_address_information']);
+        unset($_SESSION['agent_email']);
+        unset($_SESSION['agent_id']);
+        unset($_SESSION['agent_name']);
         header("Location:/toppage/pages/login.php");
-        session_destroy();
     }
     $count_new_stmt = $db->prepare("select count(apply_id) from apply_list where apply_new_status=1 and agent_id=?;");
     $count_new_stmt->bindValue(1, $_SESSION['agent_id']);

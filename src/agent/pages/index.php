@@ -3,7 +3,9 @@ session_start();
 require "../../function.php";
 require "../../dbconnect.php";
 require "../parts/agent_post.php";
-
+if(!isset($_SESSION['user_id'])||!isset($_SESSION['agent_contract_information'])||!isset($_SESSION['agent_public_information'])||!isset($_SESSION['agent_address_information'])||!isset($_SESSION['agent_email'])||!isset($_SESSION['agent_id'])||!isset($_SESSION['agent_name'])){
+    header("Location: /toppage/pages/login.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="ja">

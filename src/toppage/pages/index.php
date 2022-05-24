@@ -1,10 +1,10 @@
 <?php
 session_start();
 require("../../dbconnect.php");
-
-// $stmt = $db->query('SELECT id, title FROM events');
-// $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+require "../parts/toppage_post.php";
+if(!isset($_SESSION['selected_agents'])){
+    $_SESSION['selected_agents']=[];
+}
 ?>
 <!DOCTYPE html>
 <html lang="ja">

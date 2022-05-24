@@ -40,12 +40,14 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
             $update_login_bool_stmt->bindValue(1,$assignee['user_id']);
             $update_login_bool_stmt->execute();
             //エージェント担当者ログイン時ログインステータスtrueにする=>最終ログインの日時がわかる
-            $agent_id_stmt=$db->prepare("select user_id,agent_id,agent_name from agent_assignee_information where user_id=?;");
+            $agent_id_stmt=$db->prepare("select user_id,agent_id,agent_name,agent_branch,assignee_name from agent_assignee_information where user_id=?;");
             $agent_id_stmt->bindValue(1,$assignee['user_id']);
             $agent_id_stmt->execute();
             $agent_id_data=$agent_id_stmt->fetchAll();
             $_SESSION['agent_id']=$agent_id_data[0]['agent_id'];
             $_SESSION['agent_name']=$agent_id_data[0]['agent_name'];
+            $_SESSION['agent_branch']=$agent_id_data[0]['agent_branch'];
+            $_SESSION['assignee_name']=$agent_id_data[0]['assignee_name'];
             //担当者の所属するエージェントID取得
             $agent_contract_information_stmt=$db->prepare("select * from agent_contract_information where agent_id=?;");
             $agent_contract_information_stmt->bindValue(1,$_SESSION['agent_id']);
