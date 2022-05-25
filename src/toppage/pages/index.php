@@ -1,9 +1,38 @@
 <?php
 session_start();
-require("../../dbconnect.php");
+require "../../dbconnect.php";
 require "../parts/toppage_post.php";
-if(!isset($_SESSION['selected_agents'])){
-    $_SESSION['selected_agents']=[];
+require "../../function.php";
+if(!isset($_GET['agent_list_pagination'])){
+    header("Location:index.php?agent_list_pagination=1");
+}
+if(!isset($_SESSION['apply_list'])){
+    $_SESSION['apply_list']=[];
+}
+if (isset($_POST['add_to_comparison']) && isset($_POST['agent_id'])) {
+    array_push($_SESSION['comparison_list'], $_POST['agent_id']);
+    //追加押したら比較リストに追加される
+    header("Location:index.php?agent_list_pagination=".$_GET['agent_list_pagination']);
+}
+if (isset($_POST['remove_from_comparison']) && isset($_POST['agent_id'])) {
+    $_SESSION['comparison_list'] = array_diff($_SESSION['comparison_list'], array($_POST['agent_id']));
+    array_values($_SESSION['comparison_list']);
+    header("Location:index.php?agent_list_pagination=".$_GET['agent_list_pagination']);
+    //削除押したら比較リストから削除される
+}
+if (isset($_POST['add_to_apply']) && isset($_POST['agent_id'])) {
+    array_push($_SESSION['apply_list'], $_POST['agent_id']);
+    header("Location:index.php?agent_list_pagination=".$_GET['agent_list_pagination']);
+    //追加押したら問い合わせリストに追加される
+}
+if (isset($_POST['remove_from_apply']) && isset($_POST['agent_id'])) {
+    $_SESSION['apply_list'] = array_diff($_SESSION['apply_list'], array($_POST['agent_id']));
+    array_values($_SESSION['apply_list']);
+    header("Location:index.php?agent_list_pagination=".$_GET['agent_list_pagination']);
+    //削除押したら問い合わせリストから削除される
+}
+if(isset($_POST['jump_to_comparison'])){
+    header("Location:comparison.php");
 }
 ?>
 <!DOCTYPE html>
