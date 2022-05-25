@@ -1,14 +1,15 @@
-<div>
+<section class="agent-apply-unit">
+<div class="agent-apply-head">
     <?php
     $year = $_GET['year'];
     $month = $adjust->single($_GET['month']);
     $date = $adjust->single($_GET['date']);
     echo $year . '年' . $month . '月' . $date . '日の申込一覧';
     ?></div>
-<table>
+<table class="agent-apply-box-texts">
     <tr>
-        <th>申込日時</th>
-        <th>メールアドレス</th>
+        <th class="agent-apply-box-text">申込日時</th>
+        <th class="agent-apply-box-text">メールアドレス</th>
     </tr>
 </table>
 <?php
@@ -27,18 +28,18 @@ for ($index = 0; $index < count($applies_array); $index++) {
     echo '<form method="POST" action="" id="test' . $index . '" class="agent-new-apply-info-box">';
     echo '<div>' . $month . '/' . $date . ' ' . $hour . ':' . $minute . '</div>';
     echo '<div>' . $applies_array[$index]['applicant_email_address'] . '</div>';
-    echo '<input type="button" id="open_apply' . $index . '" value="詳細▽">';
+    echo '<input class="agent-apply-open-close-detail" type="button" id="open_apply' . $index . '" value="詳細▽">';
     echo '<input hidden name="close_apply_id' . $index . '" value="' . $applies_array[$index]['apply_id'] . '">';
-    echo '<input id="close_apply' . $index . '" hidden value="閉じる△" type="submit">';
+    echo '<input class="agent-apply-open-close-detail" id="close_apply' . $index . '" hidden value="閉じる△" type="submit">';
     echo '</form>';
     echo '<div id="apply_detail' . $index . '" hidden class="agent-apply-detail-box">';
-    echo '<div>' . $applies_array[$index]['applicant_name_kanji'] . '(' . $applies_array[$index]['applicant_name_furigana'] . ')</div>';
-    echo '<div>' . $applies_array[$index]['applicant_phone_number'] . '</div>';
-    echo '<div>' . $applies_array[$index]['applicant_university'] . $applies_array[$index]['applicant_gakubu'] . $applies_array[$index]['applicant_gakka'] . $applies_array[$index]['applicant_graduation_year'] . '年卒</div>';
-    echo '<div>' . $applies_array[$index]['applicant_postal_code'] . '</div>';
-    echo '<div>' . $applies_array[$index]['applicant_address'] . '</div>';
-    echo '<div>' . $applies_array[$index]['applicant_other_agents'] . '</div>';
-    echo '<div>相談：' . $applies_array[$index]['applicant_consultation'] . '</div>';
+    echo '<div class="agent-apply-student-detail">' . $applies_array[$index]['applicant_name_kanji'] . '(' . $applies_array[$index]['applicant_name_furigana'] . ')</div>';
+    echo '<div class="agent-apply-student-detail">' . $applies_array[$index]['applicant_phone_number'] . '</div>';
+    echo '<div class="agent-apply-student-detail">' . $applies_array[$index]['applicant_university'] . $applies_array[$index]['applicant_gakubu'] . $applies_array[$index]['applicant_gakka'] . $applies_array[$index]['applicant_graduation_year'] . '年卒</div>';
+    echo '<div class="agent-apply-student-detail">' . $applies_array[$index]['applicant_postal_code'] . '</div>';
+    echo '<div class="agent-apply-student-detail">' . $applies_array[$index]['applicant_address'] . '</div>';
+    echo '<div class="agent-apply-student-detail">' . $applies_array[$index]['applicant_other_agents'] . '</div>';
+    echo '<div class="agent-apply-student-detail">相談：' . $applies_array[$index]['applicant_consultation'] . '</div>';
     echo '<form name="report_form' . $index . '"  action="" method="POST">';
     echo '<div style="justify-content:center;display:flex;">';
     if ($applies_array[$index]['apply_report_status'] == 0) {
@@ -49,7 +50,7 @@ for ($index = 0; $index < count($applies_array); $index++) {
         //期限から現在日時をひく
         if ($diff->format('%a') >= 0) {
             echo '<input hidden name="report_apply_id' . $index . '" value="' . $applies_array[$index]['apply_id'] . '">';
-            echo '<div id="report' . $index . '" hidden style="text-align:center;width:50%;padding:10px;border-radius:50%;background-color:red;">通報する(' . $_GET['year'] . '年' . $_GET['month'] . '月1日23:59まで)</div>';
+            echo '<div id="report' . $index . '" hidden class="agent-apply-student-report-btn">通報する(' . $_GET['year'] . '年' . $_GET['month'] . '月1日23:59まで)</div>';
         } else {
             echo '<div class="agent-report-done" >通報期限過ぎてます</div>';
         }
@@ -62,20 +63,22 @@ for ($index = 0; $index < count($applies_array); $index++) {
         //delete_requestテーブルを参照しadminが確認してるか判定
         if($check_delete_request_data[0]['check_status']==0){
             //未確認だったら
-            echo '<div id="reported' . $index . '" hidden style="text-align:center;width:50%;padding:10px;border-radius:50%;background-color:blue;">通報済み</div>';
+            echo '<div class="agent-apply-report-done" id="reported' . $index . '" hidden>通報済み</div>';
         }else{
             //確認済みだったら
             echo '<div class="agent-report-done" >通報却下されました</div>';
         }
     }
     echo '</div>';
-    echo '<div id="report_reason' . $index . '" style="border:1px solid black;" hidden><div style="display:flex;justify-content:center;align-items:center;"><span>通報理由：</span><textarea type="text" name="report_reason' . $index . '" required placeholder="理由を記入してください"></textarea></div>';
-    echo '<div style="display:flex;justify-content:center;"><div id="cancel_report' . $index . '">キャンセル</div><input type="submit" value="送信する"></div></div>';
+    echo '<div id="report_reason' . $index . '" hidden><div class="agent-apply-student-report-reason"><span>通報理由：</span><textarea class="agent-apply-student-report-reason-text" type="text" name="report_reason' . $index . '" required placeholder="理由を記入してください"></textarea></div>';
+    echo '<div style="display:flex;justify-content:center;"><div class="agent-apply-student-report-cancel" id="cancel_report' . $index . '">キャンセル</div><input class="agent-apply-student-report-submit" type="submit" value="送信する"></div></div>';
     echo '</form>';
     echo '</div>';
 };
-echo '<div>' . $month . '月' . $date . '日の合計：' . count($applies_array) . '人</div>';
+echo '<div class="agent-apply-all-amout">' . $month . '月' . $date . '日の合計：' . count($applies_array) . '人</div>';
 ?>
+</section>
+
 <script>
     <?php for ($index = 0; $index < count($applies_array); $index++) { ?>
         document.getElementById('open_apply<?php echo $index; ?>').addEventListener('click', function() {
