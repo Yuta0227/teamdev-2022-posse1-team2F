@@ -1,4 +1,6 @@
-<div>
+<section class="agent-calender-all">
+<div class="agent-calender-in-box">
+<div class="agent-calender-head">
     <?php
     echo $_GET['year'].'年';
     if (!isset($_GET['month'])) {
@@ -9,7 +11,7 @@
     ?>
     月の申込一覧
 </div>
-<table>
+<table class="agent-calender-calender">
     <?php
     $number_of_applies_array = []; //月の申込件数
     $calender_dates = []; //カレンダーで表示する日
@@ -75,9 +77,9 @@
     for ($week = 1; $week <= $weeks_per_month; $week++) {
         echo '<tr>';
         for ($i = 1; $i <= 7; $i++) {
-            echo '<td id="each_day' . $i - 7 + 7 * $week . '" style="position:relative;width:100px;height:100px;border:solid 1px black;">';
-            echo '<div id="date' . $i - 7 + 7 * $week . '" style="position:absolute;top:0;left:0;width:40%;height:40%;;text-align:center;">' . $calender_dates[$i - 7 + $week * 7 - 1] . '</div>';
-            echo '<div id="number' . $i - 7 + 7 * $week . '" style="position:absolute;bottom:0;right:0;width:60%;height:60%;text-align:center;">' . $number_of_applies_array[$calender_dates[$i - 7 + $week * 7 - 1]] . '件</div>';
+            echo '<td id="each_day' . $i - 7 + 7 * $week . '" class="agent-calender-each-day">';
+            echo '<div id="date' . $i - 7 + 7 * $week . '" class="agent-calender-date">' . $calender_dates[$i - 7 + $week * 7 - 1] . '</div>';
+            echo '<div id="number' . $i - 7 + 7 * $week . '" class="agent-calender-number">' . $number_of_applies_array[$calender_dates[$i - 7 + $week * 7 - 1]] . '件</div>';
             echo '</td>';
         };
         echo '</tr>';
@@ -85,8 +87,8 @@
     ?>
 </table>
 <div style="display:flex;width:100%;justify-content:center;">
-    <div>
-        <a href="
+    <div style="padding: 5px;">
+        <a class="agent-calender-month-move" href="
         <?php
         if ($adjust->single($_GET['month']) != 1) {
             //パラメータのmonthが1じゃないなら普通に月減らす
@@ -103,17 +105,17 @@
             &lt;
         </a>
     </div>
-    <div>
+    <div class="agent-calender-calender-year-month">
         <?php
         echo '<span id="calender_year">' . $_GET['year'] . '</span>' . '年' . $adjust->single($_GET['month']).'月';
         ?>
     </div>
-    <div>
+    <div style="padding: 5px";>
         <?php
         if ($_GET['year'] . '/' . $adjust->single($_GET['month']) != date('Y') . '/' . date('n')) {
             //パラメータがあるかつそれがページを開いたときの年月と一致してないとき==最新月ではないときのみ矢印表示する
         ?>
-            <a href="
+            <a class="agent-calender-month-move" href="
         <?php
             if ($adjust->single($_GET['month']) != 12) {
                 //パラメータのmonthが12じゃないなら普通に月増やす
@@ -133,11 +135,12 @@
         } ?>
     </div>
 </div>
-<div>
+<div class="agent-calender-bill">
     <?php
     echo $_GET['year'] . '年' . $adjust->single($_GET['month']);
     ?>
     月の請求額：
+    <div class="agent-calender-bill-amount">
     <?php
     $number_of_applies_per_month=$db->prepare("select count(apply_id) from apply_list where agent_id=? and apply_time between ? and ?;");
     $number_of_applies_per_month->bindValue(1,$_SESSION['agent_id']);
@@ -150,7 +153,10 @@
     円(
         <?php echo $number_of_applies_per_month[0]['count(apply_id)'].'件';?>
     )
+    </div>
 </div>
+</div>
+</section>
 
 <script>
     for (let index = 1; index <= 35; index++) {

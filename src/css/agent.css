@@ -35,7 +35,6 @@
     font-size: 25px;
     width: 80%;
     margin-left: 5%;
-    margin-bottom: 20px;
 }
 .agent-new-apply-header{
     font-size: 20px;
@@ -82,4 +81,79 @@
     padding:10px;
     background-color:blue;
     color: #fff;
+}
+
+/* エージェントカレンダー部分 */
+.agent-calender-all{
+    background: #eaedf2;
+    padding: 10px;
+}
+.agent-calender-in-box{
+    background: #fff;
+    width: 80%;
+    margin: auto;
+    padding: 10px;
+}
+.agent-calender-head{
+    margin: 15px 0 20px 10%;
+    font-size: 24px;
+    font-weight: bold;
+}
+.agent-calender-calender{
+    background: #fff;
+    margin: auto;
+}
+.agent-calender-each-day{
+    position:relative
+    ;width:100px;
+    height:100px;
+    border:solid 1px black;
+}
+.agent-calender-date{
+    position:absolute;
+    top:0;
+    left:0;
+    width:40%;
+    height:40%;
+    text-align:center;
+}
+.agent-calender-number{
+    position:absolute;
+    bottom:0;
+    right:0;
+    width:60%;
+    height:60%;
+    text-align:center;
+    text-decoration: underline 2px;
+    text-decoration-color: #52a49a;
+}
+.agent-calender-month-move{
+    color: #000;
+    text-decoration: none;
+    margin: 5px 5px 5px 0;
+    padding: 0 9px;
+    font-weight: bold;
+    font-size: 22px;
+}
+.agent-calender-month-move:hover{
+    cursor: pointer;
+    background: #fff;
+    padding: 0 9px;
+    border-radius: 15px;
+    text-align: center;
+    align-items: center;
+}
+.agent-calender-calender-year-month{
+    margin: 10px 0;
+    font-weight: bold;
+}
+.agent-calender-bill{
+    text-align: center;
+    font-size: 22px;
+}
+.agent-calender-bill-amount{
+    font-weight: bold;
+    display: inline-block;
+    text-decoration: underline;
+    text-decoration-color: #52a49a;
 }
