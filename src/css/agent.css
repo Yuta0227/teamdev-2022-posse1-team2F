@@ -196,6 +196,13 @@
     font-size: 25px;
     padding: 10px;
 }
+.agent-apply-open-close-detail{
+    padding: 5px 15px;
+    
+}
+.agent-apply-student-detail{
+    padding: 5px;
+}
 .agent-apply-student-report-btn{
     text-align:center;
     width:50%;

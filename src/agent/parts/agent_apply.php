@@ -28,18 +28,18 @@ for ($index = 0; $index < count($applies_array); $index++) {
     echo '<form method="POST" action="" id="test' . $index . '" class="agent-new-apply-info-box">';
     echo '<div>' . $month . '/' . $date . ' ' . $hour . ':' . $minute . '</div>';
     echo '<div>' . $applies_array[$index]['applicant_email_address'] . '</div>';
-    echo '<input type="button" id="open_apply' . $index . '" value="詳細▽">';
+    echo '<input class="agent-apply-open-close-detail" type="button" id="open_apply' . $index . '" value="詳細▽">';
     echo '<input hidden name="close_apply_id' . $index . '" value="' . $applies_array[$index]['apply_id'] . '">';
-    echo '<input id="close_apply' . $index . '" hidden value="閉じる△" type="submit">';
+    echo '<input class="agent-apply-open-close-detail" id="close_apply' . $index . '" hidden value="閉じる△" type="submit">';
     echo '</form>';
     echo '<div id="apply_detail' . $index . '" hidden class="agent-apply-detail-box">';
-    echo '<div>' . $applies_array[$index]['applicant_name_kanji'] . '(' . $applies_array[$index]['applicant_name_furigana'] . ')</div>';
-    echo '<div>' . $applies_array[$index]['applicant_phone_number'] . '</div>';
-    echo '<div>' . $applies_array[$index]['applicant_university'] . $applies_array[$index]['applicant_gakubu'] . $applies_array[$index]['applicant_gakka'] . $applies_array[$index]['applicant_graduation_year'] . '年卒</div>';
-    echo '<div>' . $applies_array[$index]['applicant_postal_code'] . '</div>';
-    echo '<div>' . $applies_array[$index]['applicant_address'] . '</div>';
-    echo '<div>' . $applies_array[$index]['applicant_other_agents'] . '</div>';
-    echo '<div>相談：' . $applies_array[$index]['applicant_consultation'] . '</div>';
+    echo '<div class="agent-apply-student-detail">' . $applies_array[$index]['applicant_name_kanji'] . '(' . $applies_array[$index]['applicant_name_furigana'] . ')</div>';
+    echo '<div class="agent-apply-student-detail">' . $applies_array[$index]['applicant_phone_number'] . '</div>';
+    echo '<div class="agent-apply-student-detail">' . $applies_array[$index]['applicant_university'] . $applies_array[$index]['applicant_gakubu'] . $applies_array[$index]['applicant_gakka'] . $applies_array[$index]['applicant_graduation_year'] . '年卒</div>';
+    echo '<div class="agent-apply-student-detail">' . $applies_array[$index]['applicant_postal_code'] . '</div>';
+    echo '<div class="agent-apply-student-detail">' . $applies_array[$index]['applicant_address'] . '</div>';
+    echo '<div class="agent-apply-student-detail">' . $applies_array[$index]['applicant_other_agents'] . '</div>';
+    echo '<div class="agent-apply-student-detail">相談：' . $applies_array[$index]['applicant_consultation'] . '</div>';
     echo '<form name="report_form' . $index . '"  action="" method="POST">';
     echo '<div style="justify-content:center;display:flex;">';
     if ($applies_array[$index]['apply_report_status'] == 0) {
