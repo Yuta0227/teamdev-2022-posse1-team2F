@@ -63,7 +63,7 @@ for ($index = 0; $index < count($applies_array); $index++) {
         //delete_requestテーブルを参照しadminが確認してるか判定
         if($check_delete_request_data[0]['check_status']==0){
             //未確認だったら
-            echo '<div id="reported' . $index . '" hidden style="text-align:center;width:50%;padding:10px;border-radius:50%;background-color:blue;">通報済み</div>';
+            echo '<div class="agent-apply-report-done" id="reported' . $index . '" hidden>通報済み</div>';
         }else{
             //確認済みだったら
             echo '<div class="agent-report-done" >通報却下されました</div>';
