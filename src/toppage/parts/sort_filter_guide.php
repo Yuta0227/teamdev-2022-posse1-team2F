@@ -7,12 +7,14 @@
                 <div>
                     <select name="sort" class="sort-condition">
                         <?php
+                        //ページネーション移動すると並び替えが保存されていない
                         $sort_type = [
                             '<option value="default">デフォルト</option>',
                             '<option value="job_offer_rate">内定率</option>',
                             '<option value="shortest_period">内定最短期間</option>'
                         ];
                         if (isset($_POST['sort'])) {
+                            //並び替えされたら
                             switch ($_POST['sort']) {
                                 case 'default':
                                     $sort_type = array_diff($sort_type, array('<option value="default">デフォルト</option>'));
@@ -30,11 +32,19 @@
                             foreach ($sort_type as $sort) {
                                 echo $sort;
                             }
-                         } else {
-                            foreach ($sort_type as $sort) {
+                            $_SESSION['sort_order'] = $sort_type;
+                        } elseif (isset($_SESSION['sort_order'])) {
+                            //並び替えした状態でページネーション移動したら
+                            foreach($_SESSION['sort_order'] as $sort){
                                 echo $sort;
                             }
-                        } ?>
+                        }else{
+                            //並び替え一度もしてない初期状態
+                            foreach($sort_type as $sort){
+                                echo $sort;
+                            }
+                        }
+                        ?>
                     </select>
                 </div>
                 <div>
@@ -49,5 +59,6 @@
         <button class="beginner-button-pc" id="openModal">どの条件で絞り込めばいいかわからない方はこちら!</button>
     </div>
     <div class="result-beginner">
-    <div class="result-number">検索結果：<span><?php echo count($all_agents);?></span>件</div><button class="beginner-button-sp" id="openModal">どの条件で絞り込めばいいか<br>わからない方はこちら!</button>
-    </div><!--検索結果下の方に表示した方がいいと思った。レスポンシブの時文字数きついかも。-->
+        <div class="result-number">検索結果：<span><?php echo count($all_agents); ?></span>件</div><button class="beginner-button-sp" id="openModal">どの条件で絞り込めばいいか<br>わからない方はこちら!</button>
+    </div>
+    <!--検索結果下の方に表示した方がいいと思った。レスポンシブの時文字数きついかも。-->
