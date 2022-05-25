@@ -70,7 +70,7 @@ for ($index = 0; $index < count($applies_array); $index++) {
         }
     }
     echo '</div>';
-    echo '<div id="report_reason' . $index . '" style="border:1px solid black;" hidden><div class="agent-apply-student-report-reason"><span>通報理由：</span><textarea class="agent-apply-student-report-reason-text" type="text" name="report_reason' . $index . '" required placeholder="理由を記入してください"></textarea></div>';
+    echo '<div id="report_reason' . $index . '" hidden><div class="agent-apply-student-report-reason"><span>通報理由：</span><textarea class="agent-apply-student-report-reason-text" type="text" name="report_reason' . $index . '" required placeholder="理由を記入してください"></textarea></div>';
     echo '<div style="display:flex;justify-content:center;"><div class="agent-apply-student-report-cancel" id="cancel_report' . $index . '">キャンセル</div><input class="agent-apply-student-report-submit" type="submit" value="送信する"></div></div>';
     echo '</form>';
     echo '</div>';
