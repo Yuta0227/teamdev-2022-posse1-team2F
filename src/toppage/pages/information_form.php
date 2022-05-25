@@ -1,58 +1,7 @@
 <?php
 
 session_start();
-
-$prefecture_array = array(
-    '北海道',
-    '青森県',
-    '岩手県',
-    '宮城県',
-    '秋田県',
-    '山形県',
-    '福島県',
-    '茨城県',
-    '栃木県',
-    '群馬県',
-    '埼玉県',
-    '千葉県',
-    '東京都',
-    '神奈川県',
-    '新潟県',
-    '富山県',
-    '石川県',
-    '福井県',
-    '山梨県',
-    '長野県',
-    '岐阜県',
-    '静岡県',
-    '愛知県',
-    '三重県',
-    '滋賀県',
-    '京都府',
-    '大阪府',
-    '兵庫県',
-    '奈良県',
-    '和歌山県',
-    '鳥取県',
-    '島根県',
-    '岡山県',
-    '広島県',
-    '山口県',
-    '徳島県',
-    '香川県',
-    '愛媛県',
-    '高知県',
-    '福岡県',
-    '佐賀県',
-    '長崎県',
-    '熊本県',
-    '大分県',
-    '宮崎県',
-    '鹿児島県',
-    '沖縄県'
-);
-// 配列の参考
-// https://ysklog.net/php/4532.html
+require "../../dbconnect.php";
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -77,51 +26,47 @@ $prefecture_array = array(
     ?>
     <div class="info-form-all">
         <div class="info-form-head">申し込み情報入力画面</div>
-        <form class="info-form-unit" action="./check_information.php">
+        <form class="info-form-unit" action="check_information.php" method="POST">
             <div class="info-form-each-box-text">お名前<span>(必須)</span></div>
-            <input class="info-form-each-form">
+            <input type="text" required name="applicant_name_kanji" class="info-form-each-form">
             <div class="info-form-each-box-text">フリガナ<span>(必須)</span></div>
-            <input class="info-form-each-form">
+            <input type="text" required name="applicant_name_furigana" class="info-form-each-form">
             <div class="info-form-each-box-text">メールアドレス<span>(必須)(半角)</span></div>
-            <input class="info-form-each-form">
-            <div class="info-form-each-box-text">電話番号<span>(必須)(半角)</span></div>
-            <input class="info-form-each-form">
+            <input type="email" required name="applicant_email_address" class="info-form-each-form">
+            <div class="info-form-each-box-text">電話番号<span>(必須)(半角)(-なし)</span></div>
+            <input type="tel" id="phone_number" minlength="11" maxlength="11" required name="applicant_phone_number" class="info-form-each-form">
             <div class="info-form-each-box-text">大学名<span>(必須)</span></div>
-            <input class="info-form-each-form">
+            <input type="text" required name="applicant_university" class="info-form-each-form">
             <div class="info-form-each-box-text">学部名<span>(必須)</span></div>
-            <input class="info-form-each-form">
-            <div class="info-form-each-box-text">何年卒<span>(必須)(例：<?php echo date('Y'); ?>年4月に大学4年生の場合は<?php echo date('Y') + 1; ?>年卒)</span></div>
-            <input id="test" class="info-form-each-form">
+            <input type="text" required name="applicant_gakubu" class="info-form-each-form">
+            <div class="info-form-each-box-text">何年卒<span>(必須)(半角)(例：<?php echo date('Y'); ?>年4月に大学4年生の場合は<?php echo date('Y') + 1; ?>年卒)</span></div>
+            <input type="text" id="graduation_year" maxlength="4" minlength="4" required name="applicant_graduation_year" class="info-form-each-form">
             <div class="info-form-each-box-text">郵便番号<span>(必須)(半角)(ハイフンなし)</span></div>
             <div style="display:flex;">
-                <input id="input" type="text" name="zipcode" value="" placeholder="例)8120012" class="info-form-each-form">
+                <input required  maxlength="7" minlength="7" name="applicant_postal_code" id="postal_code" type="text" name="zipcode" value="" placeholder="例)8120012" class="info-form-each-form">
                 <button id="search" type="button" class="info-form-adress-search-btn">住所検索</button>
                 <p id="error"></p>
             </div>
             <div class="info-form-each-box-text" class="info-form-each-form">都道府県<span>(必須)</span>
             </div>
-            <input id="address1" type="text" name="address1" value="" class="info-form-each-form">
+            <input required id="address1" type="text" name="address1" value="" class="info-form-each-form">
             <div class="info-form-each-box-text">市区町村<span>(必須)</span></div>
-            <input id="address2" type="text" name="address2" value="" name="市区町村" class="info-form-each-form">
+            <input required id="address2" type="text" name="address2" value="" name="市区町村" class="info-form-each-form">
             <div class="info-form-each-box-text">町域名<span>(必須)</span></div>
-            <input id="address3" type="text" name="address3" value="" name="町域名" class="info-form-each-form">
+            <input required id="address3" type="text" name="address3" value="" name="町域名" class="info-form-each-form">
             <div class="info-form-each-box-text">番地など<span>(必須)</span></div>
-            <input name="番地など" class="info-form-each-form">
+            <input required name="address4" class="info-form-each-form">
             <div class="info-form-each-box-text">自由記入欄</div>
-            <div id="select_agent" class="info-form-free-box">
-                <select id="test2">
-                    <?php
-                    $array = [1, 2, 3,];
-                    foreach ($array as $data) {
-                        echo '<option id="' . $data . '">';
-                        // echo $_SESSION[''];
-                        echo $data;
-                        //選択済みのセッションから出力
-                        echo '</option>';
+            <div id="select_agent" class="info-form-free-box" style="flex-direction:column;width:80%;">
+                    <?php 
+                    foreach($_SESSION['apply_list'] as $agent){
+                        $agent_name_stmt=$db->query("select agent_name from picture where agent_id=".$agent.";");
+                        $agent_name=$agent_name_stmt->fetchAll()[0]['agent_name'];
+                        echo '<div id="hide_consultation'.$agent.'" style="padding:10px;border:1px solid black;border-radius:5px;cursor:hand;cursor:pointer;" hidden>'.$agent_name.'に対しての自由記入欄を非表示にする</div>';
+                        echo '<div id="show_consultation'.$agent.'" style="padding:10px;border:1px solid black;border-radius:5px;cursor:hand;cursor:pointer;">'.$agent_name.'に対しての自由記入欄を表示する</div>';
+                        echo '<div id="consultation'.$agent.'" hidden><textarea style="width:100%;" rows="2" name="consultation'.$agent.'"></textarea></div>';
                     }
                     ?>
-                </select>
-                <div id="button2">に対しての自由記入欄を追加する</div>
                 <?php
                 // 追加する押したらinput(ずっとhidden name="consultation_agent_id" value="実際のagent_id")とtextarea(途中までhidden name="consultation実際のagent_id")追加。選択しているエージェント数をクリックできる回数の上限とする。
                 //当然テキストエリア削除ボタンも必要なわけでそれ押したら追加する押した回数を回復する。そのときにagent_idと紐づけるの忘れないように.もう一度追加したくなった場合agent_idと紐づいてるように
@@ -130,7 +75,7 @@ $prefecture_array = array(
             </div>
             <div class="info-form-each-box-text">プライバシーポリシーに同意<span>(必須)</span></div>
             <label class="info-form-privacy-agree">
-                <input name="プライバシーポリシー" type="checkbox">
+                <input name="プライバシーポリシー" type="checkbox" required>
                 私はプライバシーポリシーに同意します
             </label>
             <div class="info-form-privacy-box">&gt;&gt;<a href="privacy_policy.php" target="_blank" rel="noopener noreferrer" class="info-form-privacy">プライバシーポリシーはこちら</a></div>
@@ -140,9 +85,7 @@ $prefecture_array = array(
         </form>
     </div>
     <?php require "../parts/footer.php"; ?>
-
 </body>
-
 </html>
 <script>
 // 住所検索
@@ -151,7 +94,7 @@ $prefecture_array = array(
 
         let api = 'https://zipcloud.ibsnet.co.jp/api/search?zipcode=';
         let error = document.getElementById('error');
-        let input = document.getElementById('input');
+        let input = document.getElementById('postal_code');
         let address1 = document.getElementById('address1');
         let address2 = document.getElementById('address2');
         let address3 = document.getElementById('address3');
@@ -180,20 +123,90 @@ $prefecture_array = array(
                 console.log(ex);
             });
     }, false);
-
-    // document.getElementById('button').onclick = function() {
-    //     document.getElementById('test').setAttribute("value", "567");
-    //     document.getElementById('神奈川県').setAttribute("selected", "");
+    <?php 
+    foreach($_SESSION['apply_list'] as $agent){?>
+    document.getElementById('show_consultation<?php echo $agent;?>').addEventListener('click',function(){
+        document.getElementById('consultation<?php echo $agent;?>').removeAttribute('hidden');
+        //箱表示
+        document.getElementById('show_consultation<?php echo $agent;?>').setAttribute('hidden','');
+        //表示にするボタンを非表示にする
+        document.getElementById('hide_consultation<?php echo $agent;?>').removeAttribute('hidden');
+        //非表示にするボタンを表示する
+    });
+    document.getElementById('hide_consultation<?php echo $agent;?>').addEventListener('click',function(){
+        document.getElementById('consultation<?php echo $agent;?>').setAttribute('hidden','');
+        //箱表示
+        document.getElementById('hide_consultation<?php echo $agent;?>').setAttribute('hidden','');
+        //非表示にするボタンを非表示にする
+        document.getElementById('show_consultation<?php echo $agent;?>').removeAttribute('hidden');
+        //表示するボタンを表示する
+    });
+    <?php }
+    ?>
+    document.getElementById('phone_number').addEventListener('keydown',function(){
+        if(
+            event.keyCode!=48&&
+            event.keyCode!=49&&
+            event.keyCode!=50&&
+            event.keyCode!=51&&
+            event.keyCode!=52&&
+            event.keyCode!=53&&
+            event.keyCode!=54&&
+            event.keyCode!=55&&
+            event.keyCode!=56&&
+            event.keyCode!=57&&
+            event.keyCode!=8&&
+            event.keyCode!=9&&
+            event.keyCode!=13
+        ){
+            //数字,backspace,enter,tab以外の入力無効
+            event.preventDefault();
+        }
+    });
+    document.getElementById('graduation_year').addEventListener('keydown',function(){
+        if(
+            event.keyCode!=48&&
+            event.keyCode!=49&&
+            event.keyCode!=50&&
+            event.keyCode!=51&&
+            event.keyCode!=52&&
+            event.keyCode!=53&&
+            event.keyCode!=54&&
+            event.keyCode!=55&&
+            event.keyCode!=56&&
+            event.keyCode!=57&&
+            event.keyCode!=8&&
+            event.keyCode!=9&&
+            event.keyCode!=13
+        ){
+            //数字,backspace,enter,tab以外の入力無効
+            event.preventDefault();
+        }
+    });
+    document.getElementById('postal_code').addEventListener('keydown',function(){
+        if(
+            event.keyCode!=48&&
+            event.keyCode!=49&&
+            event.keyCode!=50&&
+            event.keyCode!=51&&
+            event.keyCode!=52&&
+            event.keyCode!=53&&
+            event.keyCode!=54&&
+            event.keyCode!=55&&
+            event.keyCode!=56&&
+            event.keyCode!=57&&
+            event.keyCode!=8&&
+            event.keyCode!=9&&
+            event.keyCode!=13
+        ){
+            //数字,backspace,enter,tab以外の入力無効
+            event.preventDefault();
+        }
+    })
+    // document.getElementById('create_consultation').onclick = function() {
+    //     document.getElementById('select_agent').insertAdjacentHTML('afterend', question_box);
+    //     document.getElementById('select_consultation')
+    //     //できてる。企業に対する自由記入欄ボタン押したらプルダウンタブで選んだ企業の自由記入欄が増えるinsertAdjacentHTMLのafterbegin。
+    //     //できてない。そこで選んだ企業のoptionにはdisabled属性を付与する。同じ企業に複数の記入欄が用意されないように
     // }
-    //動きはする。住所検索をクリックすると何年卒というところに567と入り、都道府県に神奈川県が入る。これをサンプルにする。住所検索をクリックしたら住所にsetAttributeで代入
-    // https://into-the-program.com/javascript-get-address-zipcode-search-api/。
-    // これでやるかPHPとスプレッドシート連携して非同期処理でやる。ページがリロードしてしまうため厳しそう。onsubmitでページリロードを阻止できたら可能かも
-    // べつにプルダウンにする必要性はあまりないのでは？どうせ住所検索で自動で入力されるわけだし
-    var question_box = `<div style="display:flex;"><div>${document.getElementById('test2').value}</div><textarea cols="50" rows="5" name="<?php echo 1; ?>"></textarea></div>`;
-    document.getElementById('button2').onclick = function() {
-        console.log(document.getElementById('test2').value);
-        document.getElementById('select_agent').insertAdjacentHTML('afterend', question_box);
-        //できてる。企業に対する自由記入欄ボタン押したらプルダウンタブで選んだ企業の自由記入欄が増えるinsertAdjacentHTMLのafterbegin。
-        //できてない。そこで選んだ企業のoptionにはdisabled属性を付与する。同じ企業に複数の記入欄が用意されないように
-    }
 </script>
