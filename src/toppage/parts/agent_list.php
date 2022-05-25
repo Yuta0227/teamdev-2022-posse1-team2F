@@ -3,8 +3,7 @@
     <?php
     require "guide_popup.php";
     $page_number = $_GET['agent_list_pagination']; //URLからとってくる
-    $agents_per_page = 1
-    ; //ページ毎に表示するエージェントの個数
+    $agents_per_page = 1; //ページ毎に表示するエージェントの個数
     if (!isset($_SESSION['apply_list'])) {
         //配列のセッション登録されてなかったら初期化
         $_SESSION['apply_list'] = [];
@@ -13,13 +12,15 @@
         //配列のセッション登録されてなかったら初期化
         $_SESSION['comparison_list'] = [];
     }
+    //agents_per_page=1,1->0,2->1,3->2
+    //=2,1->01,2->23
     if ($page_number - 1 != floor(count($all_agents) / $agents_per_page)) {
         //ページ番号が最後以外
         for ($i = 0; $i < $agents_per_page; $i++) {
             echo '<form class="agent-overview-box" method="POST" action="">';
-            echo '<a href="./agent_detail.php?agent_id=' . $all_agents[$i]['agent_id'] . '" target="_blank" class="agent-overview-link">';
+            echo '<a href="./agent_detail.php?agent_id=' . $all_agents[$agents_per_page*($_GET['agent_list_pagination']-1)+$i]['agent_id'] . '" target="_blank" class="agent-overview-link">';
             echo '<div>';
-            echo '<div class="agent-name">' . $all_agents[$i]['agent_name'] . '</div>';
+            echo '<div class="agent-name">' . $all_agents[$agents_per_page*($_GET['agent_list_pagination']-1)+$i]['agent_name'] . '</div>';
             echo '</div>';
             echo '<div style="display: flex;">';
             echo '<div class="image-box">';
@@ -28,17 +29,17 @@
             echo '<div class="agent-article">';
             echo '<div class="agent-short-explanation"><table>';
             //テーブル
-            echo '<tr><th>面談方式</th><td>' . $translate->translate_data_to_japanese('面談方式',$all_agents[$i]['agent_meeting_type']) . '</td></tr>';
-            echo '<tr><th>主な取り扱い企業規模</th><td>' . $translate->translate_data_to_japanese('主な取り扱い企業規模',$all_agents[$i]['agent_main_corporate_size']) . '</td></tr>';
-            echo '<tr><th>取り扱い企業カテゴリー</th><td>' . $translate->translate_data_to_japanese('取り扱い企業カテゴリー',$all_agents[$i]['agent_corporate_type']) . '</td></tr>';
-            echo '<tr><th>内定率(%)</th><td>' . $translate->translate_data_to_japanese('内定率(%)',$all_agents[$i]['agent_job_offer_rate']) . '</td></tr>';
-            echo '<tr><th>内定最短期間(週)</th><td>' . $translate->translate_data_to_japanese('内定最短期間(週)',$all_agents[$i]['agent_shortest_period']) . '</td></tr>';
-            echo '<tr><th>○○向き</th><td>' . $translate->translate_data_to_japanese('○○向き',$all_agents[$i]['agent_recommend_student_type']) . '</td></tr>';
+            echo '<tr><th>面談方式</th><td>' . $translate->translate_data_to_japanese('面談方式',$all_agents[$agents_per_page*($_GET['agent_list_pagination']-1)+$i]['agent_meeting_type']) . '</td></tr>';
+            echo '<tr><th>主な取り扱い企業規模</th><td>' . $translate->translate_data_to_japanese('主な取り扱い企業規模',$all_agents[$agents_per_page*($_GET['agent_list_pagination']-1)+$i]['agent_main_corporate_size']) . '</td></tr>';
+            echo '<tr><th>取り扱い企業カテゴリー</th><td>' . $translate->translate_data_to_japanese('取り扱い企業カテゴリー',$all_agents[$agents_per_page*($_GET['agent_list_pagination']-1)+$i]['agent_corporate_type']) . '</td></tr>';
+            echo '<tr><th>内定率(%)</th><td>' . $translate->translate_data_to_japanese('内定率(%)',$all_agents[$agents_per_page*($_GET['agent_list_pagination']-1)+$i]['agent_job_offer_rate']) . '</td></tr>';
+            echo '<tr><th>内定最短期間(週)</th><td>' . $translate->translate_data_to_japanese('内定最短期間(週)',$all_agents[$agents_per_page*($_GET['agent_list_pagination']-1)+$i]['agent_shortest_period']) . '</td></tr>';
+            echo '<tr><th>○○向き</th><td>' . $translate->translate_data_to_japanese('○○向き',$all_agents[$agents_per_page*($_GET['agent_list_pagination']-1)+$i]['agent_recommend_student_type']) . '</td></tr>';
             echo '</table></div>';
             echo '<div style="text-align: center;">';
-            echo '<input name="agent_id" value="' . $all_agents[$i]['agent_id'] . '" hidden>';
+            echo '<input name="agent_id" value="' . $all_agents[$agents_per_page*($_GET['agent_list_pagination']-1)+$i]['agent_id'] . '" hidden>';
             if (isset($_SESSION['apply_list'])) {
-                if ($check->exists_in_array($_SESSION['apply_list'], $all_agents[$i]['agent_id']) == true) {
+                if ($check->exists_in_array($_SESSION['apply_list'], $all_agents[$agents_per_page*($_GET['agent_list_pagination']-1)+$i]['agent_id']) == true) {
                     echo '<input type="submit" name="remove_from_apply" class="like-button" value="問い合わせリストから削除">';
                 } else {
                     echo '<input type="submit" name="add_to_apply" class="like-button" value="問い合わせリストに追加">';
@@ -47,7 +48,7 @@
                 echo '<input type="submit" name="add_to_apply" class="like-button" value="問い合わせリストに追加">';
             }
             if (isset($_SESSION['comparison_list'])) {
-                if ($check->exists_in_array($_SESSION['comparison_list'], $all_agents[$i]['agent_id']) == true) {
+                if ($check->exists_in_array($_SESSION['comparison_list'], $all_agents[$agents_per_page*($_GET['agent_list_pagination']-1)+$i]['agent_id']) == true) {
                     echo '<input type="submit" name="remove_from_comparison" class="like-button" value="比較リストから削除">';
                 } else {
                     echo '<input type="submit" name="add_to_comparison" class="like-button" value="比較リストに追加">';
@@ -67,9 +68,9 @@
         for ($i = 0; $i < count($all_agents) % $agents_per_page; $i++) {
             //余りの個数出力
             echo '<form class="agent-overview-box" method="POST" action="">';
-            echo '<a href="./agent_detail.php?agent_id=' . $all_agents[$i]['agent_id'] . '" target="_blank" class="agent-overview-link">';
+            echo '<a href="./agent_detail.php?agent_id=' . $all_agents[$agents_per_page*($_GET['agent_list_pagination']-1)+$i]['agent_id'] . '" target="_blank" class="agent-overview-link">';
             echo '<div>';
-            echo '<div class="agent-name">企業' . $all_agents[$i]['agent_name'] . '</div>';
+            echo '<div class="agent-name">企業' . $all_agents[$agents_per_page*($_GET['agent_list_pagination']-1)+$i]['agent_name'] . '</div>';
             echo '</div>';
             echo '<div style="display: flex;">';
             echo '<div class="image-box">';
@@ -78,17 +79,17 @@
             echo '<div class="agent-article">';
             echo '<div class="agent-short-explanation"><table>';
             //テーブル
-            echo '<tr><th>面談方式</th><td>' . $translate->translate_data_to_japanese('面談方式',$all_agents[$i]['agent_meeting_type']) . '</td></tr>';
-            echo '<tr><th>主な取り扱い企業規模</th><td>' . $translate->translate_data_to_japanese('主な取り扱い企業規模',$all_agents[$i]['agent_main_corporate_size']) . '</td></tr>';
-            echo '<tr><th>取り扱い企業カテゴリー</th><td>' . $translate->translate_data_to_japanese('取り扱い企業カテゴリー',$all_agents[$i]['agent_corporate_type']) . '</td></tr>';
-            echo '<tr><th>内定率(%)</th><td>' . $translate->translate_data_to_japanese('内定率(%)',$all_agents[$i]['agent_job_offer_rate']) . '</td></tr>';
-            echo '<tr><th>内定最短期間(週)</th><td>' . $translate->translate_data_to_japanese('内定最短期間(週)',$all_agents[$i]['agent_shortest_period']) . '</td></tr>';
-            echo '<tr><th>○○向き</th><td>' . $translate->translate_data_to_japanese('○○向き',$all_agents[$i]['agent_recommend_student_type']) . '</td></tr>';
+            echo '<tr><th>面談方式</th><td>' . $translate->translate_data_to_japanese('面談方式',$all_agents[$agents_per_page*($_GET['agent_list_pagination']-1)+$i]['agent_meeting_type']) . '</td></tr>';
+            echo '<tr><th>主な取り扱い企業規模</th><td>' . $translate->translate_data_to_japanese('主な取り扱い企業規模',$all_agents[$agents_per_page*($_GET['agent_list_pagination']-1)+$i]['agent_main_corporate_size']) . '</td></tr>';
+            echo '<tr><th>取り扱い企業カテゴリー</th><td>' . $translate->translate_data_to_japanese('取り扱い企業カテゴリー',$all_agents[$agents_per_page*($_GET['agent_list_pagination']-1)+$i]['agent_corporate_type']) . '</td></tr>';
+            echo '<tr><th>内定率(%)</th><td>' . $translate->translate_data_to_japanese('内定率(%)',$all_agents[$agents_per_page*($_GET['agent_list_pagination']-1)+$i]['agent_job_offer_rate']) . '</td></tr>';
+            echo '<tr><th>内定最短期間(週)</th><td>' . $translate->translate_data_to_japanese('内定最短期間(週)',$all_agents[$agents_per_page*($_GET['agent_list_pagination']-1)+$i]['agent_shortest_period']) . '</td></tr>';
+            echo '<tr><th>○○向き</th><td>' . $translate->translate_data_to_japanese('○○向き',$all_agents[$agents_per_page*($_GET['agent_list_pagination']-1)+$i]['agent_recommend_student_type']) . '</td></tr>';
             echo '</table></div>';
             echo '<div style="text-align: center;">';
-            echo '<input name="agent_id" value="' . $all_agents[$i]['agent_id'] . '" hidden>';
+            echo '<input name="agent_id" value="' . $all_agents[$agents_per_page*($_GET['agent_list_pagination']-1)+$i]['agent_id'] . '" hidden>';
             if (isset($_SESSION['apply_list'])) {
-                if ($check->exists_in_array($_SESSION['apply_list'], $all_agents[$i]['agent_id']) == true) {
+                if ($check->exists_in_array($_SESSION['apply_list'], $all_agents[$agents_per_page*($_GET['agent_list_pagination']-1)+$i]['agent_id']) == true) {
                     echo '<input type="submit" name="remove_from_apply" class="like-button" value="問い合わせリストから削除">';
                 } else {
                     echo '<input type="submit" name="add_to_apply" class="like-button" value="問い合わせリストに追加">';
@@ -97,7 +98,7 @@
                 echo '<input type="submit" name="add_to_apply" class="like-button" value="問い合わせリストに追加">';
             }
             if (isset($_SESSION['comparison_list'])) {
-                if ($check->exists_in_array($_SESSION['comparison_list'], $all_agents[$i]['agent_id']) == true) {
+                if ($check->exists_in_array($_SESSION['comparison_list'], $all_agents[$agents_per_page*($_GET['agent_list_pagination']-1)+$i]['agent_id']) == true) {
                     echo '<input type="submit" name="remove_from_comparison" class="like-button" value="比較リストから削除">';
                 } else {
                     echo '<input type="submit" name="add_to_comparison" class="like-button" value="比較リストに追加">';
