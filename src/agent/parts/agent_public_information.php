@@ -1,6 +1,7 @@
-<section>
-    <div style="text-align:center;">掲載情報</div>
-    <div style="display:flex;justify-content:center;">
+<section class="agent-public-information-unit">
+    <div class="agent-public-information-head">掲載情報</div>
+    <div class="agent-public-information-table-box">
+    <div class="agent-public-information-table">
         <table>
             <?php
             $agent_public_information_stmt=$db->query("select agent_name,agent_meeting_type,agent_main_corporate_size,agent_corporate_type,agent_job_offer_rate,agent_shortest_period,agent_recommend_student_type from agent_public_information where agent_id=".$_SESSION['agent_id'].";");
@@ -51,6 +52,7 @@
             echo '</tr>';
             ?>
         </table>
+    </div>
     </div>
 
 </section>

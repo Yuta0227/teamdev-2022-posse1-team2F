@@ -173,5 +173,30 @@
 .agent-graph-graph-box{
     width: 60%;
     margin: auto;
+}
+/* エージェントプロフィールヘッダー */
+.agent-profile-head{
+    margin: 0;
+    padding: 10px;
+    background:#eaedf2;
+}
 
+/* エージェント掲載情報テーブル */
+.agent-public-information-unit{
+    background:#eaedf2;
+}
+.agent-public-information-head{
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+.agent-public-information-table-box{
+    width: 80%;
+    margin: auto;
+}
+.agent-public-information-table{
+    display:flex;
+    justify-content:center;
+    background: #fff;
+    width: 100%;
 }
