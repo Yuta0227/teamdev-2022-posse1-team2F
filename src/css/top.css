@@ -650,7 +650,7 @@
         left: 50%;
         transform: translateY(-50%) translateX(-50%);
         -webkit-transform: translateY(-50%) translateX(-50%);
-        background-color: #999;
+        /* background-color: #999; */
         overflow-y: auto;
         /* スマホ用スクロール */
         -webkit-overflow-scrolling: touch;
@@ -666,6 +666,7 @@
         text-align: center;
         margin: auto;
         border: solid;
+        background-color: #999;
         /*わかりやすいようにつけた、最終的には消す*/
     }
     .filter-contents {
