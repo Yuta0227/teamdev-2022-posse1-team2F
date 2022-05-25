@@ -86,7 +86,7 @@
 /* エージェントカレンダー部分 */
 .agent-calender-all{
     background: #eaedf2;
-    padding: 10px;
+    padding: 10px 0;
 }
 .agent-calender-in-box{
     background: #fff;
@@ -156,4 +156,21 @@
     display: inline-block;
     text-decoration: underline;
     text-decoration-color: #52a49a;
+}
+
+/* エージェント画面グラフ */
+.agent-graph-all{
+    width: 100%;
+   background:#eaedf2;
+   padding: 20px 10%;
+}
+.agent-graph-all-box{
+    width: 100%;
+    background:#fff;
+    padding: 10px;
+}
+.agent-graph-graph-box{
+    width: 60%;
+    margin: auto;
+
 }
