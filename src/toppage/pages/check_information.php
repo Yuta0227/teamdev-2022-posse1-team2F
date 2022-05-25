@@ -1,11 +1,13 @@
 <?php
 session_start();
-if(isset($_POST)){
-    var_dump($_POST);
-}
+// if (isset($_POST)) {
+//     var_dump($_POST);
+// }
+require "../../dbconnect.php";
 ?>
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,8 +19,9 @@ if(isset($_POST)){
     <link rel="stylesheet" href="../../css/others.css">
     <title>入力内容確認画面</title>
 </head>
+
 <body>
-<?php
+    <?php
     require "../parts/header.php";
     require "../parts/indicator.php";
     ?>
@@ -27,39 +30,42 @@ if(isset($_POST)){
         <div class="check-information-head">入力情報確認</div>
         <div class="check-info-alert">＊送信は完了しておりません</div>
         <table class="check-info-table">
-            <?php 
-            $information_array=[
-                'お名前'=>'テキスト',
-                'フリガナ'=>'テキスト',
-                'メールアドレス'=>'テキスト',
-                '電話番号'=>'テキスト',
-                '大学名'=>'テキスト',
-                '学部名'=>'テキスト',
-                '学科名'=>'テキスト',
-                '何年卒'=>'テキスト',
-                '郵便番号'=>'テキスト',
-                '都道府県'=>'テキスト',
-                '市区町村'=>'テキスト',
-                '町域名'=>'テキスト',
-                '番地など'=>'テキスト',
+            <?php
+            $information_array = [
+                'お名前' => $_POST['applicant_name_kanji'],
+                'フリガナ' => $_POST['applicant_name_furigana'],
+                'メールアドレス' => $_POST['applicant_email_address'],
+                '電話番号' => $_POST['applicant_phone_number'],
+                '大学名' => $_POST['applicant_university'],
+                '学部名' => $_POST['applicant_gakubu'],
+                '学科名' => $_POST['applicant_gakka'],
+                '何年卒' => $_POST['applicant_graduation_year'],
+                '郵便番号' => $_POST['applicant_postal_code'],
+                '都道府県' => $_POST['address1'],
+                '市区町村' => $_POST['address2'],
+                '町域名' => $_POST['address3'],
+                '番地など' => $_POST['address4'],
             ];
-            $inquiry_array=[];
-            for($i=1;$i<4;$i++){
-                array_push($inquiry_array,['企業名'.$i,'テキスト'.$i]);
-                //どこに対して何を送ったかは記入内容から数字で引っ張る
+            foreach ($information_array as $column => $data) {
+                echo '<tr>';
+                echo '<th class="check-info-table-text">' . $column . '</th>';
+                echo '<td class="check-info-table-content">' . $data . '</td>';
+                echo '</tr>';
+            };
+            $_SESSION['consultation']=[];
+            foreach($_SESSION['id_name_set'] as $id_name_set){
+                //入力フォームに戻ったとき用にセッションに保存
+                $tmp_array=['name'=>$id_name_set[1],'id'=>$id_name_set[0],'consultation'=> $_POST['consultation'.$id_name_set[0]]];
+                $_SESSION['consultation'][]=$tmp_array;
             }
-            foreach($information_array as $column=>$data){
+            foreach ($_SESSION['consultation'] as $consultation) {
                 echo '<tr>';
-                echo '<th class="check-info-table-text">'.$column.'</th>';
-                echo '<td class="check-info-table-content">'.$data.'</td>';
+                echo '<th class="check-info-table-text">' . $consultation['name'] . 'に対する自由記入欄</th>';
+                echo '<td class="check-info-table-content">' . $consultation['consultation'] . '</td>';
                 echo '</tr>';
             };
-            foreach($inquiry_array as $column=>$data){
-                echo '<tr>';
-                echo '<th class="check-info-table-text">自由記入欄'.($column+1).'</th>';
-                echo '<td class="check-info-table-content">'.$data[0].'に対して「'.$data[1].'」</td>';
-                echo '</tr>';
-            };
+            $_SESSION['information_array']=$information_array;
+            //入力フォームに戻ったとき用にセッションに保存
             ?>
         </table>
         <div style="display:flex;" class="check-info-check-btns">
@@ -69,4 +75,5 @@ if(isset($_POST)){
     </form>
     <?php require "../parts/footer.php"; ?>
 </body>
+
 </html>
