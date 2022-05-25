@@ -306,6 +306,7 @@
     .tab_area {
         font-size: 0;
         margin: 0 10px;
+        display: flex;
     }
     .tab_area label {
         width: 30%;
@@ -341,6 +342,11 @@
     .tab-panel p {
         font-size: 14px;
         letter-spacing: 1px;
+    }
+    .tab1-label,
+    .tab2-label,
+    .tab3-label {
+        justify-content: space-between;
     }
     #tab1:checked~.tab_area .tab1-label {
         background: #d7e9ea;
@@ -688,7 +694,7 @@
     .sort-informations {
         justify-content: space-between;
         padding-left: 5%;
-        height: 4%;
+        height: 8%;
     }
     .sorts {
         background-color: #ebebe6;
@@ -842,6 +848,7 @@
     .tab_area {
         font-size: 0;
         margin: 0 10px;
+        display: flex;
     }
     .tab_area label {
         width: 30%;
@@ -943,6 +950,9 @@
     }
     #tab3:checked~.panel-area #panel2 {
         display: none;
+    }
+    .tab-panel ul {
+        padding-left: 0%;
     }
     .tab-panel ul li {
         line-height: 1.5;
