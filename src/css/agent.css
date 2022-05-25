@@ -173,5 +173,65 @@
 .agent-graph-graph-box{
     width: 60%;
     margin: auto;
+}
 
+/* 日ごとの申込 */
+.agent-apply-unit{
+    background:#eaedf2;
+}
+.agent-apply-head{
+    width: 80%;
+    margin: auto;
+    font-weight: bold;
+    font-size: 20px;
+}
+.agent-apply-box-texts{
+    margin-left: 10%;
+}
+.agent-apply-box-text{
+    padding: 10px;
+}
+.agent-apply-all-amout{
+    text-align: center;
+    font-size: 25px;
+    padding: 10px;
+}
+.agent-apply-student-report-btn{
+    text-align:center;
+    width:50%;
+    padding:10px;
+    border-radius:30px;
+    background-color:red;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 20px;
+}
+.agent-apply-student-report-reason{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin: 10px;
+    gap: 10px;
+}
+.agent-apply-student-report-reason-text{
+    width: 30%;
+    height: 100px;
+}
+
+.agent-apply-student-report-cancel{
+    border: solid;
+    background: #fff;
+    color: red;
+    padding: 5px 15px;
+    margin: 10px;
+    cursor: pointer;
+}
+.agent-apply-student-report-submit{
+    background: red;
+    border: solid red;
+    color: #fff;
+    padding: 5px 15px;
+    margin: 10px;
+    cursor: pointer;
 }

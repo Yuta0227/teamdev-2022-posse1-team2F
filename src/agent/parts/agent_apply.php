@@ -1,14 +1,15 @@
-<div>
+<section class="agent-apply-unit">
+<div class="agent-apply-head">
     <?php
     $year = $_GET['year'];
     $month = $adjust->single($_GET['month']);
     $date = $adjust->single($_GET['date']);
     echo $year . '年' . $month . '月' . $date . '日の申込一覧';
     ?></div>
-<table>
+<table class="agent-apply-box-texts">
     <tr>
-        <th>申込日時</th>
-        <th>メールアドレス</th>
+        <th class="agent-apply-box-text">申込日時</th>
+        <th class="agent-apply-box-text">メールアドレス</th>
     </tr>
 </table>
 <?php
@@ -49,7 +50,7 @@ for ($index = 0; $index < count($applies_array); $index++) {
         //期限から現在日時をひく
         if ($diff->format('%a') >= 0) {
             echo '<input hidden name="report_apply_id' . $index . '" value="' . $applies_array[$index]['apply_id'] . '">';
-            echo '<div id="report' . $index . '" hidden style="text-align:center;width:50%;padding:10px;border-radius:50%;background-color:red;">通報する(' . $_GET['year'] . '年' . $_GET['month'] . '月1日23:59まで)</div>';
+            echo '<div id="report' . $index . '" hidden class="agent-apply-student-report-btn">通報する(' . $_GET['year'] . '年' . $_GET['month'] . '月1日23:59まで)</div>';
         } else {
             echo '<div class="agent-report-done" >通報期限過ぎてます</div>';
         }
@@ -69,13 +70,15 @@ for ($index = 0; $index < count($applies_array); $index++) {
         }
     }
     echo '</div>';
-    echo '<div id="report_reason' . $index . '" style="border:1px solid black;" hidden><div style="display:flex;justify-content:center;align-items:center;"><span>通報理由：</span><textarea type="text" name="report_reason' . $index . '" required placeholder="理由を記入してください"></textarea></div>';
-    echo '<div style="display:flex;justify-content:center;"><div id="cancel_report' . $index . '">キャンセル</div><input type="submit" value="送信する"></div></div>';
+    echo '<div id="report_reason' . $index . '" style="border:1px solid black;" hidden><div class="agent-apply-student-report-reason"><span>通報理由：</span><textarea class="agent-apply-student-report-reason-text" type="text" name="report_reason' . $index . '" required placeholder="理由を記入してください"></textarea></div>';
+    echo '<div style="display:flex;justify-content:center;"><div class="agent-apply-student-report-cancel" id="cancel_report' . $index . '">キャンセル</div><input class="agent-apply-student-report-submit" type="submit" value="送信する"></div></div>';
     echo '</form>';
     echo '</div>';
 };
-echo '<div>' . $month . '月' . $date . '日の合計：' . count($applies_array) . '人</div>';
+echo '<div class="agent-apply-all-amout">' . $month . '月' . $date . '日の合計：' . count($applies_array) . '人</div>';
 ?>
+</section>
+
 <script>
     <?php for ($index = 0; $index < count($applies_array); $index++) { ?>
         document.getElementById('open_apply<?php echo $index; ?>').addEventListener('click', function() {
