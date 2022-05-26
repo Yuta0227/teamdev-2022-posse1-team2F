@@ -59,5 +59,6 @@
         <button class="beginner-button-pc" id="openModal-pc">どの条件で絞り込めばいいかわからない方はこちら!</button>
     </div>
     <div class="result-beginner">
-    <div class="result-number">検索結果：<span><?php echo count($all_agents);?></span>件</div><button class="beginner-button-sp" id="openModal-sp">どの条件で絞り込めばいいか<br>わからない方はこちら!</button>
-    </div><!--検索結果下の方に表示した方がいいと思った。レスポンシブの時文字数きついかも。-->
+    <div class="result-number">検索結果：<span><?php echo count($all_agents); ?></span>件</div><button class="beginner-button-sp" id="openModal-sp">どの条件で絞り込めばいいか<br>わからない方はこちら!</button>
+    </div>
+    <!--検索結果下の方に表示した方がいいと思った。レスポンシブの時文字数きついかも。-->
