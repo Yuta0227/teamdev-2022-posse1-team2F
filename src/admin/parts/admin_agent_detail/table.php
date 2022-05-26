@@ -11,10 +11,10 @@
         </div>
         <div class="admin-agent-detail-table-agent-name"><?php echo $picture[0]['agent_name']; ?></div>
     </div>
-    <div style="background-color:blue;width:600px;padding:20px;">
-        <div style="display:flex;justify-content:center;">契約情報</div>
-        <div style="display:flex;justify-content:center;">
-            <table>
+    <div class="admin-agent-detail-contract-table-box-all">
+        <div class="admin-agent-detail-contract-table-head">契約情報</div>
+        <div class="admin-agent-detail-contract-table-box">
+            <table class="admin-agent-detail-contract-table">
                 <?php
                 $agent_id_stmt = $db->prepare("select agent_id from agent_contract_information where agent_id=?;");
                 $agent_id_stmt->bindValue(1, $_GET['agent_id']);
@@ -72,8 +72,8 @@
                             break;
                     }
                     echo '<tr>';
-                    echo '<th style="border:1px solid black;">' . $column . '</th>';
-                    echo '<td style="border:1px solid black;">' . $data . '</td>';
+                    echo '<th class="admin-agent-detail-table-text">' . $column . '</th>';
+                    echo '<td class="admin-agent-detail-table-content">' . $data . '</td>';
                     echo '</tr>';
                 }
                 // echo '<tr>';
@@ -86,10 +86,10 @@
     </div>
 
 
-    <form style="background-color:blue;width:600px;padding:20px;">
-        <div style="display:flex;justify-content:center;">掲載情報</div>
-        <div style="display:flex;justify-content:center;">
-            <table>
+    <form class="admin-agent-detail-public-all-box">
+        <div class="admin-agent-detail-public-table-name">掲載情報</div>
+        <div class="admin-agent-detail-public-table-box">
+            <table class="admin-agent-detail-public-table">
                 <?php
                 $agent_public_information_stmt = $db->prepare("select agent_name,agent_meeting_type,agent_main_corporate_size,agent_corporate_type,agent_job_offer_rate,agent_shortest_period,agent_recommend_student_type from agent_public_information where agent_id=?;");
                 $agent_public_information_stmt->bindValue(1, $_GET['agent_id']);
@@ -101,13 +101,13 @@
                     $data = $translate->translate_data_to_japanese($column, $data);
                     //データを必要に応じて数字から日本語に変換
                     echo '<tr>';
-                    echo '<th style="border:1px solid black;">' . $column . '</th>';
-                    echo '<td style="border:1px solid black;">' . $data . '</td>';
+                    echo '<th class="admin-agent-detail-table-text">' . $column . '</th>';
+                    echo '<td class="admin-agent-detail-table-content">' . $data . '</td>';
                     echo '</tr>';
                 }
                 echo '<tr>';
-                echo '<th style="border:1px solid black;">拠点地</th>';
-                echo '<td style="border:1px solid black;">';
+                echo '<th class="admin-agent-detail-table-text">拠点地</th>';
+                echo '<td class="admin-agent-detail-table-content">';
                 $count = 1;
                 foreach ($agent_address as $address) {
                     if ($count == count($agent_address)) {
@@ -124,12 +124,12 @@
                 $sales_copy_stmt->execute();
                 $sales_copy_data = $sales_copy_stmt->fetchAll()[0]['sales_copy'];
                 echo '<tr>';
-                echo '<th style="border:1px solid black;">キャッチコピー</th>';
-                echo '<td style="border:1px solid black;">' . $sales_copy_data . '</td>';
+                echo '<th class="admin-agent-detail-table-text">キャッチコピー</th>';
+                echo '<td class="admin-agent-detail-table-content">' . $sales_copy_data . '</td>';
                 echo '</tr>';
                 echo '<tr>';
-                echo '<th style="border:1px solid black;">業界別取り扱い企業数</th>';
-                echo '<td style="border:1px solid black;">';
+                echo '<th class="admin-agent-detail-table-text">業界別取り扱い企業数</th>';
+                echo '<td class="admin-agent-detail-table-content">';
                 $index = 0;
                 foreach ($corporate_amount[0] as $column => $data) {
                     $column = $translate->translate_column_to_japanese($column);
@@ -145,8 +145,8 @@
                 ?>
             </table>
         </div>
-        <div style="display:flex;justify-content:right;">
-            <div style="border:1px solid black;padding:5px;border-radius:10px;background-color:skyblue;" id="edit_public_information_button">編集</div>
+        <div class="admin-agent-detail-table-public-edit-btn-box">
+            <div class="admin-agent-detail-table-public-edit-btn" id="edit_public_information_button">編集</div>
         </div>
     </form>
     <form style="background-color:blue;width:600px;padding:20px;">

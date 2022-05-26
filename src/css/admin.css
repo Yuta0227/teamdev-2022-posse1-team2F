@@ -151,10 +151,12 @@ body{
     display: flex;
     background: #fff;
     width: 80%;
-    margin: auto;
+    margin: 20px auto;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 10px;
 }
 .admin-agent-detail-table-agent-name{
-    margin-left: 5%;
     font-weight: bold;
     padding: 10px;
     font-size: 25px;
@@ -162,9 +164,75 @@ body{
 }
 .admin-agent-detail-table-img-box{
     display: inline-block;
-    width: 30%;
+    width: 40%;
 }
 .admin-agent-detail-table-img{
     width: 100%;
     margin: auto;
+}
+/* 契約情報テーブル */
+.admin-agent-detail-contract-table-box-all{
+    background-color:#fff;
+    width: 80%;;
+    padding:0 20px 20px 20px;
+    margin: 20px auto;
+}
+.admin-agent-detail-contract-table-head{
+    display:flex;
+    justify-content:center;
+    font-weight: bold;
+    font-size: 20px;
+    margin: 10px;
+}
+.admin-agent-detail-contract-table-box{
+    display:flex;
+    justify-content:center;
+}
+.admin-agent-detail-contract-table{
+    width: 80%;
+}
+.admin-agent-detail-table-text{
+    border:1px solid black;
+    padding: 10px;
+}
+.admin-agent-detail-table-content{
+    border:1px solid black;
+    padding: 10px;
+}
+
+/* 掲載情報テーブル */
+.admin-agent-detail-public-all-box{
+    background-color:#fff;
+    width: 80%;;
+    padding:0 20px 20px 20px;
+    margin: 20px auto;
+}
+.admin-agent-detail-public-table-name{
+    font-weight: bold;
+    padding: 10px;
+    font-size: 25px;  
+    text-align: center; 
+}
+.admin-agent-detail-public-table-box{
+    display:flex;
+    justify-content:center;
+}
+.admin-agent-detail-public-table{
+    width: 80%;
+}
+.admin-agent-detail-table-public-edit-btn-box{
+    display: flex;
+    justify-content: center;
+    padding-top: 15px;
+}
+.admin-agent-detail-table-public-edit-btn{
+    border:1px solid;
+    padding:10px 40px;
+    border-radius:15px;
+    font-weight: bold;
+    font-size: 20px;
+    background-color:#4c9bfc;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
 }
