@@ -26,7 +26,7 @@ require "../../dbconnect.php";
     require "../parts/indicator.php";
     ?>
     <!-- セッションに入力内容保存してそこから引っ張ってくる -->
-    <form action="" method="POST" class="check-information-unit">
+    <form action="thanks.php" method="POST" class="check-information-unit">
         <div class="check-information-head">入力情報確認</div>
         <div class="check-info-alert">＊送信は完了しておりません</div>
         <table class="check-info-table">
@@ -70,7 +70,7 @@ require "../../dbconnect.php";
         </table>
         <div style="display:flex;" class="check-info-check-btns">
             <input class="check-info-back-btn" type="button" value="フォーム記入に戻る" onclick="location.href='./information_form.php'">
-            <input class="check-info-ok-btn" type="submit" formaction="./thanks.php" value="この内容で送る">
+            <input class="check-info-ok-btn" type="submit" name="send_form" value="この内容で送る">
         </div>
     </form>
     <?php require "../parts/footer.php"; ?>

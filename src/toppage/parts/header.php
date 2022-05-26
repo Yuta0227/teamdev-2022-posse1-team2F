@@ -20,7 +20,13 @@
                     <i class="fa-solid fa-envelope fa-2x mail-icon"></i>
                     <!--position:relative-->
                     
-                    <div class="cart-count"><?php echo count($_SESSION['apply_list'])?></div>
+                    <div class="cart-count"><?php 
+                    if(isset($_SESSION['apply_list'])){
+                        echo count($_SESSION['apply_list']);
+                    }else{
+                        echo 0;
+                    }
+                        ?></div>
                     <!--position:absoluteでごり押し-->
                 </div>
             </a>

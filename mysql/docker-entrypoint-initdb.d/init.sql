@@ -16,6 +16,17 @@ insert into help_email (email)
 values 
 ('help@gmail.com');
 
+drop table if exists send_notice_mail;
+
+create table send_notice_mail(
+  email_id int AUTO_INCREMENT primary key,
+  email_address varchar(255)
+);
+
+insert into send_notice_mail(email_address)
+VALUES
+('send_notice_mail@gmail.com');
+
 DROP TABLE IF EXISTS admin_users;
 
 CREATE TABLE admin_users (
@@ -177,6 +188,8 @@ drop table if exists featured_article;
 
 create table featured_article (
   featured_article_id int AUTO_INCREMENT not null primary key,
+  picture varchar(255),
+  title varchar(255),
   agent_id int not null,
   agent_name varchar(255) not null,
   questions_answers varchar(255) not null,
@@ -197,11 +210,11 @@ create table featured_article (
 -- }
 
 insert into featured_article
-(agent_id,agent_name,questions_answers,last_comment)
+(picture,title,agent_id,agent_name,questions_answers,last_comment,publish_date)
 values
-(1,(select agent_name from agent_contract_information where agent_id=1),'質問1,回答1;質問2,回答2','最後に一言サンプル1'),
-(2,(select agent_name from agent_contract_information where agent_id=2),'質問1,回答1;質問2,回答2;質問3,回答3','最後に一言サンプル2'),
-(3,(select agent_name from agent_contract_information where agent_id=3),'質問1,回答1;質問2,回答2;質問3,回答3;質問4,回答4','最後に一言サンプル3');
+('featured_article1.png','エージェント1の魅力を担当者に聞いてみた',1,(select agent_name from agent_contract_information where agent_id=1),'質問1,回答1;質問2,回答2','最後に一言サンプル1','2022-05-23 10:23:46'),
+('featured_article2.png','エージェント2の魅力を担当者に聞いてみた',2,(select agent_name from agent_contract_information where agent_id=2),'質問1,回答1;質問2,回答2;質問3,回答3','最後に一言サンプル2','2022-07-23 10:23:46'),
+('featured_article3.png','エージェント3の魅力を担当者に聞いてみた',3,(select agent_name from agent_contract_information where agent_id=3),'質問1,回答1;質問2,回答2;質問3,回答3;質問4,回答4','最後に一言サンプル3','2022-09-23 10:23:46');
 
 
 

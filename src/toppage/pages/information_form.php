@@ -24,6 +24,7 @@ require "../../dbconnect.php";
     require "../parts/header.php";
     require "../parts/indicator.php";
     if(isset($_SESSION['information_array'])&&isset($_SESSION['consultation'])){
+        //確認から戻ってきた場合
         echo '<div class="info-form-all">
         <div class="info-form-head">申し込み情報入力画面</div>
     <form class="info-form-unit" action="check_information.php" method="POST">
