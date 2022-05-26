@@ -1,33 +1,33 @@
 <section>
-    <div id="popup_filter" style="position:absolute;top:0;left:0;width:100%;height:100%;background-color:blue;opacity:50%;" hidden></div>
+    <div id="popup_filter" class="agent-profile-popup-filter" hidden></div>
     <!--青のフィルター。色は適当  -->
     <!-- クリックした編集ボタンのidで表示するポップアップ変更 -->
         <!-- 編集ポップアップ -->
-        <form action="" method="POST" id="edit_form" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background-color:white;width:400px;height:400px;opacity:100%;z-index:5;" hidden>
-            <div style="display:flex;justify-content:right;">
-                <div id="close_edit_form">
+        <form action="" method="POST" id="edit_form" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background-color:white;width:400px;height:300px;opacity:100%;z-index:5;" hidden>
+            <div class="agent-profile-popup-close-btn-box">
+                <div class="agent-profile-popup-close-btn" id="close_edit_form">
                 ×
                 </div>
             </div>
-            <table>
+            <table class="agent-profile-popup-table">
                 <?php
                 foreach ($assignee as $column => $data) {
                     if($column=='メールアドレス'){
                         echo '<tr>';
-                        echo '<th>' . $column . '</th><td>'.$data.'</td>';
+                        echo '<th class="agent-profile-popup-table-text">' . $column . '</th><td>'.$data.'</td>';
                         echo '</tr>';
                     }else{
                         echo '<tr>';
-                        echo '<th>' . $column . '</th><td><input name="' . $column . '" value="' . $data . '"></td>';
+                        echo '<th class="agent-profile-popup-table-text">' . $column . '</th><td><input name="' . $column . '" value="' . $data . '"></td>';
                         echo '</tr>';
                     }
                     //編集内容記入欄
                 }
                 ?>
             </table>
-            <div style="display:flex;justify-content:center;">
-                <div id="cancel_edit" style="border:1px solid black;padding:5px;border-radius:10px;">編集キャンセル</div>
-                <input type="submit" value="編集確定">
+            <div class="agent-profile-popup-edit-btn-box" style="">
+                <div id="cancel_edit" class="agent-profile-popup-edit-cancel">キャンセル</div>
+                <input class="agent-profile-popup-edit-confirm" type="submit" value="編集確定">
             </div>
         </form>
 </section>
