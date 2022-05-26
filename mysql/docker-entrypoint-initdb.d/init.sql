@@ -212,9 +212,9 @@ create table featured_article (
 insert into featured_article
 (picture,title,agent_id,agent_name,questions_answers,last_comment,publish_date)
 values
-('featured_article1.png','エージェント1の魅力を担当者に聞いてみた',1,(select agent_name from agent_contract_information where agent_id=1),'質問1,回答1;質問2,回答2','最後に一言サンプル1','2022-05-23 10:23:46'),
-('featured_article2.png','エージェント2の魅力を担当者に聞いてみた',2,(select agent_name from agent_contract_information where agent_id=2),'質問1,回答1;質問2,回答2;質問3,回答3','最後に一言サンプル2','2022-07-23 10:23:46'),
-('featured_article3.png','エージェント3の魅力を担当者に聞いてみた',3,(select agent_name from agent_contract_information where agent_id=3),'質問1,回答1;質問2,回答2;質問3,回答3;質問4,回答4','最後に一言サンプル3','2022-09-23 10:23:46');
+('picture1.png','エージェント1の魅力を担当者に聞いてみた',1,(select agent_name from agent_contract_information where agent_id=1),'質問1,回答1;質問2,回答2','最後に一言サンプル1','2022-05-23 10:23:46'),
+('picture2.png','エージェント2の魅力を担当者に聞いてみた',2,(select agent_name from agent_contract_information where agent_id=2),'質問1,回答1;質問2,回答2;質問3,回答3','最後に一言サンプル2','2022-07-23 10:23:46'),
+('picture3.png','エージェント3の魅力を担当者に聞いてみた',3,(select agent_name from agent_contract_information where agent_id=3),'質問1,回答1;質問2,回答2;質問3,回答3;質問4,回答4','最後に一言サンプル3','2022-09-23 10:23:46');
 
 
 
@@ -312,9 +312,9 @@ create table picture(
 
 insert into picture(picture_url,agent_name)
 VALUES
-('picture1.jpg',(select agent_name from agent_contract_information where agent_id=1)),
-('picture2.jpg',(select agent_name from agent_contract_information where agent_id=2)),
-('picture3.jpg',(select agent_name from agent_contract_information where agent_id=3));
+('picture1.png',(select agent_name from agent_contract_information where agent_id=1)),
+('picture2.png',(select agent_name from agent_contract_information where agent_id=2)),
+('picture3.png',(select agent_name from agent_contract_information where agent_id=3));
 
 drop table if exists agent_address;
 
