@@ -1,13 +1,13 @@
-<?php 
-if(isset($_POST['delete_assignee_id'])||isset($_POST['add_assignee'])){
+<?php
+if (isset($_POST['delete_assignee_id']) || isset($_POST['add_assignee'])) {
     echo '<div id="edit_popup_filter" style="position:absolute;width:100%;height:100%;background-color:red;top:0;left:0;opacity:50%;"></div>';
     //  ページ全体にかかるフィルターつける 
-}else{
+} else {
     echo '<div id="edit_popup_filter" style="position:absolute;width:100%;height:100%;background-color:red;top:0;left:0;opacity:50%;" hidden></div>';
 }
 ?>
 
-<form id="edit_public_information_form" style="position:absolute;background-color:white;top:50%;left:50%;transform:translate(-50%,-50%);" hidden method="post" action="">
+<form enctype="multipart/form-data" id="edit_public_information_form" style="position:absolute;background-color:white;top:50%;left:50%;transform:translate(-50%,-50%);" hidden method="post" action="">
     <div style="text-align:center;">掲載情報編集</div>
     <table>
         <?php
@@ -80,20 +80,19 @@ if(isset($_POST['delete_assignee_id'])||isset($_POST['add_assignee'])){
                 echo '<tr>';
                 echo '<th style="border:1px solid black;">' . $column . '</th><td style="border:1px solid black;">' . $data . '</td>';
                 echo '</tr>';
-            } elseif($column=='○○向き'){
+            } elseif ($column == '○○向き') {
                 echo '<tr>';
                 echo '<th style="border:1px solid black;">' . $column . '</th><td style="border:1px solid black;">';
-                if($data=='理系'){
-                    echo '<label><input type="radio" name="'.$column.'" value="0" checked >理系</label>';
-                    echo '<label><input type="radio" name="'.$column.'" value="1">文系</label>';
-                }else{
-                    echo '<label><input type="radio" name="'.$column.'" value="0">理系</label>';
-                    echo '<label><input type="radio" name="'.$column.'" value="1" checked>文系</label>';
+                if ($data == '理系') {
+                    echo '<label><input type="radio" name="' . $column . '" value="0" checked >理系</label>';
+                    echo '<label><input type="radio" name="' . $column . '" value="1">文系</label>';
+                } else {
+                    echo '<label><input type="radio" name="' . $column . '" value="0">理系</label>';
+                    echo '<label><input type="radio" name="' . $column . '" value="1" checked>文系</label>';
                 }
                 echo '</td>';
                 echo '</tr>';
-            }
-            else {
+            } else {
                 echo '<tr>';
                 echo '<th style="border:1px solid black;">' . $column . '</th><td style="border:1px solid black;"><input name="' . $column . '" value="' . $data . '"></td>';
                 echo '</tr>';
@@ -137,7 +136,14 @@ if(isset($_POST['delete_assignee_id'])||isset($_POST['add_assignee'])){
         echo '<tr>';
         echo '<th style="border:1px solid black;">キャッチコピー</th>';
         echo '<td style="border:1px solid black;">';
-        echo '<input name="sales_copy" value="'.$sales_copy_data.'">';
+        echo '<input name="sales_copy" value="' . $sales_copy_data . '">';
+        echo '</td>';
+        echo '</tr>';
+        echo '<tr>';
+        echo '<th style="border:1px solid black;">画像</th>';
+        echo '<td style="border:1px solid black;">';
+        echo '<img style="width:100%;height:100%;" src="../../img/article/' . $agent_picture . '" alt="' . $agent_public_information_array[0]['agent_name'] . 'の画像">';
+        echo '<input name="img_file" type="file">';
         echo '</td>';
         echo '</tr>';
         ?>

@@ -1,13 +1,15 @@
 <section style="display:flex;flex-direction:column;justify-content:center;width:max-content;margin:0 auto;">
-    <div style="display:flex;width:max-content;">
+    <div style="display:flex;width:max-content;width:600px;">
         <?php
         $picture_stmt = $db->prepare("select picture_url,agent_name from picture where agent_id=?;");
         $picture_stmt->bindValue(1, $_GET['agent_id']);
         $picture_stmt->execute();
         $picture = $picture_stmt->fetchAll();
         ?>
-        <img src="<?php echo $picture[0]['picture_url']; ?>" alt="<?php echo $picture[0]['agent_name']; ?>の写真">
-        <div style="background-color:skyblue;"><?php echo $picture[0]['agent_name']; ?></div>
+        <div style="width:50%;">
+            <img style="width:100%;height:100%;" src="../../../img/article/<?php echo $picture[0]['picture_url']; ?>" alt="<?php echo $picture[0]['agent_name']; ?>の写真">
+        </div>
+        <div style="background-color:skyblue;width:50%;text-align:center;"><?php echo $picture[0]['agent_name']; ?></div>
     </div>
     <div style="background-color:blue;width:600px;padding:20px;">
         <div style="display:flex;justify-content:center;">契約情報</div>
@@ -139,6 +141,12 @@
                     $index++;
                 }
                 echo '</td>';
+                echo '</tr>';
+                $agent_picture_stmt = $db->query("select picture_url from picture where agent_id=" . $_GET['agent_id'] . ";");
+                $agent_picture = $agent_picture_stmt->fetchAll()[0]['picture_url'];
+                echo '<tr>';
+                echo '<th style="border:1px solid black;">画像</th>';
+                echo '<td style="border:1px solid black;"><img style="width:100%;height:100%;" src="../../img/article/' . $agent_picture . '" alt="' . $agent_public_information_array[0]['agent_name'] . 'の画像"></td>';
                 echo '</tr>';
                 ?>
             </table>

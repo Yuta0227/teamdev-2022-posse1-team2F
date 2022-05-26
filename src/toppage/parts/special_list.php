@@ -24,7 +24,7 @@ count($special_list_array) == $specials_per_page
             echo '<div>';
             echo '<div class="special-list-each-box">';
             echo '<div class="special-list-img-box">';
-            echo '<img class="special-list-img" src="' . $special_list_array[($i + 1) * $specials_pagination - 1]['picture'] . '" alt="'.$special_list_array[($i+1)*$specials_pagination-1]['agent_name'].'の特集記事用の画像">';
+            echo '<img class="special-list-img" src="../../img/article/'.$special_list_array[($i + 1) * $specials_pagination - 1]['picture'] .'" alt="'.$special_list_array[($i+1)*$specials_pagination-1]['agent_name'].'の特集記事用の画像">';
             echo '</div>';
             echo '<div class="special-list-informations">';
             echo '<a href="special_detail_index.php?featured_article_id=' . $special_list_array[($i + 1) * $specials_pagination - 1]['featured_article_id'] . '">';
@@ -46,7 +46,7 @@ count($special_list_array) == $specials_per_page
             echo '<div>';
             echo '<div class="special-list-each-box">';
             echo '<div class="special-list-img-box">';
-            echo '<img class="special-list-img" src="' . $special_list_array[($i + 1) * $specials_pagination - 1]['picture'] . '" alt="'.$special_list_array[($i+1)*$specials_pagination-1]['agent_name'].'の特集記事用の画像">';
+            echo '<img class="special-list-img" src="../../img/article/' . $special_list_array[($i + 1) * $specials_pagination - 1]['picture'] . '" alt="'.$special_list_array[($i+1)*$specials_pagination-1]['agent_name'].'の特集記事用の画像">';
             echo '</div>';
             echo '<div class="special-list-informations">';
             echo '<a href="special_detail_index.php?featured_article_id=' . $special_list_array[($i + 1) * $specials_pagination - 1]['featured_article_id'] . '">';

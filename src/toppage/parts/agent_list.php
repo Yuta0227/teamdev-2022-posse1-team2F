@@ -26,7 +26,7 @@
             echo '</div>';
             echo '<div style="display: flex;">';
             echo '<div class="image-box">';
-            echo '<img class="agent-list-image" src="../../../img/'.$agent_name_picture['picture_url'].'" alt="'.$agent_name_picture['agent_name'].'の画像">';
+            echo '<img class="agent-list-image" src="../../../img/article/'.$agent_name_picture['picture_url'].'" alt="'.$agent_name_picture['agent_name'].'の画像">';
             echo '</div>';
             echo '<div class="agent-article">';
             echo '<div class="agent-short-explanation"><table>';
@@ -78,7 +78,7 @@
             echo '</div>';
             echo '<div style="display: flex;">';
             echo '<div class="image-box">';
-            echo '<img class="agent-list-image" src="../../../img/'.$agent_name_picture['picture_url'].'" alt="'.$agent_name_picture['agent_name'].'の画像">';
+            echo '<img class="agent-list-image" src="../../../img/article/'.$agent_name_picture['picture_url'].'" alt="'.$agent_name_picture['agent_name'].'の画像">';
             echo '</div>';
             echo '<div class="agent-article">';
             echo '<div class="agent-short-explanation"><table>';
