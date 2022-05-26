@@ -149,9 +149,9 @@
             <div class="admin-agent-detail-table-public-edit-btn" id="edit_public_information_button">編集</div>
         </div>
     </form>
-    <form style="background-color:blue;width:600px;padding:20px;">
-        <div style="display:flex;justify-content:center;">エージェント説明文</div>
-        <div style="height:200px;width:400px;background-color:white;">
+    <form class="admin-agent-detail-explain-all-box">
+        <div class="admin-agent-detail-explain-name" style="display:flex;justify-content:center;">エージェント説明文</div>
+        <div class="admin-agent-detail-explain-text">
             <?php
             $explanation_stmt = $db->prepare("select agent_explanation from agent_explanation where agent_id=?;");
             $explanation_stmt->bindValue(1, $_GET['agent_id']);
@@ -161,12 +161,12 @@
             //改行などは;とexplodeなどをつかって対策する。登録のときに工夫してもらう
             ?>
         </div>
-        <div style="display:flex;justify-content:right;">
-            <div style="border:1px solid black;padding:5px;border-radius:10px;background-color:skyblue;" id="edit_agent_explanation_button">編集</div>
+        <div class="admin-agent-detail-explain-edit-btn-box">
+            <div class="admin-agent-detail-explain-edit-btn" id="edit_agent_explanation_button">編集</div>
         </div>
     </form>
-    <div style="position:relative;">
-        <div style="display:flex;justify-content:center;">担当者情報</div>
+    <div class="admin-agent-detail-person-all">
+        <div class="admin-agent-detail-person-head">担当者情報</div>
         <div style="display:flex;flex-direction:column;justify-content:center;">
             <?php
             $assignee_stmt = $db->prepare("select * from agent_assignee_information where agent_id=?;");
@@ -197,15 +197,15 @@
                 foreach ($assignee as $column => $data) {
                     if ($column != 'user_id') {
                         echo '<tr>';
-                        echo '<th style="width:20%;border:1px solid black;">' . $column . '</th>';
-                        echo '<td style="width:80%;border:1px solid black;">' . $data . '</td>';
+                        echo '<th class="admin-agent-detail-person-table-text">' . $column . '</th>';
+                        echo '<td class="admin-agent-detail-person-table-content">' . $data . '</td>';
                         echo '</tr>';
                     }
                 }
                 echo '</table>';
                 echo '<div style="width:20%;display:flex;justify-content:center;align-items:center;">';
                 echo '<input name="delete_assignee_id" value="' . $assignee['user_id'] . '" hidden>';
-                echo '<input type="submit" value="削除">';
+                echo '<input class="admin-agent-detail-person-table-delete-btn" type="submit" value="削除">';
                 //クリック時に確認モーダル表示
                 echo '</div>';
                 echo '</form>';
@@ -228,7 +228,7 @@
         <?php
         ?>
         <form action="" method="POST" style="display:flex;justify-content:center;">
-            <input name="add_assignee" type="submit" style="display:flex;text-align:center;background-color:skyblue;height:50px;border-radius:25px;align-items:center;" value="担当者を追加する">
+            <input class="admin-agent-detail-person-table-add-btn" name="add_assignee" type="submit" value="担当者を追加する">
         </form>
         <?php
         if (isset($_POST['add_assignee'])) {
