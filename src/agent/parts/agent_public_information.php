@@ -1,8 +1,8 @@
 <section class="agent-public-information-unit">
     <div class="agent-public-information-head">掲載情報</div>
     <div class="agent-public-information-table-box">
-    <div class="agent-public-information-table">
-        <table>
+    <div class="agent-public-information-table-in-box">
+        <table class="agent-public-information-table">
             <?php
             $agent_public_information_stmt=$db->query("select agent_name,agent_meeting_type,agent_main_corporate_size,agent_corporate_type,agent_job_offer_rate,agent_shortest_period,agent_recommend_student_type from agent_public_information where agent_id=".$_SESSION['agent_id'].";");
             $agent_public_information_array=$agent_public_information_stmt->fetchAll()[0];
@@ -16,12 +16,12 @@
                 $column=$translate->translate_column_to_japanese($column);
                 $data=$translate->translate_data_to_japanese($column,$data);
                 echo '<tr>';
-                echo '<th style="border:1px solid black;">' . $column . '</th><td style="border:1px solid black;">' . $data . '</td>';
+                echo '<th class="agent-public-information-table-text">' . $column . '</th><td class="agent-public-information-table-content">' . $data . '</td>';
                 echo '</tr>';
             }
             echo '<tr>';
-            echo '<th style="border:1px solid black;">拠点地</th>';
-            echo '<td style="border:1px solid black;">';
+            echo '<th class="agent-public-information-table-text">拠点地</th>';
+            echo '<td class="agent-public-information-table-content">';
             for($index=0;$index<=count($agent_address)-1;$index++){
                 if($index==count($agent_address)-1){
                     echo $agent_address[$index]['agent_prefecture'];
@@ -32,12 +32,12 @@
             echo '</td>';
             echo '</tr>';
             echo '<tr>';
-            echo '<th style="border:1px solid black;">キャッチコピー</th>';
-            echo '<td style="border:1px solid black;">'.$sales_copy['sales_copy'].'</td>';
+            echo '<th class="agent-public-information-table-text">キャッチコピー</th>';
+            echo '<td class="agent-public-information-table-content">'.$sales_copy['sales_copy'].'</td>';
             echo '</tr>';
             echo '<tr>';
-            echo '<th style="border:1px solid black;">業界別取り扱い企業数</th>';
-            echo '<td style="border:1px solid black;">';
+            echo '<th class="agent-public-information-table-text">業界別取り扱い企業数</th>';
+            echo '<td class="agent-public-information-table-content">';
             $index=0;
             foreach($corporate_amount as $column=>$data){
                 $column=$translate->translate_column_to_japanese($column);

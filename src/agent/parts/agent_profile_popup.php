@@ -1,5 +1,5 @@
 <section>
-    <div id="popup_filter" style="position:absolute;top:0;left:0;width:100%;height:100%;background-color:blue;opacity:50%;" hidden></div>
+    <div id="popup_filter" class="agent-profile-popup-filter" hidden></div>
     <!--青のフィルター。色は適当  -->
     <!-- クリックした編集ボタンのidで表示するポップアップ変更 -->
         <!-- 編集ポップアップ -->
@@ -9,25 +9,25 @@
                 ×
                 </div>
             </div>
-            <table>
+            <table class="agent-profile-popup-table">
                 <?php
                 foreach ($assignee as $column => $data) {
                     if($column=='メールアドレス'){
                         echo '<tr>';
-                        echo '<th>' . $column . '</th><td>'.$data.'</td>';
+                        echo '<th class="agent-profile-popup-table-text">' . $column . '</th><td>'.$data.'</td>';
                         echo '</tr>';
                     }else{
                         echo '<tr>';
-                        echo '<th>' . $column . '</th><td><input name="' . $column . '" value="' . $data . '"></td>';
+                        echo '<th class="agent-profile-popup-table-text">' . $column . '</th><td><input name="' . $column . '" value="' . $data . '"></td>';
                         echo '</tr>';
                     }
                     //編集内容記入欄
                 }
                 ?>
             </table>
-            <div style="display:flex;justify-content:center;">
-                <div id="cancel_edit" style="border:1px solid black;padding:5px;border-radius:10px;">編集キャンセル</div>
-                <input type="submit" value="編集確定">
+            <div style="display:flex;justify-content:center;gap:15px;">
+                <div id="cancel_edit" class="agent-profile-popup-edit-cancel" style="">キャンセル</div>
+                <input class="agent-profile-popup-edit-confirm" type="submit" value="編集確定">
             </div>
         </form>
 </section>
