@@ -18,6 +18,7 @@ if (isset($_POST['remove_from_apply']) && isset($_POST['agent_id'])) {
     header("Location:comparison.php");
     //削除押したら問い合わせリストから削除される
 }
+// unset($_SESSION['sort_type_order']);
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -42,37 +43,54 @@ if (isset($_POST['remove_from_apply']) && isset($_POST['agent_id'])) {
     ?>
     <div>比較リスト選択中<?php echo count($_SESSION['comparison_list']); ?>件</div>
     <form action="" method="POST">
-        <select name="comparison_condition">
-            <?php
-            $sort_type = [
-                'agent_meeting_type' => '<option value="agent_meeting_type">面談方式</option>',
-                'agent_main_corporate_size' => '<option value="agent_main_corporate_size">主な取り扱い企業規模</option>',
-                'agent_corporate_type' => '<option value="agent_corporate_type">取り扱い企業カテゴリー</option>',
-                'agent_job_offer_rate' => '<option value="agent_job_offer_rate">内定率</option>',
-                'agent_shortest_period' => '<option value="agent_shortest_period">内定最短期間</option>',
-                'agent_recommend_student_type' => '<option value="agent_recommend_student_type">○○向き</option>',
-                'agent_prefecture' => '<option value="agent_prefecture">拠点地</option>',
-                'total' => '<option value="total">取り扱い企業数合計</option>',
-                'manufacturer' => '<option value="manufacturer">メーカー企業数</option>',
-                'retail' => '<option value="retail">小売り企業数</option>',
-                'service' => '<option value="service">サービス企業数</option>',
-                'software_transmission' => '<option value="software_transmission">ソフトウェア・通信企業数</option>',
-                'trading' => '<option value="trading">商社企業数</option>',
-                'finance' => '<option value="finance">金融企業数</option>',
-                'media' => '<option value="media">マスコミ企業数</option>',
-                'government' => '<option value="government">官公庁・公社・団体企業数</option>',
-            ];
+        <?php
+        $sort_type = [
+            'agent_meeting_type' => '<option value="agent_meeting_type">面談方式</option>',
+            'agent_main_corporate_size' => '<option value="agent_main_corporate_size">主な取り扱い企業規模</option>',
+            'agent_corporate_type' => '<option value="agent_corporate_type">取り扱い企業カテゴリー</option>',
+            'agent_job_offer_rate' => '<option value="agent_job_offer_rate">内定率</option>',
+            'agent_shortest_period' => '<option value="agent_shortest_period">内定最短期間</option>',
+            'agent_recommend_student_type' => '<option value="agent_recommend_student_type">○○向き</option>',
+            'agent_prefecture' => '<option value="agent_prefecture">拠点地</option>',
+            'total' => '<option value="total">取り扱い企業数合計</option>',
+            'manufacturer' => '<option value="manufacturer">メーカー企業数</option>',
+            'retail' => '<option value="retail">小売り企業数</option>',
+            'service' => '<option value="service">サービス企業数</option>',
+            'software_transmission' => '<option value="software_transmission">ソフトウェア・通信企業数</option>',
+            'trading' => '<option value="trading">商社企業数</option>',
+            'finance' => '<option value="finance">金融企業数</option>',
+            'media' => '<option value="media">マスコミ企業数</option>',
+            'government' => '<option value="government">官公庁・公社・団体企業数</option>',
+        ];
+        if (isset($_POST['comparison_condition'])) {
             foreach ($sort_type as $column => $data) {
-                if (isset($_POST['comparison_condition'])) {
-                    if ($_POST['comparison_condition'] == $column) {
-                        $sort_type = array_diff($sort_type, array($column => $data));
-                        $add_set = array($sort_type, $column => $data);
-                        $changed_sort_type = array_merge($add_set, $sort_type);
-                    }
+                //比較条件POST時
+                if ($_POST['comparison_condition'] == $column) {
+                    //POSTされたvalueとsort_typeのカラム一致時
+                    $deleted_set = array_diff($sort_type, array($column => $data));
+                    //sort_typeから被ったところを消す
+                    $add_set = [$column => $data];
+                    //そして先頭に追加するための配列にいれる
+                    $changed_sort_type = array_merge($add_set, $deleted_set);
+                    //末尾に配列追加する
+                    //optionの順番並び替えてる
+                    $_SESSION['sort_type_order'] = $changed_sort_type;
+                    $_SESSION['selected_sort_type'] = $column;
+                    //問い合わせリスト,比較リストボタンを押したとき比較条件がリセットされないようにセッションに保存
                 }
             }
-            if (isset($_POST['comparison_condition'])) {
-                foreach ($changed_sort_type as $column => $data) {
+            print_r('<pre>');
+            // var_dump($deleted_set);
+            // var_dump($add_set);
+            // var_dump($changed_sort_type);
+            // var_dump($_SESSION['sort_type_order']);
+            print_r('</pre>');
+        }
+        ?>
+        <select name="comparison_condition">
+            <?php
+            if (isset($_SESSION['sort_type_order'])) {
+                foreach ($_SESSION['sort_type_order'] as $column => $data) {
                     echo $data;
                 }
             } else {
@@ -89,9 +107,23 @@ if (isset($_POST['remove_from_apply']) && isset($_POST['agent_id'])) {
         <div style="width:25%;">画像</div>
         <div style="width:25%;">エージェント名</div>
         <div style="width:25%;">
-            <?php if (isset($_POST['comparison_condition'])) {
-                $japanese_condition = $translate->translate_column_to_japanese($_POST['comparison_condition']);
-                echo $japanese_condition;
+            <?php if (isset($_SESSION['sort_type_order'])) {
+                $japanese_condition = $translate->translate_column_to_japanese($_SESSION['selected_sort_type']);
+                switch ($japanese_condition) {
+                    case 'メーカー':
+                    case '小売り':
+                    case 'サービス':
+                    case 'ソフトウェア・通信':
+                    case '商社':
+                    case '金融':
+                    case 'マスコミ':
+                    case '官公庁・公社・団体':
+                        echo $japanese_condition . '企業数';
+                        break;
+                    default:
+                        echo $japanese_condition;
+                        break;
+                }
             } else {
                 echo '面談方式';
             }; ?></div>
@@ -101,7 +133,7 @@ if (isset($_POST['remove_from_apply']) && isset($_POST['agent_id'])) {
         //配列のセッション登録されてなかったら初期化
         $_SESSION['apply_list'] = [];
     }
-    if (isset($_POST['comparison_condition'])) {
+    if (isset($_SESSION['sort_type_order'])) {
         foreach ($_SESSION['comparison_list'] as $agent) {
             ${"comparison" . $agent} = [];
             $agent_public_information_stmt = $db->query("select * from agent_public_information where agent_id=" . $agent . ";");
@@ -109,7 +141,7 @@ if (isset($_POST['remove_from_apply']) && isset($_POST['agent_id'])) {
             foreach ($agent_public_information as $column => $data) {
                 $column = $translate->translate_column_to_japanese($column);
                 $data = $translate->translate_data_to_japanese($column, $data);
-                ${"comparison" . $agent} = ${"comparison" . $agent} = array_merge(${"comparison" . $agent}, array($column => $data));
+                ${"comparison" . $agent} = array_merge(${"comparison" . $agent}, array($column => $data));
                 //面談方式から○○向きまで
             }
             $agent_picture_stmt = $db->query("select picture_url from picture where agent_id=" . $agent . ";");
@@ -125,23 +157,23 @@ if (isset($_POST['remove_from_apply']) && isset($_POST['agent_id'])) {
             }
             ${"comparison" . $agent} = ${"comparison" . $agent} = array_merge(${"comparison" . $agent}, array('取り扱い企業数合計' => $sum));
             ${"comparison" . $agent} = ${"comparison" . $agent} = array_merge(${"comparison" . $agent}, array('画像' => $agent_picture['picture_url']));
-            $agent_address_stmt=$db->query("select agent_prefecture from agent_address where agent_id=".$agent.";");
-            $agent_address=$agent_address_stmt->fetchAll();
-            $prefecture_text="";
-            for($index=0;$index<=count($agent_address)-1;$index++){
-                if($index==count($agent_address)-1){
-                    $prefecture_text.=$agent_address[$index]['agent_prefecture'];
-                }else{
-                    $prefecture_text.=$agent_address[$index]['agent_prefecture'].',';
+            $agent_address_stmt = $db->query("select agent_prefecture from agent_address where agent_id=" . $agent . ";");
+            $agent_address = $agent_address_stmt->fetchAll();
+            $prefecture_text = "";
+            for ($index = 0; $index <= count($agent_address) - 1; $index++) {
+                if ($index == count($agent_address) - 1) {
+                    $prefecture_text .= $agent_address[$index]['agent_prefecture'];
+                } else {
+                    $prefecture_text .= $agent_address[$index]['agent_prefecture'] . ',';
                 }
             }
-            ${"comparison".$agent}=${"comparison".$agent}=array_merge(${"comparison".$agent},array("拠点地"=>$prefecture_text));
-            echo '<form method="POST" action="" style="display:flex;">
-            <div style="width:25%;"><img alt="' . ${"comparison" . $agent}['エージェント名'] . 'の画像" src="' . ${"comparison" . $agent}['画像'] . '"></div>
+            ${"comparison" . $agent} = ${"comparison" . $agent} = array_merge(${"comparison" . $agent}, array("拠点地" => $prefecture_text));
+            echo '<form method="POST" action="" style="display:flex;height:200px;">
+            <div style="width:25%;"><img style="height:100px;width:100px;" alt="' . ${"comparison" . $agent}['エージェント名'] . 'の画像" src="../../img/article/' . ${"comparison" . $agent}['画像'] . '"></div>
             <div style="width:25%;">' . ${"comparison" . $agent}['エージェント名'] . '</div>
             <div style="width:25%;">' . ${"comparison" . $agent}[$japanese_condition] . '</div>
-            <div style="width:25%;">
-            <input type="submit" name="remove_from_comparison" value="比較リストから削除">';
+            <div style="width:25%;display:flex;flex-direction:column;">
+            <input class="like-button" type="submit" name="remove_from_comparison" value="比較リストから削除">';
             if ($check->exists_in_array($_SESSION['apply_list'], $agent) == true) {
                 echo '<input type="submit" name="remove_from_apply" class="like-button" value="問い合わせリストから削除">';
             } else {
@@ -173,23 +205,23 @@ if (isset($_POST['remove_from_apply']) && isset($_POST['agent_id'])) {
                 ${"comparison" . $agent} = ${"comparison" . $agent} = array_merge(${"comparison" . $agent}, array($japanese_column => $number));
             }
             ${"comparison" . $agent} = ${"comparison" . $agent} = array_merge(${"comparison" . $agent}, array('取り扱い企業数合計' => $sum));
-            $agent_address_stmt=$db->query("select agent_prefecture from agent_address where agent_id=".$agent.";");
-            $agent_address=$agent_address_stmt->fetchAll();
-            $prefecture_text="";
-            for($index=0;$index<=count($agent_address)-1;$index++){
-                if($index==count($agent_address)-1){
-                    $prefecture_text.=$agent_address[$index]['agent_prefecture'];
-                }else{
-                    $prefecture_text.=$agent_address[$index]['agent_prefecture'].',';
+            $agent_address_stmt = $db->query("select agent_prefecture from agent_address where agent_id=" . $agent . ";");
+            $agent_address = $agent_address_stmt->fetchAll();
+            $prefecture_text = "";
+            for ($index = 0; $index <= count($agent_address) - 1; $index++) {
+                if ($index == count($agent_address) - 1) {
+                    $prefecture_text .= $agent_address[$index]['agent_prefecture'];
+                } else {
+                    $prefecture_text .= $agent_address[$index]['agent_prefecture'] . ',';
                 }
             }
-            ${"comparison".$agent}=${"comparison".$agent}=array_merge(${"comparison".$agent},array("拠点地"=>$prefecture_text));
-            echo '<form method="POST" action="" style="display:flex;">
-                    <div style="width:25%;"><img alt="' . ${"comparison" . $agent}['エージェント名'] . 'の画像" src="' . ${"comparison" . $agent}['画像'] . '"></div>
+            ${"comparison" . $agent} = ${"comparison" . $agent} = array_merge(${"comparison" . $agent}, array("拠点地" => $prefecture_text));
+            echo '<form method="POST" action="" style="display:flex;height:200px;">
+                    <div style="width:25%;"><img style="width:100px;height:100px;" alt="' . ${"comparison" . $agent}['エージェント名'] . 'の画像" src="../../img/article/' . ${"comparison" . $agent}['画像'] . '"></div>
                     <div style="width:25%;">' . ${"comparison" . $agent}['エージェント名'] . '</div>
                     <div style="width:25%;">' . ${"comparison" . $agent}['面談方式'] . '</div>
-                    <div style="width:25%;">
-                    <input type="submit" name="remove_from_comparison" value="比較リストから削除">';
+                    <div style="width:25%;display:flex;flex-direction:column;">
+                    <input class="like-button" type="submit" name="remove_from_comparison" value="比較リストから削除">';
             if ($check->exists_in_array($_SESSION['apply_list'], $agent) == true) {
                 echo '<input type="submit" name="remove_from_apply" class="like-button" value="問い合わせリストから削除">';
             } else {

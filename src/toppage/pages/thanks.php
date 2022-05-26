@@ -88,9 +88,6 @@ if (isset($_POST['send_form'])) {
                 }
                 //学生にも確認メール送信
             };
-            print_r('<pre>');
-            var_dump($check_same_mail);
-            print_r('</pre>');
         }
         $_SESSION['form_sent'] = true;
         //form送信済みにする。二重送信防止

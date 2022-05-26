@@ -38,14 +38,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $edit_sales_copy_stmt->bindValue(2, $_GET['agent_id']);
         $edit_sales_copy_stmt->execute();
         //キャッチコピー編集
-        $change_img_file_article_stmt = $db->prepare("update picture set picture_url=? where agent_id=?");
-        $change_img_file_article_stmt->bindValue(1, $_FILES['img_file']['name']);
-        $change_img_file_article_stmt->bindValue(2, $_GET['agent_id']);
-        $change_img_file_article_stmt->execute();
-        $change_img_file_featured_article_stmt = $db->prepare("update featured_article set picture=? where agent_id=?;");
-        $change_img_file_featured_article_stmt->bindValue(1, $_FILES['img_file']['name']);
-        $change_img_file_featured_article_stmt->bindValue(2, $_GET['agent_id']);
-        $change_img_file_featured_article_stmt->execute();
+        if($_FILES['img_file']['name']!=NULL){
+            $change_img_file_article_stmt = $db->prepare("update picture set picture_url=? where agent_id=?");
+            $change_img_file_article_stmt->bindValue(1, $_FILES['img_file']['name']);
+            $change_img_file_article_stmt->bindValue(2, $_GET['agent_id']);
+            $change_img_file_article_stmt->execute();
+            $check_featured_stmt=$db->query("select agent_id from featured_article;");
+            $check_featured=$check_featured_stmt->fetchAll();
+            print_r('<pre>');
+            var_dump($check_featured);
+            print_r('</pre>');
+            if($check->exists_in_multi_array($check_featured,'agent_id',$_GET['agent_id'])==true){
+                //もし特集記事が存在するなら画像を変える
+                $change_img_file_featured_article_stmt = $db->prepare("update featured_article set picture=? where agent_id=?;");
+                $change_img_file_featured_article_stmt->bindValue(1, $_FILES['img_file']['name']);
+                $change_img_file_featured_article_stmt->bindValue(2, $_GET['agent_id']);
+                $change_img_file_featured_article_stmt->execute();
+            }
+        }
         //ダウンロードをしたいファイル名のパス
         // print_r('<pre>');
         // var_dump($_FILES);

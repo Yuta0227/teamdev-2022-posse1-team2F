@@ -1,6 +1,6 @@
 <?php
 $dsn = 'mysql:host=db;dbname=shukatsu;charset=utf8;';
-$user = 'root';
+$user = 'boozer';
 $password = 'password';
 
 try {
