@@ -17,6 +17,8 @@
     if ($page_number - 1 != floor(count($all_agents) / $agents_per_page)) {
         //ページ番号が最後以外
         for ($i = 0; $i < $agents_per_page; $i++) {
+            $agent_name_picture_stmt=$db->query("select * from picture where agent_id=".$all_agents[$agents_per_page*($_GET['agent_list_pagination']-1)+$i]['agent_id'] .";");
+            $agent_name_picture=$agent_name_picture_stmt->fetchAll()[0];
             echo '<form class="agent-overview-box" method="POST" action="">';
             echo '<a href="./agent_detail.php?agent_id=' . $all_agents[$agents_per_page*($_GET['agent_list_pagination']-1)+$i]['agent_id'] . '" target="_blank" class="agent-overview-link">';
             echo '<div>';
@@ -24,7 +26,7 @@
             echo '</div>';
             echo '<div style="display: flex;">';
             echo '<div class="image-box">';
-            echo '<img class="agent-list-image" src="../../../img/dummy.png" alt="エージェントの画像">';
+            echo '<img class="agent-list-image" src="../../../img/'.$agent_name_picture['picture_url'].'" alt="'.$agent_name_picture['agent_name'].'の画像">';
             echo '</div>';
             echo '<div class="agent-article">';
             echo '<div class="agent-short-explanation"><table>';
@@ -66,6 +68,8 @@
     } elseif ($page_number - 1 == floor(count($all_agents) / $agents_per_page)) {
         //ページ番号が最後の場合。
         for ($i = 0; $i < count($all_agents) % $agents_per_page; $i++) {
+            $agent_name_picture_stmt=$db->query("select * from picture where agent_id=".$all_agents[$agents_per_page*($_GET['agent_list_pagination']-1)+$i]['agent_id'] .";");
+            $agent_name_picture=$agent_name_picture_stmt->fetchAll()[0];
             //余りの個数出力
             echo '<form class="agent-overview-box" method="POST" action="">';
             echo '<a href="./agent_detail.php?agent_id=' . $all_agents[$agents_per_page*($_GET['agent_list_pagination']-1)+$i]['agent_id'] . '" target="_blank" class="agent-overview-link">';
@@ -74,7 +78,7 @@
             echo '</div>';
             echo '<div style="display: flex;">';
             echo '<div class="image-box">';
-            echo '<img class="agent-list-image" src="../../../img/dummy.png" alt="エージェントの画像">';
+            echo '<img class="agent-list-image" src="../../../img/'.$agent_name_picture['picture_url'].'" alt="'.$agent_name_picture['agent_name'].'の画像">';
             echo '</div>';
             echo '<div class="agent-article">';
             echo '<div class="agent-short-explanation"><table>';
@@ -133,7 +137,10 @@ if (isset($_SESSION['comparison_list'])) {
     }
 }
 ?>
-<?php foreach ($_SESSION['comparison_list'] as $agent) {; ?>
+<?php foreach ($_SESSION['comparison_list'] as $agent) { 
+    $agent_name_picture_stmt=$db->query("select * from picture where agent_id=".$agent.";");
+    $agent_name_picture=$agent_name_picture_stmt->fetchAll()[0];
+    ?>
     <!-- <div class="top-compare-each-box-all"> -->
     <form action="" method="POST" class="top-compare-each-box">
         <!-- <div style="text-align: right;"> -->
@@ -141,8 +148,8 @@ if (isset($_SESSION['comparison_list'])) {
         <input class="compare-each-close-btn" type="submit" name="remove_from_comparison" value="×">
         <!-- </div> -->
         <div style="display: flex;">
-            <img class="top-compare-each-img" src="../../img/dummy.png" alt="">
-            <p class="top-compare-each-name">企業名</p>
+            <img class="top-compare-each-img" src="../../img/<?php echo $agent_name_picture['picture_url'];?>" alt="<?php echo $agent_name_picture['agent_name'].'の画像';?>">
+            <p class="top-compare-each-name"><?php echo $agent_name_picture['agent_name'];?></p>
         </div>
     </form>
     <!-- </div> -->

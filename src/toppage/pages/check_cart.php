@@ -1,10 +1,10 @@
 <?php
 session_start();
 require "../../dbconnect.php";
-if(isset($_POST['go_to_detail'])&&isset($_POST['check_agent_id'])){
-    header("Location: agent_detail.php?agent_id=".$_POST['check_agent_id']);
+if (isset($_POST['go_to_detail']) && isset($_POST['check_agent_id'])) {
+    header("Location: agent_detail.php?agent_id=" . $_POST['check_agent_id']);
 }
-if(isset($_POST['remove_from_apply'])&&isset($_POST['remove_id'])){
+if (isset($_POST['remove_from_apply']) && isset($_POST['remove_id'])) {
     $_SESSION['apply_list'] = array_diff($_SESSION['apply_list'], array($_POST['remove_id']));
     array_values($_SESSION['apply_list']);
     //削除される
@@ -49,7 +49,7 @@ if(isset($_POST['remove_from_apply'])&&isset($_POST['remove_id'])){
                     </div>
                 </div>
                 <div class="check-cart-delete-check-choices">
-                    <input name="remove_id" value="<?php echo $_POST['check_agent_id'];?>" hidden>
+                    <input name="remove_id" value="<?php echo $_POST['check_agent_id']; ?>" hidden>
                     <input name="remove_from_apply" class="check-cart-delete-check-yes" type="submit" value="はい">
                     <input class="check-cart-delete-check-no" type="submit" value="いいえ" id="check_cart_delete_no">
                 </div>
@@ -61,47 +61,58 @@ if(isset($_POST['remove_from_apply'])&&isset($_POST['remove_id'])){
                     </a>
                 </button>
             </div>
-                 <?php
-                    } else {
-                        ?> 
+        <?php
+        } else {
+        ?>
             <div class="check-cart-agent-all" id="check_cart_each_agent">
                 <?php
-                        foreach ($_SESSION['apply_list'] as $selected_agent) {
-                            $agent_name_picture_stmt = $db->query("select agent_name,picture_url from picture where agent_id=" . $selected_agent . ";");
-                            $agent_name_picture = $agent_name_picture_stmt->fetchAll()[0];
-                            echo '<div class="check-cart-each-agent-box">';
-                            echo '<div class="check-cart-each-agent-info-box">';
-                            echo '<div class="check-cart-agent-img-box">';
-                            echo '<img alt="' . $agent_name_picture['agent_name'] . 'の画像" src="../../img/' . $agent_name_picture['picture_url'] . '">';
-                            echo '</div>';
-                            echo '<div>';
-                            echo '<div>' . $agent_name_picture['agent_name'] . '</div>';
-                            echo '</div>';
-                            echo '</div>';
-                            echo '<form class="check-cart-agent-delete-btn-box" action="" method="POST">';
-                            echo '<input name="check_agent_id" value="' . $selected_agent . '" hidden>';
-                            //agent_idいれる
-                            echo '<div style="display:flex;flex-direction:column;justify-content:center;">';
-                            echo '<input type="submit" style="display:block;" name="go_to_detail" value="詳細を確認する">';
-                            echo '<input name="show_delete_popup" style="display:block;" type="submit" value="削除" class="check-cart-agent-delete-btn">';
-                            echo '</div>';
-                            echo '</form>';
-                            // echo '<div class="check-cart-agent-delete-btn-box">';
-                            // echo '<button class="check-cart-agent-delete-btn" id="check_cart_delete_btn_'.$selected_agent.'">削除</button>';
-                            // echo '</div>';
-                            echo '</div>';
-                        }; ?>
+                foreach ($_SESSION['apply_list'] as $selected_agent) {
+                    $agent_name_picture_stmt = $db->query("select agent_name,picture_url from picture where agent_id=" . $selected_agent . ";");
+                    $agent_name_picture = $agent_name_picture_stmt->fetchAll()[0];
+                    echo '<div class="check-cart-each-agent-box">';
+                    echo '<div class="check-cart-each-agent-info-box">';
+                    echo '<div class="check-cart-agent-img-box">';
+                    echo '<img alt="' . $agent_name_picture['agent_name'] . 'の画像" src="../../img/' . $agent_name_picture['picture_url'] . '">';
+                    echo '</div>';
+                    echo '<div>';
+                    echo '<div>' . $agent_name_picture['agent_name'] . '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '<form class="check-cart-agent-delete-btn-box" action="" method="POST">';
+                    echo '<input name="check_agent_id" value="' . $selected_agent . '" hidden>';
+                    //agent_idいれる
+                    echo '<div style="display:flex;flex-direction:column;justify-content:center;">';
+                    echo '<input type="submit" style="display:block;" name="go_to_detail" value="詳細を確認する">';
+                    echo '<input name="show_delete_popup" style="display:block;" type="submit" value="削除" class="check-cart-agent-delete-btn">';
+                    echo '</div>';
+                    echo '</form>';
+                    // echo '<div class="check-cart-agent-delete-btn-box">';
+                    // echo '<button class="check-cart-agent-delete-btn" id="check_cart_delete_btn_'.$selected_agent.'">削除</button>';
+                    // echo '</div>';
+                    echo '</div>';
+                }; ?>
             </div>
-            <div class="check-cart-next-btn-box" id="check_cart_next">
+            <?php
+            if (count($_SESSION['apply_list']) != 0) {
+                echo '<div class="check-cart-next-btn-box" id="check_cart_next">
                 <button class="check-cart-next-btn">
                     <a href="./information_form.php">
                         情報を記入して上記のエージェントに申込する<br>->次のステップへ
                     </a>
                 </button>
-            </div>
-            <?php
-                    }
-                    ?> 
+            </div>';
+            } else {
+                echo '<div class="check-cart-next-btn-box" id="check_cart_next">
+                <button class="check-cart-next-btn" style="background-color:red;">
+                    <a href="./index.php">
+                        エージェントを選択して申込しましょう
+                    </a>
+                </button>
+            </div>';
+            } ?>
+        <?php
+        }
+        ?>
     </section>
     <?php require "../parts/footer.php"; ?>
 </body>

@@ -16,6 +16,17 @@ insert into help_email (email)
 values 
 ('help@gmail.com');
 
+drop table if exists send_notice_mail;
+
+create table send_notice_mail(
+  email_id int AUTO_INCREMENT primary key,
+  email_address varchar(255)
+);
+
+insert into send_notice_mail(email_address)
+VALUES
+('send_notice_mail@gmail.com');
+
 DROP TABLE IF EXISTS admin_users;
 
 CREATE TABLE admin_users (
@@ -165,18 +176,20 @@ create table apply_list(
 insert into apply_list
 (agent_id,agent_name,apply_time,applicant_email_address,applicant_name_kanji,applicant_name_furigana,applicant_phone_number,applicant_university,applicant_gakubu,applicant_gakka,applicant_graduation_year,applicant_postal_code,applicant_address,applicant_consultation,applicant_other_agents,apply_report_deadline)
 values
-(1,'エージェント1','2022-05-13 01:00:12','user1@gmail.com','就活1','シュウカツ1','サンプル電話番号1','サンプル大学1','サンプル学部1','サンプル学科1',2024,'サンプル郵便番号1','サンプル住所1','サンプル相談1','エージェント2,エージェント3','2022-06-01 23:59:59'),
-(2,'エージェント2','2022-05-14 01:00:12','user2@gmail.com','就活2','シュウカツ2','サンプル電話番号2','サンプル大学2','サンプル学部2','サンプル学科2',2024,'サンプル郵便番号2','サンプル住所2','サンプル相談2','エージェント4,エージェント5','2022-06-01 23:59:59'),
-(3,'エージェント3','2022-05-14 01:00:12','user3@gmail.com','就活3','シュウカツ3','サンプル電話番号3','サンプル大学3','サンプル学部3','サンプル学科3',2024,'サンプル郵便番号3','サンプル住所3','サンプル相談3','エージェント6,エージェント7','2022-06-01 23:59:59'),
-(3,'エージェント3','2022-05-15 01:00:12','user4@gmail.com','就活4','シュウカツ4','サンプル電話番号4','サンプル大学4','サンプル学部4','サンプル学科4',2024,'サンプル郵便番号4','サンプル住所4','','エージェント6,エージェント7','2022-06-01 23:59:59'),
-(3,'エージェント3','2022-05-16 01:00:12','user5@gmail.com','就活5','シュウカツ5','サンプル電話番号5','サンプル大学5','サンプル学部5','サンプル学科5',2024,'サンプル郵便番号5','サンプル住所5','サンプル相談5','エージェント6,エージェント7','2022-06-01 23:59:59'),
-(3,'エージェント3','2022-05-15 01:00:12','user6@gmail.com','就活6','シュウカツ6','サンプル電話番号6','サンプル大学6','サンプル学部6','サンプル学科6',2024,'サンプル郵便番号6','サンプル住所6','サンプル相談6','エージェント6,エージェント7','2022-06-01 23:59:59'),
-(3,'エージェント3','2022-06-01 01:00:12','user7@gmail.com','就活7','シュウカツ7','サンプル電話番号7','サンプル大学7','サンプル学部7','サンプル学科7',2024,'サンプル郵便番号7','サンプル住所7','','エージェント6,エージェント7','2022-07-01 23:59:59');
+(1,'エージェント1','2022-05-13 01:00:12','user1@gmail.com','就活1','シュウカツ1','00000000001','サンプル大学1','サンプル学部1','サンプル学科1',2024,'サンプル郵便番号1','サンプル住所1','サンプル相談1','エージェント2,エージェント3','2022-06-01 23:59:59'),
+(2,'エージェント2','2022-05-14 01:00:12','user2@gmail.com','就活2','シュウカツ2','00000000002','サンプル大学2','サンプル学部2','サンプル学科2',2024,'サンプル郵便番号2','サンプル住所2','サンプル相談2','エージェント4,エージェント5','2022-06-01 23:59:59'),
+(3,'エージェント3','2022-05-14 01:00:12','user3@gmail.com','就活3','シュウカツ3','00000000003','サンプル大学3','サンプル学部3','サンプル学科3',2024,'サンプル郵便番号3','サンプル住所3','サンプル相談3','エージェント6,エージェント7','2022-06-01 23:59:59'),
+(3,'エージェント3','2022-05-15 01:00:12','user4@gmail.com','就活4','シュウカツ4','00000000004','サンプル大学4','サンプル学部4','サンプル学科4',2024,'サンプル郵便番号4','サンプル住所4','','エージェント6,エージェント7','2022-06-01 23:59:59'),
+(3,'エージェント3','2022-05-16 01:00:12','user5@gmail.com','就活5','シュウカツ5','00000000005','サンプル大学5','サンプル学部5','サンプル学科5',2024,'サンプル郵便番号5','サンプル住所5','サンプル相談5','エージェント6,エージェント7','2022-06-01 23:59:59'),
+(3,'エージェント3','2022-05-15 01:00:12','user6@gmail.com','就活6','シュウカツ6','00000000006','サンプル大学6','サンプル学部6','サンプル学科6',2024,'サンプル郵便番号6','サンプル住所6','サンプル相談6','エージェント6,エージェント7','2022-06-01 23:59:59'),
+(3,'エージェント3','2022-06-01 01:00:12','user7@gmail.com','就活7','シュウカツ7','00000000007','サンプル大学7','サンプル学部7','サンプル学科7',2024,'サンプル郵便番号7','サンプル住所7','','エージェント6,エージェント7','2022-07-01 23:59:59');
 
 drop table if exists featured_article;
 
 create table featured_article (
   featured_article_id int AUTO_INCREMENT not null primary key,
+  picture varchar(255),
+  title varchar(255),
   agent_id int not null,
   agent_name varchar(255) not null,
   questions_answers varchar(255) not null,
@@ -197,11 +210,11 @@ create table featured_article (
 -- }
 
 insert into featured_article
-(agent_id,agent_name,questions_answers,last_comment)
+(picture,title,agent_id,agent_name,questions_answers,last_comment,publish_date)
 values
-(1,(select agent_name from agent_contract_information where agent_id=1),'質問1,回答1;質問2,回答2','最後に一言サンプル1'),
-(2,(select agent_name from agent_contract_information where agent_id=2),'質問1,回答1;質問2,回答2;質問3,回答3','最後に一言サンプル2'),
-(3,(select agent_name from agent_contract_information where agent_id=3),'質問1,回答1;質問2,回答2;質問3,回答3;質問4,回答4','最後に一言サンプル3');
+('featured_article1.png','エージェント1の魅力を担当者に聞いてみた',1,(select agent_name from agent_contract_information where agent_id=1),'質問1,回答1;質問2,回答2','最後に一言サンプル1','2022-05-23 10:23:46'),
+('featured_article2.png','エージェント2の魅力を担当者に聞いてみた',2,(select agent_name from agent_contract_information where agent_id=2),'質問1,回答1;質問2,回答2;質問3,回答3','最後に一言サンプル2','2022-07-23 10:23:46'),
+('featured_article3.png','エージェント3の魅力を担当者に聞いてみた',3,(select agent_name from agent_contract_information where agent_id=3),'質問1,回答1;質問2,回答2;質問3,回答3;質問4,回答4','最後に一言サンプル3','2022-09-23 10:23:46');
 
 
 

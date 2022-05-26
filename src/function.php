@@ -124,5 +124,18 @@ class check{
             return true;
         }
     }
+    public function exists_in_multi_array($array,$column,$event){
+        $count=0;
+        foreach($array as $row){
+            if($row[$column]==$event){
+                $count++;
+            }
+        }
+        if($count==0){
+            return false;
+        }else{
+            return true;
+        }
+    }
 }
 $check=new check;
