@@ -160,7 +160,11 @@ if (isset($_SESSION['comparison_list'])) {
 } ?>
 
 <script>
-    document.getElementById('close_comparison_popup').addEventListener('click', function() {
-        document.getElementById('comparison_box').setAttribute('hidden', '');
-    })
+    <?php
+    if(isset($_SESSION['comparison_lists'])){?>
+
+        document.getElementById('close_comparison_popup').addEventListener('click', function() {
+            document.getElementById('comparison_box').setAttribute('hidden', '');
+        })
+    <?php }?>
 </script>
