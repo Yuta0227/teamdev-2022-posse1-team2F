@@ -255,9 +255,10 @@
     padding-top: 20px;
 }
 .agent-private-information-assignee-edit-btn{
-    padding: 10px 20px;
+    padding: 10px 30px;
     border-color:darkgray ;
-    border-radius: 10px;
+    font-size: 20px;
+    /* border-radius: 10px; */
     margin: auto;
 }
 .agent-private-information-adress{
@@ -275,12 +276,26 @@
     background-color:grey;
     opacity:50%;
 }
+.agent-profile-popup-close-btn-box{
+    display:flex;
+    justify-content:right;
+}
+.agent-profile-popup-close-btn{
+    font-size: 22px;
+    padding-right: 10px;
+}
 .agent-profile-popup-table{
-    margin: auto;
+    margin: 20px auto;
 }
 .agent-profile-popup-table-text{
     text-align: center;
     padding: 10px;
+}
+.agent-profile-popup-edit-btn-box{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    margin-top: 20px;
 }
 .agent-profile-popup-edit-cancel{
     border:1px solid;

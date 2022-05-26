@@ -3,9 +3,9 @@
     <!--青のフィルター。色は適当  -->
     <!-- クリックした編集ボタンのidで表示するポップアップ変更 -->
         <!-- 編集ポップアップ -->
-        <form action="" method="POST" id="edit_form" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background-color:white;width:400px;height:400px;opacity:100%;z-index:5;" hidden>
-            <div style="display:flex;justify-content:right;">
-                <div id="close_edit_form">
+        <form action="" method="POST" id="edit_form" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background-color:white;width:400px;height:300px;opacity:100%;z-index:5;" hidden>
+            <div class="agent-profile-popup-close-btn-box">
+                <div class="agent-profile-popup-close-btn" id="close_edit_form">
                 ×
                 </div>
             </div>
@@ -25,8 +25,8 @@
                 }
                 ?>
             </table>
-            <div style="display:flex;justify-content:center;gap:15px;">
-                <div id="cancel_edit" class="agent-profile-popup-edit-cancel" style="">キャンセル</div>
+            <div class="agent-profile-popup-edit-btn-box" style="">
+                <div id="cancel_edit" class="agent-profile-popup-edit-cancel">キャンセル</div>
                 <input class="agent-profile-popup-edit-confirm" type="submit" value="編集確定">
             </div>
         </form>
