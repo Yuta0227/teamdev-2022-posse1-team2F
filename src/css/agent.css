@@ -283,6 +283,7 @@
 .agent-profile-popup-close-btn{
     font-size: 22px;
     padding-right: 10px;
+    cursor: pointer;
 }
 .agent-profile-popup-table{
     margin: 20px auto;
