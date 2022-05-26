@@ -158,6 +158,7 @@ if (isset($_SESSION['comparison_list'])) {
 } ?>
 
 <script>
+    // 比較リストが存在しない間はエラー出るけど問題ない。ここでissetとかやるとなぜか動かなくなる
     document.getElementById('close_comparison_popup').addEventListener('click', function() {
         document.getElementById('comparison_box').setAttribute('hidden', '');
     })
