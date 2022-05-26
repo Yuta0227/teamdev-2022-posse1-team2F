@@ -3,7 +3,7 @@
     <?php
     require "guide_popup.php";
     $page_number = $_GET['agent_list_pagination']; //URLからとってくる
-    $agents_per_page = 1; //ページ毎に表示するエージェントの個数
+    $agents_per_page = 3; //ページ毎に表示するエージェントの個数
     if (!isset($_SESSION['apply_list'])) {
         //配列のセッション登録されてなかったら初期化
         $_SESSION['apply_list'] = [];
@@ -31,12 +31,12 @@
             echo '<div class="agent-article">';
             echo '<div class="agent-short-explanation"><table>';
             //テーブル
-            echo '<tr><th>面談方式</th><td>' . $translate->translate_data_to_japanese('面談方式', $all_agents[$agents_per_page * ($_GET['agent_list_pagination'] - 1) + $i]['agent_meeting_type']) . '</td></tr>';
-            echo '<tr><th>主な取り扱い企業規模</th><td>' . $translate->translate_data_to_japanese('主な取り扱い企業規模', $all_agents[$agents_per_page * ($_GET['agent_list_pagination'] - 1) + $i]['agent_main_corporate_size']) . '</td></tr>';
-            echo '<tr><th>取り扱い企業カテゴリー</th><td>' . $translate->translate_data_to_japanese('取り扱い企業カテゴリー', $all_agents[$agents_per_page * ($_GET['agent_list_pagination'] - 1) + $i]['agent_corporate_type']) . '</td></tr>';
-            echo '<tr><th>内定率(%)</th><td>' . $translate->translate_data_to_japanese('内定率(%)', $all_agents[$agents_per_page * ($_GET['agent_list_pagination'] - 1) + $i]['agent_job_offer_rate']) . '</td></tr>';
-            echo '<tr><th>内定最短期間(週)</th><td>' . $translate->translate_data_to_japanese('内定最短期間(週)', $all_agents[$agents_per_page * ($_GET['agent_list_pagination'] - 1) + $i]['agent_shortest_period']) . '</td></tr>';
-            echo '<tr><th>○○向き</th><td>' . $translate->translate_data_to_japanese('○○向き', $all_agents[$agents_per_page * ($_GET['agent_list_pagination'] - 1) + $i]['agent_recommend_student_type']) . '</td></tr>';
+            echo '<tr><th style="border:1px solid black;">面談方式</th><td style="border:1px solid black;">' . $translate->translate_data_to_japanese('面談方式', $all_agents[$agents_per_page * ($_GET['agent_list_pagination'] - 1) + $i]['agent_meeting_type']) . '</td></tr>';
+            echo '<tr><th style="border:1px solid black;">主な取り扱い企業規模</th><td style="border:1px solid black;">' . $translate->translate_data_to_japanese('主な取り扱い企業規模', $all_agents[$agents_per_page * ($_GET['agent_list_pagination'] - 1) + $i]['agent_main_corporate_size']) . '</td></tr>';
+            echo '<tr><th style="border:1px solid black;">取り扱い企業カテゴリー</th><td style="border:1px solid black;">' . $translate->translate_data_to_japanese('取り扱い企業カテゴリー', $all_agents[$agents_per_page * ($_GET['agent_list_pagination'] - 1) + $i]['agent_corporate_type']) . '</td></tr>';
+            echo '<tr><th style="border:1px solid black;">内定率(%)</th><td style="border:1px solid black;">' . $translate->translate_data_to_japanese('内定率(%)', $all_agents[$agents_per_page * ($_GET['agent_list_pagination'] - 1) + $i]['agent_job_offer_rate']) . '</td></tr>';
+            echo '<tr><th style="border:1px solid black;">内定最短期間(週)</th><td style="border:1px solid black;">' . $translate->translate_data_to_japanese('内定最短期間(週)', $all_agents[$agents_per_page * ($_GET['agent_list_pagination'] - 1) + $i]['agent_shortest_period']) . '</td></tr>';
+            echo '<tr><th style="border:1px solid black;">○○向き</th><td style="border:1px solid black;">' . $translate->translate_data_to_japanese('○○向き', $all_agents[$agents_per_page * ($_GET['agent_list_pagination'] - 1) + $i]['agent_recommend_student_type']) . '</td></tr>';
             echo '</table></div>';
             echo '<div style="text-align: center;">';
             echo '<input name="agent_id" value="' . $all_agents[$agents_per_page * ($_GET['agent_list_pagination'] - 1) + $i]['agent_id'] . '" hidden>';
@@ -83,12 +83,12 @@
             echo '<div class="agent-article">';
             echo '<div class="agent-short-explanation"><table>';
             //テーブル
-            echo '<tr><th>面談方式</th><td>' . $translate->translate_data_to_japanese('面談方式', $all_agents[$agents_per_page * ($_GET['agent_list_pagination'] - 1) + $i]['agent_meeting_type']) . '</td></tr>';
-            echo '<tr><th>主な取り扱い企業規模</th><td>' . $translate->translate_data_to_japanese('主な取り扱い企業規模', $all_agents[$agents_per_page * ($_GET['agent_list_pagination'] - 1) + $i]['agent_main_corporate_size']) . '</td></tr>';
-            echo '<tr><th>取り扱い企業カテゴリー</th><td>' . $translate->translate_data_to_japanese('取り扱い企業カテゴリー', $all_agents[$agents_per_page * ($_GET['agent_list_pagination'] - 1) + $i]['agent_corporate_type']) . '</td></tr>';
-            echo '<tr><th>内定率(%)</th><td>' . $translate->translate_data_to_japanese('内定率(%)', $all_agents[$agents_per_page * ($_GET['agent_list_pagination'] - 1) + $i]['agent_job_offer_rate']) . '</td></tr>';
-            echo '<tr><th>内定最短期間(週)</th><td>' . $translate->translate_data_to_japanese('内定最短期間(週)', $all_agents[$agents_per_page * ($_GET['agent_list_pagination'] - 1) + $i]['agent_shortest_period']) . '</td></tr>';
-            echo '<tr><th>○○向き</th><td>' . $translate->translate_data_to_japanese('○○向き', $all_agents[$agents_per_page * ($_GET['agent_list_pagination'] - 1) + $i]['agent_recommend_student_type']) . '</td></tr>';
+            echo '<tr><th style="border:1px solid black;">面談方式</th><td style="border:1px solid black;">' . $translate->translate_data_to_japanese('面談方式', $all_agents[$agents_per_page * ($_GET['agent_list_pagination'] - 1) + $i]['agent_meeting_type']) . '</td></tr>';
+            echo '<tr><th style="border:1px solid black;">主な取り扱い企業規模</th><td style="border:1px solid black;">' . $translate->translate_data_to_japanese('主な取り扱い企業規模', $all_agents[$agents_per_page * ($_GET['agent_list_pagination'] - 1) + $i]['agent_main_corporate_size']) . '</td></tr>';
+            echo '<tr><th style="border:1px solid black;">取り扱い企業カテゴリー</th><td style="border:1px solid black;">' . $translate->translate_data_to_japanese('取り扱い企業カテゴリー', $all_agents[$agents_per_page * ($_GET['agent_list_pagination'] - 1) + $i]['agent_corporate_type']) . '</td></tr>';
+            echo '<tr><th style="border:1px solid black;">内定率(%)</th><td style="border:1px solid black;">' . $translate->translate_data_to_japanese('内定率(%)', $all_agents[$agents_per_page * ($_GET['agent_list_pagination'] - 1) + $i]['agent_job_offer_rate']) . '</td></tr>';
+            echo '<tr><th style="border:1px solid black;">内定最短期間(週)</th><td style="border:1px solid black;">' . $translate->translate_data_to_japanese('内定最短期間(週)', $all_agents[$agents_per_page * ($_GET['agent_list_pagination'] - 1) + $i]['agent_shortest_period']) . '</td></tr>';
+            echo '<tr><th style="border:1px solid black;">○○向き</th><td style="border:1px solid black;">' . $translate->translate_data_to_japanese('○○向き', $all_agents[$agents_per_page * ($_GET['agent_list_pagination'] - 1) + $i]['agent_recommend_student_type']) . '</td></tr>';
             echo '</table></div>';
             echo '<div style="text-align: center;">';
             echo '<input name="agent_id" value="' . $all_agents[$agents_per_page * ($_GET['agent_list_pagination'] - 1) + $i]['agent_id'] . '" hidden>';
