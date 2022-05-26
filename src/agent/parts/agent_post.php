@@ -14,6 +14,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         unset($_SESSION['agent_email']);
         unset($_SESSION['agent_id']);
         unset($_SESSION['agent_name']);
+        unset($_SESSION['agent_branch']);
+        unset($_SESSION['assignee_name']);
         header("Location:/toppage/pages/login.php");
     }
     $count_new_stmt = $db->prepare("select count(apply_id) from apply_list where apply_new_status=1 and agent_id=?;");

@@ -1,46 +1,54 @@
-html{
+html {
     height: 100%;
 }
-body{
+
+body {
     height: 100%;
 }
-p{
+
+p {
     margin: 10px;
 }
-.login-all-box{
+
+.login-all-box {
     text-align: center;
 }
-.login-form{
+
+.login-form {
     width: 250px;
-    margin:20px auto 20px auto;
+    margin: 20px auto 20px auto;
     border: solid;
     text-align: center;
 }
-.login-form input{
+
+.login-form input {
     padding: 5px;
     margin-top: 10px;
 }
 
-.help{
+.help {
     height: 90%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.help p{
+
+.help p {
     text-align: center;
 }
-.help-mail{
+
+.help-mail {
     font-size: 20px;
     font-weight: bold;
 }
 
 /* 申し込みカート内 */
-.check-cart-unit{
+.check-cart-unit {
     background: #eaedf2;
     padding: 10px;
 }
-.check-cart-header{
+
+.check-cart-header {
     text-align: center;
     width: 30%;
     margin: 10px auto;
@@ -49,40 +57,48 @@ p{
     font-weight: bold;
     background: #fff;
 }
-.check-cart-agent-all{
+
+.check-cart-agent-all {
     margin: 10px;
     padding: 10px 0;
 }
-.check-cart-each-agent-box{
+
+.check-cart-each-agent-box {
     padding: 15px;
     width: 60%;
     margin: 10px auto;
     background: #fff;
 }
-.check-cart-each-agent-info-box{
+
+.check-cart-each-agent-info-box {
     display: flex;
     justify-content: center;
     gap: 10%;
 }
-.check-cart-agent-img-box{
+
+.check-cart-agent-img-box {
     /* display: inline-block; */
     width: 40%;
 }
-.check-cart-each-agent-box img{
+
+.check-cart-each-agent-box img {
     /* width: 50%; */
     object-fit: cover;
     width: 100%;
 }
-.check-cart-agent-name{
+
+.check-cart-agent-name {
     margin: 10px;
     font-weight: bold;
     font-size: 20px;
 }
-.check-cart-agent-delete-btn-box{
+
+.check-cart-agent-delete-btn-box {
     text-align: center;
     padding: 10px 10px 0 10px;
 }
-.check-cart-agent-delete-btn{
+
+.check-cart-agent-delete-btn {
     width: 40%;
     padding: 10px;
     background: red;
@@ -90,14 +106,17 @@ p{
     border: none;
     cursor: pointer;
 }
-.check-cart-agent-delete-btn:hover{
+
+.check-cart-agent-delete-btn:hover {
     text-decoration: underline;
 }
-.check-cart-next-btn-box{
+
+.check-cart-next-btn-box {
     text-align: center;
     padding-bottom: 10px;
 }
-.check-cart-next-btn{
+
+.check-cart-next-btn {
     width: 50%;
     background: #2eb2f0;
     border: none;
@@ -105,19 +124,22 @@ p{
     padding: 10px;
     cursor: pointer;
 }
-.check-cart-next-btn:hover{
+
+.check-cart-next-btn:hover {
     text-decoration: underline;
 }
-.check-cart-next-btn a{
+
+.check-cart-next-btn a {
     color: #fff;
     text-decoration: none;
 }
+
 /* .check-cart-delete-check-unit{
     background: #fff;
     width: 60%;
     margin: auto;
 } */
-.check-cart-delete-check-text{
+.check-cart-delete-check-text {
     background: #fff;
     width: 40%;
     margin: 10px auto;
@@ -125,38 +147,45 @@ p{
     padding: 10px;
     font-weight: bold;
 }
-.check-cart-delete-check-infos{
+
+.check-cart-delete-check-infos {
     width: 60%;
-    display:flex;
+    display: flex;
     margin: auto;
     background: #fff;
     align-items: center;
     /* gap: 10%; */
 }
-.check-cart-delete-check-img-box{
+
+.check-cart-delete-check-img-box {
     width: 30%;
     margin: 15px;
 }
-.check-cart-delete-check-img-box img{
+
+.check-cart-delete-check-img-box img {
     object-fit: cover;
     width: 100%;
 }
-.check-cart-delete-check-agent-name-box{
+
+.check-cart-delete-check-agent-name-box {
     width: 60%;
 }
-.check-cart-delete-check-agent-name{
+
+.check-cart-delete-check-agent-name {
     font-weight: bold;
     font-size: 25px;
     width: 100%;
     text-align: center;
 }
-.check-cart-delete-check-choices{
+
+.check-cart-delete-check-choices {
     display: flex;
     justify-content: center;
     margin: 10px;
     gap: 10px;
 }
-.check-cart-delete-check-yes{
+
+.check-cart-delete-check-yes {
     width: 20%;
     background: #fff;
     padding: 10px;
@@ -165,79 +194,94 @@ p{
     border: solid;
     border-color: red;
 }
-.check-cart-delete-check-no{
+
+.check-cart-delete-check-no {
     width: 20%;
     background: red;
     padding: 10px;
     border: none;
     color: #fff;
 }
-.hide{
+
+.hide {
     display: none;
 }
+
 /* 情報入力画面 */
-.info-form-all{
+.info-form-all {
     background: #eaedf2;
     padding: 20px 0;
 }
-.info-form-head{
+
+.info-form-head {
     text-align: left;
     font-weight: bold;
     font-size: 20px;
-    padding-bottom: 20px ;
+    padding-bottom: 20px;
     padding-left: 5%;
 }
-.info-form-unit{
-    padding:10px;
-    background-color:#fff;
+
+.info-form-unit {
+    padding: 10px;
+    background-color: #fff;
     border: solid;
     width: 80%;
     margin: auto;
 }
-.info-form-each-box-text{
+
+.info-form-each-box-text {
     font-weight: bold;
     margin: 10px;
 }
-.info-form-each-form{
+
+.info-form-each-form {
     margin: 0 10px 0 10%;
     background: #edf6ff;
     border-width: 1px;
     padding: 5px;
     width: 80%;
 }
-.info-form-adress-search-btn{
+
+.info-form-adress-search-btn {
     padding: 5px;
     border-width: 1px;
 }
+
 #error {
     margin: 5px;
     color: #ff0000;
     font-size: .84rem;
     font-weight: bold;
 }
-.info-form-privacy-box{
+
+.info-form-privacy-box {
     text-align: center;
 }
-.info-form-privacy{
+
+.info-form-privacy {
     text-decoration: none;
     color: grey;
     cursor: pointer;
 }
-.info-form-privacy:hover{
+
+.info-form-privacy:hover {
     text-decoration: underline;
 }
-.info-form-privacy-agree{
+
+.info-form-privacy-agree {
     display: block;
     text-align: center;
     font-weight: bold;
     font-size: 20px;
     cursor: pointer;
 }
-.info-form-free-box{
-    display:flex;
+
+.info-form-free-box {
+    display: flex;
     margin-left: 10%;
 }
-.info-form-check-btn{
+
+.info-form-check-btn {
     margin: 10px auto;
     padding: 10px;
     background: #2eb2f0;
@@ -247,23 +291,38 @@ p{
     border-radius: 20px;
     cursor: pointer;
 }
-.info-form-check-btn:hover{
+
+.info-form-check-btn:hover {
     text-decoration: underline
 }
+
+/* ゆうたが書いた */
+input:invalid {
+    border: 2px dashed red;
+}
+
+input:invalid:focus {
+    background-image: linear-gradient(pink, lightgreen);
+}
+
+
+
 /* 情報確認画面 */
-.check-information-unit{
-    padding:10px;
-    display:flex;
-    flex-direction:column;
+.check-information-unit {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
     background: #edf6ff;
 }
-.check-information-head{
+
+.check-information-head {
     text-align: left;
     font-weight: bold;
     font-size: 20px;
     padding-left: 5%;
 }
-.check-info-alert{
+
+.check-info-alert {
     background: #fff;
     color: rgb(250, 103, 103);
     text-align: center;
@@ -274,7 +333,8 @@ p{
     margin: 20px auto;
     border: solid 1px;
 }
-.check-info-table{
+
+.check-info-table {
     background: #fff;
     text-align: center;
     width: 80%;
@@ -282,24 +342,28 @@ p{
     border: solid;
     border-color: grey;
 }
-.check-info-table-text{
+
+.check-info-table-text {
     padding: 10px;
     border: solid 1px;
     border-color: grey;
     background: #b5f3ed;
     /* color: ; */
 }
-.check-info-table-content{
+
+.check-info-table-content {
     border: solid 1px;
     border-color: grey;
 }
-.check-info-check-btns{
+
+.check-info-check-btns {
     display: flex;
     justify-content: center;
     gap: 5%;
     margin: 20px;
 }
-.check-info-back-btn{
+
+.check-info-back-btn {
     padding: 10px;
     color: #2eb2f0;
 
@@ -308,7 +372,8 @@ p{
     border: solid 1px;
     width: 20%;
 }
-.check-info-ok-btn{
+
+.check-info-ok-btn {
     /* background: #008fb7; */
     background: #2eb2f0;
 
@@ -320,11 +385,12 @@ p{
 }
 
 /* 送信完了画面 */
-.thanks-unit{
+.thanks-unit {
     background: #edf6ff;
     padding: 20px;
 }
-.thanks-texts{
+
+.thanks-texts {
     text-align: center;
     font-weight: bold;
     font-size: 20px;
@@ -333,15 +399,18 @@ p{
     padding: 20px;
     width: 80%;
 }
-.thanks-message{
+
+.thanks-message {
     color: #5bbda5;
     font-size: 25px;
 }
-.thanks-agent-lists{
+
+.thanks-agent-lists {
     font-weight: normal;
 
 }
-.thanks-top-back-btn{
+
+.thanks-top-back-btn {
     display: block;
     margin: 10px auto;
     padding: 10px;
@@ -352,20 +421,23 @@ p{
     width: 20%;
     text-align: center;
 
-/* プライバシーポリシー */
-.privacy-policy-unit{
-    background: #eaedf2;
-    padding: 20px;
-}
-.privacy-policy-all-box{
-    width: 80%;
-    background: #fff;
-    margin: auto;
-    padding: 25px;
-}
-.privacy-policy-each-section{
-    padding: 10px;
-}
-.privacy-policy-each-section-head{
-    font-size: 30px;
-}
+    /* プライバシーポリシー */
+    .privacy-policy-unit {
+        background: #eaedf2;
+        padding: 20px;
+    }
+
+    .privacy-policy-all-box {
+        width: 80%;
+        background: #fff;
+        margin: auto;
+        padding: 25px;
+    }
+
+    .privacy-policy-each-section {
+        padding: 10px;
+    }
+
+    .privacy-policy-each-section-head {
+        font-size: 30px;
+    }

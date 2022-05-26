@@ -34,6 +34,11 @@ if (isset($_POST['remove_from_apply']) && isset($_POST['agent_id'])) {
 if(isset($_POST['jump_to_comparison'])){
     header("Location:comparison.php");
 }
+if(isset($_SESSION['form_sent'])){
+    if($_SESSION['form_sent']==true){
+        $_SESSION['form_sent']=false;
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="ja">
