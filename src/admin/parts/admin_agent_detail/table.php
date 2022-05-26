@@ -1,13 +1,15 @@
-<section style="display:flex;flex-direction:column;justify-content:center;width:max-content;margin:0 auto;">
-    <div style="display:flex;width:max-content;">
+<section class="admin-agent-detail-table-unit">
+    <div class="admin-agent-detail-table-head-box">
         <?php
         $picture_stmt = $db->prepare("select picture_url,agent_name from picture where agent_id=?;");
         $picture_stmt->bindValue(1, $_GET['agent_id']);
         $picture_stmt->execute();
         $picture = $picture_stmt->fetchAll();
         ?>
-        <img src="<?php echo $picture[0]['picture_url']; ?>" alt="<?php echo $picture[0]['agent_name']; ?>の写真">
-        <div style="background-color:skyblue;"><?php echo $picture[0]['agent_name']; ?></div>
+        <div class="admin-agent-detail-table-img-box">
+        <img class="admin-agent-detail-table-img" src="../../../img/article/<?php echo $picture[0]['picture_url']; ?>" alt="<?php echo $picture[0]['agent_name']; ?>の写真">
+        </div>
+        <div class="admin-agent-detail-table-agent-name"><?php echo $picture[0]['agent_name']; ?></div>
     </div>
     <div style="background-color:blue;width:600px;padding:20px;">
         <div style="display:flex;justify-content:center;">契約情報</div>

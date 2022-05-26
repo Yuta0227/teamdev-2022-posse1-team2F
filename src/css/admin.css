@@ -138,3 +138,33 @@ body{
 .admin-event-link{
     margin-left: 10%;
 }
+
+/* エージェント詳細テーブル */
+.admin-agent-detail-table-unit{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    /* width:max-content; */
+    margin:0 auto;
+}
+.admin-agent-detail-table-head-box{
+    display: flex;
+    background: #fff;
+    width: 80%;
+    margin: auto;
+}
+.admin-agent-detail-table-agent-name{
+    margin-left: 5%;
+    font-weight: bold;
+    padding: 10px;
+    font-size: 25px;
+    vertical-align: middle;
+}
+.admin-agent-detail-table-img-box{
+    display: inline-block;
+    width: 30%;
+}
+.admin-agent-detail-table-img{
+    width: 100%;
+    margin: auto;
+}
