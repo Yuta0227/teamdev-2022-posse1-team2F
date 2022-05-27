@@ -10,9 +10,10 @@
                         //ページネーション移動すると並び替えが保存されていない
                         $sort_type = [
                             '<option value="default">デフォルト</option>',
-                            '<option value="job_offer_rate">内定率</option>',
-                            '<option value="shortest_period">内定最短期間</option>'
+                            '<option value="job_offer_rate">内定率(降順)</option>',
+                            '<option value="shortest_period">内定最短期間(昇順)</option>'
                         ];
+                        // unset($_SESSION['sort_order']);
                         if (isset($_POST['sort'])) {
                             //並び替えされたら
                             switch ($_POST['sort']) {
@@ -21,12 +22,12 @@
                                     array_unshift($sort_type, '<option value="default">デフォルト</option>');
                                     break;
                                 case 'job_offer_rate':
-                                    $sort_type = array_diff($sort_type, array('<option value="job_offer_rate">内定率</option>'));
-                                    array_unshift($sort_type, '<option value="job_offer_rate">内定率</option>');
+                                    $sort_type = array_diff($sort_type, array('<option value="job_offer_rate">内定率(降順)</option>'));
+                                    array_unshift($sort_type, '<option value="job_offer_rate">内定率(降順)</option>');
                                     break;
                                 case 'shortest_period':
-                                    $sort_type = array_diff($sort_type, array('<option value="shortest_period">内定最短期間</option>'));
-                                    array_unshift($sort_type, '<option value="shortest_period">内定最短期間</option>');
+                                    $sort_type = array_diff($sort_type, array('<option value="shortest_period">内定最短期間(昇順)</option>'));
+                                    array_unshift($sort_type, '<option value="shortest_period">内定最短期間(昇順)</option>');
                                     break;
                             }
                             foreach ($sort_type as $sort) {

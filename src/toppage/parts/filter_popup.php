@@ -19,7 +19,10 @@
     $conditions_type_array = [1, 2];
     ?>
     <form action="" method="POST" id="filter" style="width:100%;">
-        <div id="close-btn" class="close-btn">✕</div>
+        <div style="height:100px;align-items:center;display:flex;justify-content:center;position:relative;">
+            <div>条件絞り込み</div>
+            <div id="close-btn" class="close-btn" style="position:absolute;top:0;right:0;border-radius:20px;padding:5px;border:1px solid black;text-align:center;">✕</div>
+        </div>
 
         <table style="width:100%;">
             <tr>
@@ -37,7 +40,17 @@
                         $filter_prefecture_stmt = $db->query("select * from filter_prefecture where area_id=" . $area_id . ";");
                         $filter_prefecture = $filter_prefecture_stmt->fetchAll();
                         foreach ($filter_prefecture as $data) {
-                            echo '<label><input value="' . $data['prefecture_id'] . '" type="checkbox" name="filter_prefecture[]">' . $data['prefecture_name'] . '</label>';
+                            if (isset($_SESSION['prefectures'])) {
+                                //過去に都道府県で絞り込んだことがある
+                                if ($check->exists_in_array($_SESSION['prefectures'], $data['prefecture_id']) == true) {
+                                    //存在する
+                                    echo '<label><input value="' . $data['prefecture_id'] . '" type="checkbox" name="filter_prefecture[]" checked>' . $data['prefecture_name'] . '</label>';
+                                } else {
+                                    echo '<label><input value="' . $data['prefecture_id'] . '" type="checkbox" name="filter_prefecture[]">' . $data['prefecture_name'] . '</label>';
+                                }
+                            } else {
+                                echo '<label><input value="' . $data['prefecture_id'] . '" type="checkbox" name="filter_prefecture[]">' . $data['prefecture_name'] . '</label>';
+                            }
                         }
                         echo '</div>';
                     }
@@ -49,7 +62,17 @@
                 <td style="border:1px solid black;">
                     <?php
                     foreach ($industry_array as $industry) {
-                        echo '<label><input value="' . $industry . '" type="checkbox" name="industries[]">' . $translate->translate_column_to_japanese($industry) . '</label>';
+                        if (isset($_SESSION['industries'])) {
+                            //過去に業界で絞り込んだことがある
+                            if ($check->exists_in_array($_SESSION['industries'], $industry) == true) {
+                                //存在する
+                                echo '<label><input value="' . $industry . '" type="checkbox" name="industries[]" checked>' . $translate->translate_column_to_japanese($industry) . '</label>';
+                            } else {
+                                echo '<label><input value="' . $industry . '" type="checkbox" name="industries[]">' . $translate->translate_column_to_japanese($industry) . '</label>';
+                            }
+                        } else {
+                            echo '<label><input value="' . $industry . '" type="checkbox" name="industries[]">' . $translate->translate_column_to_japanese($industry) . '</label>';
+                        }
                     }
                     ?>
                 </td>
@@ -57,32 +80,96 @@
             <tr>
                 <th style="border:1px solid black;">面談方式</th>
                 <td style="border:1px solid black;">
-                    <label><input type="checkbox" value="0" name="agent_meeting_type[]">対面のみ</label>
-                    <label><input type="checkbox" value="1" name="agent_meeting_type[]">オンライン可</label>
-                    <label><input type="checkbox" value="2" name="agent_meeting_type[]">オンラインのみ</label>
+                    <?php
+                    $meeting_array = [
+                        0 => '対面のみ',
+                        1 => 'オンライン可',
+                        2 => 'オンラインのみ'
+                    ];
+                    foreach ($meeting_array as $column => $data) {
+                        if (isset($_SESSION['agent_meeting_type'])) {
+                            if ($check->exists_in_array($_SESSION['agent_meeting_type'], $column)) {
+                                //過去に面談方式で絞り込んだことがある
+                                echo '<label><input type="checkbox" value="' . $column . '" name="agent_meeting_type[]" checked>' . $data . '</label>';
+                            } else {
+                                echo '<label><input type="checkbox" value="' . $column . '" name="agent_meeting_type[]">' . $data . '</label>';
+                            }
+                        } else {
+                            echo '<label><input type="checkbox" value="' . $column . '" name="agent_meeting_type[]">' . $data . '</label>';
+                        }
+                    }
+                    ?>
                 </td>
             </tr>
             <tr>
                 <th style="border:1px solid black;">企業規模</th>
                 <td style="border:1px solid black;">
-                    <label><input type="checkbox" value="0" name="agent_main_corporate_size[]">大手</label>
-                    <label><input type="checkbox" value="1" name="agent_main_corporate_size[]">中小</label>
-                    <label><input type="checkbox" value="2" name="agent_main_corporate_size[]">ベンチャー</label>
-                    <label><input type="checkbox" value="3" name="agent_main_corporate_size[]">総合</label>
+                    <?php
+                    $size_array = [
+                        0 => '大手',
+                        1 => '中小',
+                        2 => 'ベンチャー',
+                        3 => '総合'
+                    ];
+                    foreach ($size_array as $column => $data) {
+                        if (isset($_SESSION['agent_main_corporate_size'])) {
+                            if ($check->exists_in_array($_SESSION['agent_main_corporate_size'], $column)) {
+                                //過去に面談方式で絞り込んだことがある
+                                echo '<label><input type="checkbox" value="' . $column . '" name="agent_main_corporate_size[]" checked>' . $data . '</label>';
+                            } else {
+                                echo '<label><input type="checkbox" value="' . $column . '" name="agent_main_corporate_size[]">' . $data . '</label>';
+                            }
+                        } else {
+                            echo '<label><input type="checkbox" value="' . $column . '" name="agent_main_corporate_size[]">' . $data . '</label>';
+                        }
+                    }
+                    ?>
                 </td>
             </tr>
             <tr>
                 <th style="border:1px solid black;">取り扱い企業カテゴリー</th>
                 <td style="border:1px solid black;">
-                    <label><input type="checkbox" value="0" name="agent_corporate_type[]">外資系含む</label>
-                    <label><input type="checkbox" value="1" name="agent_corporate_type[]">外資系含まない</label>
+                    <?php
+                    $type_array = [
+                        0 => '外資系含む',
+                        1 => '外資系含まない'
+                    ];
+                    foreach ($type_array as $column => $data) {
+                        if (isset($_SESSION['agent_corporate_type'])) {
+                            if ($check->exists_in_array($_SESSION['agent_corporate_type'], $column)) {
+                                //過去に面談方式で絞り込んだことがある
+                                echo '<label><input type="checkbox" value="' . $column . '" name="agent_corporate_type[]" checked>' . $data . '</label>';
+                            } else {
+                                echo '<label><input type="checkbox" value="' . $column . '" name="agent_corporate_type[]">' . $data . '</label>';
+                            }
+                        } else {
+                            echo '<label><input type="checkbox" value="' . $column . '" name="agent_corporate_type[]">' . $data . '</label>';
+                        }
+                    }
+                    ?>
                 </td>
             </tr>
             <tr>
                 <th style="border:1px solid black;">○○向き</th>
                 <td style="border:1px solid black;">
-                    <label><input type="checkbox" value="0" name="agent_recommend_student_type[]">理系</label>
-                    <label><input type="checkbox" value="1" name="agent_recommend_student_type[]">文系</label>
+                    <?php
+                    $student_array = [
+                        0 => '理系',
+                        1 => '文系'
+                    ];
+                    foreach ($student_array as $column => $data) {
+                        if (isset($_SESSION['agent_recommend_student_type'])) {
+                            if ($check->exists_in_array($_SESSION['agent_recommend_student_type'], $column)) {
+                                //過去に面談方式で絞り込んだことがある
+                                echo '<label><input type="checkbox" value="' . $column . '" name="agent_recommend_student_type[]" checked>' . $data . '</label>';
+                            } else {
+                                echo '<label><input type="checkbox" value="' . $column . '" name="agent_recommend_student_type[]">' . $data . '</label>';
+                            }
+                        } else {
+                            echo '<label><input type="checkbox" value="' . $column . '" name="agent_recommend_student_type[]">' . $data . '</label>';
+                        }
+                    }
+                    ?>
                 </td>
             </tr>
         </table>
