@@ -94,14 +94,14 @@ drop table if exists agent_corporate_amount;
 
 create table agent_corporate_amount(
   agent_id int AUTO_INCREMENT not null primary key,
-  manufacturer int,
-  retail int,
-  service int,
-  software_transmission int,
-  trading int,
-  finance int,
-  media int,
-  government int
+  manufacturer int unsigned,
+  retail int unsigned,
+  service int unsigned,
+  software_transmission int unsigned,
+  trading int unsigned,
+  finance int unsigned,
+  media int unsigned,
+  government int unsigned
 );
 -- 業界8種類メーカー、小売り、サービス、ソフトウェア・通信、商社、金融、マスコミ、官公庁・公社・団体の英訳をカラムにする全部int
 -- 同じエージェント内で共有
@@ -261,8 +261,7 @@ VALUES
 (5,(select agent_name from agent_contract_information where agent_id=5),'支店1',(select user_email from agent_users where user_id=9),'氏名9');
 
 
-
-drop table if exists filter_condition;
+drop table if exists filter_prefecture;
 
 create table filter_prefecture(
   prefecture_id int AUTO_INCREMENT not null primary key,
@@ -349,8 +348,25 @@ create table agent_address(
 insert into agent_address (prefecture_id,agent_id,agent_area,agent_prefecture) values 
 (30,1,(select area_name from filter_prefecture where prefecture_id=30),(select prefecture_name from filter_prefecture where prefecture_id=30)),
 (44,1,(select area_name from filter_prefecture where prefecture_id=44),(select prefecture_name from filter_prefecture where prefecture_id=44)),
+(1,1,(select area_name from filter_prefecture where prefecture_id=1),(select prefecture_name from filter_prefecture where prefecture_id=1)),
+(2,1,(select area_name from filter_prefecture where prefecture_id=2),(select prefecture_name from filter_prefecture where prefecture_id=2)),
+(4,1,(select area_name from filter_prefecture where prefecture_id=4),(select prefecture_name from filter_prefecture where prefecture_id=4)),
+(5,1,(select area_name from filter_prefecture where prefecture_id=5),(select prefecture_name from filter_prefecture where prefecture_id=5)),
+(6,1,(select area_name from filter_prefecture where prefecture_id=6),(select prefecture_name from filter_prefecture where prefecture_id=6)),
+(7,1,(select area_name from filter_prefecture where prefecture_id=7),(select prefecture_name from filter_prefecture where prefecture_id=7)),
+(8,1,(select area_name from filter_prefecture where prefecture_id=8),(select prefecture_name from filter_prefecture where prefecture_id=8)),
 (3,2,(select area_name from filter_prefecture where prefecture_id=3),(select prefecture_name from filter_prefecture where prefecture_id=3)),
 (26,2,(select area_name from filter_prefecture where prefecture_id=26),(select prefecture_name from filter_prefecture where prefecture_id=26)),
+(46,2,(select area_name from filter_prefecture where prefecture_id=46),(select prefecture_name from filter_prefecture where prefecture_id=46)),
+(33,2,(select area_name from filter_prefecture where prefecture_id=33),(select prefecture_name from filter_prefecture where prefecture_id=33)),
+(16,2,(select area_name from filter_prefecture where prefecture_id=16),(select prefecture_name from filter_prefecture where prefecture_id=16)),
+(24,2,(select area_name from filter_prefecture where prefecture_id=24),(select prefecture_name from filter_prefecture where prefecture_id=24)),
+(18,2,(select area_name from filter_prefecture where prefecture_id=18),(select prefecture_name from filter_prefecture where prefecture_id=18)),
+(41,2,(select area_name from filter_prefecture where prefecture_id=41),(select prefecture_name from filter_prefecture where prefecture_id=41)),
+(11,2,(select area_name from filter_prefecture where prefecture_id=11),(select prefecture_name from filter_prefecture where prefecture_id=11)),
+(13,2,(select area_name from filter_prefecture where prefecture_id=13),(select prefecture_name from filter_prefecture where prefecture_id=13)),
+(29,2,(select area_name from filter_prefecture where prefecture_id=29),(select prefecture_name from filter_prefecture where prefecture_id=29)),
+(30,2,(select area_name from filter_prefecture where prefecture_id=30),(select prefecture_name from filter_prefecture where prefecture_id=30)),
 (23,3,(select area_name from filter_prefecture where prefecture_id=23),(select prefecture_name from filter_prefecture where prefecture_id=23)),
 (42,4,(select area_name from filter_prefecture where prefecture_id=42),(select prefecture_name from filter_prefecture where prefecture_id=42)),
 (13,5,(select area_name from filter_prefecture where prefecture_id=13),(select prefecture_name from filter_prefecture where prefecture_id=13))
