@@ -59,7 +59,7 @@ if(isset($_SESSION['form_sent'])){
 <body>
 <div class="topbox">
 <?php require "../parts/header.php"; ?>
-<?php require "../parts/indicator.php"; ?>
+<?php require "../parts/indicator_step1.php"; ?>
 </div>
 
 <div class="main-informations">

@@ -28,7 +28,7 @@ if (isset($_POST['remove_from_apply']) && isset($_POST['remove_id'])) {
 <body>
     <?php
     require "../parts/header.php";
-    require "../parts/indicator.php";
+    require "../parts/indicator_step2.php";
     ?>
     <section class="check-cart-unit">
         <div class="check-cart-header">申込企業</div>

@@ -22,7 +22,7 @@ require "../../dbconnect.php";
 <body>
     <?php
     require "../parts/header.php";
-    require "../parts/indicator.php";
+    require "../parts/indicator_step3.php";
     if(isset($_SESSION['information_array'])&&isset($_SESSION['consultation'])){
         //確認から戻ってきた場合
         echo '<div class="info-form-all">

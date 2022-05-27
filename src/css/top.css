@@ -712,6 +712,7 @@
     .progressbar li.complete:after {
         background-color: #008fb7;
     }
+    /* テスト */
     /* トップページの一覧とサイドバーのdiv */
     .main-informations {
         display: flex;

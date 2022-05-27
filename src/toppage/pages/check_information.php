@@ -23,7 +23,7 @@ require "../../dbconnect.php";
 <body>
     <?php
     require "../parts/header.php";
-    require "../parts/indicator.php";
+    require "../parts/indicator_step3.php";
     ?>
     <!-- セッションに入力内容保存してそこから引っ張ってくる -->
     <form action="thanks.php" method="POST" class="check-information-unit">
