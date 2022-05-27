@@ -1,7 +1,6 @@
 drop user if exists boozer;
 create user 'boozer'@'%' identified by 'password';
 grant all privileges on * . * to 'boozer'@'%';
-
 set character_set_results='utf8';
 DROP SCHEMA IF EXISTS shukatsu;
 

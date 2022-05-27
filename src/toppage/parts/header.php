@@ -11,7 +11,7 @@
             <div class="each-menu"><a style="text-decoration:none;color:white;" href="special_list_index.php">特集記事</a></div>
             <div class="each-menu"><a style="text-decoration:none;color:white;" href="help.php">ヘルプ</a></div>
             <div class="each-menu"><a style="text-decoration:none;color:white;" href="comparison.php">比較画面</a></div>
-            <div class="each-menu"><a style="text-decoration:none;color:white;" href="login.php">企業様のログインはこちら</a></div>
+            <div class="each-menu agent-login-sp"><a style="text-decoration:none;color:white;" href="login.php">企業様のログインはこちら</a></div>
         </div>
         <!--ヘッダーの下側の右側-->
         <div class="header-cart-box">
