@@ -1,6 +1,6 @@
 <!-- agent画面の方で削除の申請したらadmin画面にその通知が来るようにしたい。申込一覧の通報が来てるものにNEW!をつけるべきか、通報が来てるもののみ表示するか -->
 <section>
-    <div style="text-align:center;"><?php echo $_GET['year'] . '年' . $_GET['month'] . '月' . $_GET['date'] . '日'; ?>の申込学生情報一覧</div>
+    <div class="admin-agent-apply-list-head"><?php echo $_GET['year'] . '年' . $_GET['month'] . '月' . $_GET['date'] . '日'; ?>の申込学生情報一覧</div>
     <?php
     $applies_stmt = $db->prepare("select * from apply_list where agent_id=? and apply_time between ? and ?;");
     $applies_stmt->bindValue(1, $_GET['agent_id']);

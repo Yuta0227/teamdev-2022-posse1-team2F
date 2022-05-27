@@ -1,7 +1,7 @@
-<section>
-    <div style="display:flex;width:100%;justify-content:center;">
+<section class="admin-agent-detail-calender-unit">
+    <div class="admin-agent-detail-calender-head">
         <div>
-            <a href="
+            <a class="admin-agent-detail-calender-month-move" href="
             <?php
             $number_of_applies = []; //月の申込件数
             $calender_dates = []; //カレンダーで表示する日
@@ -46,7 +46,7 @@
                 if ($_GET['year'] . '/' . $_GET['month'] != date('Y') . '/' . date('m')) {
                     //パラメータがあるかつそれがページを開いたときの年月と一致してないとき==最新月ではないときのみ矢印表示する
             ?>
-                    <a href="
+                    <a class="admin-agent-detail-calender-month-move" href="
         <?php
                     if ($year_month_parameter_set) {
                         if ($_GET['month'] != '12') {
@@ -67,7 +67,7 @@
             } ?>
         </div>
     </div>
-    <table>
+    <table class="admin-agent-detail-calender-table">
         <?php
         if ($year_month_parameter_set) {
             if ($_GET['month'] != '01') {
@@ -178,11 +178,11 @@
                 if ($year_month_parameter_set) {
                     //パラメータセット時
                     echo '<div id="date' . $i - 7 + 7 * $week . '" style="position:absolute;top:0;left:0;width:40%;height:40%;;text-align:center;">' . $calender_dates[$i - 7 + $week * 7 - 1] . '</div>';
-                    echo '<div id="number' . $i - 7 + 7 * $week . '" style="position:absolute;bottom:0;right:0;width:60%;height:60%;text-align:center;">' . $number_of_applies[$calender_dates[$i - 7 + $week * 7 - 1]][0]['count(apply_id)'] . '件</div>';
+                    echo '<div id="number' . $i - 7 + 7 * $week . '" class="admin-agent-detail-calender-number">' . $number_of_applies[$calender_dates[$i - 7 + $week * 7 - 1]][0]['count(apply_id)'] . '件</div>';
                 } else {
                     //パラメータ未セット時
                     echo '<div id="date' . $i - 7 + 7 * $week . '" style="position:absolute;top:0;left:0;width:40%;height:40%;text-align:center;">' . $calender_dates[$i - 7 + $week * 7 - 1] . '</div>';
-                    echo '<div id="number' . $i - 7 + 7 * $week . '" style="position:absolute;bottom:0;right:0;width:60%;height:60%;text-align:center;">' . $number_of_applies[$calender_dates[$i - 7 + $week * 7 - 1]][0]['count(apply_id)'] . '件</div>';
+                    echo '<div id="number' . $i - 7 + 7 * $week . '" class="admin-agent-detail-calender-number">' . $number_of_applies[$calender_dates[$i - 7 + $week * 7 - 1]][0]['count(apply_id)'] . '件</div>';
                 }
                 echo '</td>';
             };
@@ -190,7 +190,7 @@
         }
         ?>
     </table>
-    <div>
+    <div class="admin-agent-detail-year-month">
         <?php
         if ($year_month_parameter_set) {
             echo $_GET['year'] . '年' . $adjust->single($_GET['month']);

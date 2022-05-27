@@ -1,20 +1,20 @@
-<section style="display:flex;flex-direction:column;justify-content:center;width:max-content;margin:0 auto;">
-    <div style="display:flex;width:max-content;width:600px;">
+<section class="admin-agent-detail-table-unit">
+    <div class="admin-agent-detail-table-head-box">
         <?php
         $picture_stmt = $db->prepare("select picture_url,agent_name from picture where agent_id=?;");
         $picture_stmt->bindValue(1, $_GET['agent_id']);
         $picture_stmt->execute();
         $picture = $picture_stmt->fetchAll();
         ?>
-        <div style="width:50%;">
-            <img style="width:100%;height:100%;" src="../../../img/article/<?php echo $picture[0]['picture_url']; ?>" alt="<?php echo $picture[0]['agent_name']; ?>の写真">
+        <div class="admin-agent-detail-table-img-box">
+            <img class="admin-agent-detail-table-img" src="../../../img/article/<?php echo $picture[0]['picture_url']; ?>" alt="<?php echo $picture[0]['agent_name']; ?>の写真">
         </div>
-        <div style="background-color:skyblue;width:50%;text-align:center;"><?php echo $picture[0]['agent_name']; ?></div>
+        <div class="admin-agent-detail-table-agent-name"><?php echo $picture[0]['agent_name']; ?></div>
     </div>
-    <div style="background-color:blue;width:600px;padding:20px;">
-        <div style="display:flex;justify-content:center;">契約情報</div>
-        <div style="display:flex;justify-content:center;">
-            <table>
+    <div class="admin-agent-detail-contract-table-box-all">
+        <div class="admin-agent-detail-contract-table-head">契約情報</div>
+        <div class="admin-agent-detail-contract-table-box">
+            <table class="admin-agent-detail-contract-table">
                 <?php
                 $agent_id_stmt = $db->prepare("select agent_id from agent_contract_information where agent_id=?;");
                 $agent_id_stmt->bindValue(1, $_GET['agent_id']);
@@ -72,8 +72,8 @@
                             break;
                     }
                     echo '<tr>';
-                    echo '<th style="border:1px solid black;">' . $column . '</th>';
-                    echo '<td style="border:1px solid black;">' . $data . '</td>';
+                    echo '<th class="admin-agent-detail-table-text">' . $column . '</th>';
+                    echo '<td class="admin-agent-detail-table-content">' . $data . '</td>';
                     echo '</tr>';
                 }
                 // echo '<tr>';
@@ -86,10 +86,10 @@
     </div>
 
 
-    <form style="background-color:blue;width:600px;padding:20px;">
-        <div style="display:flex;justify-content:center;">掲載情報</div>
-        <div style="display:flex;justify-content:center;">
-            <table>
+    <form class="admin-agent-detail-public-all-box">
+        <div class="admin-agent-detail-public-table-name">掲載情報</div>
+        <div class="admin-agent-detail-public-table-box">
+            <table class="admin-agent-detail-public-table">
                 <?php
                 $agent_public_information_stmt = $db->prepare("select agent_name,agent_meeting_type,agent_main_corporate_size,agent_corporate_type,agent_job_offer_rate,agent_shortest_period,agent_recommend_student_type from agent_public_information where agent_id=?;");
                 $agent_public_information_stmt->bindValue(1, $_GET['agent_id']);
@@ -101,13 +101,13 @@
                     $data = $translate->translate_data_to_japanese($column, $data);
                     //データを必要に応じて数字から日本語に変換
                     echo '<tr>';
-                    echo '<th style="border:1px solid black;">' . $column . '</th>';
-                    echo '<td style="border:1px solid black;">' . $data . '</td>';
+                    echo '<th class="admin-agent-detail-table-text">' . $column . '</th>';
+                    echo '<td class="admin-agent-detail-table-content">' . $data . '</td>';
                     echo '</tr>';
                 }
                 echo '<tr>';
-                echo '<th style="border:1px solid black;">拠点地</th>';
-                echo '<td style="border:1px solid black;">';
+                echo '<th class="admin-agent-detail-table-text">拠点地</th>';
+                echo '<td class="admin-agent-detail-table-content">';
                 $count = 1;
                 foreach ($agent_address as $address) {
                     if ($count == count($agent_address)) {
@@ -124,12 +124,12 @@
                 $sales_copy_stmt->execute();
                 $sales_copy_data = $sales_copy_stmt->fetchAll()[0]['sales_copy'];
                 echo '<tr>';
-                echo '<th style="border:1px solid black;">キャッチコピー</th>';
-                echo '<td style="border:1px solid black;">' . $sales_copy_data . '</td>';
+                echo '<th class="admin-agent-detail-table-text">キャッチコピー</th>';
+                echo '<td class="admin-agent-detail-table-content">' . $sales_copy_data . '</td>';
                 echo '</tr>';
                 echo '<tr>';
-                echo '<th style="border:1px solid black;">業界別取り扱い企業数</th>';
-                echo '<td style="border:1px solid black;">';
+                echo '<th class="admin-agent-detail-table-text">業界別取り扱い企業数</th>';
+                echo '<td class="admin-agent-detail-table-content">';
                 $index = 0;
                 foreach ($corporate_amount[0] as $column => $data) {
                     $column = $translate->translate_column_to_japanese($column);
@@ -151,13 +151,13 @@
                 ?>
             </table>
         </div>
-        <div style="display:flex;justify-content:right;">
-            <div style="border:1px solid black;padding:5px;border-radius:10px;background-color:skyblue;" id="edit_public_information_button">編集</div>
+        <div class="admin-agent-detail-table-public-edit-btn-box">
+            <div class="admin-agent-detail-table-public-edit-btn" id="edit_public_information_button">編集</div>
         </div>
     </form>
-    <form style="background-color:blue;width:600px;padding:20px;">
-        <div style="display:flex;justify-content:center;">エージェント説明文</div>
-        <div style="height:200px;width:400px;background-color:white;">
+    <form class="admin-agent-detail-explain-all-box">
+        <div class="admin-agent-detail-explain-name" style="display:flex;justify-content:center;">エージェント説明文</div>
+        <div class="admin-agent-detail-explain-text">
             <?php
             $explanation_stmt = $db->prepare("select agent_explanation from agent_explanation where agent_id=?;");
             $explanation_stmt->bindValue(1, $_GET['agent_id']);
@@ -167,12 +167,12 @@
             //改行などは;とexplodeなどをつかって対策する。登録のときに工夫してもらう
             ?>
         </div>
-        <div style="display:flex;justify-content:right;">
-            <div style="border:1px solid black;padding:5px;border-radius:10px;background-color:skyblue;" id="edit_agent_explanation_button">編集</div>
+        <div class="admin-agent-detail-explain-edit-btn-box">
+            <div class="admin-agent-detail-explain-edit-btn" id="edit_agent_explanation_button">編集</div>
         </div>
     </form>
-    <div style="position:relative;">
-        <div style="display:flex;justify-content:center;">担当者情報</div>
+    <div class="admin-agent-detail-person-all">
+        <div class="admin-agent-detail-person-head">担当者情報</div>
         <div style="display:flex;flex-direction:column;justify-content:center;">
             <?php
             $assignee_stmt = $db->prepare("select * from agent_assignee_information where agent_id=?;");
@@ -203,26 +203,26 @@
                 foreach ($assignee as $column => $data) {
                     if ($column != 'user_id') {
                         echo '<tr>';
-                        echo '<th style="width:20%;border:1px solid black;">' . $column . '</th>';
-                        echo '<td style="width:80%;border:1px solid black;">' . $data . '</td>';
+                        echo '<th class="admin-agent-detail-person-table-text">' . $column . '</th>';
+                        echo '<td class="admin-agent-detail-person-table-content">' . $data . '</td>';
                         echo '</tr>';
                     }
                 }
                 echo '</table>';
                 echo '<div style="width:20%;display:flex;justify-content:center;align-items:center;">';
                 echo '<input name="delete_assignee_id" value="' . $assignee['user_id'] . '" hidden>';
-                echo '<input type="submit" value="削除">';
+                echo '<input class="admin-agent-detail-person-table-delete-btn" type="submit" value="削除">';
                 //クリック時に確認モーダル表示
                 echo '</div>';
                 echo '</form>';
                 if (isset($_POST['delete_assignee_id'])) {
                     if ($_POST['delete_assignee_id'] == $assignee['user_id']) {
-                        echo '<form id="delete_assignee_form" name="form' . $assignee['user_id'] . '" action="" method="POST" style="height:100%;padding:20px;z-index:10;position:absolute;background-color:white;top:0;left:50%;transform:translate(-50%,0);">';
-                        echo '<div>担当者を削除しますか?</div>';
-                        echo '<div style="display:flex;">';
+                        echo '<form class="admin-agent-detail-popup-agent-delete-all" id="delete_assignee_form" name="form' . $assignee['user_id'] . '" action="" method="POST">';
+                        echo '<div class="admin-agent-detail-popup-agent-delete-head">担当者を削除しますか?</div>';
+                        echo '<div class="admin-agent-detail-popup-agent-delete-btns">';
                         echo '<input hidden name="confirm_delete_assignee_id" value="' . $assignee['user_id'] . '">';
-                        echo '    <div id="cancel_delete" style="border-radius:10px;padding:5px;border:1px solid black;">キャンセル</div>';
-                        echo '    <input name="confirm_delete_assignee" type="submit" style="background-color:red;" value="削除する">';
+                        echo '    <div class="admin-agent-detail-popup-agent-delete-cancel-btn" id="cancel_delete">キャンセル</div>';
+                        echo '    <input class="admin-agent-detail-popup-agent-delete-confirm-btn" name="confirm_delete_assignee" type="submit" value="削除する">';
                         echo '</div>';
                         echo '</form>';
                     }
@@ -234,36 +234,36 @@
         <?php
         ?>
         <form action="" method="POST" style="display:flex;justify-content:center;">
-            <input name="add_assignee" type="submit" style="display:flex;text-align:center;background-color:skyblue;height:50px;border-radius:25px;align-items:center;" value="担当者を追加する">
+            <input class="admin-agent-detail-person-table-add-btn" name="add_assignee" type="submit" value="担当者を追加する">
         </form>
         <?php
         if (isset($_POST['add_assignee'])) {
-            echo '<form id="add_assignee_form" action="" method="POST" style="background-color:white;z-index:10;width:100%;display:flex;flex-direction:column;justify-content:center;z-index:10;position:absolute;top:0;left:0;">
-        <div style="text-align:center;">担当者追加フォーム</div>
-        <table>
+            echo '<form class="admin-agent-detail-popup-agent-profile-add-all" id="add_assignee_form" action="" method="POST">
+        <div class="admin-agent-detail-popup-agent-profile-add-head">担当者追加フォーム</div>
+        <table class="admin-agent-detail-popup-agent-profile-add-table">
             <tr>
-                <th style="width:20%;border:1px solid black;">部署</th>
-                <td style="width:80%;border:1px solid black;"><input required style="width:100%;" name="add_branch"></td>
+                <th class="admin-agent-detail-popup-agent-profile-add-table-text">部署</th>
+                <td class="admin-agent-detail-popup-agent-profile-add-table-content"><input required style="width:100%;" name="add_branch"></td>
             </tr>
             <tr>
-                <th style="width:20%;border:1px solid black;">氏名</th>
-                <td style="width:80%;border:1px solid black;"><input required style="width:100%;" name="add_name"></td>
+                <th class="admin-agent-detail-popup-agent-profile-add-table-text">氏名</th>
+                <td class="admin-agent-detail-popup-agent-profile-add-table-content"><input required style="width:100%;" name="add_name"></td>
             </tr>
             <tr>
-                <th style="width:20%;border:1px solid black;">メールアドレス</th>
-                <td style="width:80%;border:1px solid black;"><input required style="width:100%;" name="add_mail"></td>
+                <th class="admin-agent-detail-popup-agent-profile-add-table-text">メールアドレス</th>
+                <td class="admin-agent-detail-popup-agent-profile-add-table-content"><input required style="width:100%;" name="add_mail"></td>
             </tr>
             <tr>
-                <th style="width:20%;border:1px solid black;">パスワード</th>
-                <td style="width:80%;border:1px solid black;"><input required style="width:100%;" name="add_password"></td>
+                <th class="admin-agent-detail-popup-agent-profile-add-table-text">パスワード</th>
+                <td class="admin-agent-detail-popup-agent-profile-add-table-content"><input required style="width:100%;" name="add_password"></td>
             </tr>
         </table>
-        <div style="display:flex;">
+        <div class="admin-agent-detail-popup-agent-profile-add-table-btns" style="display:flex;">
         <div style="width:50%;display:flex;justify-content:center;">
-        <div id="cancel_add_assignee" style="border-radius:10px;padding:5px;border:1px solid black;">キャンセル</div>
+        <div class="admin-agent-detail-popup-agent-profile-add-table-cancel-btn" id="cancel_add_assignee">キャンセル</div>
         </div>
         <div style="width:50%;display:flex;justify-content:center;">
-        <input type="submit" name="confirm_add" value="追加確定">
+        <input class="admin-agent-detail-popup-agent-profile-add-table-confirm-btn" type="submit" name="confirm_add" value="追加確定">
         </div>
         </div>
     </form>';
