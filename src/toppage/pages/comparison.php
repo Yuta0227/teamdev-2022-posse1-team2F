@@ -38,7 +38,7 @@ if (isset($_POST['remove_from_apply']) && isset($_POST['agent_id'])) {
 <body>
     <?php
     require "../parts/header.php";
-    require "../parts/indicator.php";
+    require "../parts/indicator_step1.php";
     require "../../function.php";
     ?>
     <div>比較リスト選択中<?php echo count($_SESSION['comparison_list']); ?>件</div>
