@@ -60,7 +60,7 @@ if(isset($_POST['jump_to_comparison'])){
         <div class="special-detail-all-box">
             <div style="display:flex;">
                 <div class="special-detail-img-box">
-                    <img alt="<?php echo $featured_article_detail['agent_name']; ?>の特集記事用画像" src="../../img/<?php echo $featured_article_detail['picture']; ?>" class="special-detail-img">
+                    <img alt="<?php echo $featured_article_detail['agent_name']; ?>の特集記事用画像" src="../../img/article/<?php echo $featured_article_detail['picture']; ?>" class="special-detail-img">
                 </div>
                 <div class="special-detail-header-box">
                     <h1 class="special-detail-header"><?php echo $featured_article_detail['title']; ?></h1>
@@ -157,17 +157,18 @@ if (isset($_SESSION['comparison_list'])) {
     }
 } ?>
 
-<script>
-    document.getElementById('close_comparison_popup').addEventListener('click', function() {
-        document.getElementById('comparison_box').setAttribute('hidden', '');
-    })
-</script>
-        </div>
-        
-    </section>
-    
+</div>
+
+</section>
+
     <?php require "../parts/footer.php"; ?>
 </body>
 
 
 </html>
+<script>
+    // 比較リストが存在しない間はエラー出るけど問題ない。ここでissetとかやるとなぜか動かなくなる
+    document.getElementById('close_comparison_popup').addEventListener('click', function() {
+        document.getElementById('comparison_box').setAttribute('hidden', '');
+    })
+</script>

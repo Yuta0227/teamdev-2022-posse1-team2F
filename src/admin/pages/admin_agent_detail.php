@@ -1,6 +1,7 @@
 <?php
 session_start();
 require "../../dbconnect.php";
+require "../../function.php";
 require "../parts/admin_post.php";
 ?>
 <!DOCTYPE html>
@@ -20,7 +21,6 @@ require "../parts/admin_post.php";
 
 <body style="position:relative;">
     <?php
-    require "../../function.php";
     require "../parts/admin_url.php";
     require "../parts/header.php";
     require "../parts/admin_agent_detail/table.php";

@@ -12,6 +12,8 @@
             $sales_copy=$sales_copy_stmt->fetchAll()[0];
             $corporate_amount_stmt=$db->query("select manufacturer,retail,service,software_transmission,trading,finance,media,government from agent_corporate_amount where agent_id=".$_SESSION['agent_id'].";");
             $corporate_amount=$corporate_amount_stmt->fetchAll()[0];
+            $agent_picture_stmt=$db->query("select picture_url from picture where agent_id=".$_SESSION['agent_id'].";");
+            $agent_picture=$agent_picture_stmt->fetchAll()[0]['picture_url'];
             foreach ($agent_public_information_array as $column => $data) {
                 $column=$translate->translate_column_to_japanese($column);
                 $data=$translate->translate_data_to_japanese($column,$data);
@@ -49,6 +51,10 @@
                 $index++;
             }
             echo '</td>';
+            echo '</tr>';
+            echo '<tr>';
+            echo '<th class="agent-public-information-table-text">画像</th>';
+            echo '<td class="agent-public-information-table-content"><img style="width:100%;height:100%;" src="../../img/article/'.$agent_picture.'" alt="'.$agent_public_information_array['agent_name'].'の画像"></td>';
             echo '</tr>';
             ?>
         </table>
