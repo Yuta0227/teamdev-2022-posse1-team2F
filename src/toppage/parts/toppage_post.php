@@ -107,7 +107,11 @@ if (isset($_POST['industries']) || isset($_POST['filter_prefecture']) || isset($
             if (count($base_agent_id_array) == 1) {
                 //一つだったら
                 $final_filter_stmt = ' where agent_id=' . $agent . ' ';
-            } elseif ($agent == $base_agent_id_array[count($base_agent_id_array) - 1]) {
+            } elseif(count($base_agent_id_array)!=1&&$agent==$base_agent_id_array[0]){
+                //一つじゃないかつ最初
+                $final_filter_stmt=' where agent_id='.$agent.' or ';
+            }
+            elseif ($agent == $base_agent_id_array[count($base_agent_id_array) - 1]) {
                 //最後だったら
                 $final_filter_stmt .= 'agent_id=' . $agent . ' ';
             } else {
@@ -129,7 +133,7 @@ $_SESSION['query'] = "select * from agent_public_information" . $_SESSION['save_
 // print_r('</pre>');
 $all_agents_stmt = $db->query($_SESSION['query']);
 $all_agents = $all_agents_stmt->fetchAll();
-// echo $_SESSION['query'];
+echo $_SESSION['query'];
 // if (isset($_SESSION['save_filter_condition'])) {
 //過去に条件絞り込みをしていたら
 
