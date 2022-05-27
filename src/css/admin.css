@@ -315,3 +315,66 @@ body{
     align-items:center;
     font-weight: bold;
 }
+
+/* エージェントカレンダー部分 */
+.admin-agent-detail-calender-unit{
+    background-color:#fff;
+    width: 80%;;
+    padding:0 20px 20px 20px;
+    margin: 20px auto;
+}
+.admin-agent-detail-calender-head{
+    font-weight: bold;
+    padding: 10px;
+    font-size: 25px; 
+    display:flex;
+    width:100%;
+    justify-content:center;
+}
+.admin-agent-detail-calender-month-move{
+    color: #000;
+    text-decoration: none;
+    margin: 5px 5px 5px 0;
+    padding: 0 9px;
+    font-weight: bold;
+    font-size: 22px;
+}
+.admin-agent-detail-calender-month-move:hover{
+    cursor: pointer;
+    background:#eaedf2;
+    padding: 0 9px;
+    border-radius: 15px;
+    text-align: center;
+    align-items: center;
+}
+.admin-agent-detail-calender-table{
+    width: 80%;
+    margin: auto;
+}
+.admin-agent-detail-year-month{
+    margin: 10px 0;
+    font-weight: bold;
+    text-align: center;
+    font-size: 22px
+}
+.admin-agent-detail-calender-number{
+    position:absolute;
+    bottom:0;
+    right:0;
+    width:60%;
+    height:60%;
+    text-align:center;
+    text-decoration: underline 2px;
+    text-decoration-color: #52a49a;
+}
+/* エージェント詳細グラフ */
+.admin-agent-detail-graph-unit{
+    background-color:#fff;
+    width: 80%;;
+    padding:0 20px 20px 20px;
+    margin: 20px auto;
+}
+.admin-agent-detail-graph{
+    width: 60%;
+    margin: auto;
+}
