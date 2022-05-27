@@ -62,28 +62,28 @@
             }
         } else {
             //通報されていない場合
-            echo '<form method="POST" onsubmit="submitEvent();return false;" id="test' . $index . '" style="padding:10px;align-items:center;display:flex;border:1px solid black;">';
+            echo '<form method="POST" onsubmit="submitEvent();return false;" id="test' . $index . '" class="admin-agent-new-apply-info-box">';
             echo '<div style="width:20%;">' . $apply['month'] . '/' . $apply['date'] . ' ' . $apply['time'] . '</div>';
             echo '<div style="width:20%;padding:0 20px 0 20px;">' . $apply['applicant_email_address'] . '</div>';
-            echo '<div style="width:60%;display:flex;justify-content:right;"><input type="button" id="open_apply' . $index . '" value="詳細▽"></div>';
-            echo '<input id="close_apply' . $index . '" name="close' . $index . '" hidden value="閉じる△" type="submit">';
+            echo '<div style="width:60%;display:flex;justify-content:right;"><input class="admin-agent-apply-open-close-detail" type="button" id="open_apply' . $index . '" value="詳細▽"></div>';
+            echo '<input class="admin-agent-apply-open-close-detail" id="close_apply' . $index . '" name="close' . $index . '" hidden value="閉じる△" type="submit">';
             echo '</form>';
-            echo '<div id="apply_detail' . $index . '" hidden style="border:1px solid black;">';
-            echo '<div>' . $apply['applicant_name_kanji'] . '(' . $apply['applicant_name_furigana'] . ')</div>';
-            echo '<div>' . $apply['applicant_phone_number'] . '</div>';
-            echo '<div>' . $apply['applicant_university'] . ',' . $apply['applicant_gakubu'] . ',' . $apply['applicant_gakka'] . ',' . $apply['applicant_graduation_year'] . '年卒</div>';
-            echo '<div>' . $apply['applicant_postal_code'] . '</div>';
-            echo '<div>' . $apply['applicant_address'] . '</div>';
+            echo '<div id="apply_detail' . $index . '" hidden class="admin-agent-apply-detail-box">';
+            echo '<div class="admin-agent-apply-student-detail">' . $apply['applicant_name_kanji'] . '(' . $apply['applicant_name_furigana'] . ')</div>';
+            echo '<div class="admin-agent-apply-student-detail">' . $apply['applicant_phone_number'] . '</div>';
+            echo '<div class="admin-agent-apply-student-detail">' . $apply['applicant_university'] . ',' . $apply['applicant_gakubu'] . ',' . $apply['applicant_gakka'] . ',' . $apply['applicant_graduation_year'] . '年卒</div>';
+            echo '<div class="admin-agent-apply-student-detail">' . $apply['applicant_postal_code'] . '</div>';
+            echo '<div class="admin-agent-apply-student-detail">' . $apply['applicant_address'] . '</div>';
             if ($apply['applicant_consultation'] != '') {
-                echo '<div>相談：' . $apply['applicant_consultation'] . '</div>';
+                echo '<div class="admin-agent-apply-student-detail">相談：' . $apply['applicant_consultation'] . '</div>';
             }
             echo '</div>';
         }
         $index++;
     }
-    echo '<div style="text-align:center;">' . $_GET['month'] . '月' . $_GET['date'] . '日の合計：' . count($applies_array) . '人</div>';
+    echo '<div class="admin-agent-apply-all-amount">' . $_GET['month'] . '月' . $_GET['date'] . '日の合計：' . count($applies_array) . '人</div>';
     ?>
-    <div style="text-align:center;"><a href="admin_agent_detail.php?agent_id=<?php echo $_GET['agent_id']; ?>&year=<?php echo $_GET['year']; ?>&month=<?php echo $_GET['month']; ?>">企業詳細ページに戻る</a></div>
+    <div style="text-align:center;"><a class="admin-agent-apply-back-btn" href="admin_agent_detail.php?agent_id=<?php echo $_GET['agent_id']; ?>&year=<?php echo $_GET['year']; ?>&month=<?php echo $_GET['month']; ?>">企業詳細ページに戻る</a></div>
 </section>
 <script>
     <?php for ($index = 0; $index < count($applies_array); $index++) { ?>

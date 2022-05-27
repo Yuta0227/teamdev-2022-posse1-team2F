@@ -592,7 +592,44 @@ body{
 /* 日付ごとの申込 */
 .admin-agent-apply-list-head{
     width: 80%;
-    margin: auto;
+    margin: 20px auto;
     font-weight: bold;
     font-size: 20px;
+}
+.admin-agent-new-apply-info-box{
+    padding:10px;
+    align-items:center;
+    display:flex;
+    border:1px solid black;
+    background: #fff;
+    width: 80%;
+    margin: auto;
+    justify-content: space-between;
+}
+.admin-agent-apply-open-close-detail{
+    padding: 5px 15px;
+}
+.admin-agent-apply-detail-box{
+    border:1px solid black; 
+    width: 80%;
+    margin: auto;
+    padding: 10px;
+    background: #fff;
+}
+.admin-agent-apply-student-detail{
+    padding: 5px;
+}
+.admin-agent-apply-all-amount{
+    text-align: center;
+    font-size: 25px;
+    padding: 10px;
+}
+.admin-agent-apply-back-btn{
+    text-decoration: none;
+    color: #000;
+    cursor: pointer;
+}
+.admin-agent-apply-back-btn:hover{
+    text-decoration: underline;
+    color: #000;
 }
