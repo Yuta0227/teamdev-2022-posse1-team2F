@@ -11,16 +11,15 @@
         7 => '四国',
         8 => '九州沖縄',
     ];
-    $industry_array=['manufacturer','retail','service','software_transmission','trading','finance','media','government'];
+    $industry_array = ['manufacturer', 'retail', 'service', 'software_transmission', 'trading', 'finance', 'media', 'government'];
     // print_r('<pre>');
     // var_dump($filter_prefecture_hokkaidou);
     // print_r('</pre>');
-    
     $conditions_array = [1, 2, 3, 4, 5];
     $conditions_type_array = [1, 2];
     ?>
     <form action="" method="POST" id="filter" style="width:100%;">
-    <div id="close-btn" class="close-btn">✕</div>
+        <div id="close-btn" class="close-btn">✕</div>
 
         <table style="width:100%;">
             <tr>
@@ -38,7 +37,7 @@
                         $filter_prefecture_stmt = $db->query("select * from filter_prefecture where area_id=" . $area_id . ";");
                         $filter_prefecture = $filter_prefecture_stmt->fetchAll();
                         foreach ($filter_prefecture as $data) {
-                            echo '<label><input value="'.$data['prefecture_id'].'" type="checkbox" name="filter_prefecture[]">' . $data['prefecture_name'] . '</label>';
+                            echo '<label><input value="' . $data['prefecture_id'] . '" type="checkbox" name="filter_prefecture[]">' . $data['prefecture_name'] . '</label>';
                         }
                         echo '</div>';
                     }
@@ -48,13 +47,43 @@
             <tr>
                 <th style="border:1px solid black;">業界</th>
                 <td style="border:1px solid black;">
-                <?php 
-                foreach($industry_array as $industry){
-                    echo '<label><input value="'.$industry.'" type="checkbox" name="industries[]">'.$translate->translate_column_to_japanese($industry).'</label>';
-                }
-                ?>
+                    <?php
+                    foreach ($industry_array as $industry) {
+                        echo '<label><input value="' . $industry . '" type="checkbox" name="industries[]">' . $translate->translate_column_to_japanese($industry) . '</label>';
+                    }
+                    ?>
                 </td>
-
+            </tr>
+            <tr>
+                <th style="border:1px solid black;">面談方式</th>
+                <td style="border:1px solid black;">
+                    <label><input type="checkbox" value="0" name="agent_meeting_type[]">対面のみ</label>
+                    <label><input type="checkbox" value="1" name="agent_meeting_type[]">オンライン可</label>
+                    <label><input type="checkbox" value="2" name="agent_meeting_type[]">オンラインのみ</label>
+                </td>
+            </tr>
+            <tr>
+                <th style="border:1px solid black;">企業規模</th>
+                <td style="border:1px solid black;">
+                    <label><input type="checkbox" value="0" name="agent_main_corporate_size[]">大手</label>
+                    <label><input type="checkbox" value="1" name="agent_main_corporate_size[]">中小</label>
+                    <label><input type="checkbox" value="2" name="agent_main_corporate_size[]">ベンチャー</label>
+                    <label><input type="checkbox" value="3" name="agent_main_corporate_size[]">総合</label>
+                </td>
+            </tr>
+            <tr>
+                <th style="border:1px solid black;">取り扱い企業カテゴリー</th>
+                <td style="border:1px solid black;">
+                    <label><input type="checkbox" value="0" name="agent_corporate_type[]">外資系含む</label>
+                    <label><input type="checkbox" value="1" name="agent_corporate_type[]">外資系含まない</label>
+                </td>
+            </tr>
+            <tr>
+                <th style="border:1px solid black;">○○向き</th>
+                <td style="border:1px solid black;">
+                    <label><input type="checkbox" value="0" name="agent_recommend_student_type[]">理系</label>
+                    <label><input type="checkbox" value="1" name="agent_recommend_student_type[]">文系</label>
+                </td>
             </tr>
         </table>
         <input value="この条件で絞り込む" type="submit">

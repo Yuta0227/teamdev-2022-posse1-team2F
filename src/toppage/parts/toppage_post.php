@@ -9,12 +9,7 @@ $base_agent_id_array=[];
 foreach($agent_id_array as $agent){
     array_push($base_agent_id_array,$agent['agent_id']);
 };
-
-
 if(isset($_POST['industries'])){
-    print_r('<pre>');
-    var_dump($_POST['industries']);
-    print_r('</pre>');
     $industry_stmt='select agent_id from agent_corporate_amount where ';
     foreach($_POST['industries'] as $industry){
         if($industry==$_POST['industries'][count($_POST['industries'])-1]){
@@ -30,7 +25,7 @@ if(isset($_POST['industries'])){
     foreach($filter_industry as $agent){
         array_push($tmp_industry_agent,$agent['agent_id']);
     }
-    $base_agent_id_array=array_intersect_assoc($base_agent_id_array,$tmp_industry_agent);
+    $base_agent_id_array=array_intersect($base_agent_id_array,$tmp_industry_agent);
     print_r('<pre>');
     var_dump($base_agent_id_array);
     print_r('</pre>');
@@ -54,15 +49,20 @@ if(isset($_POST['filter_prefecture'])){
         //これを使って他の条件絞り込みとの共通項を出力
         //並び替えとの組み合わせは共通項の配列をforeachで回して↓の並び替え文の後にwhere agent_id =? or agent_id=?
     }
-    $base_agent_id_array=array_intersect_assoc($base_agent_id_array,$tmp_prefecture_agent);
+    $base_agent_id_array=array_intersect($base_agent_id_array,$tmp_prefecture_agent);
     //共通項取得
     print_r('<pre>');
-    var_dump($_POST['filter_prefecture']);
+    // var_dump($_POST['filter_prefecture']);
     // var_dump($filter_prefecture);
     // var_dump($tmp_prefecture_agent);
     var_dump($base_agent_id_array);
     print_r('</pre>');
-}
+};
+$base_agent_id_array=$filter->filter('agent_meeting_type',$base_agent_id_array);
+$base_agent_id_array=$filter->filter('agent_main_corporate_size',$base_agent_id_array);
+$base_agent_id_array=$filter->filter('agent_corporate_type',$base_agent_id_array);
+$base_agent_id_array=$filter->filter('agent_recommend_student_type',$base_agent_id_array);
+var_dump($base_agent_id_array);
 if (isset($_POST['sort'])) {
     switch ($_POST['sort']) {
         case 'default':
