@@ -18,7 +18,7 @@ if(isset($_POST['delete_assignee_id'])||isset($_POST['add_assignee'])){
             //データを必要に応じて数字から日本語に変換
             if ($column == '面談方式') {
                 echo '<tr>';
-                echo '<th class="admin-agent-detail-edit-popup-public-talbe-text" style="border:1px solid black;">' . $column . '</th><td style="border:1px solid black;">';
+                echo '<th class="admin-agent-detail-edit-popup-public-talbe-text">' . $column . '</th><td style="border:1px solid black;">';
                 if ($data == '対面のみ') {
                     echo '<label><label><input type="radio" name="' . $column . '" value="0" checked>対面のみ</label>';
                 } else {
