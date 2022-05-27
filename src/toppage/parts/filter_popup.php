@@ -20,6 +20,8 @@
     $conditions_type_array = [1, 2];
     ?>
     <form action="" method="POST" id="filter" style="width:100%;">
+    <div id="close-btn" class="close-btn">✕</div>
+
         <table style="width:100%;">
             <tr>
                 <th style="border:1px solid black;">拠点地</th>

@@ -1,14 +1,14 @@
 <?php
 if (isset($_POST['delete_assignee_id']) || isset($_POST['add_assignee'])) {
-    echo '<div id="edit_popup_filter" style="position:absolute;width:100%;height:100%;background-color:red;top:0;left:0;opacity:50%;"></div>';
+    echo '<div id="edit_popup_filter" class="admin-agent-detail-edit-popup-public-all"></div>';
     //  ページ全体にかかるフィルターつける 
 } else {
-    echo '<div id="edit_popup_filter" style="position:absolute;width:100%;height:100%;background-color:red;top:0;left:0;opacity:50%;" hidden></div>';
+    echo '<div id="edit_popup_filter" class="admin-agent-detail-edit-popup-public-all" hidden></div>';
 }
 ?>
 
-<form enctype="multipart/form-data" id="edit_public_information_form" style="position:absolute;background-color:white;top:50%;left:50%;transform:translate(-50%,-50%);" hidden method="post" action="">
-    <div style="text-align:center;">掲載情報編集</div>
+<form enctype="multipart/form-data" id="edit_public_information_form" class="admin-agent-detail-edeit-popup-public-in-box" hidden method="post" action="">
+    <div class="admin-agent-detail-edit-popup-public-head">掲載情報編集</div>
     <table>
         <?php
         foreach ($agent_public_information_array[0] as $column => $data) {
@@ -18,7 +18,7 @@ if (isset($_POST['delete_assignee_id']) || isset($_POST['add_assignee'])) {
             //データを必要に応じて数字から日本語に変換
             if ($column == '面談方式') {
                 echo '<tr>';
-                echo '<th style="border:1px solid black;">' . $column . '</th><td style="border:1px solid black;">';
+                echo '<th class="admin-agent-detail-edit-popup-public-talbe-text">' . $column . '</th><td class="admin-agent-detail-edit-popup-public-table-content">';
                 if ($data == '対面のみ') {
                     echo '<label><label><input type="radio" name="' . $column . '" value="0" checked>対面のみ</label>';
                 } else {
@@ -38,7 +38,7 @@ if (isset($_POST['delete_assignee_id']) || isset($_POST['add_assignee'])) {
                 echo '</tr>';
             } elseif ($column == '主な取り扱い企業規模') {
                 echo '<tr>';
-                echo '<th style="border:1px solid black;">' . $column . '</th><td style="border:1px solid black;">';
+                echo '<th class="admin-agent-detail-edit-popup-public-talbe-text">' . $column . '</th><td class="admin-agent-detail-edit-popup-public-table-content">';
                 if ($data == '大手') {
                     echo '<label><input type="radio" name="' . $column . '" value="0" checked>大手</label>';
                 } else {
@@ -63,7 +63,7 @@ if (isset($_POST['delete_assignee_id']) || isset($_POST['add_assignee'])) {
                 echo '</tr>';
             } elseif ($column == '取り扱い企業カテゴリー') {
                 echo '<tr>';
-                echo '<th style="border:1px solid black;">' . $column . '</th><td style="border:1px solid black;">';
+                echo '<th class="admin-agent-detail-edit-popup-public-talbe-text">' . $column . '</th><td class="admin-agent-detail-edit-popup-public-table-content">';
                 if ($data == '外資系含む') {
                     echo '<label><input type="radio" name="' . $column . '" value="0" checked>外資系含む</label>';
                 } else {
@@ -78,11 +78,11 @@ if (isset($_POST['delete_assignee_id']) || isset($_POST['add_assignee'])) {
                 echo '</tr>';
             } elseif ($column == 'エージェント名') {
                 echo '<tr>';
-                echo '<th style="border:1px solid black;">' . $column . '</th><td style="border:1px solid black;">' . $data . '</td>';
+                echo '<th class="admin-agent-detail-edit-popup-public-talbe-text">' . $column . '</th><td class="admin-agent-detail-edit-popup-public-table-content">' . $data . '</td>';
                 echo '</tr>';
             } elseif ($column == '○○向き') {
                 echo '<tr>';
-                echo '<th style="border:1px solid black;">' . $column . '</th><td style="border:1px solid black;">';
+                echo '<th class="admin-agent-detail-edit-popup-public-talbe-text">' . $column . '</th><td class="admin-agent-detail-edit-popup-public-table-content">';
                 if ($data == '理系') {
                     echo '<label><input type="radio" name="' . $column . '" value="0" checked >理系</label>';
                     echo '<label><input type="radio" name="' . $column . '" value="1">文系</label>';
@@ -94,13 +94,13 @@ if (isset($_POST['delete_assignee_id']) || isset($_POST['add_assignee'])) {
                 echo '</tr>';
             } else {
                 echo '<tr>';
-                echo '<th style="border:1px solid black;">' . $column . '</th><td style="border:1px solid black;"><input name="' . $column . '" value="' . $data . '"></td>';
+                echo '<th class="admin-agent-detail-edit-popup-public-talbe-text">' . $column . '</th><td class="admin-agent-detail-edit-popup-public-table-content"><input name="' . $column . '" value="' . $data . '"></td>';
                 echo '</tr>';
             }
         }
         echo '<tr>';
-        echo '<th style="border:1px solid black;">拠点地</th>';
-        echo '<td style="border:1px solid black;">';
+        echo '<th class="admin-agent-detail-edit-popup-public-talbe-text">拠点地</th>';
+        echo '<td class="admin-agent-detail-edit-popup-public-table-content">';
         //チェックボックス　都道府県 filter_prefectureから*とってくる。
         //連想配列でカラムをprefecture_idとする。
         //POSTではcolumnをbindValueにする
@@ -122,8 +122,8 @@ if (isset($_POST['delete_assignee_id']) || isset($_POST['add_assignee'])) {
         echo '</td>';
         echo '</tr>';
         echo '<tr>';
-        echo '<th style="border:1px solid black;">業界別取り扱い企業数</th>';
-        echo '<td style="border:1px solid black;">';
+        echo '<th class="admin-agent-detail-edit-popup-public-talbe-text">業界別取り扱い企業数</th>';
+        echo '<td class="admin-agent-detail-edit-popup-public-table-content">';
         echo '<div>メーカー<input size="4" name="manufacturer" value="' . $corporate_amount[0]['manufacturer'] . '"></div>';
         echo '<div>小売り<input size="4" name="retail" value="' . $corporate_amount[0]['retail'] . '"></div>';
         echo '<div>サービス<input size="4" name="service" value="' . $corporate_amount[0]['service'] . '"></div>';
@@ -134,13 +134,13 @@ if (isset($_POST['delete_assignee_id']) || isset($_POST['add_assignee'])) {
         echo '<div>官公庁・公社・団体<input size="4" name="government" value="' . $corporate_amount[0]['government'] . '"></div></td>';
         echo '</tr>';
         echo '<tr>';
-        echo '<th style="border:1px solid black;">キャッチコピー</th>';
-        echo '<td style="border:1px solid black;">';
+        echo '<th class="admin-agent-detail-edit-popup-public-talbe-text">キャッチコピー</th>';
+        echo '<td class="admin-agent-detail-edit-popup-public-table-content">';
         echo '<input name="sales_copy" value="' . $sales_copy_data . '">';
         echo '</td>';
         echo '</tr>';
         echo '<tr>';
-        echo '<th style="border:1px solid black;">画像</th>';
+        echo '<th class="admin-agent-detail-edit-popup-public-talbe-text">画像</th>';
         echo '<td style="border:1px solid black;">';
         echo '<img style="width:100%;height:100%;" src="../../img/article/' . $agent_picture . '" alt="' . $agent_public_information_array[0]['agent_name'] . 'の画像">';
         echo '<input name="img_file" type="file">';
@@ -148,24 +148,24 @@ if (isset($_POST['delete_assignee_id']) || isset($_POST['add_assignee'])) {
         echo '</tr>';
         ?>
     </table>
-    <div style="display:flex;">
-        <div style="width:50%;display:flex;justify-content:center;">
-            <div id="close_edit_public_information_form" style="border:1px solid black;border-radius:10px;">編集キャンセル</div>
+    <div class="admin-agent-detail-edit-popup-public-btns">
+        <div style="width:40%;display:flex;justify-content:center;">
+            <div id="close_edit_public_information_form" class="admin-agent-detail-edit-popup-public-btn-cancel">キャンセル</div>
         </div>
-        <div style="width:50%;display:flex;justify-content:center;">
-            <input style="border-radius:10px;" type="submit" value="編集確定">
+        <div style="width:40%;display:flex;justify-content:center;">
+            <input class="admin-agent-detail-edit-popup-public-btn-confirm" type="submit" value="編集確定">
         </div>
     </div>
 </form>
-<form id="edit_agent_explanation_form" style="position:absolute;background-color:white;top:50%;left:50%;transform:translate(-50%,-50%);" hidden method="post" action="">
-    <div>エージェント説明文編集(スペースを入れるには&lt;space&gt;と記入してください</space>)</div>
-    <textarea name="agent_explanation" cols="50" rows="20"><?php echo $explanation[0]['agent_explanation']; ?></textarea>
-    <div style="display:flex;">
-        <div style="width:50%;display:flex;justify-content:center;">
-            <div id="close_edit_agent_explanation_form" style="border:1px solid black;border-radius:10px;">編集キャンセル</div>
+<form id="edit_agent_explanation_form" class="admin-agent-detail-edit-popup-explanation-all" hidden method="post" action="">
+    <div class="admin-agent-detail-edit-popup-explanation-head">エージェント説明文編集<br>(スペースを入れるには&lt;space&gt;と記入してください</space>)</div>
+    <textarea class="admin-agent-detail-edit-popup-explanation-textarea" name="agent_explanation" cols="50" rows="20"><?php echo $explanation[0]['agent_explanation']; ?></textarea>
+    <div class="admin-agent-detail-edit-popup-explanation-btns">
+        <div style="width:40%;display:flex;justify-content:center;">
+            <div id="close_edit_agent_explanation_form" class="admin-agent-detail-edit-popup-explanation-cancel-btn">キャンセル</div>
         </div>
-        <div style="width:50%;display:flex;justify-content:center;">
-            <input style="border-radius:10px;" type="submit" value="編集確定">
+        <div style="width:40%;display:flex;justify-content:center;">
+            <input class="admin-agent-detail-edit-popup-explanation-confirm-btn" type="submit" value="編集確定">
         </div>
     </div>
 </form>

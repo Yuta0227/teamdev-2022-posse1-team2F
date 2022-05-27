@@ -168,7 +168,7 @@ if (isset($_POST['send_form'])) {
 <body>
     <?php
     require "../parts/header.php";
-    require "../parts/indicator.php";
+    require "../parts/indicator_step4.php";
     ?>
     <section class="thanks-unit">
         <div class="thanks-texts">
