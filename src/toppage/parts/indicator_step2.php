@@ -1,6 +1,6 @@
 <!-- コピペ -->
 <ul class="progressbar">
-    <li class="complete">STEP1 <br>企業を比較・<br>リストに追加</li>
+    <li class="complete step1">STEP1 <br>企業を比較・<br>リストに追加</li>
     <li class="complete">STEP2<br>リストを確認</li>
     <li class="">STEP3<br>情報入力</li>
     <li class="">STEP4<br>送信完了</li>
