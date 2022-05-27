@@ -158,7 +158,7 @@ if (isset($_POST['delete_assignee_id']) || isset($_POST['add_assignee'])) {
     </div>
 </form>
 <form id="edit_agent_explanation_form" style="position:absolute;background-color:white;top:50%;left:50%;transform:translate(-50%,-50%);" hidden method="post" action="">
-    <div>エージェント説明文編集</div>
+    <div>エージェント説明文編集(スペースを入れるには&lt;space&gt;と記入してください</space>)</div>
     <textarea name="agent_explanation" cols="50" rows="20"><?php echo $explanation[0]['agent_explanation']; ?></textarea>
     <div style="display:flex;">
         <div style="width:50%;display:flex;justify-content:center;">

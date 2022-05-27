@@ -35,12 +35,12 @@
                             $_SESSION['sort_order'] = $sort_type;
                         } elseif (isset($_SESSION['sort_order'])) {
                             //並び替えした状態でページネーション移動したら
-                            foreach($_SESSION['sort_order'] as $sort){
+                            foreach ($_SESSION['sort_order'] as $sort) {
                                 echo $sort;
                             }
-                        }else{
+                        } else {
                             //並び替え一度もしてない初期状態
-                            foreach($sort_type as $sort){
+                            foreach ($sort_type as $sort) {
                                 echo $sort;
                             }
                         }
@@ -59,6 +59,6 @@
         <button class="beginner-button-pc" id="openModal-pc">どの条件で絞り込めばいいかわからない方はこちら!</button>
     </div>
     <div class="result-beginner">
-    <div class="result-number">検索結果：<span><?php echo count($all_agents); ?></span>件</div><button class="beginner-button-sp" id="openModal-sp">どの条件で絞り込めばいいか<br>わからない方はこちら!</button>
+        <div class="result-number">検索結果：<span><?php echo count($all_agents); ?></span>件</div><button class="beginner-button-sp" id="openModal-sp">どの条件で絞り込めばいいか<br>わからない方はこちら!</button>
     </div>
     <!--検索結果下の方に表示した方がいいと思った。レスポンシブの時文字数きついかも。-->

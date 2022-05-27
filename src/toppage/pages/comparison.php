@@ -18,7 +18,7 @@ if (isset($_POST['remove_from_apply']) && isset($_POST['agent_id'])) {
     header("Location:comparison.php");
     //削除押したら問い合わせリストから削除される
 }
-// unset($_SESSION['sort_type_order']);
+// unset($_SESSION['comparison_sort_type']);
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -74,7 +74,7 @@ if (isset($_POST['remove_from_apply']) && isset($_POST['agent_id'])) {
                     $changed_sort_type = array_merge($add_set, $deleted_set);
                     //末尾に配列追加する
                     //optionの順番並び替えてる
-                    $_SESSION['sort_type_order'] = $changed_sort_type;
+                    $_SESSION['comparison_sort_type'] = $changed_sort_type;
                     $_SESSION['selected_sort_type'] = $column;
                     //問い合わせリスト,比較リストボタンを押したとき比較条件がリセットされないようにセッションに保存
                 }
@@ -83,14 +83,14 @@ if (isset($_POST['remove_from_apply']) && isset($_POST['agent_id'])) {
             // var_dump($deleted_set);
             // var_dump($add_set);
             // var_dump($changed_sort_type);
-            // var_dump($_SESSION['sort_type_order']);
+            // var_dump($_SESSION['comparison_sort_type']);
             print_r('</pre>');
         }
         ?>
         <select name="comparison_condition">
             <?php
-            if (isset($_SESSION['sort_type_order'])) {
-                foreach ($_SESSION['sort_type_order'] as $column => $data) {
+            if (isset($_SESSION['comparison_sort_type'])) {
+                foreach ($_SESSION['comparison_sort_type'] as $column => $data) {
                     echo $data;
                 }
             } else {
@@ -107,7 +107,7 @@ if (isset($_POST['remove_from_apply']) && isset($_POST['agent_id'])) {
         <div style="width:25%;">画像</div>
         <div style="width:25%;">エージェント名</div>
         <div style="width:25%;">
-            <?php if (isset($_SESSION['sort_type_order'])) {
+            <?php if (isset($_SESSION['comparison_sort_type'])) {
                 $japanese_condition = $translate->translate_column_to_japanese($_SESSION['selected_sort_type']);
                 switch ($japanese_condition) {
                     case 'メーカー':
@@ -133,7 +133,7 @@ if (isset($_POST['remove_from_apply']) && isset($_POST['agent_id'])) {
         //配列のセッション登録されてなかったら初期化
         $_SESSION['apply_list'] = [];
     }
-    if (isset($_SESSION['sort_type_order'])) {
+    if (isset($_SESSION['comparison_sort_type'])) {
         foreach ($_SESSION['comparison_list'] as $agent) {
             ${"comparison" . $agent} = [];
             $agent_public_information_stmt = $db->query("select * from agent_public_information where agent_id=" . $agent . ";");
