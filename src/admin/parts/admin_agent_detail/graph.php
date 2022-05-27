@@ -59,7 +59,7 @@ for ($month = 1; $month <= 12; $month++) {
                     },
                     font: {
                         family: '"Arial", "Times New Roman"',
-                        size: 12,
+                        size: 20,
                     },
                 }
             },

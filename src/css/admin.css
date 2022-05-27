@@ -371,10 +371,37 @@ body{
 .admin-agent-detail-graph-unit{
     background-color:#fff;
     width: 80%;;
-    padding:0 20px 20px 20px;
+    padding:20px 20px 20px 20px;
     margin: 20px auto;
 }
 .admin-agent-detail-graph{
     width: 60%;
     margin: auto;
+}
+
+/* エージェント編集ポップアップ */
+.admin-agent-detail-edit-popup-public-all{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background-color:black;
+    top:0;
+    left:0;
+    opacity:50%;
+}
+.admin-agent-detail-edeit-popup-public-in-box{
+    position:absolute;
+    background-color:white;
+    top:50%;
+    left:50%;
+    padding: 20px;
+    transform:translate(-50%,-50%);
+}
+.admin-agent-detail-edit-popup-public-head{
+    text-align: center;
+    font-weight: bold;
+    font-size: 22px;
+}
+.admin-agent-detail-edit-popup-public-talbe-text{
+    
 }

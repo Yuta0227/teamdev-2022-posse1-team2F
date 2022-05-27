@@ -1,14 +1,14 @@
 <?php 
 if(isset($_POST['delete_assignee_id'])||isset($_POST['add_assignee'])){
-    echo '<div id="edit_popup_filter" style="position:absolute;width:100%;height:100%;background-color:red;top:0;left:0;opacity:50%;"></div>';
+    echo '<div id="edit_popup_filter" class="admin-agent-detail-edit-popup-public-all"></div>';
     //  ページ全体にかかるフィルターつける 
 }else{
-    echo '<div id="edit_popup_filter" style="position:absolute;width:100%;height:100%;background-color:red;top:0;left:0;opacity:50%;" hidden></div>';
+    echo '<div id="edit_popup_filter" class="admin-agent-detail-edit-popup-public-all" hidden></div>';
 }
 ?>
 
-<form id="edit_public_information_form" style="position:absolute;background-color:white;top:50%;left:50%;transform:translate(-50%,-50%);" hidden method="post" action="">
-    <div style="text-align:center;">掲載情報編集</div>
+<form id="edit_public_information_form" class="admin-agent-detail-edeit-popup-public-in-box" hidden method="post" action="">
+    <div class="admin-agent-detail-edit-popup-public-head">掲載情報編集</div>
     <table>
         <?php
         foreach ($agent_public_information_array[0] as $column => $data) {
@@ -18,7 +18,7 @@ if(isset($_POST['delete_assignee_id'])||isset($_POST['add_assignee'])){
             //データを必要に応じて数字から日本語に変換
             if ($column == '面談方式') {
                 echo '<tr>';
-                echo '<th style="border:1px solid black;">' . $column . '</th><td style="border:1px solid black;">';
+                echo '<th class="admin-agent-detail-edit-popup-public-talbe-text" style="border:1px solid black;">' . $column . '</th><td style="border:1px solid black;">';
                 if ($data == '対面のみ') {
                     echo '<label><label><input type="radio" name="' . $column . '" value="0" checked>対面のみ</label>';
                 } else {
