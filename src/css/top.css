@@ -658,7 +658,7 @@
     /* indicator */
     .progressbar {
         position: relative;
-        margin-top: 100px;
+        margin-top: 110px;
         padding: 0;
         display: flex;
         flex-wrap: wrap;
