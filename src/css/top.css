@@ -603,11 +603,14 @@
         /* gap: 20px; */
         display: flex;
         justify-content: space-between;
-        width: 100%;
+        width: 60%;
         color: #fff;
         cursor: pointer;
         margin: 0;
         align-items: center;
+    }
+    .agent-login-sp {
+        display: none;
     }
     .header-cart-box {
         display: inline-block;
@@ -658,7 +661,7 @@
     /* indicator */
     .progressbar {
         position: relative;
-        margin-top: 100px;
+        margin-top: 110px;
         padding: 0;
         display: flex;
         flex-wrap: wrap;
