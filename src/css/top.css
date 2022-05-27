@@ -163,6 +163,9 @@
     .filter-btn {
         display: none;
     }
+    .close-btn {
+        display: none;
+    }
     /* 並び変え、初心者モーダルのCSS */
     .sort-informations {
         display: flex;
