@@ -91,11 +91,11 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     <form action="login.php" method="POST" class="login-form">
         <div>
             <p>メールアドレス</p>
-            <input name="user_email">
+            <input type="email" name="user_email">
         </div>
         <div>
             <p>パスワード</p>
-            <input name="user_password">
+            <input type="password" name="user_password">
         </div>
         <input type="submit" value="ログイン">
         <p>パスワード忘れた場合はこちら</p>

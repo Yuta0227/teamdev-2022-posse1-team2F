@@ -1,5 +1,68 @@
 <?php
+//絞り込みの流れ
+// ベースとなる配列を用意する(すべてのagent_idを格納)
+//これに特定の条件絞り込みがセットされていたら共通項を取り出しそれをベースとなる配列に代入する
+//これをすべての種類の条件において行い最後に残ったagent_idを並び替えのwhereにforeachでいれる
+$agent_id_stmt=$db->query("select agent_id from agent_contract_information;");
+$agent_id_array=$agent_id_stmt->fetchAll();
+$base_agent_id_array=[];
+foreach($agent_id_array as $agent){
+    array_push($base_agent_id_array,$agent['agent_id']);
+};
 
+
+if(isset($_POST['industries'])){
+    print_r('<pre>');
+    var_dump($_POST['industries']);
+    print_r('</pre>');
+    $industry_stmt='select agent_id from agent_corporate_amount where ';
+    foreach($_POST['industries'] as $industry){
+        if($industry==$_POST['industries'][count($_POST['industries'])-1]){
+            //最後の業界
+            $industry_stmt.=$industry.'>0;';
+        }else{
+            $industry_stmt.=$industry.'>0 or ';
+        }
+    }
+    $filter_industry_stmt=$db->query($industry_stmt);
+    $filter_industry=$filter_industry_stmt->fetchAll();
+    $tmp_industry_agent=[];
+    foreach($filter_industry as $agent){
+        array_push($tmp_industry_agent,$agent['agent_id']);
+    }
+    $base_agent_id_array=array_intersect_assoc($base_agent_id_array,$tmp_industry_agent);
+    print_r('<pre>');
+    var_dump($base_agent_id_array);
+    print_r('</pre>');
+}
+if(isset($_POST['filter_prefecture'])){
+    //都道府県絞り込み
+    $prefecture_stmt='select distinct agent_id from agent_address where ';
+    foreach($_POST['filter_prefecture'] as $prefecture_id){
+        if($prefecture_id==$_POST['filter_prefecture'][count($_POST['filter_prefecture'])-1]){
+            //最後の都道府県
+            $prefecture_stmt.='prefecture_id='.$prefecture_id.';';
+        }else{
+            $prefecture_stmt.='prefecture_id='.$prefecture_id.' or ';
+        }
+    }
+    $filter_prefecture_stmt=$db->query($prefecture_stmt);
+    $filter_prefecture=$filter_prefecture_stmt->fetchAll();
+    $tmp_prefecture_agent=[];
+    foreach($filter_prefecture as $agent){
+        array_push($tmp_prefecture_agent,$agent['agent_id']);
+        //これを使って他の条件絞り込みとの共通項を出力
+        //並び替えとの組み合わせは共通項の配列をforeachで回して↓の並び替え文の後にwhere agent_id =? or agent_id=?
+    }
+    $base_agent_id_array=array_intersect_assoc($base_agent_id_array,$tmp_prefecture_agent);
+    //共通項取得
+    print_r('<pre>');
+    var_dump($_POST['filter_prefecture']);
+    // var_dump($filter_prefecture);
+    // var_dump($tmp_prefecture_agent);
+    var_dump($base_agent_id_array);
+    print_r('</pre>');
+}
 if (isset($_POST['sort'])) {
     switch ($_POST['sort']) {
         case 'default':
