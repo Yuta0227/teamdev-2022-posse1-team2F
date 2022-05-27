@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         unset($_SESSION['admin_agent_list']);
         header("Location: ../../toppage/pages/login.php");
     }
-    if (isset($_POST['面談方式']) && isset($_POST['主な取り扱い企業規模']) && isset($_POST['取り扱い企業カテゴリー']) && isset($_POST['内定率(%)']) && isset($_POST['内定最短期間(週)']) && isset($_POST['prefecture']) && isset($_POST['○○向き']) && isset($_POST['manufacturer']) && isset($_POST['retail']) && isset($_POST['service']) & isset($_POST['software_transmission']) && isset($_POST['trading']) && isset($_POST['finance']) && isset($_POST['media']) && isset($_POST['government']) && isset($_POST['sales_copy'])) {
+    if (isset($_POST['面談方式']) && isset($_POST['主な取り扱い企業規模']) && isset($_POST['取り扱い企業カテゴリー']) && isset($_POST['内定率(%)']) && isset($_POST['内定最短期間(週)']) && isset($_POST['prefecture']) && isset($_POST['○○向き']) && isset($_POST['manufacturer']) && isset($_POST['retail']) && isset($_POST['service']) & isset($_POST['software_transmission']) && isset($_POST['trading']) && isset($_POST['finance']) && isset($_POST['media']) && isset($_POST['government']) && isset($_POST['sales_copy']) && isset($_FILES['img_file'])) {
         $edit_public_stmt = $db->prepare("update agent_public_information set agent_meeting_type=?,agent_main_corporate_size=?,agent_corporate_type=?,agent_job_offer_rate=?,agent_shortest_period=?,agent_recommend_student_type=? where agent_id=?;");
         $edit_public_stmt->bindValue(1, $_POST['面談方式']);
         $edit_public_stmt->bindValue(2, $_POST['主な取り扱い企業規模']);
@@ -38,6 +38,48 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $edit_sales_copy_stmt->bindValue(2, $_GET['agent_id']);
         $edit_sales_copy_stmt->execute();
         //キャッチコピー編集
+        if($_FILES['img_file']['name']!=NULL){
+            $change_img_file_article_stmt = $db->prepare("update picture set picture_url=? where agent_id=?");
+            $change_img_file_article_stmt->bindValue(1, $_FILES['img_file']['name']);
+            $change_img_file_article_stmt->bindValue(2, $_GET['agent_id']);
+            $change_img_file_article_stmt->execute();
+            $check_featured_stmt=$db->query("select agent_id from featured_article;");
+            $check_featured=$check_featured_stmt->fetchAll();
+            print_r('<pre>');
+            var_dump($check_featured);
+            print_r('</pre>');
+            if($check->exists_in_multi_array($check_featured,'agent_id',$_GET['agent_id'])==true){
+                //もし特集記事が存在するなら画像を変える
+                $change_img_file_featured_article_stmt = $db->prepare("update featured_article set picture=? where agent_id=?;");
+                $change_img_file_featured_article_stmt->bindValue(1, $_FILES['img_file']['name']);
+                $change_img_file_featured_article_stmt->bindValue(2, $_GET['agent_id']);
+                $change_img_file_featured_article_stmt->execute();
+            }
+        }
+        //ダウンロードをしたいファイル名のパス
+        // print_r('<pre>');
+        // var_dump($_FILES);
+        // print_r('</pre>');
+        // $file_name = $_FILES['img_file']['name'];
+        // $file_path = $_FILES['img_file']['full_path'];
+        
+        //なぜかphpファイルをダウンロードしてしまう
+
+        // //ダウンロード時のファイル名
+        // $download_file_name = $file_name;
+
+        // //タイプをダウンロードと指定
+        // header('Content-Type: application/force-download;');
+
+        // //ファイルのサイズを取得してダウンロード時間を表示する
+        // header('Content-Length: ' . filesize($file_path));
+
+        // //ダウンロードの指示・ダウンロード時のファイル名を指定
+        // header('Content-Disposition: attachment; filename="' . $file_name . '"');
+
+        // //ファイルを読み込んでダウンロード
+        // readfile($download_file_name);
+        //画像編集
         //存在する拠点取得
         $check_prefecture_stmt = $db->prepare("select prefecture_id from agent_address where agent_id=?;");
         $check_prefecture_stmt->bindValue(1, $_GET['agent_id']);
@@ -74,7 +116,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $edit_address_stmt->bindValue(2, $prefecture_id);
             $edit_address_stmt->execute();
         }
-        header("Location:/admin/pages/admin_agent_detail.php?agent_id=" . $_GET['agent_id'] . "&year=" . date('Y') . "&month=" . date('m'));
+        // var_dump($_FILES['img_file']);
+        // header("Location:/admin/pages/admin_agent_detail.php?agent_id=" . $_GET['agent_id'] . "&year=" . date('Y') . "&month=" . date('m'));
     }
     if (isset($_POST['agent_explanation'])) {
         //説明文編集
@@ -150,30 +193,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
         }
     }
-    if(isset($_POST['confirm_delete_assignee_id'])&&isset($_POST['confirm_delete_assignee'])){
-        $delete_assignee_stmt=$db->prepare("delete from agent_assignee_information where user_id=?;");
-        $delete_assignee_stmt->bindValue(1,$_POST['confirm_delete_assignee_id']);
+    if (isset($_POST['confirm_delete_assignee_id']) && isset($_POST['confirm_delete_assignee'])) {
+        $delete_assignee_stmt = $db->prepare("delete from agent_assignee_information where user_id=?;");
+        $delete_assignee_stmt->bindValue(1, $_POST['confirm_delete_assignee_id']);
         $delete_assignee_stmt->execute();
         //担当者情報テーブルから削除
-        $delete_login_stmt=$db->prepare("delete from agent_users where user_id=?;");
-        $delete_login_stmt->bindValue(1,$_POST['confirm_delete_assignee_id']);
+        $delete_login_stmt = $db->prepare("delete from agent_users where user_id=?;");
+        $delete_login_stmt->bindValue(1, $_POST['confirm_delete_assignee_id']);
         $delete_login_stmt->execute();
         //ログイン情報テーブルから削除
     }
-    if(isset($_POST['add_branch'])&&isset($_POST['add_name'])&&isset($_POST['add_mail'])&&isset($_POST['add_password'])&&isset($_POST['confirm_add'])){
-        $agent_name_stmt=$db->query("select agent_name from admin_agent_list where agent_id=".$_GET['agent_id'].";");
-        $agent_name=$agent_name_stmt->fetchAll()[0]['agent_name'];
-        $add_assignee=$db->prepare("insert into agent_assignee_information (agent_id,agent_name,agent_branch,assignee_email_address,assignee_name) values (?,?,?,?,?);");
-        $add_assignee->bindValue(1,$_GET['agent_id']);
-        $add_assignee->bindValue(2,$agent_name);
-        $add_assignee->bindValue(3,$_POST['add_branch']);
-        $add_assignee->bindValue(4,$_POST['add_mail']);
-        $add_assignee->bindValue(5,$_POST['add_name']);
+    if (isset($_POST['add_branch']) && isset($_POST['add_name']) && isset($_POST['add_mail']) && isset($_POST['add_password']) && isset($_POST['confirm_add'])) {
+        $agent_name_stmt = $db->query("select agent_name from admin_agent_list where agent_id=" . $_GET['agent_id'] . ";");
+        $agent_name = $agent_name_stmt->fetchAll()[0]['agent_name'];
+        $add_assignee = $db->prepare("insert into agent_assignee_information (agent_id,agent_name,agent_branch,assignee_email_address,assignee_name) values (?,?,?,?,?);");
+        $add_assignee->bindValue(1, $_GET['agent_id']);
+        $add_assignee->bindValue(2, $agent_name);
+        $add_assignee->bindValue(3, $_POST['add_branch']);
+        $add_assignee->bindValue(4, $_POST['add_mail']);
+        $add_assignee->bindValue(5, $_POST['add_name']);
         $add_assignee->execute();
-        $add_login=$db->prepare("insert into agent_users set user_email=?,user_password=AES_ENCRYPT(?,'ENCRYPT-KEY');");
-        $add_login->bindValue(1,$_POST['add_mail']);
-        $add_login->bindValue(2,$_POST['add_password']);
+        $add_login = $db->prepare("insert into agent_users set user_email=?,user_password=AES_ENCRYPT(?,'ENCRYPT-KEY');");
+        $add_login->bindValue(1, $_POST['add_mail']);
+        $add_login->bindValue(2, $_POST['add_password']);
         $add_login->execute();
     }
 }
-?>

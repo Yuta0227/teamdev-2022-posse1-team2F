@@ -1,6 +1,7 @@
 <?php
 session_start();
 require "../../dbconnect.php";
+require "../../function.php";
 require "../parts/admin_post.php";
 if(!isset($_SESSION['admin_id'])||!isset($_SESSION['login_admin_email'])||!isset($_SESSION['admin_agent_list'])){
     header("Location: /toppage/pages/login.php");
@@ -43,7 +44,6 @@ if(!isset($_SESSION['admin_id'])||!isset($_SESSION['login_admin_email'])||!isset
 <body>
     <?php
     require "../parts/admin_url.php";
-    require "../../function.php";
     require "../parts/header.php";
     require "../parts/index/title_sort.php";
     require "../parts/index/agent_list.php";

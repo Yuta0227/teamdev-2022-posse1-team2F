@@ -3,6 +3,7 @@ session_start();
 require "../../dbconnect.php";
 require "../parts/toppage_post.php";
 require "../../function.php";
+
 if(!isset($_GET['agent_list_pagination'])){
     header("Location:index.php?agent_list_pagination=1");
 }
@@ -32,9 +33,11 @@ if (isset($_POST['remove_from_apply']) && isset($_POST['agent_id'])) {
     //削除押したら問い合わせリストから削除される
 }
 if(isset($_POST['jump_to_comparison'])){
+    //比較画面にとぶ
     header("Location:comparison.php");
 }
 if(isset($_SESSION['form_sent'])){
+    //二重送信防止
     if($_SESSION['form_sent']==true){
         $_SESSION['form_sent']=false;
     }

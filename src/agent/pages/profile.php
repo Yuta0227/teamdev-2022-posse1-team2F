@@ -26,7 +26,7 @@ require "../parts/agent_post.php";
     require "../parts/agent_header.php";
     ?>
     <section>
-        <h1><?php echo $_SESSION['agent_contract_information'][0]['agent_name']; ?>さんのプロフィール</h1>
+        <h1 class="agent-profile-head"><?php echo $_SESSION['agent_contract_information'][0]['agent_name']; ?>さんのプロフィール</h1>
     </section>
     <?php
     require "../parts/agent_public_information.php";

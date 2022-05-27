@@ -366,6 +366,7 @@ body{
     text-align:center;
     text-decoration: underline 2px;
     text-decoration-color: #52a49a;
+    cursor: pointer;
 }
 /* エージェント詳細グラフ */
 .admin-agent-detail-graph-unit{
@@ -406,4 +407,192 @@ body{
     border:1px solid black;
     padding: 10px;
     width: 20%;
+}
+.admin-agent-detail-edit-popup-public-table-content{
+    border:1px solid black;
+    padding: 10px;
+}
+.admin-agent-detail-edit-popup-public-btns{
+    display:flex;
+    padding-top: 10px;
+    justify-content: center;
+}
+.admin-agent-detail-edit-popup-public-btn-cancel{
+    border:1px solid;
+    border-radius:10px;
+    padding: 10px;
+    width: 40%;
+    text-align: center;
+    color: red;
+    background: #fff;
+    cursor: pointer;
+    font-weight: bold;
+}
+.admin-agent-detail-edit-popup-public-btn-confirm{
+    border:1px solid;
+    border-radius:10px;
+    padding: 10px;
+    width: 40%;
+    text-align: center;
+    color: #fff;
+    background: red;
+    cursor: pointer;
+    font-weight: bold;
+}
+/* エージェント説明文編集ポップアップ */
+.admin-agent-detail-edit-popup-explanation-all{
+    position:absolute;
+    background-color:white;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    padding: 20px;
+}
+.admin-agent-detail-edit-popup-explanation-head{
+    text-align: center;
+    font-weight: bold;
+    font-size: 22px;
+    padding-bottom: 5px;
+}
+.admin-agent-detail-edit-popup-explanation-textarea{
+    width: 100%;
+}
+.admin-agent-detail-edit-popup-explanation-btns{
+    display:flex;
+    padding-top: 10px;
+    justify-content: center;
+}
+.admin-agent-detail-edit-popup-explanation-cancel-btn{
+    border:1px solid;
+    border-radius:10px;
+    padding: 10px;
+    width: 70%;
+    text-align: center;
+    color: red;
+    background: #fff;
+    cursor: pointer;
+    font-weight: bold;
+}
+.admin-agent-detail-edit-popup-explanation-confirm-btn{
+    border:1px solid;
+    border-radius:10px;
+    padding: 10px;
+    width: 70%;
+    text-align: center;
+    color: #fff;
+    background: red;
+    cursor: pointer;
+    font-weight: bold;
+}
+/* 担当者編集ポップアップ */
+.admin-agent-detail-popup-agent-delete-all{
+    width: 40%;
+    height:90%;
+    padding:20px;
+    z-index:10;
+    position:absolute;
+    background-color:white;
+    top:0;
+    left:50%;
+    transform:translate(-50%,0);
+}
+.admin-agent-detail-popup-agent-delete-head{
+    text-align: center;
+    font-weight: bold;
+    font-size: 22px;
+    padding-bottom: 5px;   
+}
+.admin-agent-detail-popup-agent-delete-btns{
+    display:flex;
+    padding-top: 10px;
+    justify-content: center;
+    gap: 20px;
+}
+.admin-agent-detail-popup-agent-delete-cancel-btn{
+    border:1px solid;
+    border-radius:10px;
+    padding: 10px;
+    width: 30%;
+    text-align: center;
+    color: red;
+    background: #fff;
+    cursor: pointer;
+    font-weight: bold;
+}
+.admin-agent-detail-popup-agent-delete-confirm-btn{
+    border:1px solid;
+    border-radius:10px;
+    padding: 10px;
+    width: 30%;
+    text-align: center;
+    color: #fff;
+    background: red;
+    cursor: pointer;
+    font-weight: bold;
+}
+/* 担当者追加ポップアップ */
+.admin-agent-detail-popup-agent-profile-add-all{
+    width: 50%;
+    /* height:50%; */
+    padding:20px;
+    z-index:10;
+    position:absolute;
+    background-color:white;
+    top: 5%;
+    left:50%;
+    transform:translate(-50%,0);
+}
+.admin-agent-detail-popup-agent-profile-add-head{
+    text-align: center;
+    font-weight: bold;
+    font-size: 22px;
+    padding-bottom: 5px;  
+}
+.admin-agent-detail-popup-agent-profile-add-table{
+    margin: auto;
+}
+.admin-agent-detail-popup-agent-profile-add-table-text{
+    width:20%;
+    border:1px solid black;
+    padding: 5px;
+}
+.admin-agent-detail-popup-agent-profile-add-table-content{
+    width:80%;
+    border:1px solid black; 
+    padding: 5px;
+}
+.admin-agent-detail-popup-agent-profile-add-table-btns{
+    display:flex;
+    padding-top: 10px;
+    justify-content: center;
+    gap: 20px;
+}
+.admin-agent-detail-popup-agent-profile-add-table-cancel-btn{
+    border:1px solid;
+    border-radius:10px;
+    padding: 10px;
+    width: 40%;
+    text-align: center;
+    color: red;
+    background: #fff;
+    cursor: pointer;
+    font-weight: bold;
+}
+.admin-agent-detail-popup-agent-profile-add-table-confirm-btn{
+    border:1px solid;
+    border-radius:10px;
+    padding: 10px;
+    width: 40%;
+    text-align: center;
+    color: #fff;
+    background: red;
+    cursor: pointer;
+    font-weight: bold;
+}
+/* 日付ごとの申込 */
+.admin-agent-apply-list-head{
+    width: 80%;
+    margin: auto;
+    font-weight: bold;
+    font-size: 20px;
 }

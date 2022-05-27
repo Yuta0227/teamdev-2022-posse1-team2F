@@ -11,6 +11,9 @@ if (isset($_SESSION['form_sent'])) {
     }
 }
 $_SESSION['already_applied'] = [];
+//過去に応募済み
+$_SESSION['applied_first'] = [];
+//はじめての応募
 if (isset($_POST['send_form'])) {
     //formの情報受け取って問い合わせ送信する
     if (isset($_SESSION['consultation'])) {
@@ -67,30 +70,78 @@ if (isset($_POST['send_form'])) {
             //同メアドからの問い合わせはじく
             $check_same_mail_stmt = $db->query("select applicant_email_address from apply_list where agent_id=" . $applied_agent['id'] . ";");
             $check_same_mail = $check_same_mail_stmt->fetchAll();
+            $from_stmt = $db->query("select email_address from send_notice_mail;");
+            $from = $from_stmt->fetchAll()[0]['email_address'];
             if ($check->exists_in_multi_array($check_same_mail, 'applicant_email_address', $_SESSION['information_array']['メールアドレス']) == true) {
                 //過去に同じメアドの応募がある場合
                 array_push($_SESSION['already_applied'], $applied_agent['name']);
             } else {
                 //初めての応募
+                array_push($_SESSION['applied_first'], $applied_agent['name']);
                 $insert_stmt->execute();
                 //メール送信
                 mb_language("ja");
                 mb_internal_encoding("utf-8");
                 $to_stmt = $db->query("select email_address from apply_notice_email where agent_id=" . $applied_agent['id'] . ";");
                 $to = $to_stmt->fetchAll()[0]['email_address'];
-                $from_stmt = $db->query("select email_address from send_notice_mail;");
-                $from = $from_stmt->fetchAll()[0]['email_address'];
                 $subject = "問い合わせの通知";
                 $msg = $applied_agent['name'] . "さん宛てに問い合わせが来ました。\nログインして確認しましょう。\nhttp://localhost/toppage/pages/login.php";
                 $header = "From: {$from}\nReply-To: {$from}\nContent-Transfer-Encoding:8bit\r\nContent-Type: text/plain;charset=UTF-8\r\n";
                 if (!mb_send_mail($to, $subject, $msg, $header)) {
                     echo 'メール送信失敗';
                 }
-                //学生にも確認メール送信
             };
-            print_r('<pre>');
-            var_dump($check_same_mail);
-            print_r('</pre>');
+            //学生にも確認メール送信
+            $to = $_SESSION['information_array']['メールアドレス'];
+            $subject = '問い合わせ完了のお知らせ';
+            $msg = '';
+            foreach ($_SESSION['applied_first'] as $agent) {
+                if ($agent == $_SESSION['applied_first'][count($_SESSION['applied_first']) - 1]) {
+                    //最後の場合
+                    $msg .= $agent;
+                } else {
+                    $msg .= $agent . ',';
+                }
+            }
+            $msg .= "へ以下の情報が送信されました。\n";
+
+            $msg .= 'メールアドレス:' . $_SESSION['information_array']['メールアドレス'] . "\n";
+            $msg .= '氏名:' . $_SESSION['information_array']['お名前'] . "\n";
+            $msg .= 'フリガナ:' . $_SESSION['information_array']['フリガナ'] . "\n";
+            $msg .= '電話番号:' . $_SESSION['information_array']['電話番号'] . "\n";
+            $msg .= '大学名:' . $_SESSION['information_array']['大学名'] . "\n";
+            $msg .= '学部名:' . $_SESSION['information_array']['学部名'] . "\n";
+            $msg .= '学科名:' . $_SESSION['information_array']['学科名'] . "\n";
+            $msg .= '何年卒:' . $_SESSION['information_array']['何年卒'] . "\n";
+            $msg .= '郵便番号:' . $_SESSION['information_array']['郵便番号'] . "\n";
+            $msg .= '都道府県:' . $_SESSION['information_array']['都道府県'] . "\n";
+            $msg .= '市区町村:' . $_SESSION['information_array']['市区町村'] . "\n";
+            $msg .= '町域名:' . $_SESSION['information_array']['町域名'] . "\n";
+            $msg .= '番地など:' . $_SESSION['information_array']['番地など'] . "\n";
+            foreach ($_SESSION['consultation'] as $consultation) {
+                $msg .= $consultation['name'] . 'に対して「' . $consultation['consultation'] . "」\n";
+            }
+            $count_already=0;
+            foreach ($_SESSION['already_applied'] as $agent) {
+                if ($agent == $_SESSION['already_applied'][count($_SESSION['already_applied']) - 1]) {
+                    //最後の場合
+                    $msg .= $agent;
+                } else {
+                    $msg .= $agent . ',';
+                }
+                $count_already++;
+            }
+            if($count_already!=0){
+                $msg .= "へは過去に問い合わせをしたことがあるため情報が送信されませんでした。\n";
+            }
+            $msg.="ご不明点がございましたら以下のメールアドレスにご連絡ください。\n";
+            $help_email_stmt = $db->query("select * from help_email;");
+            $help_email = $help_email_stmt->fetchAll()[0];
+            $msg .= $help_email['email'];
+            $header = "From: {$from}\nReply-To: {$from}\nContent-Transfer-Encoding:8bit\r\nContent-Type: text/plain;charset=UTF-8\r\n";
+            if (!mb_send_mail($to, $subject, $msg, $header)) {
+                echo 'メール送信失敗';
+            }
         }
         $_SESSION['form_sent'] = true;
         //form送信済みにする。二重送信防止

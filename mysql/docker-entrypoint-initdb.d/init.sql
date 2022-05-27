@@ -1,3 +1,7 @@
+drop user if exists boozer;
+create user 'boozer'@'%' identified by 'password';
+grant all privileges on * . * to 'boozer'@'%';
+
 set character_set_results='utf8';
 DROP SCHEMA IF EXISTS shukatsu;
 
@@ -84,9 +88,11 @@ CREATE TABLE agent_contract_information (
 INSERT INTO agent_contract_information 
 (agent_name,contract_date,start_contract_date,end_contract_date,contract_address,agent_phone_number,apply_email_address,agent_representative) 
 values 
-('エージェント1','2022-03-10','2022-04-30','2023-04-29','本社住所1','000-0000-0000','問い合わせ通知先メールアドレス1','代表者サンプル1'),
-('エージェント2','2022-03-10','2022-04-30','2023-04-29','本社住所2','000-0000-0000','問い合わせ通知先メールアドレス2','代表者サンプル2'),
-('エージェント3','2022-03-10','2022-04-30','2023-04-29','本社住所3','000-0000-0000','問い合わせ通知先メールアドレス3','代表者サンプル3');
+('エージェント1','2022-03-10','2022-04-30','2023-04-29','本社住所1','000-0001-0000','問い合わせ通知先メールアドレス1','代表者サンプル1'),
+('エージェント2','2022-03-10','2022-04-30','2023-04-29','本社住所2','000-0002-0000','問い合わせ通知先メールアドレス2','代表者サンプル2'),
+('エージェント3','2022-03-10','2022-04-30','2023-04-29','本社住所3','000-0003-0000','問い合わせ通知先メールアドレス3','代表者サンプル3'),
+('エージェント4','2022-03-10','2022-04-30','2023-04-29','本社住所4','000-0004-0000','問い合わせ通知先メールアドレス4','代表者サンプル4'),
+('エージェント5','2022-03-10','2022-04-30','2023-04-29','本社住所5','000-0005-0000','問い合わせ通知先メールアドレス5','代表者サンプル5');
 
 drop table if exists agent_corporate_amount;
 
@@ -108,7 +114,9 @@ insert into agent_corporate_amount
 values
 (1,2,3,4,5,6,7,8),
 (2,3,4,5,6,7,8,9),
-(3,4,5,6,7,8,9,10)
+(3,4,5,6,7,8,9,10),
+(7,9,2,7,5,32,4,1),
+(34,11,22,63,34,42,48,10)
 ;
 
 drop table if exists agent_explanation;
@@ -121,33 +129,15 @@ create table agent_explanation(
 insert into agent_explanation
 (agent_explanation)
 values
-('gしょいあgsはｇしゅｇｒしゅｇさはｇｒそぐぁｒふｇらふｇらふぐぁ'),
-('あｆふふぁひうあｈふぁｈ'),
-('あｆふふぁひうあｈふぁｈあふぇはいうえひうｆ」'),
-('あｆふふぁひうあｈふぁｈふぇふふぁおひあうひぐえｇ'),
-('あｆふふぁひうあｈふぁｈふぇあえふいあっひうｒふいはういｈふぇあういｈふぅｈ');
+('<space>エージェント1説明文ダミーデータエージェント1説明文ダミーデータエージェント1説明文ダミーデータエージェント1説明文ダミーデータエージェント1説明文ダミーデータ\n<space>エージェント1説明文ダミーデータエージェント1説明文ダミーデータエージェント1説明文ダミーデータエージェント1説明文ダミーデータエージェント1説明文ダミーデータエージェント1説明文ダミーデータ\n<space>エージェント1説明文ダミーデータエージェント1説明文ダミーデータエージェント1説明文ダミーデータエージェント1説明文ダミーデータエージェント1説明文ダミーデータエージェント1説明文ダミーデータエージェント1説明文ダミーデータエージェント1説明文ダミーデータエージェント1説明文ダミーデータエージェント1説明文ダミーデータエージェント1説明文ダミーデータ'),
+('<space>エージェント2説明文ダミーデータエージェント2説明文ダミーデータエージェント2説明文ダミーデータエージェント2説明文ダミーデータエージェント2説明文ダミーデータエージェント2説明文ダミーデータ\n<space>エージェント2説明文ダミーデータ\n<space>エージェント2説明文ダミーデータ'),
+('<space>エージェント3説明文ダミーデータ\n<space>エージェント3説明文ダミーデータエージェント3説明文ダミーデータエージェント3説明文ダミーデータ\n<space>エージェント3説明文ダミーデータ'),
+('<space>エージェント4説明文ダミーデータ\n<space>エージェント4説明文ダミーデータエージェント4説明文ダミーデータエージェント4説明文ダミーデータエージェント4説明文ダミーデータ\n<space>エージェント4説明文ダミーデータ'),
+('<space>エージェント5説明文ダミーデータ\n<space>エージェント5説明文ダミーデータエージェント5説明文ダミーデータエージェント5説明文ダミーデータエージェント5説明文ダミーデータ\n<space>エージェント5説明文ダミーデータ');
 
 
-drop table if exists admin_agent_list;
 
-create table admin_agent_list (
-  agent_id int AUTO_INCREMENT not null primary key,
-  agent_name varchar(255) not null,
-  start_contract date not null,
-  apply_amount int not null default 0,
-  featured_article_bool boolean not null default false,
-  bool_updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
--- 管理者画面のエージェント一覧
--- 上から企業ID、企業名、問い合わせ数、特集記事ステータス、特集記事掲載ステータス定期更新用の時間(phpで管理者画面アクセス時に時間取得して一年？半年？たってたらboolをupdateする)
 
-insert into admin_agent_list 
-(agent_name,start_contract,apply_amount) 
-VALUES
-((select agent_name from agent_contract_information where agent_id=1),(select start_contract_date from agent_contract_information where agent_id=1),1),
-((select agent_name from agent_contract_information where agent_id=2),(select start_contract_date from agent_contract_information where agent_id=2),1),
-((select agent_name from agent_contract_information where agent_id=3),(select start_contract_date from agent_contract_information where agent_id=3),5);
--- 問い合わせ来たらupdate admin_agent_list set apply_amount=apply_amount+1 where agent_id=?で問い合わせ数を増やせる
 
 drop table if exists apply_list;
 
@@ -176,13 +166,44 @@ create table apply_list(
 insert into apply_list
 (agent_id,agent_name,apply_time,applicant_email_address,applicant_name_kanji,applicant_name_furigana,applicant_phone_number,applicant_university,applicant_gakubu,applicant_gakka,applicant_graduation_year,applicant_postal_code,applicant_address,applicant_consultation,applicant_other_agents,apply_report_deadline)
 values
-(1,'エージェント1','2022-05-13 01:00:12','user1@gmail.com','就活1','シュウカツ1','00000000001','サンプル大学1','サンプル学部1','サンプル学科1',2024,'サンプル郵便番号1','サンプル住所1','サンプル相談1','エージェント2,エージェント3','2022-06-01 23:59:59'),
-(2,'エージェント2','2022-05-14 01:00:12','user2@gmail.com','就活2','シュウカツ2','00000000002','サンプル大学2','サンプル学部2','サンプル学科2',2024,'サンプル郵便番号2','サンプル住所2','サンプル相談2','エージェント4,エージェント5','2022-06-01 23:59:59'),
-(3,'エージェント3','2022-05-14 01:00:12','user3@gmail.com','就活3','シュウカツ3','00000000003','サンプル大学3','サンプル学部3','サンプル学科3',2024,'サンプル郵便番号3','サンプル住所3','サンプル相談3','エージェント6,エージェント7','2022-06-01 23:59:59'),
-(3,'エージェント3','2022-05-15 01:00:12','user4@gmail.com','就活4','シュウカツ4','00000000004','サンプル大学4','サンプル学部4','サンプル学科4',2024,'サンプル郵便番号4','サンプル住所4','','エージェント6,エージェント7','2022-06-01 23:59:59'),
-(3,'エージェント3','2022-05-16 01:00:12','user5@gmail.com','就活5','シュウカツ5','00000000005','サンプル大学5','サンプル学部5','サンプル学科5',2024,'サンプル郵便番号5','サンプル住所5','サンプル相談5','エージェント6,エージェント7','2022-06-01 23:59:59'),
-(3,'エージェント3','2022-05-15 01:00:12','user6@gmail.com','就活6','シュウカツ6','00000000006','サンプル大学6','サンプル学部6','サンプル学科6',2024,'サンプル郵便番号6','サンプル住所6','サンプル相談6','エージェント6,エージェント7','2022-06-01 23:59:59'),
-(3,'エージェント3','2022-06-01 01:00:12','user7@gmail.com','就活7','シュウカツ7','00000000007','サンプル大学7','サンプル学部7','サンプル学科7',2024,'サンプル郵便番号7','サンプル住所7','','エージェント6,エージェント7','2022-07-01 23:59:59');
+(1,'エージェント1','2022-05-13 01:00:12','user1@gmail.com','就活1','シュウカツ1','00000000001','サンプル大学1','サンプル学部1','サンプル学科1',2024,'サンプル郵便番号1','サンプル住所1','サンプル相談1','エージェント1,エージェント2,エージェント3','2022-06-01 23:59:59'),
+(2,'エージェント2','2022-05-13 01:00:12','user1@gmail.com','就活1','シュウカツ1','00000000001','サンプル大学1','サンプル学部1','サンプル学科1',2024,'サンプル郵便番号1','サンプル住所1','サンプル相談2','エージェント1,エージェント2,エージェント3','2022-06-01 23:59:59'),
+(3,'エージェント3','2022-05-13 01:00:12','user1@gmail.com','就活1','シュウカツ1','00000000001','サンプル大学1','サンプル学部1','サンプル学科1',2024,'サンプル郵便番号1','サンプル住所1','サンプル相談3','エージェント1,エージェント2,エージェント3','2022-06-01 23:59:59'),
+(4,'エージェント4','2022-05-14 01:00:12','user2@gmail.com','就活2','シュウカツ2','00000000002','サンプル大学2','サンプル学部2','サンプル学科2',2024,'サンプル郵便番号2','サンプル住所2','サンプル相談4','エージェント4,エージェント5','2022-06-01 23:59:59'),
+(5,'エージェント5','2022-05-14 01:00:12','user2@gmail.com','就活2','シュウカツ2','00000000002','サンプル大学2','サンプル学部2','サンプル学科2',2024,'サンプル郵便番号2','サンプル住所2','サンプル相談5','エージェント4,エージェント5','2022-06-01 23:59:59'),
+(3,'エージェント3','2022-05-14 01:00:12','user3@gmail.com','就活3','シュウカツ3','00000000003','サンプル大学3','サンプル学部3','サンプル学科3',2024,'サンプル郵便番号3','サンプル住所3','サンプル相談3','エージェント3,エージェント4','2022-06-01 23:59:59'),
+(4,'エージェント4','2022-05-14 01:00:12','user3@gmail.com','就活3','シュウカツ3','00000000003','サンプル大学3','サンプル学部3','サンプル学科3',2024,'サンプル郵便番号3','サンプル住所3','サンプル相談4','エージェント3,エージェント4','2022-06-01 23:59:59'),
+(2,'エージェント2','2022-05-15 01:00:12','user4@gmail.com','就活4','シュウカツ4','00000000004','サンプル大学4','サンプル学部4','サンプル学科4',2024,'サンプル郵便番号4','サンプル住所4','','エージェント2,エージェント4','2022-06-01 23:59:59'),
+(4,'エージェント4','2022-05-15 01:00:12','user4@gmail.com','就活4','シュウカツ4','00000000004','サンプル大学4','サンプル学部4','サンプル学科4',2024,'サンプル郵便番号4','サンプル住所4','','エージェント2,エージェント4','2022-06-01 23:59:59'),
+(1,'エージェント1','2022-05-16 01:00:12','user5@gmail.com','就活5','シュウカツ5','00000000005','サンプル大学5','サンプル学部5','サンプル学科5',2024,'サンプル郵便番号5','サンプル住所5','サンプル相談1','エージェント1,エージェント5','2022-06-01 23:59:59'),
+(5,'エージェント5','2022-05-16 01:00:12','user5@gmail.com','就活5','シュウカツ5','00000000005','サンプル大学5','サンプル学部5','サンプル学科5',2024,'サンプル郵便番号5','サンプル住所5','サンプル相談5','エージェント1,エージェント5','2022-06-01 23:59:59'),
+(2,'エージェント2','2022-05-15 01:00:12','user6@gmail.com','就活6','シュウカツ6','00000000006','サンプル大学6','サンプル学部6','サンプル学科6',2024,'サンプル郵便番号6','サンプル住所6','サンプル相談2','エージェント2,エージェント3','2022-06-01 23:59:59'),
+(3,'エージェント3','2022-05-15 01:00:12','user6@gmail.com','就活6','シュウカツ6','00000000006','サンプル大学6','サンプル学部6','サンプル学科6',2024,'サンプル郵便番号6','サンプル住所6','サンプル相談3','エージェント2,エージェント3','2022-06-01 23:59:59'),
+(2,'エージェント2','2022-06-01 01:00:12','user7@gmail.com','就活7','シュウカツ7','00000000007','サンプル大学7','サンプル学部7','サンプル学科7',2024,'サンプル郵便番号7','サンプル住所7','','エージェント2,エージェント5','2022-07-01 23:59:59'),
+(5,'エージェント5','2022-06-01 01:00:12','user7@gmail.com','就活7','シュウカツ7','00000000007','サンプル大学7','サンプル学部7','サンプル学科7',2024,'サンプル郵便番号7','サンプル住所7','','エージェント2,エージェント5','2022-07-01 23:59:59');
+
+drop table if exists admin_agent_list;
+
+create table admin_agent_list (
+  agent_id int AUTO_INCREMENT not null primary key,
+  agent_name varchar(255) not null,
+  start_contract date not null,
+  apply_amount int not null default 0,
+  featured_article_bool boolean not null default false,
+  bool_updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+-- 管理者画面のエージェント一覧
+-- 上から企業ID、企業名、問い合わせ数、特集記事ステータス、特集記事掲載ステータス定期更新用の時間(phpで管理者画面アクセス時に時間取得して一年？半年？たってたらboolをupdateする)
+
+insert into admin_agent_list 
+(agent_name,start_contract,apply_amount,featured_article_bool) 
+VALUES
+((select agent_name from agent_contract_information where agent_id=1),(select start_contract_date from agent_contract_information where agent_id=1),(select count(apply_id) from apply_list where agent_id=1),true),
+((select agent_name from agent_contract_information where agent_id=2),(select start_contract_date from agent_contract_information where agent_id=2),(select count(apply_id) from apply_list where agent_id=2),true),
+((select agent_name from agent_contract_information where agent_id=3),(select start_contract_date from agent_contract_information where agent_id=3),(select count(apply_id) from apply_list where agent_id=3),true),
+((select agent_name from agent_contract_information where agent_id=4),(select start_contract_date from agent_contract_information where agent_id=4),(select count(apply_id) from apply_list where agent_id=4),false),
+((select agent_name from agent_contract_information where agent_id=5),(select start_contract_date from agent_contract_information where agent_id=5),(select count(apply_id) from apply_list where agent_id=5),false);
+-- 問い合わせ来たらupdate admin_agent_list set apply_amount=apply_amount+1 where agent_id=?で問い合わせ数を増やせる
 
 drop table if exists featured_article;
 
@@ -240,8 +261,8 @@ VALUES
 (2,(select agent_name from agent_contract_information where agent_id=2),'支店3',(select user_email from agent_users where user_id=5),'氏名5'),
 (3,(select agent_name from agent_contract_information where agent_id=3),'支店1',(select user_email from agent_users where user_id=6),'氏名6'),
 (3,(select agent_name from agent_contract_information where agent_id=3),'支店2',(select user_email from agent_users where user_id=7),'氏名7'),
-(3,(select agent_name from agent_contract_information where agent_id=3),'支店3',(select user_email from agent_users where user_id=8),'氏名8'),
-(3,(select agent_name from agent_contract_information where agent_id=3),'支店4',(select user_email from agent_users where user_id=9),'氏名9');
+(4,(select agent_name from agent_contract_information where agent_id=4),'支店1',(select user_email from agent_users where user_id=8),'氏名8'),
+(5,(select agent_name from agent_contract_information where agent_id=5),'支店1',(select user_email from agent_users where user_id=9),'氏名9');
 
 
 
@@ -314,7 +335,9 @@ insert into picture(picture_url,agent_name)
 VALUES
 ('picture1.png',(select agent_name from agent_contract_information where agent_id=1)),
 ('picture2.png',(select agent_name from agent_contract_information where agent_id=2)),
-('picture3.png',(select agent_name from agent_contract_information where agent_id=3));
+('picture3.png',(select agent_name from agent_contract_information where agent_id=3)),
+('picture4.png',(select agent_name from agent_contract_information where agent_id=4)),
+('picture5.png',(select agent_name from agent_contract_information where agent_id=5));
 
 drop table if exists agent_address;
 
@@ -332,7 +355,10 @@ insert into agent_address (prefecture_id,agent_id,agent_area,agent_prefecture) v
 (44,1,(select area_name from filter_prefecture where prefecture_id=44),(select prefecture_name from filter_prefecture where prefecture_id=44)),
 (3,2,(select area_name from filter_prefecture where prefecture_id=3),(select prefecture_name from filter_prefecture where prefecture_id=3)),
 (26,2,(select area_name from filter_prefecture where prefecture_id=26),(select prefecture_name from filter_prefecture where prefecture_id=26)),
-(23,3,(select area_name from filter_prefecture where prefecture_id=23),(select prefecture_name from filter_prefecture where prefecture_id=23));
+(23,3,(select area_name from filter_prefecture where prefecture_id=23),(select prefecture_name from filter_prefecture where prefecture_id=23)),
+(42,4,(select area_name from filter_prefecture where prefecture_id=42),(select prefecture_name from filter_prefecture where prefecture_id=42)),
+(13,5,(select area_name from filter_prefecture where prefecture_id=13),(select prefecture_name from filter_prefecture where prefecture_id=13))
+;
 
 drop table if exists delete_request;
 
@@ -354,9 +380,12 @@ create table sales_copy(
 
 insert into sales_copy(sales_copy)
 VALUES
-('キャッチコピー1'),
-('キャッチコピー2'),
-('キャッチコピー3');
+('プロの情報で着実な一歩を'),
+('さよなら、やみくも就活'),
+('プロと始める「逆転就活」'),
+('就活は専任アドバイザーと。\n一緒に見つけよう、働きたい会社を'),
+('あなたの可能性は\nあなたが思うよりもずっと大きい');
+
 
 drop table if exists agent_public_information;
 
@@ -379,7 +408,9 @@ insert into agent_public_information
 VALUES
 ((select agent_name from agent_contract_information where agent_id=1),0,1,0,20.7,3,0),
 ((select agent_name from agent_contract_information where agent_id=2),1,2,1,45.8,7,1),
-((select agent_name from agent_contract_information where agent_id=3),2,3,0,73.5,4,0);
+((select agent_name from agent_contract_information where agent_id=3),2,3,0,73.5,4,0),
+((select agent_name from agent_contract_information where agent_id=4),1,0,1,92.5,5,0),
+((select agent_name from agent_contract_information where agent_id=5),2,2,0,50.4,6,1);
 
 drop table if exists apply_notice_email;
 
@@ -392,4 +423,6 @@ insert into apply_notice_email(email_address)
 VALUES
 ('apply1@gmail.com'),
 ('apply2@gmail.com'),
-('apply3@gmail.com');
+('apply3@gmail.com'),
+('apply4@gmail.com'),
+('apply5@gmail.com');

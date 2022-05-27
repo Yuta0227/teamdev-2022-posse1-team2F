@@ -7,7 +7,7 @@
         $picture = $picture_stmt->fetchAll();
         ?>
         <div class="admin-agent-detail-table-img-box">
-        <img class="admin-agent-detail-table-img" src="../../../img/article/<?php echo $picture[0]['picture_url']; ?>" alt="<?php echo $picture[0]['agent_name']; ?>の写真">
+            <img class="admin-agent-detail-table-img" src="../../../img/article/<?php echo $picture[0]['picture_url']; ?>" alt="<?php echo $picture[0]['agent_name']; ?>の写真">
         </div>
         <div class="admin-agent-detail-table-agent-name"><?php echo $picture[0]['agent_name']; ?></div>
     </div>
@@ -142,6 +142,12 @@
                 }
                 echo '</td>';
                 echo '</tr>';
+                $agent_picture_stmt = $db->query("select picture_url from picture where agent_id=" . $_GET['agent_id'] . ";");
+                $agent_picture = $agent_picture_stmt->fetchAll()[0]['picture_url'];
+                echo '<tr>';
+                echo '<th style="border:1px solid black;">画像</th>';
+                echo '<td style="border:1px solid black;"><img style="width:100%;height:100%;" src="../../img/article/' . $agent_picture . '" alt="' . $agent_public_information_array[0]['agent_name'] . 'の画像"></td>';
+                echo '</tr>';
                 ?>
             </table>
         </div>
@@ -211,12 +217,12 @@
                 echo '</form>';
                 if (isset($_POST['delete_assignee_id'])) {
                     if ($_POST['delete_assignee_id'] == $assignee['user_id']) {
-                        echo '<form id="delete_assignee_form" name="form' . $assignee['user_id'] . '" action="" method="POST" style="height:100%;padding:20px;z-index:10;position:absolute;background-color:white;top:0;left:50%;transform:translate(-50%,0);">';
-                        echo '<div>担当者を削除しますか?</div>';
-                        echo '<div style="display:flex;">';
+                        echo '<form class="admin-agent-detail-popup-agent-delete-all" id="delete_assignee_form" name="form' . $assignee['user_id'] . '" action="" method="POST">';
+                        echo '<div class="admin-agent-detail-popup-agent-delete-head">担当者を削除しますか?</div>';
+                        echo '<div class="admin-agent-detail-popup-agent-delete-btns">';
                         echo '<input hidden name="confirm_delete_assignee_id" value="' . $assignee['user_id'] . '">';
-                        echo '    <div id="cancel_delete" style="border-radius:10px;padding:5px;border:1px solid black;">キャンセル</div>';
-                        echo '    <input name="confirm_delete_assignee" type="submit" style="background-color:red;" value="削除する">';
+                        echo '    <div class="admin-agent-detail-popup-agent-delete-cancel-btn" id="cancel_delete">キャンセル</div>';
+                        echo '    <input class="admin-agent-detail-popup-agent-delete-confirm-btn" name="confirm_delete_assignee" type="submit" value="削除する">';
                         echo '</div>';
                         echo '</form>';
                     }
@@ -232,32 +238,32 @@
         </form>
         <?php
         if (isset($_POST['add_assignee'])) {
-            echo '<form id="add_assignee_form" action="" method="POST" style="background-color:white;z-index:10;width:100%;display:flex;flex-direction:column;justify-content:center;z-index:10;position:absolute;top:0;left:0;">
-        <div style="text-align:center;">担当者追加フォーム</div>
-        <table>
+            echo '<form class="admin-agent-detail-popup-agent-profile-add-all" id="add_assignee_form" action="" method="POST">
+        <div class="admin-agent-detail-popup-agent-profile-add-head">担当者追加フォーム</div>
+        <table class="admin-agent-detail-popup-agent-profile-add-table">
             <tr>
-                <th style="width:20%;border:1px solid black;">部署</th>
-                <td style="width:80%;border:1px solid black;"><input required style="width:100%;" name="add_branch"></td>
+                <th class="admin-agent-detail-popup-agent-profile-add-table-text">部署</th>
+                <td class="admin-agent-detail-popup-agent-profile-add-table-content"><input required style="width:100%;" name="add_branch"></td>
             </tr>
             <tr>
-                <th style="width:20%;border:1px solid black;">氏名</th>
-                <td style="width:80%;border:1px solid black;"><input required style="width:100%;" name="add_name"></td>
+                <th class="admin-agent-detail-popup-agent-profile-add-table-text">氏名</th>
+                <td class="admin-agent-detail-popup-agent-profile-add-table-content"><input required style="width:100%;" name="add_name"></td>
             </tr>
             <tr>
-                <th style="width:20%;border:1px solid black;">メールアドレス</th>
-                <td style="width:80%;border:1px solid black;"><input required style="width:100%;" name="add_mail"></td>
+                <th class="admin-agent-detail-popup-agent-profile-add-table-text">メールアドレス</th>
+                <td class="admin-agent-detail-popup-agent-profile-add-table-content"><input required style="width:100%;" name="add_mail"></td>
             </tr>
             <tr>
-                <th style="width:20%;border:1px solid black;">パスワード</th>
-                <td style="width:80%;border:1px solid black;"><input required style="width:100%;" name="add_password"></td>
+                <th class="admin-agent-detail-popup-agent-profile-add-table-text">パスワード</th>
+                <td class="admin-agent-detail-popup-agent-profile-add-table-content"><input required style="width:100%;" name="add_password"></td>
             </tr>
         </table>
-        <div style="display:flex;">
+        <div class="admin-agent-detail-popup-agent-profile-add-table-btns" style="display:flex;">
         <div style="width:50%;display:flex;justify-content:center;">
-        <div id="cancel_add_assignee" style="border-radius:10px;padding:5px;border:1px solid black;">キャンセル</div>
+        <div class="admin-agent-detail-popup-agent-profile-add-table-cancel-btn" id="cancel_add_assignee">キャンセル</div>
         </div>
         <div style="width:50%;display:flex;justify-content:center;">
-        <input type="submit" name="confirm_add" value="追加確定">
+        <input class="admin-agent-detail-popup-agent-profile-add-table-confirm-btn" type="submit" name="confirm_add" value="追加確定">
         </div>
         </div>
     </form>';
