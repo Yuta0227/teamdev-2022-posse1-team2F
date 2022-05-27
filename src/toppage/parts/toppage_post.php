@@ -133,7 +133,7 @@ $_SESSION['query'] = "select * from agent_public_information" . $_SESSION['save_
 // print_r('</pre>');
 $all_agents_stmt = $db->query($_SESSION['query']);
 $all_agents = $all_agents_stmt->fetchAll();
-echo $_SESSION['query'];
+// echo $_SESSION['query'];
 // if (isset($_SESSION['save_filter_condition'])) {
 //過去に条件絞り込みをしていたら
 
