@@ -1,8 +1,8 @@
 <?php
 session_start();
 require "../../dbconnect.php";
-require "../parts/toppage_post.php";
 require "../../function.php";
+require "../parts/toppage_post.php";
 
 if(!isset($_GET['agent_list_pagination'])){
     header("Location:index.php?agent_list_pagination=1");
