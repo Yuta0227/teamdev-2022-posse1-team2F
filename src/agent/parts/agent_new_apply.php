@@ -61,12 +61,12 @@
             }
             echo '</div>';
             echo '<div id="new_report_reason' . $index . '" style="border:1px solid black;" hidden>';
-            echo '<div style="display:flex;justify-content:center;align-items:center;">';
+            echo '<div class="agent-apply-student-report-reason">';
             echo '<span>通報理由：</span>';
-            echo '<textarea type="text" name="new_report_reason' . $index . '" required placeholder="理由を記入してください"></textarea>';
+            echo '<textarea class="agent-apply-student-report-reason-text" type="text" name="new_report_reason' . $index . '" required placeholder="理由を記入してください"></textarea>';
             echo '<input hidden name="report_new_apply_id' . $index . '" value="' . $new_applies_array[$index]['apply_id'] . '">';
             echo '</div>';
-            echo '<div style="display:flex;justify-content:center;"><div id="cancel_new_report' . $index . '">キャンセル</div><input type="submit" value="通報"></div></div>';
+            echo '<div style="display:flex;justify-content:center;"><div class="agent-apply-student-report-cancel" id="cancel_new_report' . $index . '">キャンセル</div><input class="agent-apply-student-report-submit" type="submit" value="送信する"></div></div>';
             echo '</form>';
             echo '</div>';
         };
