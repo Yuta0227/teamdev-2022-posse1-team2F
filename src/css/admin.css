@@ -633,3 +633,48 @@ body{
     text-decoration: underline;
     color: #000;
 }
+/* 通報申請来てた場合 */
+.admin-agent-apply-list-report-coming{
+    background: red;
+    color: #fff;
+    font-weight: bold;
+    margin: 10px;
+    width: 15%;
+    text-align: center;
+}
+.admin-agent-apply-list-report-reject{
+    background: blue;
+    color: #fff;
+    font-weight: bold;
+    margin: 10px;
+    width: 15%;
+    text-align: center;
+}
+/* 通報理由 */
+.admin-agent-apply-list-report-detail-box{
+    border:1px solid black; 
+    width: 80%;
+    margin: auto;
+    padding: 10px;
+    background: #fff;
+}
+.admin-agent-apply-list-report-detail-admit-btn{
+    background: red;
+    color: #fff;
+    width: 40%;
+    font-weight: bold;
+    border: none;
+    padding: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+.admin-agent-apply-list-report-detail-refuse-btn{
+    background: blue;
+    color: #fff;
+    width: 40%;
+    font-weight: bold;
+    border: none;
+    padding: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}

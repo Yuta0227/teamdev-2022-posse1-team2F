@@ -24,38 +24,38 @@
         $apply = array_merge($apply, array('time' => $time));
         if ($apply['apply_report_status'] == 1) {
             //通報されてる場合
-            echo '<form method="POST" id="test' . $index . '" style="padding:10px;align-items:center;display:flex;border:1px solid black;">';
+            echo '<form method="POST" id="test' . $index . '" class="admin-agent-new-apply-info-box">';
             if ($delete_request_data[0]['check_status'] == 0) {
-                echo '<div style="background-color:red;">通報申請きてます!!!</div>';
+                echo '<div class="admin-agent-apply-list-report-coming">通報申請<br>きてます!!!</div>';
             }else{
-                echo '<div style="background-color:blue;">通報申請却下済み</div>';
+                echo '<div class="admin-agent-apply-list-report-reject">通報申請<br>却下済み</div>';
             }
             echo '<div style="width:20%;">' . $apply['month'] . '/' . $apply['date'] . ' ' . $apply['time'] . '</div>';
             echo '<div style="width:20%;">' . $apply['applicant_email_address'] . '</div>';
-            echo '<div style="width:60%;padding:0 20px 0 20px;display:flex;justify-content:right;"><input type="button" id="open_apply' . $index . '" value="詳細▽"></div>';
-            echo '<input id="close_apply' . $index . '" name="close' . $index . '" hidden value="閉じる△" type="submit">';
+            echo '<div style="width:60%;padding:0 20px 0 20px;display:flex;justify-content:right;"><input class="admin-agent-apply-open-close-detail" type="button" id="open_apply' . $index . '" value="詳細▽"></div>';
+            echo '<input  class="admin-agent-apply-open-close-detail" id="close_apply' . $index . '" name="close' . $index . '" hidden value="閉じる△" type="submit">';
             echo '</form>';
-            echo '<div id="apply_detail' . $index . '" hidden style="border:1px solid black;">';
-            echo '<div>' . $apply['applicant_name_kanji'] . '(' . $apply['applicant_name_furigana'] . ')</div>';
-            echo '<div>' . $apply['applicant_phone_number'] . '</div>';
-            echo '<div>' . $apply['applicant_university'] . ',' . $apply['applicant_gakubu'] . ',' . $apply['applicant_gakka'] . ',' . $apply['applicant_graduation_year'] . '年卒</div>';
-            echo '<div>' . $apply['applicant_postal_code'] . '</div>';
-            echo '<div>' . $apply['applicant_address'] . '</div>';
-            echo '<div>' . $apply['applicant_other_agents'] . '</div>';
+            echo '<div id="apply_detail' . $index . '" hidden class="admin-agent-apply-detail-box">';
+            echo '<div class="admin-agent-apply-student-detail">' . $apply['applicant_name_kanji'] . '(' . $apply['applicant_name_furigana'] . ')</div>';
+            echo '<div class="admin-agent-apply-student-detail">' . $apply['applicant_phone_number'] . '</div>';
+            echo '<div class="admin-agent-apply-student-detail">' . $apply['applicant_university'] . ',' . $apply['applicant_gakubu'] . ',' . $apply['applicant_gakka'] . ',' . $apply['applicant_graduation_year'] . '年卒</div>';
+            echo '<div class="admin-agent-apply-student-detail">' . $apply['applicant_postal_code'] . '</div>';
+            echo '<div class="admin-agent-apply-student-detail">' . $apply['applicant_address'] . '</div>';
+            echo '<div class="admin-agent-apply-student-detail">' . $apply['applicant_other_agents'] . '</div>';
             if ($apply['applicant_consultation'] != '') {
-                echo '<div>相談：' . $apply['applicant_consultation'] . '</div>';
+                echo '<div class="admin-agent-apply-student-detail">相談：' . $apply['applicant_consultation'] . '</div>';
             }
             echo '</div>';
             if ($delete_request_data[0]['check_status'] == 0) {
-                echo '<form id="delete_form' . $index . '" action="" method="POST" hidden style="padding;10px;border:1px solid black;">';
+                echo '<form id="delete_form' . $index . '" action="" method="POST" hidden class="admin-agent-apply-list-report-detail-box" style="padding;10px;border:1px solid black;">';
                 echo '<div>通報理由：' . $delete_request_data[0]['request_reason'] . '</div>';
                 echo '<div style="display:flex;justify-content:center;">';
-                echo '<div style="width:50%;display:flex;justify-content:center;align-items:center;height:200px;">';
+                echo '<div style="width:50%;display:flex;justify-content:center;align-items:center;">';
                 echo '<input hidden name="approve_decline_apply_id" value="' . $apply['apply_id'] . '">';
-                echo '<input type="submit" name="accept_delete_request" value="削除申請承認">'; //自動でメール送信
+                echo '<input class="admin-agent-apply-list-report-detail-admit-btn" type="submit" name="accept_delete_request" value="削除申請承認">'; //自動でメール送信
                 echo '</div>';
-                echo '<div style="width:50%;display:flex;justify-content:center;align-items:center;height:200px;">';
-                echo '<input type="submit" name="decline_delete_request" value="削除申請却下">';
+                echo '<div style="width:50%;display:flex;justify-content:center;align-items:center;">';
+                echo '<input class="admin-agent-apply-list-report-detail-refuse-btn" type="submit" name="decline_delete_request" value="削除申請却下">';
                 echo '</div>';
                 echo '</div>';
                 echo '</form>';
