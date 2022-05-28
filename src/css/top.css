@@ -881,14 +881,33 @@
         color: red;
     }
     /* ページネーション */
-    .top-pagenation {
+    .top-pagenation-unit{
+        text-align: right;   
+    }
+    .top-pagenation-parent{
+        display: inline-block;
+        text-align: right;
+        background: #52a49a;
+        margin-right: 10%;
+        padding: 10px 10px;
+    }
+    .top-pagenation-all-box {
+        display:flex;
         justify-content: flex-end;
+        gap: 5px;
     }
-    .top-pagenation a {
+    .top-pagenation-each-box {
+        text-align: center;
+        width: 25px;
+        background: #fff;
+        /* border-radius: 20px; */
         color: #000;
+        cursor: pointer;
     }
-    .top-pagenation a:first-child {
-        margin-left: 5px;
+    .top-pagenatio-arrow {
+        color: #000;
+        text-decoration: none;
+        vertical-align: middle;
     }
     /* モーダルCSS */
     .modal-area {
