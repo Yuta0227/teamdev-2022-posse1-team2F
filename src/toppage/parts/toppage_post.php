@@ -157,6 +157,14 @@ if (isset($_POST['filter'])) {
         $_SESSION['agent_recommend_student_type']=[];
         $_SESSION['save_filter_condition']='';
     }
+}if(isset($_POST['reset_filter'])){
+    $_SESSION['industries']=[];
+        $_SESSION['prefectures']=[];
+        $_SESSION['agent_meeting_type']=[];
+        $_SESSION['agent_main_corporate_size']=[];
+        $_SESSION['agent_corporate_type']=[];
+        $_SESSION['agent_recommend_student_type']=[];
+        $_SESSION['save_filter_condition']='';
 }
 
 $_SESSION['query'] = "select * from agent_public_information" . $_SESSION['save_filter_condition'] . $_SESSION['save_sort_condition'] . ";";

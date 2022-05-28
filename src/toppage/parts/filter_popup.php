@@ -12,9 +12,7 @@
         8 => '九州沖縄',
     ];
     $industry_array = ['manufacturer', 'retail', 'service', 'software_transmission', 'trading', 'finance', 'media', 'government'];
-    // print_r('<pre>');
-    // var_dump($filter_prefecture_hokkaidou);
-    // print_r('</pre>');
+
     $conditions_array = [1, 2, 3, 4, 5];
     $conditions_type_array = [1, 2];
     ?>
@@ -173,6 +171,7 @@
                 </td>
             </tr>
         </table>
+        <input name="reset_filter" value="絞り込み条件リセットする" type="submit">
         <input name="filter" value="この条件で絞り込む" type="submit">
     </form>
 </section>
