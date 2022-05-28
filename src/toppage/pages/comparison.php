@@ -41,8 +41,9 @@ if (isset($_POST['remove_from_apply']) && isset($_POST['agent_id'])) {
     require "../parts/indicator_step1.php";
     require "../../function.php";
     ?>
-    <div>比較リスト選択中<?php echo count($_SESSION['comparison_list']); ?>件</div>
-    <form action="" method="POST">
+    <div class="top-comparison-head">比較リスト選択中<?php echo count($_SESSION['comparison_list']); ?>件</div>
+    <form class="sort-box" action="" method="POST">
+        <div>
         <?php
         $sort_type = [
             'agent_meeting_type' => '<option value="agent_meeting_type">面談方式</option>',
@@ -87,7 +88,7 @@ if (isset($_POST['remove_from_apply']) && isset($_POST['agent_id'])) {
             print_r('</pre>');
         }
         ?>
-        <select name="comparison_condition">
+        <select class="sort-condition" name="comparison_condition">
             <?php
             if (isset($_SESSION['comparison_sort_type'])) {
                 foreach ($_SESSION['comparison_sort_type'] as $column => $data) {
@@ -101,7 +102,10 @@ if (isset($_POST['remove_from_apply']) && isset($_POST['agent_id'])) {
             //プルダウン選択したらそれが一番上にくる
             ?>
         </select>
-        <input type="submit" value="比較項目を選択する">
+        </div>
+        <div>
+        <input class="sort-button" type="submit" value="比較項目を選択する">
+        </div>    
     </form>
     <div style="display:flex;border-bottom:1px solid black;">
         <div style="width:25%;">画像</div>
