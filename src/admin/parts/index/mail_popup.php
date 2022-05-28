@@ -6,7 +6,7 @@ for ($agent_id = ($page_number - 1) * $agents_per_page; $agent_id < $agents_per_
         ${"mail_stmt" . $agent_list_array[$agent_id]['agent_id']}->execute();
         ${"mail_data" . $agent_list_array[$agent_id]['agent_id']} = ${"mail_stmt" . $agent_list_array[$agent_id]['agent_id']}->fetchAll();
         echo '    <div id="mail_popup_filter" hidden style="position:absolute;top:0;left:0;width:100%;height:100%;background-color:gray;opacity:50%;"></div>';
-        echo '    <form hidden action="" method="POST" id="mail_form' . $agent_list_array[$agent_id]['agent_id'] . '" style="padding:10px;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background-color:green;">';
+        echo '    <form hidden action="" method="POST" id="mail_form' . $agent_list_array[$agent_id]['agent_id'] . '" class="admin-mail-popup-in-box" style="padding:10px;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background-color:green;">';
         echo '<div style="display:flex;">';
         echo '    <div style="width:90%;font-weight:bold;">送信内容確認</div>    ';
         echo '    <div style="width:10%;display:flex;justify-content:right;">';

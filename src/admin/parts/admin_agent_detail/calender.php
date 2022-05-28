@@ -174,7 +174,7 @@
         for ($week = 1; $week <= $weeks_per_month; $week++) {
             echo '<tr>';
             for ($i = 1; $i <= 7; $i++) {
-                echo '<td id="each_day' . $i - 7 + 7 * $week . '" style="position:relative;width:100px;height:100px;border:solid 1px black;">';
+                echo '<td id="each_day' . $i - 7 + 7 * $week . '" style="position:relative;width:100px;height:100px;border:solid 1px black;cursor:pointer;">';
                 if ($year_month_parameter_set) {
                     //パラメータセット時
                     echo '<div id="date' . $i - 7 + 7 * $week . '" style="position:absolute;top:0;left:0;width:40%;height:40%;;text-align:center;">' . $calender_dates[$i - 7 + $week * 7 - 1] . '</div>';
