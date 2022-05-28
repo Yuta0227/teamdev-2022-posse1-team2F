@@ -42,7 +42,7 @@ if (isset($_POST['remove_from_apply']) && isset($_POST['remove_id'])) {
                 <div class="check-cart-delete-check-text">次の企業への申込をやめますか？</div>
                 <div class="check-cart-delete-check-infos">
                     <div class="check-cart-delete-check-img-box">
-                        <img alt="<?php echo $agent_name_picture['agent_name']; ?>の画像" src="<?php echo "../../img/" . $agent_name_picture['picture_url']; ?>">
+                        <?php echo '<img alt="'.$agent_name_picture['agent_name'].'の画像" src="../../img/article/'. $agent_name_picture['picture_url'].'">';?>
                     </div>
                     <div class="check-cart-delete-check-agent-name-box">
                         <div class="check-cart-delete-check-agent-name"><?php echo $agent_name_picture['agent_name']; ?></div>
@@ -72,7 +72,7 @@ if (isset($_POST['remove_from_apply']) && isset($_POST['remove_id'])) {
                     echo '<div class="check-cart-each-agent-box">';
                     echo '<div class="check-cart-each-agent-info-box">';
                     echo '<div class="check-cart-agent-img-box">';
-                    echo '<img alt="' . $agent_name_picture['agent_name'] . 'の画像" src="../../img/' . $agent_name_picture['picture_url'] . '">';
+                    echo '<img alt="' . $agent_name_picture['agent_name'] . 'の画像" src="../../img/article/' . $agent_name_picture['picture_url'] . '">';
                     echo '</div>';
                     echo '<div>';
                     echo '<div>' . $agent_name_picture['agent_name'] . '</div>';
