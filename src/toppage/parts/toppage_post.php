@@ -34,97 +34,129 @@ if (isset($_POST['sort'])) {
             break;
     }
 }
-if (isset($_POST['industries']) || isset($_POST['filter_prefecture']) || isset($_POST['agent_meeting_type']) || isset($_POST['agent_main_corporate_size']) || isset($_POST['agent_corporate_type']) || isset($_POST['agent_recommend_student_type'])) {
-
-    if (isset($_POST['industries'])) {
-        $_SESSION['industries'] = [];
-        $industry_stmt = 'select agent_id from agent_corporate_amount where ';
-        foreach ($_POST['industries'] as $industry) {
-            if ($industry == $_POST['industries'][count($_POST['industries']) - 1]) {
-                //最後の業界
-                $industry_stmt .= $industry . '>0;';
-            } else {
-                $industry_stmt .= $industry . '>0 or ';
+if (isset($_POST['filter'])) {
+    if (isset($_POST['industries']) || isset($_POST['filter_prefecture']) || isset($_POST['agent_meeting_type']) || isset($_POST['agent_main_corporate_size']) || isset($_POST['agent_corporate_type']) || isset($_POST['agent_recommend_student_type'])) {
+        //何かしら絞り込んでる場合
+        if (isset($_POST['industries'])) {
+            $_SESSION['industries'] = [];
+            //過去に選択済み判定のために保存
+            $industry_stmt = 'select agent_id from agent_corporate_amount where ';
+            foreach ($_POST['industries'] as $industry) {
+                if ($industry == $_POST['industries'][count($_POST['industries']) - 1]) {
+                    //最後の業界
+                    $industry_stmt .= $industry . '>0;';
+                } else {
+                    $industry_stmt .= $industry . '>0 or ';
+                }
+                array_push($_SESSION['industries'], $industry);
             }
-            array_push($_SESSION['industries'], $industry);
-        }
-        // var_dump($_SESSION['industries']);
-        $filter_industry_stmt = $db->query($industry_stmt);
-        $filter_industry = $filter_industry_stmt->fetchAll();
-        $tmp_industry_agent = [];
-        foreach ($filter_industry as $agent) {
-            array_push($tmp_industry_agent, $agent['agent_id']);
-        }
-        $base_agent_id_array = array_merge(array_intersect($base_agent_id_array, $tmp_industry_agent));
-        // print_r('<pre>');
-        // var_dump($base_agent_id_array);
-        // print_r('</pre>');
-    }
-    if (isset($_POST['filter_prefecture'])) {
-        //都道府県絞り込み
-        $_SESSION['prefectures'] = [];
-        $prefecture_stmt = 'select distinct agent_id from agent_address where ';
-        foreach ($_POST['filter_prefecture'] as $prefecture_id) {
-            if ($prefecture_id == $_POST['filter_prefecture'][count($_POST['filter_prefecture']) - 1]) {
-                //最後の都道府県
-                $prefecture_stmt .= 'prefecture_id=' . $prefecture_id . ';';
-            } else {
-                $prefecture_stmt .= 'prefecture_id=' . $prefecture_id . ' or ';
+            // var_dump($_SESSION['industries']);
+            $filter_industry_stmt = $db->query($industry_stmt);
+            $filter_industry = $filter_industry_stmt->fetchAll();
+            $tmp_industry_agent = [];
+            foreach ($filter_industry as $agent) {
+                array_push($tmp_industry_agent, $agent['agent_id']);
             }
-            array_push($_SESSION['prefectures'], $prefecture_id);
+            $base_agent_id_array = array_merge(array_intersect($base_agent_id_array, $tmp_industry_agent));
+            // print_r('<pre>');
+            // var_dump($base_agent_id_array);
+            // print_r('</pre>');
+        } elseif (!isset($_POST['industries'])) {
+            //業界一つも選択されてない場合
+            $_SESSION['industries'] = [];
+            $industry_stmt = 'select agent_id from agent_corporate_amount;';
+            $filter_industry_stmt = $db->query($industry_stmt);
+            $filter_industry = $filter_industry_stmt->fetchAll();
+            $tmp_industry_agent = [];
+            foreach ($filter_industry as $agent) {
+                array_push($tmp_industry_agent, $agent['agent_id']);
+            }
+            $base_agent_id_array = array_merge(array_intersect($base_agent_id_array, $tmp_industry_agent));
         }
-        // var_dump($_SESSION['prefectures']);
-        $filter_prefecture_stmt = $db->query($prefecture_stmt);
-        $filter_prefecture = $filter_prefecture_stmt->fetchAll();
-        $tmp_prefecture_agent = [];
-        foreach ($filter_prefecture as $agent) {
-            array_push($tmp_prefecture_agent, $agent['agent_id']);
-            //これを使って他の条件絞り込みとの共通項を出力
-            //並び替えとの組み合わせは共通項の配列をforeachで回して↓の並び替え文の後にwhere agent_id =? or agent_id=?
-        }
-        $base_agent_id_array = array_merge(array_intersect($base_agent_id_array, $tmp_prefecture_agent));
-        //共通項取得
-        // print_r('<pre>都道府県');
-        // var_dump($_POST['filter_prefecture']);
-        // var_dump($filter_prefecture);
-        // var_dump($tmp_prefecture_agent);
-        // var_dump($base_agent_id_array);
-        // print_r('</pre>');
-    };
-    $base_agent_id_array = $filter->filter('agent_meeting_type', $base_agent_id_array);
-    $base_agent_id_array = $filter->filter('agent_main_corporate_size', $base_agent_id_array);
-    $base_agent_id_array = $filter->filter('agent_corporate_type', $base_agent_id_array);
-    $base_agent_id_array = $filter->filter('agent_recommend_student_type', $base_agent_id_array);
-    //一つでも条件絞り込みされてたら保存する
-    // echo count($base_agent_id_array);
-    if (count($base_agent_id_array) == 0) {
+        if (isset($_POST['filter_prefecture'])) {
+            //都道府県絞り込み
+            $_SESSION['prefectures'] = [];
+            $prefecture_stmt = 'select distinct agent_id from agent_address where ';
+            foreach ($_POST['filter_prefecture'] as $prefecture_id) {
+                if ($prefecture_id == $_POST['filter_prefecture'][count($_POST['filter_prefecture']) - 1]) {
+                    //最後の都道府県
+                    $prefecture_stmt .= 'prefecture_id=' . $prefecture_id . ';';
+                } else {
+                    $prefecture_stmt .= 'prefecture_id=' . $prefecture_id . ' or ';
+                }
+                array_push($_SESSION['prefectures'], $prefecture_id);
+            }
+            // var_dump($_SESSION['prefectures']);
+            $filter_prefecture_stmt = $db->query($prefecture_stmt);
+            $filter_prefecture = $filter_prefecture_stmt->fetchAll();
+            $tmp_prefecture_agent = [];
+            foreach ($filter_prefecture as $agent) {
+                array_push($tmp_prefecture_agent, $agent['agent_id']);
+                //これを使って他の条件絞り込みとの共通項を出力
+                //並び替えとの組み合わせは共通項の配列をforeachで回して↓の並び替え文の後にwhere agent_id =? or agent_id=?
+            }
+            $base_agent_id_array = array_merge(array_intersect($base_agent_id_array, $tmp_prefecture_agent));
+            //共通項取得
+            // print_r('<pre>都道府県');
+            // var_dump($_POST['filter_prefecture']);
+            // var_dump($filter_prefecture);
+            // var_dump($tmp_prefecture_agent);
+            // var_dump($base_agent_id_array);
+            // print_r('</pre>');
+        } elseif (!isset($_POST['filter_prefecture'])) {
+            $_SESSION['prefectures'] = [];
+            $prefecture_stmt = 'select distinct agent_id from agent_address;';
+            $filter_prefecture_stmt = $db->query($prefecture_stmt);
+            $filter_prefecture = $filter_prefecture_stmt->fetchAll();
+            $tmp_prefecture_agent = [];
+            foreach ($filter_prefecture as $agent) {
+                array_push($tmp_prefecture_agent, $agent['agent_id']);
+            }
+            $base_agent_id_array = array_merge(array_intersect($base_agent_id_array, $tmp_prefecture_agent));
+        };
+        $base_agent_id_array = $filter->filter('agent_meeting_type', $base_agent_id_array);
+        $base_agent_id_array = $filter->filter('agent_main_corporate_size', $base_agent_id_array);
+        $base_agent_id_array = $filter->filter('agent_corporate_type', $base_agent_id_array);
+        $base_agent_id_array = $filter->filter('agent_recommend_student_type', $base_agent_id_array);
+        //一つでも条件絞り込みされてたら保存する
+        // echo count($base_agent_id_array);
         if (count($base_agent_id_array) == 0) {
-            //ゼロだったら実在しないagent_idで絞る＝＞null返される
-            $final_filter_stmt = ' where agent_id=-1 ';
-        }
-    } else {
-        foreach ($base_agent_id_array as $agent) {
-            if (count($base_agent_id_array) == 1) {
-                //一つだったら
-                $final_filter_stmt = ' where agent_id=' . $agent . ' ';
-            } elseif(count($base_agent_id_array)!=1&&$agent==$base_agent_id_array[0]){
-                //一つじゃないかつ最初
-                $final_filter_stmt=' where agent_id='.$agent.' or ';
+            if (count($base_agent_id_array) == 0) {
+                //ゼロだったら実在しないagent_idで絞る＝＞null返される
+                $final_filter_stmt = ' where agent_id=-1 ';
             }
-            elseif ($agent == $base_agent_id_array[count($base_agent_id_array) - 1]) {
-                //最後だったら
-                $final_filter_stmt .= 'agent_id=' . $agent . ' ';
-            } else {
-                $final_filter_stmt .= 'agent_id=' . $agent . ' or ';
+        } else {
+            foreach ($base_agent_id_array as $agent) {
+                if (count($base_agent_id_array) == 1) {
+                    //一つだったら
+                    $final_filter_stmt = ' where agent_id=' . $agent . ' ';
+                } elseif (count($base_agent_id_array) != 1 && $agent == $base_agent_id_array[0]) {
+                    //一つじゃないかつ最初
+                    $final_filter_stmt = ' where agent_id=' . $agent . ' or ';
+                } elseif ($agent == $base_agent_id_array[count($base_agent_id_array) - 1]) {
+                    //最後だったら
+                    $final_filter_stmt .= 'agent_id=' . $agent . ' ';
+                } else {
+                    $final_filter_stmt .= 'agent_id=' . $agent . ' or ';
+                }
             }
         }
+        // echo $final_filter_stmt;
+        // $final_stmt = $db->query("select * from agent_public_information" . $final_filter_stmt . ";");
+        // $final = $final_stmt->fetchAll();
+        // $final_stmt = $db->query("select * from agent_public_information;");
+        $_SESSION['save_filter_condition'] = $final_filter_stmt;
+        // var_dump($_SESSION['save_filter_condition']);
+    }elseif(!isset($_POST['industries']) && !isset($_POST['filter_prefecture'])&&!isset($_POST['agent_meeting_type'])&&!isset($_POST['agent_main_corporate_size'])&&!isset($_POST['agent_corporate_type'])&&!isset($_POST['agent_recommend_student_type'])){
+        //一つも選択せずに絞り込んでる100%
+        $_SESSION['industries']=[];
+        $_SESSION['prefectures']=[];
+        $_SESSION['agent_meeting_type']=[];
+        $_SESSION['agent_main_corporate_size']=[];
+        $_SESSION['agent_corporate_type']=[];
+        $_SESSION['agent_recommend_student_type']=[];
+        $_SESSION['save_filter_condition']='';
     }
-    // echo $final_filter_stmt;
-    // $final_stmt = $db->query("select * from agent_public_information" . $final_filter_stmt . ";");
-    // $final = $final_stmt->fetchAll();
-    // $final_stmt = $db->query("select * from agent_public_information;");
-    $_SESSION['save_filter_condition'] = $final_filter_stmt;
-    // var_dump($_SESSION['save_filter_condition']);
 }
 
 $_SESSION['query'] = "select * from agent_public_information" . $_SESSION['save_filter_condition'] . $_SESSION['save_sort_condition'] . ";";

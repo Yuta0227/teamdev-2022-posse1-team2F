@@ -147,41 +147,43 @@ class check
 $check = new check;
 class filter
 {
-    public function filter($condition,$base_agent_id_array)
+    public function filter($condition, $base_agent_id_array)
     {
         global $db;
-        if (isset($_POST[$condition])) {
-            ${$condition . "_stmt"} = 'select agent_id from agent_public_information where ';
-            $_SESSION[$condition]=[];
-            foreach ($_POST[$condition] as ${$condition . "_id"}) {
-                if (${$condition . "_id"} == $_POST[$condition][count($_POST[$condition]) - 1]) {
-                    //最後の条件,一つのみの条件
-                    ${$condition . "_stmt"} .= $condition . '=' . ${$condition . "_id"} . ';';
-                } else {
-                    ${$condition . "_stmt"} .= $condition . '=' . ${$condition . "_id"} . ' or ';
+        if (isset($_POST['filter'])) {
+            if (isset($_POST[$condition])) {
+                ${$condition . "_stmt"} = 'select agent_id from agent_public_information where ';
+                $_SESSION[$condition] = [];
+                foreach ($_POST[$condition] as ${$condition . "_id"}) {
+                    if (${$condition . "_id"} == $_POST[$condition][count($_POST[$condition]) - 1]) {
+                        //最後の条件,一つのみの条件
+                        ${$condition . "_stmt"} .= $condition . '=' . ${$condition . "_id"} . ';';
+                    } else {
+                        ${$condition . "_stmt"} .= $condition . '=' . ${$condition . "_id"} . ' or ';
+                    }
+                    array_push($_SESSION[$condition], ${$condition . "_id"});
                 }
-                array_push($_SESSION[$condition],${$condition."_id"});
+                ${"filter_" . $condition . "_stmt"} = $db->query(${$condition . "_stmt"});
+                ${"filter_" . $condition} = ${"filter_" . $condition . "_stmt"}->fetchAll();
+                ${"tmp_" . $condition . "_agent"} = [];
+                foreach (${"filter_" . $condition} as $agent) {
+                    array_push(${"tmp_" . $condition . "_agent"}, $agent['agent_id']);
+                    //これを使って他の条件絞り込みとの共通項を出力
+                    //並び替えとの組み合わせは共通項の配列をforeachで回して↓の並び替え文の後にwhere agent_id =? or agent_id=?
+                }
+                //共通項取得
+                $base_agent_id_array = array_intersect($base_agent_id_array, ${"tmp_" . $condition . "_agent"});
+                //消えたところを埋める
+                return $base_agent_id_array = array_merge($base_agent_id_array);
+                print_r('<pre>' . $condition);
+                var_dump($base_agent_id_array);
+                print_r('</pre>');
+            } elseif (!isset($_POST[$condition])) {
+                //絞り込みなしだったら配列そのまま返す
+                $_SESSION[$condition] = [];
+                return $base_agent_id_array = array_merge($base_agent_id_array);
             }
-            ${"filter_" . $condition . "_stmt"} = $db->query(${$condition . "_stmt"});
-            ${"filter_" . $condition} = ${"filter_" . $condition . "_stmt"}->fetchAll();
-            ${"tmp_" . $condition . "_agent"} = [];
-            foreach (${"filter_" . $condition} as $agent) {
-                array_push(${"tmp_" . $condition . "_agent"}, $agent['agent_id']);
-                //これを使って他の条件絞り込みとの共通項を出力
-                //並び替えとの組み合わせは共通項の配列をforeachで回して↓の並び替え文の後にwhere agent_id =? or agent_id=?
-            }
-            //共通項取得
-            $base_agent_id_array = array_intersect($base_agent_id_array, ${"tmp_" . $condition . "_agent"});
-            //消えたところを埋める
-            return $base_agent_id_array = array_merge($base_agent_id_array);
-            print_r('<pre>'.$condition);
-            var_dump($base_agent_id_array);
-            print_r('</pre>');
-        }elseif(!isset($_POST[$condition])){
-            //絞り込みなしだったら配列そのまま返す
-            return $base_agent_id_array=array_merge($base_agent_id_array);
         }
     }
 }
 $filter = new filter;
-

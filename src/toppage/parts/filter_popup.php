@@ -173,7 +173,7 @@
                 </td>
             </tr>
         </table>
-        <input value="この条件で絞り込む" type="submit">
+        <input name="filter" value="この条件で絞り込む" type="submit">
     </form>
 </section>
 <!--cssやjsは17行から20行を編集すればいい。idつけるなど-->
