@@ -163,6 +163,9 @@
     .filter-btn {
         display: none;
     }
+    .close-btn {
+        display: none;
+    }
     /* 並び変え、初心者モーダルのCSS */
     .sort-informations {
         display: flex;
@@ -778,7 +781,7 @@
     .sort-informations {
         justify-content: space-between;
         padding-left: 5%;
-        height: 8%;
+        height: 5%;
     }
     .sorts {
         background-color: #ebebe6;
@@ -803,7 +806,7 @@
     .result-beginner {
         display: flex;
         justify-content: space-around;
-        margin-top: 5%;
+        margin-top: 2%;
         align-items: flex-end;
     }
     .beginner-button-pc {
