@@ -1,4 +1,4 @@
-<section class="top-pagenation-unit">
+<div class="top-pagenation-unit">
 <div class="top-pagenation-parent">
     <div style="display:flex;" class="top-pagenation-all-box">
         <!--緑の箱。paddingつける-->
@@ -9,12 +9,12 @@
         elseif(isset($_GET["agent_list_pagination"])){
             if($_GET["agent_list_pagination"]!=1&&$_GET["agent_list_pagination"]!=NULL){
                 echo '<div class="top-pagenation-each-box"><a class="top-pagenation-arrow" href="index.php?agent_list_pagination=1">&lt;&lt;</a></div>';//<<
-                echo '<div class="top-pagenation-each-box"><><a class="top-pagenation-arrow" href="index.php?agent_list_pagination='.$_GET["agent_list_pagination"]-1;
+                echo '<div class="top-pagenation-each-box"><a class="top-pagenation-arrow" href="index.php?agent_list_pagination='.$_GET["agent_list_pagination"]-1;
                 echo '">&lt;</a></div>';//<
             }
         }
         ?>
-        <div>
+        <div class="top-pagenation-each-box">
         <?php
         if(count($all_agents)<=$agents_per_page){
         }//エージェントの数が一ページに表示するエージェントの数と同じだったらページネーション表示しない
@@ -51,4 +51,4 @@
     ?>
     </div>
 </div>
-</section>
+</div>

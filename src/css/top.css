@@ -6,6 +6,9 @@
     p {
         margin: 0;
     }
+    body{
+        background:#eaedf2;
+    }
     /* header */
     .header-box {
         background-color: #52a49a;
@@ -80,8 +83,8 @@
     /* indicator */
     .progressbar {
         position: relative;
-        margin-top: 20px;
         padding: 0;
+        padding-top: 20px;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
@@ -328,14 +331,33 @@
         border-radius: 20px;
     }
     /* ページネーション */
-    .top-pagenation {
+    .top-pagenation-unit{
+        text-align: right;   
+    }
+    .top-pagenation-parent{
+        display: inline-block;
+        text-align: right;
+        background: #00000000;
+        margin: 10px;
+        padding: 10px 10px;
+    }
+    .top-pagenation-all-box {
+        display:flex;
         justify-content: flex-end;
+        gap: 5px;
     }
-    .top-pagenation a {
-        color: #000;
+    .top-pagenation-each-box {
+        text-align: center;
+        width: 35px;
+        border:#52a49a solid;
+        color: #52a49a ;
+        cursor: pointer;
+        padding: 5px;
     }
-    .top-pagenation a:first-child {
-        margin-left: 5px;
+    .top-pagenation-arrow {
+        color: #52a49a ;
+        text-decoration: none;
+        vertical-align: middle;
     }
     /* モーダルCSS */
     .modal-area {
@@ -575,6 +597,9 @@
 }
 
 @media screen and (max-width: 480px) {
+    body{
+        background: #eaedf2;
+    }
     * {
         margin: 0;
         padding: 0;
@@ -887,7 +912,7 @@
     .top-pagenation-parent{
         display: inline-block;
         text-align: right;
-        background: #52a49a;
+        background: #00000000;
         margin-right: 10%;
         padding: 10px 10px;
     }
@@ -899,13 +924,12 @@
     .top-pagenation-each-box {
         text-align: center;
         width: 25px;
-        background: #fff;
-        /* border-radius: 20px; */
-        color: #000;
+        border:#52a49a solid;
+        color: #52a49a;
         cursor: pointer;
     }
-    .top-pagenatio-arrow {
-        color: #000;
+    .top-pagenation-arrow {
+        color: #52a49a;
         text-decoration: none;
         vertical-align: middle;
     }
