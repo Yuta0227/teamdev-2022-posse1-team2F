@@ -638,7 +638,7 @@
         align-items: center;
     }
     .comparison-compare-info-content-img{
-        width: 50%;
+        width: 70%;
     }
     .comparison-compare-info-content{
         width:25%;
@@ -664,6 +664,9 @@
     * {
         margin: 0;
         padding: 0;
+    }
+    pre{
+        margin: 0;
     }
     /* header */
     .header-box {
@@ -867,7 +870,7 @@
         height: 5%;
     }
     .sorts {
-        background-color: #ebebe6;
+        background-color: #fff;
     }
     .sort-condition {
         height: 40px;
@@ -881,7 +884,7 @@
         justify-content: space-around;
     }
     .sort-button {
-        background-color: #fff;
+        background-color: #feecea;
         height: 40px;
         padding: 0 10px 0 10px;
         border: none;
@@ -958,11 +961,12 @@
         display: inline-block;
         border-radius: 30px;
         background-color: #23a9e2;
-        padding: 10px 20px;
+        /* padding: 10px 20px; */
         margin: 10px;
         color: white;
         border: none;
-        width: 220px;
+        width: 180px;
+        height: 50px;
     }
     .like-icon {
         padding-left: 5px;
@@ -974,11 +978,12 @@
     .top-compare-compare-btn {
         padding: 10px 20px;
         margin: 10px;
-        width: 220px;
+        width: 180px;
+        height: 50px;
         background: #ffab40;
         color: #fff;
         border: none;
-        border-radius: 20px;
+        border-radius: 30px;
     }
     /* ページネーション */
     .top-pagenation-unit{
@@ -1250,7 +1255,7 @@
         font-size: 20px;
     }
     .comparison-compare-info-all-box{
-        width: 80%;
+        width: 90%;
         background: #fff;
         margin: auto; 
         margin-bottom: 20px;  
@@ -1261,24 +1266,33 @@
         border-bottom:1px solid black; 
     }
     .comparison-compare-info-head{
-        width:25%;
+        width:33%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         font-weight: bold;
-        text-align: center;
         margin: 10px;
-        font-size: 20px;
+        /* font-size: 20px; */
+    }
+    .empty-div{
+        display: none;
+    }
+    .comparison-compare-info-contents-box{
+        display: flex;
+        flex-wrap: wrap;
     }
     .comparison-compare-info-content-img-box{
         text-align: center;
-        width: 25%;
+        width: 33%;
         display: flex;
         justify-content: center;
         align-items: center;
     }
     .comparison-compare-info-content-img{
-        width: 50%;
+        width: 90%;
     }
     .comparison-compare-info-content{
-        width:25%;
+        width:33%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -1287,9 +1301,9 @@
         font-size: 18px;
     }
     .comparison-compare-info-btns{
-        width:25%;
+        width:100%;
         display:flex;
-        flex-direction: column;
         justify-content: center;
+        align-items: center;
     }
 }
