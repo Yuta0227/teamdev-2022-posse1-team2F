@@ -597,6 +597,55 @@
         border-radius: 20px;
         border: none;
     }
+    /* 絞り込み */
+    .filter-popup-all-head-box{
+        /* height:100px; */
+        padding: 10px;
+        align-items:center;
+        display:flex;
+        justify-content:center;
+        position:relative;
+        background: #80cbc4;
+    }
+    .filter-popup-all-head{
+        font-weight: bold;
+        font-size: 20px;
+        color: #fff;
+    }
+    .filter-popup-table{
+        width:100%;
+        background: #fff;
+    }
+    .filter-popup-table-open-close-detail{
+        border-bottom:1px solid black;
+        border-top:1px solid black;
+        width:20%;
+        background-color:#efefef;
+        box-sizing:border-box;
+        cursor: pointer;
+    }
+    .filter-popup-reset-conditions{
+        padding: 5px;
+        width: 70%;
+        border-radius: 20px;
+        border: none;
+        background: #00000000;
+    }
+    .filter-popup-reset-conditions:hover{
+        text-decoration: underline;
+    }
+    .filter-popup-confirm-conditions{
+        margin: 10px 5px 5px 5px;
+        padding: 5px;
+        width: 80%;
+        border-radius: 20px;
+        border: none;
+        background: #eb524f;
+        color: #fff;
+    }
+    .filter-popup-confirm-conditions:hover{
+        text-decoration: underline;
+    }
 }
 
 @media screen and (max-width: 480px) {
