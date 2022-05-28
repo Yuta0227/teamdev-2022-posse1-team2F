@@ -80,6 +80,9 @@
         color: #fff;
         text-decoration: none;
     }
+    .footer-link a:hover{
+        text-decoration: underline;
+    }
     /* indicator */
     .progressbar {
         position: relative;
