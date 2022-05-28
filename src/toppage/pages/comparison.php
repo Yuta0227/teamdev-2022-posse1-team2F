@@ -42,6 +42,7 @@ if (isset($_POST['remove_from_apply']) && isset($_POST['agent_id'])) {
     require "../../function.php";
     ?>
     <div class="top-comparison-head">比較リスト選択中<?php echo count($_SESSION['comparison_list']); ?>件</div>
+    <div class="sorts" style="width: 30%;margin:10px;margin-left:5%;">
     <form class="sort-box" action="" method="POST">
         <div>
         <?php
@@ -107,10 +108,12 @@ if (isset($_POST['remove_from_apply']) && isset($_POST['agent_id'])) {
         <input class="sort-button" type="submit" value="比較項目を選択する">
         </div>    
     </form>
-    <div style="display:flex;border-bottom:1px solid black;">
-        <div style="width:25%;">画像</div>
-        <div style="width:25%;">エージェント名</div>
-        <div style="width:25%;">
+    </div>
+<div class="comparison-compare-info-all-box">
+    <div class="comparison-compare-info-in-box">
+        <div class="comparison-compare-info-head">画像</div>
+        <div class="comparison-compare-info-head">エージェント名</div>
+        <div class="comparison-compare-info-head">
             <?php if (isset($_SESSION['comparison_sort_type'])) {
                 $japanese_condition = $translate->translate_column_to_japanese($_SESSION['selected_sort_type']);
                 switch ($japanese_condition) {
@@ -131,6 +134,7 @@ if (isset($_POST['remove_from_apply']) && isset($_POST['agent_id'])) {
             } else {
                 echo '面談方式';
             }; ?></div>
+            <div class="comparison-compare-info-head"></div>
     </div>
     <?php
     if (!isset($_SESSION['apply_list'])) {
@@ -172,16 +176,16 @@ if (isset($_POST['remove_from_apply']) && isset($_POST['agent_id'])) {
                 }
             }
             ${"comparison" . $agent} = ${"comparison" . $agent} = array_merge(${"comparison" . $agent}, array("拠点地" => $prefecture_text));
-            echo '<form method="POST" action="" style="display:flex;height:200px;">
-            <div style="width:25%;"><img style="height:100px;width:100px;" alt="' . ${"comparison" . $agent}['エージェント名'] . 'の画像" src="../../img/article/' . ${"comparison" . $agent}['画像'] . '"></div>
-            <div style="width:25%;">' . ${"comparison" . $agent}['エージェント名'] . '</div>
-            <div style="width:25%;">' . ${"comparison" . $agent}[$japanese_condition] . '</div>
-            <div style="width:25%;display:flex;flex-direction:column;">
-            <input class="like-button" type="submit" name="remove_from_comparison" value="比較リストから削除">';
+            echo '<form method="POST" action="" style="display:flex;height:200px;border-top:solid 1px;">
+            <div class="comparison-compare-info-content-img-box"><img class="comparison-compare-info-content-img" alt="' . ${"comparison" . $agent}['エージェント名'] . 'の画像" src="../../img/article/' . ${"comparison" . $agent}['画像'] . '"></div>
+            <div class="comparison-compare-info-content">' . ${"comparison" . $agent}['エージェント名'] . '</div>
+            <div class="comparison-compare-info-content">' . ${"comparison" . $agent}[$japanese_condition] . '</div>
+            <div class="comparison-compare-info-btns">
+            <input class="top-compare-compare-btn" type="submit" name="remove_from_comparison" value="比較リストから削除">';
             if ($check->exists_in_array($_SESSION['apply_list'], $agent) == true) {
-                echo '<input type="submit" name="remove_from_apply" class="like-button" value="問い合わせリストから削除">';
+                echo '<input class="like-button" type="submit" name="remove_from_apply" value="問い合わせリストから削除">';
             } else {
-                echo '<input type="submit" name="add_to_apply" class="like-button" value="問い合わせリストに追加">';
+                echo '<input class="like-button" type="submit" name="add_to_apply" value="問い合わせリストに追加">';
             }
             echo '</div>
                 <input name="agent_id" value="' . $agent . '" hidden>
@@ -220,16 +224,16 @@ if (isset($_POST['remove_from_apply']) && isset($_POST['agent_id'])) {
                 }
             }
             ${"comparison" . $agent} = ${"comparison" . $agent} = array_merge(${"comparison" . $agent}, array("拠点地" => $prefecture_text));
-            echo '<form method="POST" action="" style="display:flex;height:200px;">
-                    <div style="width:25%;"><img style="width:100px;height:100px;" alt="' . ${"comparison" . $agent}['エージェント名'] . 'の画像" src="../../img/article/' . ${"comparison" . $agent}['画像'] . '"></div>
-                    <div style="width:25%;">' . ${"comparison" . $agent}['エージェント名'] . '</div>
-                    <div style="width:25%;">' . ${"comparison" . $agent}['面談方式'] . '</div>
-                    <div style="width:25%;display:flex;flex-direction:column;">
-                    <input class="like-button" type="submit" name="remove_from_comparison" value="比較リストから削除">';
+            echo '<form method="POST" action="" style="display:flex;height:200px;border-top:solid 1px;">
+                    <div class="comparison-compare-info-content-img-box"><img class="comparison-compare-info-content-img" alt="' . ${"comparison" . $agent}['エージェント名'] . 'の画像" src="../../img/article/' . ${"comparison" . $agent}['画像'] . '"></div>
+                    <div class="comparison-compare-info-content">' . ${"comparison" . $agent}['エージェント名'] . '</div>
+                    <div class="comparison-compare-info-content">' . ${"comparison" . $agent}['面談方式'] . '</div>
+                    <div class="comparison-compare-info-btns">
+                    <input class="top-compare-compare-btn" type="submit" name="remove_from_comparison" value="比較リストから削除">';
             if ($check->exists_in_array($_SESSION['apply_list'], $agent) == true) {
-                echo '<input type="submit" name="remove_from_apply" class="like-button" value="問い合わせリストから削除">';
+                echo '<input class="like-button" type="submit" name="remove_from_apply" value="問い合わせリストから削除">';
             } else {
-                echo '<input type="submit" name="add_to_apply" class="like-button" value="問い合わせリストに追加">';
+                echo '<input class="like-button" type="submit" name="add_to_apply" value="問い合わせリストに追加">';
             }
             echo '</div>
                     <input name="agent_id" value="' . $agent . '" hidden>
@@ -237,7 +241,8 @@ if (isset($_POST['remove_from_apply']) && isset($_POST['agent_id'])) {
         }
     }
     ?>
-
+    </div>
+    <?php require "../parts/footer.php";?>
 </body>
 
 </html>

@@ -3,6 +3,9 @@
         margin: 0;
         padding: 0;
     }
+    pre{
+        margin: 0;
+    }
     p {
         margin: 0;
     }
@@ -176,7 +179,7 @@
         padding-left: 5%;
     }
     .sorts {
-        background-color: #ebebe6;
+        background-color: #fff;
     }
     .sort-condition {
         height: 40px;
@@ -184,15 +187,16 @@
     }
     .sort-box {
         display: flex;
-        width: 50%;
+        justify-content: space-evenly;
         padding: 10px;
         gap: 10px;
     }
     .sort-button {
-        background-color: #fff;
+        background-color: #feecea;
         height: 40px;
         padding: 0 10px 0 10px;
-        border: none;
+        border: solid 1px;
+        font-weight: bold;
     }
     .beginner-button-pc {
         border-radius: 20px;
@@ -255,10 +259,12 @@
     .like-button {
         display: inline-block;
         border-radius: 30px;
-        background-color: #71ccc0;
-        padding: 5px;
-        margin: 5px;
+        background-color: #23a9e2;
+        padding: 10px 20px;
+        margin: 10px;
         color: white;
+        border: none;
+        width: 220px;
     }
     .like-icon {
         padding-left: 5px;
@@ -328,6 +334,7 @@
     .top-compare-compare-btn {
         padding: 10px 20px;
         margin: 10px;
+        width: 220px;
         background: #ffab40;
         color: #fff;
         border: none;
@@ -602,7 +609,51 @@
     .top-comparison-head{
         padding-top: 10px;
         padding-left: 5%;
-        font-weight: bolder
+        font-weight: bolder;
+        font-size: 20px;
+    }
+    .comparison-compare-info-all-box{
+        width: 80%;
+        background: #fff;
+        margin: auto; 
+        margin-bottom: 20px;  
+    }
+    .comparison-compare-info-in-box{
+        display:flex;
+        justify-content: space-evenly;
+        border-bottom:1px solid black; 
+    }
+    .comparison-compare-info-head{
+        width:25%;
+        font-weight: bold;
+        text-align: center;
+        margin: 10px;
+        font-size: 20px;
+    }
+    .comparison-compare-info-content-img-box{
+        text-align: center;
+        width: 25%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .comparison-compare-info-content-img{
+        width: 50%;
+    }
+    .comparison-compare-info-content{
+        width:25%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        padding: 10px;
+        font-size: 18px;
+    }
+    .comparison-compare-info-btns{
+        width:25%;
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
     }
 }
 
@@ -906,14 +957,28 @@
     .like-button {
         display: inline-block;
         border-radius: 30px;
-        background-color: #71ccc0;
-        padding: 5px;
-        margin: 5px;
+        background-color: #23a9e2;
+        padding: 10px 20px;
+        margin: 10px;
         color: white;
+        border: none;
+        width: 220px;
     }
     .like-icon {
         padding-left: 5px;
         color: red;
+    }
+    .top-compare-btn-box {
+        text-align: center;
+    }
+    .top-compare-compare-btn {
+        padding: 10px 20px;
+        margin: 10px;
+        width: 220px;
+        background: #ffab40;
+        color: #fff;
+        border: none;
+        border-radius: 20px;
     }
     /* ページネーション */
     .top-pagenation-unit{
@@ -1176,5 +1241,55 @@
         padding: 10px 20px;
         border-radius: 20px;
         border: none;
+    }
+    /* 比較ページCSS */
+    .top-comparison-head{
+        padding-top: 10px;
+        padding-left: 5%;
+        font-weight: bolder;
+        font-size: 20px;
+    }
+    .comparison-compare-info-all-box{
+        width: 80%;
+        background: #fff;
+        margin: auto; 
+        margin-bottom: 20px;  
+    }
+    .comparison-compare-info-in-box{
+        display:flex;
+        justify-content: space-evenly;
+        border-bottom:1px solid black; 
+    }
+    .comparison-compare-info-head{
+        width:25%;
+        font-weight: bold;
+        text-align: center;
+        margin: 10px;
+        font-size: 20px;
+    }
+    .comparison-compare-info-content-img-box{
+        text-align: center;
+        width: 25%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .comparison-compare-info-content-img{
+        width: 50%;
+    }
+    .comparison-compare-info-content{
+        width:25%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        padding: 10px;
+        font-size: 18px;
+    }
+    .comparison-compare-info-btns{
+        width:25%;
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
     }
 }
