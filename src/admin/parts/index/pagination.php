@@ -9,8 +9,8 @@
         } //エージェントの数が一ページに表示するエージェントの数と同じだったらページネーション表示しない
         elseif (isset($_GET["agent_list_pagination"])) {
             if ($_GET["agent_list_pagination"] != 1 && $_GET["agent_list_pagination"] != NULL) {
-                echo '<div><a href="index.php?agent_list_pagination=1">&lt;&lt;</a></div>'; //<<
-                echo '<div><a href="index.php?agent_list_pagination=' . $_GET["agent_list_pagination"] - 1;
+                echo '<div class="admin-pagenation-number"><a class="admin-pagenation-arrow" href="index.php?agent_list_pagination=1">&lt;&lt;</a></div>'; //<<
+                echo '<div class="admin-pagenation-number"><a class="admin-pagenation-arrow" href="index.php?agent_list_pagination=' . $_GET["agent_list_pagination"] - 1;
                 echo '">&lt;</a></div>'; //<
             }
         }
@@ -36,7 +36,7 @@
         elseif (isset($_GET["agent_list_pagination"])) {
             if ($_GET["agent_list_pagination"] != ceil(count($agent_list_array) / $agents_per_page)) {
                 if ($_GET["agent_list_pagination"] == NULL) { //最初のページかつパラメータなし
-                    echo '<div class="admin-pagenation-arrow"><a href="index.php?agent_list_pagination=2">&gt;</a></div>'; //>
+                    echo '<div class="admin-pagenation-arrow"><a class="admin-pagenation-arrow" href="index.php?agent_list_pagination=2">&gt;</a></div>'; //>
                 } else {
                     echo '<div class="admin-pagenation-number"><a class="admin-pagenation-arrow" href="index.php?agent_list_pagination=' . $_GET["agent_list_pagination"] + 1;
                     echo '">&gt;</a></div>'; //>
