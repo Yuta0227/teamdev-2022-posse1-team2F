@@ -19,7 +19,7 @@
     <form action="" method="POST" id="filter" style="width:100%;background:#fff;">
         <div class="filter-popup-all-head-box">
             <div class="filter-popup-all-head">絞り込み条件</div>
-            <div id="close-btn" class="close-btn" style="position:absolute;top:0;right:0;border-radius:20px;padding:5px;border:1px solid black;text-align:center;">✕</div>
+            <div id="close-btn" class="close-btn" style="position:absolute;top:5px;right:5px;border-radius:20px;padding:5px;width:30px;text-align:center;">✕</div>
         </div>
 
         <table class="filter-popup-table">

@@ -909,7 +909,7 @@
         background-color: #fff;
         height: 40px;
         padding: 10px;
-        border: none;
+        border: solid 1px;
     }
     .none {
         display: none;
