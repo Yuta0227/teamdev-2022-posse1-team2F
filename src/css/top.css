@@ -1,0 +1,1583 @@
+@media screen and (min-width: 481px) {
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    pre {
+        margin: 0;
+    }
+    p {
+        margin: 0;
+    }
+    body {
+        background: #eaedf2;
+    }
+    /* header */
+    .header-box {
+        background-color: #52a49a;
+    }
+    .each-menu {
+        font-weight: bold;
+    }
+    .each-menu:hover {
+        text-decoration: underline;
+    }
+    .logo-box {
+        text-align: center;
+    }
+    .header-logo {
+        width: 150px;
+    }
+    .header-bottom-box {
+        display: flex;
+        justify-content: space-between;
+    }
+    .header-menu {
+        padding-left: 5%;
+        /* gap: 20px; */
+        display: flex;
+        justify-content: space-between;
+        width: 60%;
+        color: #fff;
+        cursor: pointer;
+        margin: 0;
+        align-items: center;
+    }
+    .header-cart-box {
+        display: inline-block;
+        margin-right: 10px;
+        cursor: pointer;
+    }
+    .header-cart-box a {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+    }
+    .header-cart-box a:hover {
+        text-decoration: underline;
+        text-decoration-color: #fff;
+    }
+    .header-cart-text {
+        display: inline-block;
+        color: #fff;
+        font-weight: bold;
+        text-decoration: none;
+    }
+    .header-cart {
+        display: inline-block;
+        padding: 20px 20px 20px 10px;
+        position: relative;
+    }
+    .mail-icon {
+        color: #fff;
+    }
+    .cart-count {
+        display: inline-block;
+        position: absolute;
+        top: 10px;
+        right: 8px;
+        color: #fff;
+        background-color: rgb(250, 53, 53);
+        width: 24px;
+        text-align: center;
+        border-radius: 12px;
+    }
+    /* footer */
+    .footer-all-box {
+        background-color: #52a49a;
+    }
+    .footer-top-box {
+        padding: 10px 0 10px 0;
+        text-align: center;
+    }
+    .footer-img {
+        width: 200px;
+    }
+    .footer-links {
+        display: flex;
+        justify-content: center;
+        padding: 10px 0 10px 0;
+    }
+    .footer-link {
+        display: inline-block;
+        margin: 0 10px 0 10px;
+    }
+    .footer-link a {
+        color: #fff;
+        text-decoration: none;
+    }
+    .footer-link a:hover {
+        text-decoration: underline;
+    }
+    /* indicator */
+    .progressbar {
+        background: #fff;
+        position: relative;
+        padding: 0;
+        padding-top: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .progressbar li {
+        position: relative;
+        list-style-type: none;
+        text-align: center;
+        text-transform: uppercase;
+        width: 20%;
+        color: #999999;
+        font-weight: bold;
+        z-index: 2;
+    }
+    .progressbar li:before {
+        display: block;
+        width: 18px;
+        height: 18px;
+        margin: 7px auto 20px auto;
+        content: "";
+        text-align: center;
+        border-radius: 50%;
+        background-color: #f5f5f5;
+    }
+    .progressbar li:after {
+        position: absolute;
+        /* z-index: -1; */
+        top: 15px;
+        left: -80%;
+        width: 125%;
+        height: 2px;
+        content: "";
+        background-color: #f5f5f5;
+    }
+    .progressbar li:first-child:after {
+        content: none;
+    }
+    .progressbar li.active,
+    .progressbar li.complete {
+        color: #008fb7;
+    }
+    .progressbar li.active:before,
+    .progressbar li.complete:before {
+        background-color: #008fb7;
+    }
+    .progressbar li.active:after,
+    .progressbar li.complete:after {
+        background-color: #008fb7;
+    }
+    /* トップページの一覧とサイドバーのdiv */
+    .main-informations {
+        display: flex;
+    }
+    .main-informations section {
+        width: 70%;
+    }
+    .filter-box {
+        width: 30%;
+        margin-bottom: 15px;
+    }
+    /* 絞り込みポップアップ */
+    .filter {
+        text-align: center;
+        margin: auto;
+        border: solid;
+        /*わかりやすいようにつけた、最終的には消す*/
+    }
+    .filter-contents {
+        display: flex;
+        justify-content: space-around;
+        margin: 10px;
+    }
+    .filter-content {
+        background-color: #ebebe6;
+        padding: 10px;
+        width: 40%;
+    }
+    .filter-topic {
+        background-color: #b5dad5;
+    }
+    .filter-btn {
+        display: none;
+    }
+    .close-btn {
+        display: none;
+    }
+    /* 並び変え、初心者モーダルのCSS */
+    .sort-informations {
+        display: flex;
+        justify-content: space-between;
+        padding-left: 5%;
+    }
+    .sorts {
+        background-color: #fff;
+    }
+    .sort-condition {
+        height: 40px;
+        background-color: #fff;
+    }
+    .sort-box {
+        display: flex;
+        justify-content: space-evenly;
+        padding: 10px;
+        gap: 10px;
+    }
+    .sort-button {
+        background-color: #feecea;
+        height: 40px;
+        padding: 0 10px 0 10px;
+        border: solid 1px;
+        font-weight: bold;
+    }
+    .beginner-button-pc {
+        border-radius: 20px;
+        padding: 0 15px 0 15px;
+        border: none;
+        background: #fff;
+    }
+    .beginner-button-sp {
+        display: none;
+    }
+    .result-number {
+        padding-top: 10px;
+        padding-left: 5%;
+        font-weight: bolder;
+    }
+    /* 企業一覧 */
+    .agent-whole-box {
+        background: #e;
+        position: relative;
+        top: 0;
+        left: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        padding-left: 5%;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .agent-overview-box {
+        width: calc(50% - 10px);
+        padding: 5px;
+        border: solid;
+        border-color: #999999;
+        cursor: pointer;
+        background: #fff;
+    }
+    .agent-overview-box a {
+        color: black;
+        text-decoration: none;
+    }
+    .agent-name {
+        padding-left: 10px;
+        font-weight: bolder;
+        font-size: 30px;
+    }
+    .agent-name:hover {
+        text-decoration: underline;
+    }
+    .agent-article {
+        width: 60%;
+    }
+    .agent-list-image {
+        width: 100%;
+    }
+    .image-box {
+        display: inline-block;
+        width: 50%;
+    }
+    .agent-short-explanation {
+        margin: 3% 5% 3% 5%;
+    }
+    .like-button {
+        display: inline-block;
+        border-radius: 30px;
+        background-color: #23a9e2;
+        padding: 10px 20px;
+        margin: 10px 0;
+        color: white;
+        border: none;
+        width: 220px;
+    }
+    .like-icon {
+        padding-left: 5px;
+        color: red;
+    }
+    /* 企業比較 */
+    .top-compare-over-lay {
+        border: solid 1px;
+        width: 100%;
+        /* height: 300px; */
+        margin: auto;
+        bottom: 0;
+        position: fixed;
+        background: #fff;
+    }
+    .top-compare-head {
+        font-size: 22px;
+        font-weight: bold;
+        margin: 0px;
+    }
+    .compare-over-lay-close-btn {
+        margin: 5px;
+        width: 30px;
+        position: absolute;
+        right: 0%;
+        bottom: 0%;
+        cursor: pointer;
+        font-size: 20px;
+        text-align: center;
+        border-radius: 15px;
+        background: #ddd;
+    }
+    .compare-close-btn-icon {
+        color: #fff;
+    }
+    .top-compare-in-box {
+        display: flex;
+        overflow-x: scroll;
+        /* flex-wrap: wrap; */
+    }
+    .top-compare-each-box {
+        width: 200px;
+        height: 100px;
+        display: flex;
+        padding: 0 0px 10px 10px;
+        margin: 10px;
+        border: solid 1px;
+        border-color: #ddd;
+    }
+    .top-compare-each-box img {
+        object-fit: fill;
+    }
+    .compare-each-close-btn {
+        display: block;
+        text-align: center;
+        width: 24px;
+        height: 24px;
+        border-radius: 12px;
+        background: #ddd;
+        font-size: 16px;
+        margin: 5px 5px 0 auto;
+        padding: 0 5px 25px;
+        border: none;
+        color: #fff;
+        /* margin-left: auto; */
+        right: 0;
+    }
+    .top-compare-each-img {
+        /* height: 70%; */
+        width: 50%;
+    }
+    .top-compare-each-name {
+        display: inline-block;
+    }
+    .top-compare-btn-box {
+        text-align: center;
+    }
+    .top-compare-compare-btn {
+        padding: 10px 20px;
+        margin: 10px 0;
+        width: 220px;
+        background: #ffab40;
+        color: #fff;
+        border: none;
+        border-radius: 20px;
+    }
+    .form-img-p {
+        display: flex;
+        flex-flow: column;
+        object-fit: fill;
+    }
+    /* ページネーション */
+    .top-pagenation-unit {
+        text-align: right;
+    }
+    .top-pagenation-parent {
+        display: inline-block;
+        text-align: right;
+        background: #00000000;
+        margin: 10px;
+        padding: 10px 10px;
+    }
+    .top-pagenation-all-box {
+        display: flex;
+        justify-content: flex-end;
+        gap: 5px;
+    }
+    .top-pagenation-each-box {
+        text-align: center;
+        width: 35px;
+        border: #52a49a solid;
+        color: #52a49a;
+        cursor: pointer;
+        padding: 5px;
+    }
+    .top-pagenation-arrow {
+        color: #52a49a;
+        text-decoration: none;
+        vertical-align: middle;
+    }
+    /* モーダルCSS */
+    .agent-list-result-none-texts{
+        height: 800px;
+    }
+    .modal-area {
+        position: absolute;
+        display: none;
+        z-index: 10;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    .modal-bg {
+        width: 100%;
+        height: 100%;
+        background-color: rgba(30, 30, 30, 0.9);
+    }
+    .modal-wrapper {
+        position: absolute;
+        top: 0%;
+        left: 50%;
+        transform: translate(-50%, 0%);
+        width: 70%;
+        max-width: 500px;
+        padding: 10px 30px;
+        background-color: #fff;
+        margin-top: 10px;
+        height: 90%;
+        overflow: scroll;
+    }
+    .close-modal {
+        position: absolute;
+        top: 0.5rem;
+        right: 1rem;
+        cursor: pointer;
+    }
+    
+    /* モーダル内タブ切り替え */
+    ..tab-wrap {
+        width: 500px;
+        margin: 80px auto;
+    }
+    input[type="radio"] {
+        display: none;
+    }
+    .tab_area {
+        font-size: 0;
+        margin: 0 10px;
+        display: flex;
+    }
+    .tab_area label {
+        width: 30%;
+        margin: 0 5px;
+        display: inline-block;
+        padding: 12px 0;
+        background: #d7e9ea;
+        color: #000;
+        text-align: center;
+        font-size: 13px;
+        cursor: pointer;
+        transition: ease 0.2s opacity;
+    }
+    .tab_area :not(:first-child) {
+        color: #999;
+        background: #ddd;
+    }
+    .tb_area label:hover {
+        opacity: 0.5;
+    }
+    .panel-area {
+        background: #fff;
+        border-bottom-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-top: 8px solid #d7e9ea;
+        /* height: 90%; */
+    }
+    .tab-panel {
+        width: 100%;
+        padding: 40px 0;
+        /* display:none; */
+    }
+    .tab-panel p {
+        font-size: 14px;
+        letter-spacing: 1px;
+    }
+    .tab1-label,
+    .tab2-label,
+    .tab3-label {
+        justify-content: space-between;
+    }
+    #tab1:checked~.tab_area .tab1-label {
+        background: #d7e9ea;
+        color: #000;
+    }
+    #tab1:checked~.tab_area .tab2-label {
+        color: #999;
+        background: #ddd;
+    }
+    #tab1:checked~.tab_area .tab3-label {
+        color: #999;
+        background: #ddd;
+    }
+    #tab1:checked~.panel-area #panel1 {
+        display: block;
+    }
+    #panel2 {
+        display: none;
+    }
+    #tab1:checked~.panel-area #panel1 {
+        display: block;
+    }
+    #panel3 {
+        display: none;
+    }
+    #tab2:checked~.tab_area .tab2-label {
+        background: #d7e9ea;
+        color: #000;
+    }
+    #tab2:checked~.tab_area .tab1-label {
+        color: #999;
+        background: #ddd;
+    }
+    #tab2:checked~.tab_area .tab3-label {
+        color: #999;
+        background: #ddd;
+    }
+    #tab2:checked~.panel-area #panel2 {
+        display: block;
+    }
+    #tab2:checked~.panel-area #panel1 {
+        display: none;
+    }
+    #tab2:checked~.panel-area #panel3 {
+        display: none;
+    }
+    #tab3:checked~.tab_area .tab3-label {
+        background: #d7e9ea;
+        color: #000;
+    }
+    #tab3:checked~.tab_area .tab1-label {
+        color: #999;
+        background: #ddd;
+    }
+    #tab3:checked~.tab_area .tab2-label {
+        color: #999;
+        background: #ddd;
+    }
+    #tab3:checked~.panel-area #panel3 {
+        display: block;
+    }
+    #tab3:checked~.panel-area #panel1 {
+        display: none;
+    }
+    #tab3:checked~.panel-area #panel2 {
+        display: none;
+    }
+    .tab-panel ul li {
+        line-height: 1.5;
+        padding: 0.5em 0;
+        list-style-position: inside;
+        /* list-style-type: none!important; */
+    }
+    .tabpanel ul {
+        margin-top: 20px;
+    }
+    .tabpanel ol li {
+        line-height: 1.5;
+        padding: 0.5em 0;
+        list-style-position: inside;
+    }
+    .guide-popup-sort-explanation {
+        list-style: none;
+    }
+    /* 企業詳細ページ */
+    .agent-detail {
+        background: #eaedf2;
+        padding: 20px 0;
+    }
+    .agent-detail-box {
+        background: #fff;
+        padding-bottom: 100px;
+        width: 80%;
+        height: 90%;
+        margin: 0px auto;
+    }
+    .agent-detail-name h1 {
+        width: 90%;
+        margin: auto;
+        text-decoration: underline;
+        text-decoration-color: #a5d0ca;
+        padding: 10px 10px;
+    }
+    .agent-detail-top-box {
+        display: flex;
+        padding: 0 5%;
+        width: 100%;
+    }
+    .agent-detail-top-box img {
+        margin: 20px 20px 20px 0;
+        /* margin-left: 5%; */
+        width: 25%;
+    }
+    .agent-detail-table-box {
+        margin: 10px 5%;
+    }
+    .agent-detail-table {
+        border: solid 1px;
+        padding: 10px;
+    }
+    .agent-detail-table-whole {
+        width: 100%;
+    }
+    .agent-detail-table-th {
+        background-color: #deeeec;
+        width: 20%;
+    }
+    .detail-recomend {
+        margin: 20px 0 20px 20px;
+        background: #e5e5e5;
+        padding: 20px 0 20px 25px;
+        width: 100%;
+    }
+    .detail-feature {
+        margin: 5%;
+    }
+    .detail-feature h2 {
+        text-decoration: underline;
+        text-decoration-color: #a5d0ca;
+    }
+    .agent-add-btn {
+        text-align: center;
+        padding: 20px 0;
+    }
+    .agent-add-btn button {
+        font-size: 20px;
+        font-weight: bold;
+        background: #93c9c2;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 20px;
+        border: none;
+    }
+    /* 絞り込み */
+    .filter-popup-all-head-box {
+        /* height:100px; */
+        padding: 10px;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        position: relative;
+        background: #80cbc4;
+    }
+    .filter-popup-all-head {
+        font-weight: bold;
+        font-size: 20px;
+        color: #fff;
+    }
+    .filter-popup-table {
+        width: 100%;
+        background: #fff;
+    }
+    .filter-popup-table-open-close-detail {
+        border-bottom: 1px solid black;
+        border-top: 1px solid black;
+        width: 20%;
+        background-color: #efefef;
+        box-sizing: border-box;
+        cursor: pointer;
+    }
+    .filter-popup-reset-conditions {
+        padding: 5px;
+        width: 70%;
+        border-radius: 20px;
+        border: none;
+        background: #00000000;
+    }
+    .filter-popup-reset-conditions:hover {
+        text-decoration: underline;
+    }
+    .filter-popup-confirm-conditions {
+        margin: 10px 5px 5px 5px;
+        padding: 5px;
+        width: 80%;
+        border-radius: 20px;
+        border: none;
+        background: #eb524f;
+        color: #fff;
+    }
+    .filter-popup-confirm-conditions:hover {
+        text-decoration: underline;
+    }
+    /* 比較ページCSS */
+    .top-comparison-head {
+        padding-top: 10px;
+        padding-left: 5%;
+        font-weight: bolder;
+        font-size: 20px;
+    }
+    .comparison-compare-info-all-box {
+        width: 80%;
+        background: #fff;
+        margin: auto;
+        margin-bottom: 20px;
+    }
+    .comparison-compare-info-in-box {
+        display: flex;
+        justify-content: space-evenly;
+        border-bottom: 1px solid black;
+    }
+    .comparison-compare-info-head {
+        width: 25%;
+        font-weight: bold;
+        text-align: center;
+        margin: 10px;
+        font-size: 20px;
+    }
+    .comparison-compare-info-content-img-box {
+        text-align: center;
+        width: 25%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .comparison-compare-info-content-img {
+        width: 70%;
+    }
+    .comparison-compare-info-content {
+        width: 25%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        padding: 10px;
+        font-size: 18px;
+    }
+    .comparison-compare-info-btns {
+        width: 25%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    body {
+        background: #eaedf2;
+    }
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    pre {
+        margin: 0;
+    }
+    /* header */
+    .header-box {
+        background-color: #52a49a;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        height: 100px;
+        z-index: 100;
+    }
+    .logo-box {
+        text-align: center;
+    }
+    .header-logo {
+        width: 150px;
+    }
+    .header-bottom-box {
+        display: flex;
+        justify-content: space-between;
+    }
+    .header-menu {
+        padding-left: 5%;
+        /* gap: 20px; */
+        display: flex;
+        justify-content: space-between;
+        width: 60%;
+        color: #fff;
+        cursor: pointer;
+        margin: 0;
+        align-items: center;
+    }
+    .agent-login-sp {
+        display: none;
+    }
+    .header-cart-box {
+        display: inline-block;
+        margin-right: 10px;
+    }
+    .header-cart-box a {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+    }
+    .header-cart {
+        display: inline-block;
+        padding: 20px 20px 20px 10px;
+        position: relative;
+    }
+    .header-cart-text {
+        display: inline-block;
+        color: #fff;
+        /* font-weight: bold; */
+        text-decoration: none;
+    }
+    .mail-icon {
+        color: #fff;
+    }
+    .cart-count {
+        display: inline-block;
+        position: absolute;
+        top: 10px;
+        right: 8px;
+        color: #fff;
+        background-color: rgb(250, 53, 53);
+        width: 24px;
+        text-align: center;
+        border-radius: 12px;
+    }
+    /* footer */
+    .footer-all-box {
+        background-color: #52a49a;
+    }
+    .footer-top-box {
+        padding: 10px 0 10px 0;
+        text-align: center;
+    }
+    .footer-img {
+        width: 200px;
+    }
+    .footer-links {
+        text-align: center;
+        padding: 10px 0 10px 0;
+    }
+    .footer-link {
+        display: inline-block;
+        margin: 0 10px 0 10px;
+    }
+    .footer-link a {
+        color: #fff;
+        text-decoration: none;
+    }
+    /* indicator */
+    .progressbar {
+        background: #fff;
+        position: relative;
+        margin-top: 100px;
+        padding-top: 10px;
+        padding-left: 2%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+    .progressbar li {
+        position: relative;
+        list-style-type: none;
+        text-align: center;
+        text-transform: uppercase;
+        width: 20%;
+        color: #999999;
+        font-weight: bold;
+    }
+    .progressbar li:before {
+        display: block;
+        width: 18px;
+        height: 18px;
+        margin: 7px auto 10px auto;
+        content: "";
+        text-align: center;
+        border-radius: 50%;
+        background-color: #f5f5f5;
+    }
+    .progressbar li:after {
+        position: absolute;
+        /* z-index: -1; */
+        top: 15px;
+        left: -80%;
+        width: 125%;
+        height: 2px;
+        content: "";
+        background-color: #f5f5f5;
+    }
+    .progressbar li:first-child:after {
+        content: none;
+    }
+    .progressbar li.active,
+    .progressbar li.complete {
+        color: #008fb7;
+    }
+    .progressbar li.active:before,
+    .progressbar li.complete:before {
+        background-color: #008fb7;
+    }
+    .progressbar li.active:after,
+    .progressbar li.complete:after {
+        background-color: #008fb7;
+    }
+    /* テスト */
+    /* トップページの一覧とサイドバーのdiv */
+    .main-informations {
+        display: flex;
+    }
+    .main-informations section {
+        width: 95%;
+    }
+    .filter-box {
+        position: fixed;
+        z-index: 100000;
+        top: 50%;
+        left: 50%;
+        transform: translateY(-50%) translateX(-50%);
+        -webkit-transform: translateY(-50%) translateX(-50%);
+        /* background-color: #999; */
+        overflow-y: auto;
+        /* スマホ用スクロール */
+        -webkit-overflow-scrolling: touch;
+        overflow-scrolling: touch;
+        /* お好みで */
+        width: 90%;
+    }
+    /* 絞り込みポップアップ */
+    .none {
+        display: none;
+    }
+    .filter {
+        text-align: center;
+        margin: auto;
+        border: solid;
+        background-color: #999;
+        /*わかりやすいようにつけた、最終的には消す*/
+    }
+    .close-btn {
+        background-color: #fff;
+        color: #000;
+        text-align: right;
+        padding-right: 3%;
+    }
+    .filter-contents {
+        display: flex;
+        justify-content: space-around;
+        margin: 10px;
+    }
+    .filter-content {
+        background-color: #ebebe6;
+        padding: 10px;
+        width: 40%;
+    }
+    .filter-topic {
+        background-color: #b5dad5;
+    }
+    .filter-btn {
+        background-color: #fff;
+        height: 40px;
+        padding: 0 10px;
+        border: solid 1px;
+    }
+    .none {
+        display: none;
+    }
+    /* 並び変え、初心者モーダルのCSS */
+    .below-indecator {
+        display: flex;
+        flex-flow: column;
+        padding-left: 5%;
+    }
+    .sort-informations {
+        justify-content: space-between;
+    }
+    .sorts {
+        background-color: #fff;
+    }
+    .sort-condition {
+        height: 40px;
+        background-color: #fff;
+    }
+    .sort-box {
+        display: flex;
+        padding: 10px;
+        gap: 10px;
+        display: flex;
+        justify-content: space-around;
+    }
+    .sort-button {
+        background-color: #feecea;
+        height: 40px;
+        padding: 0 10px 0 10px;
+        border: none;
+    }
+    .result-beginner {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 2%;
+        align-items: flex-end;
+    }
+    .beginner-button-pc {
+        display: none;
+    }
+    .beginner-button-sp {
+        border-radius: 20px;
+        padding: 1%;
+        width: 45%;
+        background: #fff;
+        border: none;
+    }
+    .result-number {
+        padding-top: 10px;
+        /* padding-left: 5%; */
+        font-weight: bolder;
+        font-size: x-large;
+    }
+    /* 企業一覧 */
+    .agent-whole-box {
+        position: relative;
+        top: 0;
+        left: 0;
+        /* display: flex; */
+        flex-wrap: wrap;
+        gap: 10px;
+        padding-left: 5%;
+        margin-top: 2%;
+        margin-bottom: 20px;
+        /* width: 100%; */
+    }
+    .agent-overview-box {
+        width: calc(50% - 10px);
+        padding: 5px;
+        border: solid;
+        border-color: #999999;
+        cursor: pointer;
+        width: 100%;
+        margin-bottom: 2%;
+        background: #fff;
+    }
+    .agent-overview-box a {
+        color: black;
+        text-decoration: none;
+    }
+    .agent-name {
+        padding-left: 10px;
+        font-weight: bolder;
+        font-size: 30px;
+    }
+    .agent-name:hover {
+        text-decoration: underline;
+    }
+    .agent-article {
+        width: 60%;
+    }
+    .agent-list-image {
+        width: 100%;
+    }
+    .image-box {
+        display: inline-block;
+        width: 50%;
+    }
+    .agent-short-explanation {
+        margin: 3% 5% 3% 5%;
+    }
+    .like-button {
+        display: inline-block;
+        border-radius: 30px;
+        background-color: #23a9e2;
+        /* padding: 10px 20px; */
+        margin: 10px;
+        color: white;
+        border: none;
+        width: 180px;
+        height: 50px;
+    }
+    .like-icon {
+        padding-left: 5px;
+        color: red;
+    }
+    /* 企業比較 */
+    .top-compare-over-lay {
+        border: solid 1px;
+        width: 100%;
+        /* height: 15%; */
+        margin: auto;
+        bottom: 0;
+        position: fixed;
+        background: #fff;
+        /* height: 10%; */
+    }
+    .top-compare-head {
+        font-size: 22px;
+        font-weight: bold;
+        margin: 0px;
+    }
+    .compare-over-lay-close-btn {
+        margin: 5px;
+        width: 30px;
+        position: absolute;
+        right: 0%;
+        bottom: 0%;
+        cursor: pointer;
+        font-size: 20px;
+        text-align: center;
+        border-radius: 15px;
+        background: #ddd;
+    }
+    .compare-close-btn-icon {
+        color: #fff;
+    }
+    .top-compare-in-box {
+        display: flex;
+        overflow-x: scroll;
+        white-space: nowrap;
+        /* flex-wrap: wrap; */
+    }
+    .top-compare-each-box {
+        width: 300px;
+        height: 100px;
+        display: flex;
+        padding: 0 0px 10px 10px;
+        margin: 10px;
+        border: solid 1px;
+        border-color: #ddd;
+    }
+    .compare-each-close-btn {
+        display: block;
+        text-align: center;
+        width: 24px;
+        height: 24px;
+        border-radius: 12px;
+        background: #ddd;
+        font-size: 16px;
+        margin: 5px 5px 0 auto;
+        padding: 0 5px 25px;
+        border: none;
+        color: #fff;
+        /* margin-left: auto; */
+        right: 0;
+    }
+    .top-compare-each-img {
+        width: 65%;
+    }
+    .top-compare-each-name {
+        display: inline-block;
+    }
+    .top-compare-btn-box {
+        text-align: center;
+    }
+    .top-compare-compare-btn {
+        padding: 10px 20px;
+        margin: 10px 0;
+        width: 220px;
+        background: #ffab40;
+        color: #fff;
+        border: none;
+        border-radius: 20px;
+    }
+    .form-img-p {
+        display: flex;
+        flex-flow: column;
+    }
+    /* ページネーション */
+    .top-pagenation-unit {
+        text-align: right;
+    }
+    .top-pagenation-parent {
+        display: inline-block;
+        text-align: right;
+        background: #00000000;
+        margin-right: 10%;
+        padding: 10px 10px;
+    }
+    .top-pagenation-all-box {
+        display: flex;
+        justify-content: flex-end;
+        gap: 5px;
+    }
+    .top-pagenation-each-box {
+        text-align: center;
+        width: 25px;
+        border: #52a49a solid;
+        color: #52a49a;
+        cursor: pointer;
+    }
+    .top-pagenation-arrow {
+        color: #52a49a;
+        text-decoration: none;
+        vertical-align: middle;
+    }
+    .agent-list-result-none-texts{
+        height: 800px;
+    }
+    .modal-area {
+        position: absolute;
+        display: none;
+        z-index: 10;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    .modal-bg {
+        width: 100%;
+        height: 100%;
+        background-color: rgba(30, 30, 30, 0.9);
+    }
+    .modal-wrapper {
+        position: absolute;
+        top: 0%;
+        left: 50%;
+        transform: translate(-50%, 0%);
+        width: 70%;
+        max-width: 500px;
+        padding: 10px 30px;
+        background-color: #fff;
+        margin-top: 10px;
+        height: 90%;
+        overflow: scroll;
+    }
+    .close-modal {
+        position: absolute;
+        top: 0.5rem;
+        right: 1rem;
+        cursor: pointer;
+    }
+    /* モーダルCSS */
+    .modal-area {
+        position: absolute;
+        display: none;
+        z-index: 10;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    .modal-bg {
+        width: 100%;
+        height: 100%;
+        background-color: rgba(30, 30, 30, 0.9);
+    }
+    .modal-wrapper {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 70%;
+        max-width: 500px;
+        padding: 10px 30px;
+        background-color: #fff;
+    }
+    .close-modal {
+        position: absolute;
+        top: 0.5rem;
+        right: 1rem;
+        cursor: pointer;
+    }
+    /* モーダル内タブ切り替え */
+    ..tab-wrap {
+        width: 500px;
+        margin: 80px auto;
+    }
+    input[type="radio"] {
+        display: none;
+    }
+    .tab_area {
+        font-size: 0;
+        margin: 0 10px;
+        display: flex;
+    }
+    .tab_area label {
+        width: 30%;
+        margin: 0 5px;
+        display: inline-block;
+        padding: 12px 0;
+        background: #d7e9ea;
+        color: #000;
+        text-align: center;
+        font-size: 13px;
+        cursor: pointer;
+        transition: ease 0.2s opacity;
+    }
+    .tab_area :not(:first-child) {
+        color: #999;
+        background: #ddd;
+    }
+    .tb_area label:hover {
+        opacity: 0.5;
+    }
+    .panel-area {
+        background: #fff;
+        border-bottom-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-top: 8px solid #d7e9ea;
+        /* height: 90%; */
+    }
+    .tab-panel {
+        width: 100%;
+        padding: 10px 0;
+        padding-left: 0%;
+        /* display:none; */
+    }
+    .tab-panel p {
+        font-size: 14px;
+        letter-spacing: 1px;
+    }
+    #tab1:checked~.tab_area .tab1-label {
+        background: #d7e9ea;
+        color: #000;
+    }
+    #tab1:checked~.tab_area .tab2-label {
+        color: #999;
+        background: #ddd;
+    }
+    #tab1:checked~.tab_area .tab3-label {
+        color: #999;
+        background: #ddd;
+    }
+    #tab1:checked~.panel-area #panel1 {
+        display: block;
+    }
+    #panel2 {
+        display: none;
+    }
+    #tab1:checked~.panel-area #panel1 {
+        display: block;
+    }
+    #panel3 {
+        display: none;
+    }
+    #tab2:checked~.tab_area .tab2-label {
+        background: #d7e9ea;
+        color: #000;
+    }
+    #tab2:checked~.tab_area .tab1-label {
+        color: #999;
+        background: #ddd;
+    }
+    #tab2:checked~.tab_area .tab3-label {
+        color: #999;
+        background: #ddd;
+    }
+    #tab2:checked~.panel-area #panel2 {
+        display: block;
+    }
+    #tab2:checked~.panel-area #panel1 {
+        display: none;
+    }
+    #tab2:checked~.panel-area #panel3 {
+        display: none;
+    }
+    #tab3:checked~.tab_area .tab3-label {
+        background: #d7e9ea;
+        color: #000;
+    }
+    #tab3:checked~.tab_area .tab1-label {
+        color: #999;
+        background: #ddd;
+    }
+    #tab3:checked~.tab_area .tab2-label {
+        color: #999;
+        background: #ddd;
+    }
+    #tab3:checked~.panel-area #panel3 {
+        display: block;
+    }
+    #tab3:checked~.panel-area #panel1 {
+        display: none;
+    }
+    #tab3:checked~.panel-area #panel2 {
+        display: none;
+    }
+    .tab-panel ul {
+        padding-left: 0%;
+    }
+    .tab-panel ul li {
+        line-height: 1.5;
+        /* padding: 0.5em 0; */
+        list-style-position: inside;
+        /* list-style-type: none!important; */
+    }
+    .tabpanel ul {
+        margin-top: 20px;
+    }
+    .tabpanel ol li {
+        line-height: 1.5;
+        padding: 0.5em 0;
+        list-style-position: inside;
+    }
+    .guide-popup-sort-explanation {
+        list-style: none;
+    }
+    /* 企業詳細ページ */
+    .agent-detail {
+        background: #eaedf2;
+        padding: 20px 0;
+        margin-top: 100px;
+    }
+    .agent-detail-box {
+        background: #fff;
+        width: 80%;
+        height: 90%;
+        margin: 0px auto;
+        padding-bottom: 100px;
+    }
+    .agent-detail-name h1 {
+        width: 90%;
+        margin: auto;
+        text-decoration: underline;
+        text-decoration-color: #a5d0ca;
+        padding: 10px 10px;
+    }
+    .agent-detail-top-box {
+        display: flex;
+        padding: 0 5%;
+        width: 100%;
+    }
+    .agent-detail-top-box img {
+        margin: 20px 20px 20px 0;
+        /* margin-left: 5%; */
+        width: 25%;
+    }
+    .agent-detail-table-box {
+        margin: 10px 5%;
+    }
+    .agent-detail-table {
+        border: solid 1px;
+        padding: 10px;
+    }
+    .agent-detail-table-whole {
+        width: 100%;
+    }
+    .agent-detail-table-th {
+        background-color: #deeeec;
+        width: 20%;
+    }
+    .detail-recomend {
+        margin: 20px 0 20px 20px;
+        background: #e5e5e5;
+        padding: 20px 0 20px 25px;
+        width: 100%;
+    }
+    .detail-feature {
+        margin: 5%;
+    }
+    .detail-feature h2 {
+        text-decoration: underline;
+        text-decoration-color: #a5d0ca;
+    }
+    .agent-add-btn {
+        text-align: center;
+        padding: 20px 0;
+    }
+    .agent-add-btn button {
+        font-size: 20px;
+        font-weight: bold;
+        background: #93c9c2;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 20px;
+        border: none;
+    }
+    .filter-popup-all-head-box {
+        /* height:100px; */
+        padding: 10px;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        position: relative;
+        background: #80cbc4;
+    }
+    .filter-popup-all-head {
+        font-weight: bold;
+        font-size: 20px;
+        color: #fff;
+    }
+    .filter-popup-table {
+        width: 100%;
+        background: #fff;
+    }
+    .filter-popup-table-open-close-detail {
+        border-bottom: 1px solid black;
+        border-top: 1px solid black;
+        width: 20%;
+        background-color: #efefef;
+        box-sizing: border-box;
+        cursor: pointer;
+    }
+    .filter-popup-reset-conditions {
+        padding: 5px;
+        width: 70%;
+        border-radius: 20px;
+        border: none;
+        background: #00000000;
+    }
+    .filter-popup-reset-conditions:hover {
+        text-decoration: underline;
+    }
+    .filter-popup-confirm-conditions {
+        margin: 10px 5px 5px 5px;
+        padding: 5px;
+        width: 80%;
+        border-radius: 20px;
+        border: none;
+        background: #eb524f;
+        color: #fff;
+    }
+    /* 比較ページCSS */
+    .top-comparison-head {
+        padding-top: 10px;
+        padding-left: 5%;
+        font-weight: bolder;
+        font-size: 20px;
+    }
+    .comparison-compare-info-all-box {
+        width: 90%;
+        background: #fff;
+        margin: auto;
+        margin-bottom: 20px;
+    }
+    .comparison-compare-info-in-box {
+        display: flex;
+        justify-content: space-evenly;
+        border-bottom: 1px solid black;
+    }
+    .comparison-compare-info-head {
+        width: 33%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        margin: 10px;
+        /* font-size: 20px; */
+    }
+    .empty-div {
+        display: none;
+    }
+    .comparison-compare-info-contents-box {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .comparison-compare-info-content-img-box {
+        text-align: center;
+        width: 33%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .comparison-compare-info-content-img {
+        width: 90%;
+    }
+    .comparison-compare-info-content {
+        width: 33%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        padding: 10px;
+        font-size: 18px;
+    }
+    .comparison-compare-info-btns {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
