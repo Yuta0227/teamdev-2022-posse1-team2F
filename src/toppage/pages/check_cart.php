@@ -82,7 +82,7 @@ if (isset($_POST['remove_from_apply']) && isset($_POST['remove_id'])) {
                     echo '<input name="check_agent_id" value="' . $selected_agent . '" hidden>';
                     //agent_idいれる
                     echo '<div style="display:flex;flex-direction:column;justify-content:center;">';
-                    echo '<input type="submit" class="check-cart-agent-detail-btn" name="go_to_detail" value="詳細を確認する">';
+                    echo '<input type="submit" class="check-cart-agent-detail-btn" name="go_to_detail" value="詳細を再度確認する">';
                     echo '<input name="show_delete_popup" type="submit" value="削除" class="check-cart-agent-delete-btn">';
                     echo '</div>';
                     echo '</form>';
