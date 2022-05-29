@@ -108,11 +108,11 @@ create table agent_corporate_amount(
 insert into agent_corporate_amount 
 (manufacturer,retail,service,software_transmission,trading,finance,media,government)
 values
-(1,2,3,4,5,6,7,8),
-(2,3,4,5,6,7,8,9),
-(3,4,5,6,7,8,9,10),
-(7,9,2,7,5,32,4,1),
-(34,11,22,63,34,42,48,10)
+(1,2,3,4,0,6,7,8),
+(2,3,0,5,6,7,8,9),
+(3,4,5,0,7,8,9,10),
+(0,0,0,0,0,32,0,0),
+(34,11,22,0,34,42,48,10)
 ;
 
 drop table if exists agent_explanation;
