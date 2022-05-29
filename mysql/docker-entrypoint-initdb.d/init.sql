@@ -229,9 +229,9 @@ create table featured_article (
 insert into featured_article
 (picture,title,agent_id,agent_name,questions_answers,last_comment,publish_date)
 values
-('picture1.png','エージェント1の魅力を担当者に聞いてみた',1,(select agent_name from agent_contract_information where agent_id=1),'質問1,回答1;質問2,回答2','最後に一言サンプル1','2022-05-23 10:23:46'),
-('picture2.png','エージェント2の魅力を担当者に聞いてみた',2,(select agent_name from agent_contract_information where agent_id=2),'質問1,回答1;質問2,回答2;質問3,回答3','最後に一言サンプル2','2022-07-23 10:23:46'),
-('picture3.png','エージェント3の魅力を担当者に聞いてみた',3,(select agent_name from agent_contract_information where agent_id=3),'質問1,回答1;質問2,回答2;質問3,回答3;質問4,回答4','最後に一言サンプル3','2022-09-23 10:23:46');
+('picture1.png','エージェント1の魅力を担当者に聞いてみた',1,(select agent_name from agent_contract_information where agent_id=1),'Q1:あなたのエージェントの一番の特徴はなんですか？,私たちのエージェントの一番の特徴は学生との距離が近いということです。就活生の皆さんの不安に寄り添い、担当者と一緒に就活を進めていくことができます。;Q2:就活生にはどのようなサポートが行われますか？,私たちのエージェントでは主に企業のあっせん、面接のアポイントメント、面接練習等を行っています。就活生からの要望があれば他にも様々なサービスを提供することができます。','私たちのエージェントは学生の皆さんに寄り添った就活をできることが一番の魅力になっています。ぜひ私たちのエージェントと一緒に就活を進め、納得のいく内定を勝ち取りましょう！！ダミーデータ1','2022-05-23 10:23:46'),
+('picture2.png','エージェント2の魅力を担当者に聞いてみた',2,(select agent_name from agent_contract_information where agent_id=2),'Q1:あなたのエージェントの一番の特徴はなんですか？,回答ダミーデータ2;質問ダミーデータ2,回答ダミーデータ2;質問ダミーデータ3,回答ダミーデータ3','最後に一言ダミーデータ2','2022-07-23 10:23:46'),
+('picture3.png','エージェント3の魅力を担当者に聞いてみた',3,(select agent_name from agent_contract_information where agent_id=3),'Q1:あなたのエージェントの一番の特徴はなんですか？,回答ダミーデータ3;質問ダミーデータ2,回答ダミーデータ2;質問ダミーデータ3,回答ダミーデータ3;質問ダミーデータ4,回答ダミーデータ4','最後に一言ダミーデータ3','2022-09-23 10:23:46');
 
 
 
