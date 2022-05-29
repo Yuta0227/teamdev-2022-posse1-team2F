@@ -3,14 +3,14 @@
         margin: 0;
         padding: 0;
     }
-    pre{
+    pre {
         margin: 0;
     }
     p {
         margin: 0;
     }
-    body{
-        background:#eaedf2;
+    body {
+        background: #eaedf2;
     }
     /* header */
     .header-box {
@@ -83,7 +83,7 @@
         color: #fff;
         text-decoration: none;
     }
-    .footer-link a:hover{
+    .footer-link a:hover {
         text-decoration: underline;
     }
     /* indicator */
@@ -344,10 +344,10 @@
         border-radius: 20px;
     }
     /* ページネーション */
-    .top-pagenation-unit{
-        text-align: right;   
+    .top-pagenation-unit {
+        text-align: right;
     }
-    .top-pagenation-parent{
+    .top-pagenation-parent {
         display: inline-block;
         text-align: right;
         background: #00000000;
@@ -355,20 +355,20 @@
         padding: 10px 10px;
     }
     .top-pagenation-all-box {
-        display:flex;
+        display: flex;
         justify-content: flex-end;
         gap: 5px;
     }
     .top-pagenation-each-box {
         text-align: center;
         width: 35px;
-        border:#52a49a solid;
-        color: #52a49a ;
+        border: #52a49a solid;
+        color: #52a49a;
         cursor: pointer;
         padding: 5px;
     }
     .top-pagenation-arrow {
-        color: #52a49a ;
+        color: #52a49a;
         text-decoration: none;
         vertical-align: middle;
     }
@@ -608,43 +608,43 @@
         border: none;
     }
     /* 絞り込み */
-    .filter-popup-all-head-box{
+    .filter-popup-all-head-box {
         /* height:100px; */
         padding: 10px;
-        align-items:center;
-        display:flex;
-        justify-content:center;
-        position:relative;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        position: relative;
         background: #80cbc4;
     }
-    .filter-popup-all-head{
+    .filter-popup-all-head {
         font-weight: bold;
         font-size: 20px;
         color: #fff;
     }
-    .filter-popup-table{
-        width:100%;
+    .filter-popup-table {
+        width: 100%;
         background: #fff;
     }
-    .filter-popup-table-open-close-detail{
-        border-bottom:1px solid black;
-        border-top:1px solid black;
-        width:20%;
-        background-color:#efefef;
-        box-sizing:border-box;
+    .filter-popup-table-open-close-detail {
+        border-bottom: 1px solid black;
+        border-top: 1px solid black;
+        width: 20%;
+        background-color: #efefef;
+        box-sizing: border-box;
         cursor: pointer;
     }
-    .filter-popup-reset-conditions{
+    .filter-popup-reset-conditions {
         padding: 5px;
         width: 70%;
         border-radius: 20px;
         border: none;
         background: #00000000;
     }
-    .filter-popup-reset-conditions:hover{
+    .filter-popup-reset-conditions:hover {
         text-decoration: underline;
     }
-    .filter-popup-confirm-conditions{
+    .filter-popup-confirm-conditions {
         margin: 10px 5px 5px 5px;
         padding: 5px;
         width: 80%;
@@ -653,46 +653,46 @@
         background: #eb524f;
         color: #fff;
     }
-    .filter-popup-confirm-conditions:hover{
+    .filter-popup-confirm-conditions:hover {
         text-decoration: underline;
     }
     /* 比較ページCSS */
-    .top-comparison-head{
+    .top-comparison-head {
         padding-top: 10px;
         padding-left: 5%;
         font-weight: bolder;
         font-size: 20px;
     }
-    .comparison-compare-info-all-box{
+    .comparison-compare-info-all-box {
         width: 80%;
         background: #fff;
-        margin: auto; 
-        margin-bottom: 20px;  
+        margin: auto;
+        margin-bottom: 20px;
     }
-    .comparison-compare-info-in-box{
-        display:flex;
+    .comparison-compare-info-in-box {
+        display: flex;
         justify-content: space-evenly;
-        border-bottom:1px solid black; 
+        border-bottom: 1px solid black;
     }
-    .comparison-compare-info-head{
-        width:25%;
+    .comparison-compare-info-head {
+        width: 25%;
         font-weight: bold;
         text-align: center;
         margin: 10px;
         font-size: 20px;
     }
-    .comparison-compare-info-content-img-box{
+    .comparison-compare-info-content-img-box {
         text-align: center;
         width: 25%;
         display: flex;
         justify-content: center;
         align-items: center;
     }
-    .comparison-compare-info-content-img{
+    .comparison-compare-info-content-img {
         width: 70%;
     }
-    .comparison-compare-info-content{
-        width:25%;
+    .comparison-compare-info-content {
+        width: 25%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -700,23 +700,23 @@
         padding: 10px;
         font-size: 18px;
     }
-    .comparison-compare-info-btns{
-        width:25%;
-        display:flex;
+    .comparison-compare-info-btns {
+        width: 25%;
+        display: flex;
         flex-direction: column;
         justify-content: center;
     }
 }
 
 @media screen and (max-width: 480px) {
-    body{
+    body {
         background: #eaedf2;
     }
     * {
         margin: 0;
         padding: 0;
     }
-    pre{
+    pre {
         margin: 0;
     }
     /* header */
@@ -908,7 +908,7 @@
     .filter-btn {
         background-color: #fff;
         height: 40px;
-        padding: 10px;
+        padding: 0 10px;
         border: solid 1px;
     }
     .none {
@@ -1037,10 +1037,10 @@
         border-radius: 30px;
     }
     /* ページネーション */
-    .top-pagenation-unit{
-        text-align: right;   
+    .top-pagenation-unit {
+        text-align: right;
     }
-    .top-pagenation-parent{
+    .top-pagenation-parent {
         display: inline-block;
         text-align: right;
         background: #00000000;
@@ -1048,14 +1048,14 @@
         padding: 10px 10px;
     }
     .top-pagenation-all-box {
-        display:flex;
+        display: flex;
         justify-content: flex-end;
         gap: 5px;
     }
     .top-pagenation-each-box {
         text-align: center;
         width: 25px;
-        border:#52a49a solid;
+        border: #52a49a solid;
         color: #52a49a;
         cursor: pointer;
     }
@@ -1298,43 +1298,43 @@
         border-radius: 20px;
         border: none;
     }
-    .filter-popup-all-head-box{
+    .filter-popup-all-head-box {
         /* height:100px; */
         padding: 10px;
-        align-items:center;
-        display:flex;
-        justify-content:center;
-        position:relative;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        position: relative;
         background: #80cbc4;
     }
-    .filter-popup-all-head{
+    .filter-popup-all-head {
         font-weight: bold;
         font-size: 20px;
         color: #fff;
     }
-    .filter-popup-table{
-        width:100%;
+    .filter-popup-table {
+        width: 100%;
         background: #fff;
     }
-    .filter-popup-table-open-close-detail{
-        border-bottom:1px solid black;
-        border-top:1px solid black;
-        width:20%;
-        background-color:#efefef;
-        box-sizing:border-box;
+    .filter-popup-table-open-close-detail {
+        border-bottom: 1px solid black;
+        border-top: 1px solid black;
+        width: 20%;
+        background-color: #efefef;
+        box-sizing: border-box;
         cursor: pointer;
     }
-    .filter-popup-reset-conditions{
+    .filter-popup-reset-conditions {
         padding: 5px;
         width: 70%;
         border-radius: 20px;
         border: none;
         background: #00000000;
     }
-    .filter-popup-reset-conditions:hover{
+    .filter-popup-reset-conditions:hover {
         text-decoration: underline;
     }
-    .filter-popup-confirm-conditions{
+    .filter-popup-confirm-conditions {
         margin: 10px 5px 5px 5px;
         padding: 5px;
         width: 80%;
@@ -1344,25 +1344,25 @@
         color: #fff;
     }
     /* 比較ページCSS */
-    .top-comparison-head{
+    .top-comparison-head {
         padding-top: 10px;
         padding-left: 5%;
         font-weight: bolder;
         font-size: 20px;
     }
-    .comparison-compare-info-all-box{
+    .comparison-compare-info-all-box {
         width: 90%;
         background: #fff;
-        margin: auto; 
-        margin-bottom: 20px;  
+        margin: auto;
+        margin-bottom: 20px;
     }
-    .comparison-compare-info-in-box{
-        display:flex;
+    .comparison-compare-info-in-box {
+        display: flex;
         justify-content: space-evenly;
-        border-bottom:1px solid black; 
+        border-bottom: 1px solid black;
     }
-    .comparison-compare-info-head{
-        width:33%;
+    .comparison-compare-info-head {
+        width: 33%;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -1370,25 +1370,25 @@
         margin: 10px;
         /* font-size: 20px; */
     }
-    .empty-div{
+    .empty-div {
         display: none;
     }
-    .comparison-compare-info-contents-box{
+    .comparison-compare-info-contents-box {
         display: flex;
         flex-wrap: wrap;
     }
-    .comparison-compare-info-content-img-box{
+    .comparison-compare-info-content-img-box {
         text-align: center;
         width: 33%;
         display: flex;
         justify-content: center;
         align-items: center;
     }
-    .comparison-compare-info-content-img{
+    .comparison-compare-info-content-img {
         width: 90%;
     }
-    .comparison-compare-info-content{
-        width:33%;
+    .comparison-compare-info-content {
+        width: 33%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -1396,9 +1396,9 @@
         padding: 10px;
         font-size: 18px;
     }
-    .comparison-compare-info-btns{
-        width:100%;
-        display:flex;
+    .comparison-compare-info-btns {
+        width: 100%;
+        display: flex;
         justify-content: center;
         align-items: center;
     }
