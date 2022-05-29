@@ -109,7 +109,7 @@ if(isset($_POST['jump_to_comparison'])){
                     }; ?>
                 </div>
                 <div class="special-detail-transition" style="display:flex;justify-content:center;">
-                    <a href="agent_detail.php?agent_id=<?php echo $featured_article_detail['agent_id'];?>">企業の詳細ページへ</a>
+                    <a href="agent_detail.php?agent_id=<?php echo $featured_article_detail['agent_id'];?>" target="_blank">企業の詳細ページへ</a>
                 </div>
             </form>
             <?php
