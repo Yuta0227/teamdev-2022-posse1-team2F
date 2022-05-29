@@ -115,11 +115,12 @@ if (isset($_SESSION['comparison_list'])) {
     if ($_SESSION['comparison_list'] != NULL) {
 
         echo '
+        </div>
         <div id="comparison_box" class="top-compare-over-lay">
         <span id="close_comparison_popup" class="compare-over-lay-close-btn">↓</span>
         <div>
         
-        </div>
+        
         <div class="top-compare-in-box">';
     }
 }
