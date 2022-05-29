@@ -1,5 +1,4 @@
 <?php
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['profile'])) {
         header("Location:/agent/pages/profile.php?year=" . $_GET['year'] . "&month=" . $_GET['month'] . "&date=" . $_GET['date']);
     }
@@ -30,7 +29,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $applicant_stmt->bindValue(1, $_POST['report_new_apply_id' . $index]);
             $applicant_stmt->execute();
             $applicant_data = $applicant_stmt->fetchAll();
-
             //通報期限より前なら
             //日数の差を取得
             mb_language("ja");
@@ -55,17 +53,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $column = $translate->translate_column_to_japanese($column);
                 $msg .= $column . ':' . $data . "\n";
             }
-            $msg .= '上記の学生を「' . $_POST['new_report_reason' . $index] . '」の理由で通報します';
+            $msg .= '上記の学生を「' . $_POST['new_report_reason' . $index] . "」の理由で通報します。\n";
+            $msg.= "ログインして確認しましょう。\n";
+            $msg.= "http://localhost/toppage/pages/login.php";
             $from = $_SESSION['agent_email'];
             $header = "From: {$from}\nReply-To: {$from}\nContent-Transfer-Encoding:8bit\r\nContent-Type: text/plain;charset=UTF-8\r\n";
             if (!mb_send_mail($to, $subject, $msg, $header)) {
                 echo 'メール送信失敗';
             }
-            $delete_request_stmt=$db->prepare("insert into delete_request (apply_id,agent_id,request_reason,assignee_email) values (?,?,?,?);");
+            $delete_request_stmt=$db->prepare("insert into delete_request (apply_id,apply_email,agent_id,request_reason,assignee_email) values (?,?,?,?,?);");
             $delete_request_stmt->bindValue(1,$_POST['report_new_apply_id'.$index]);
-            $delete_request_stmt->bindValue(2,$_SESSION['agent_id']);
-            $delete_request_stmt->bindValue(3,$_POST['new_report_reason'.$index]);
-            $delete_request_stmt->bindValue(4,$_SESSION['agent_email']);
+            $delete_request_stmt->bindValue(2,$_POST['report_new_apply_email'.$index]);
+            $delete_request_stmt->bindValue(3,$_SESSION['agent_id']);
+            $delete_request_stmt->bindValue(4,$_POST['new_report_reason'.$index]);
+            $delete_request_stmt->bindValue(5,$_SESSION['agent_email']);
             $delete_request_stmt->execute();
             //通報を通報テーブルに追加
             //通報メールに記入する学生の情報を取得
@@ -125,17 +126,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $column = $translate->translate_column_to_japanese($column);
                 $msg .= $column . ':' . $data . "\n";
             }
-            $msg .= '上記の学生を「' . $_POST['report_reason' . $index] . '」の理由で通報します';
+            $msg .= "上記の学生を「" . $_POST['report_reason' . $index] . "」の理由で通報します。";
+            $msg.= "ログインして確認しましょう。";
+            $msg.= "http://localhost/toppage/pages/login.php";
             $from = $_SESSION['agent_email'];
             $header = "From: {$from}\nReply-To: {$from}\nContent-Transfer-Encoding:8bit\r\nContent-Type: text/plain;charset=UTF-8\r\n";
             if (!mb_send_mail($to, $subject, $msg, $header)) {
                 echo 'メール送信失敗';
             }
-            $delete_request_stmt=$db->prepare("insert into delete_request (apply_id,agent_id,request_reason,assignee_email) values (?,?,?,?);");
+            $delete_request_stmt=$db->prepare("insert into delete_request (apply_id,apply_email,agent_id,request_reason,assignee_email) values (?,?,?,?,?);");
             $delete_request_stmt->bindValue(1,$_POST['report_apply_id'.$index]);
-            $delete_request_stmt->bindValue(2,$_SESSION['agent_id']);
-            $delete_request_stmt->bindValue(3,$_POST['report_reason'.$index]);
-            $delete_request_stmt->bindValue(4,$_SESSION['agent_email']);
+            $delete_request_stmt->bindValue(2,$_POST['report_apply_email'.$index]);
+            $delete_request_stmt->bindValue(3,$_SESSION['agent_id']);
+            $delete_request_stmt->bindValue(4,$_POST['report_reason'.$index]);
+            $delete_request_stmt->bindValue(5,$_SESSION['agent_email']);
             $delete_request_stmt->execute();
             //通報を通報テーブルに追加
         }
@@ -148,4 +152,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $edit_assignee->execute();
 
     }
-}
+

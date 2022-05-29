@@ -357,6 +357,9 @@
         background: #ddd;
         font-size: 16px;
         margin: 5px 5px 0 auto;
+        padding: 0 5px 25px;
+        border: none;
+        color: #fff;
         /* margin-left: auto; */
         right: 0;
     }
@@ -1136,6 +1139,9 @@
         background: #ddd;
         font-size: 16px;
         margin: 5px 5px 0 auto;
+        padding: 0 5px 25px;
+        border: none;
+        color: #fff;
         /* margin-left: auto; */
         right: 0;
     }

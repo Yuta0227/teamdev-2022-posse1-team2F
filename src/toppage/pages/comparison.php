@@ -224,7 +224,8 @@ if (isset($_POST['remove_from_apply']) && isset($_POST['agent_id'])) {
                 }
             }
             ${"comparison" . $agent} = ${"comparison" . $agent} = array_merge(${"comparison" . $agent}, array("拠点地" => $prefecture_text));
-            echo '<form method="POST" action="" style="display:flex;height:200px;border-top:solid 1px;">
+            echo '<form method="POST" action="" 
+            class="comparison-compare-info-contents-box" style="display:flex;height:200px;border-top:solid 1px;">
                     <div class="comparison-compare-info-content-img-box"><img class="comparison-compare-info-content-img" alt="' . ${"comparison" . $agent}['エージェント名'] . 'の画像" src="../../img/article/' . ${"comparison" . $agent}['画像'] . '"></div>
                     <div class="comparison-compare-info-content">' . ${"comparison" . $agent}['エージェント名'] . '</div>
                     <div class="comparison-compare-info-content">' . ${"comparison" . $agent}['面談方式'] . '</div>

@@ -130,7 +130,7 @@
 
                 echo '
         <div id="comparison_box" class="top-compare-over-lay">
-        <span id="close_comparison_popup" class="compare-over-lay-close-btn"><i class="fa-solid fa-xmark compare-close-btn-icon"></i></span>
+        <span id="close_comparison_popup" class="compare-over-lay-close-btn">↓</span>
         <div>
         
         </div>
@@ -146,7 +146,7 @@
     <form action="" method="POST" class="top-compare-each-box">
         <!-- <div style="text-align: right;"> -->
         <input name="agent_id" value="<?php echo $agent; ?>" hidden>
-        <input class="compare-each-close-btn" type="submit" name="remove_from_comparison" value="×">
+        <input class="compare-each-close-btn" type="submit" name="remove_from_comparison" value="X">
         <!-- </div> -->
         <div class="form-img-p">
             <p class="top-compare-each-name"><?php echo $agent_name_picture['agent_name']; ?></p>

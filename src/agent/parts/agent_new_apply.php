@@ -43,30 +43,13 @@
                 $current_datetime = new DateTime(date('Y-m-d H:i:s'));
                 $deadline_datetime = new DateTime($new_applies_array[$index]['apply_report_deadline']);
                 $diff = $current_datetime->diff($deadline_datetime);
-                // $test=new DateTime('2022-06-01 00:00:00');
                 //期限から現在日時をひく
-                // print_r('<pre>');
-                // var_dump($current_datetime);
-                // var_dump($deadline_datetime);
-                // var_dump($diff['days']);
-                // var_dump($diff->days);
-                // var_dump(-4>0);
-                // var_dump(+4>=0);
-                // var_dump('-00'>=0);
-                // var_dump($deadline_datetime);
-                // var_dump($diff->format('%R%Y') >= 0);
-                // var_dump($diff->format('%R%M') >= 0);
-                // var_dump($diff->format('%R%D') >= 0);
-                // var_dump($diff->format('%R%H') >= 0);
-                // var_dump($diff->format('%R%I') >= 0);
                 if (($diff->format('%R%Y') >= 0) && ($diff->format('%R%M') >= 0) && ($diff->format('%R%D') >= 0) && ($diff->format('%R%H') >= 0) && ($diff->format('%R%I') >= 0)) {
                     //期限を過ぎていない
                     $is_past_deadline = false;
                 } else {
                     $is_past_deadline = true;
                 }
-                // var_dump(($test->diff($current_datetime)));
-                print_r('</pre>');
                 if ($is_past_deadline == false) {
                     if ($month != 12) {
                         //申込の月が12月ではない場合
@@ -88,6 +71,7 @@
             echo '<span>通報理由：</span>';
             echo '<textarea class="agent-apply-student-report-reason-text" type="text" name="new_report_reason' . $index . '" required placeholder="理由を記入してください"></textarea>';
             echo '<input hidden name="report_new_apply_id' . $index . '" value="' . $new_applies_array[$index]['apply_id'] . '">';
+            echo '<input hidden name="report_new_apply_email' . $index . '" value="' . $new_applies_array[$index]['applicant_email_address'] . '">';
             echo '</div>';
             echo '<div style="display:flex;justify-content:center;"><div class="agent-apply-student-report-cancel" id="cancel_new_report' . $index . '">キャンセル</div><input class="agent-apply-student-report-submit" type="submit" value="送信する"></div></div>';
             echo '</form>';
