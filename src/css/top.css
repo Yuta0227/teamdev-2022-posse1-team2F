@@ -264,7 +264,7 @@
         border-radius: 30px;
         background-color: #23a9e2;
         padding: 10px 20px;
-        margin: 10px;
+        margin: 10px 0;
         color: white;
         border: none;
         width: 220px;
@@ -336,7 +336,7 @@
     }
     .top-compare-compare-btn {
         padding: 10px 20px;
-        margin: 10px;
+        margin: 10px 0;
         width: 220px;
         background: #ffab40;
         color: #fff;
