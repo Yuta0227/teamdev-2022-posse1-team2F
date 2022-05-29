@@ -4,9 +4,7 @@ require "../../dbconnect.php";
 require "../../function.php";
 $featured_article_detail_stmt = $db->query("select * from featured_article where featured_article_id=" . $_GET['featured_article_id'] . ";");
 $featured_article_detail = $featured_article_detail_stmt->fetchAll()[0];
-// print_r('<pre>');
-// var_dump($featured_article_detail);
-// print_r('</pre>');
+
 if(!isset($_SESSION['apply_list'])){
     $_SESSION['apply_list']=[];
 }
@@ -15,24 +13,24 @@ if(!isset($_SESSION['comparison_list'])){
 }
 if (isset($_POST['add_to_apply']) && isset($_POST['agent_id'])) {
     array_push($_SESSION['apply_list'], $_POST['agent_id']);
-    header("Location:special_detail_index.php?featured_article_id=".$_GET['featured_article_id']);
+    // header("Location:special_detail_index.php?featured_article_id=".$_GET['featured_article_id']);
     //追加押したら問い合わせリストに追加される
 }
 if (isset($_POST['remove_from_apply']) && isset($_POST['agent_id'])) {
     $_SESSION['apply_list'] = array_diff($_SESSION['apply_list'], array($_POST['agent_id']));
     array_values($_SESSION['apply_list']);
-    header("Location:special_detail_index.php?featured_article_id=".$_GET['featured_article_id']);
+    // header("Location:special_detail_index.php?featured_article_id=".$_GET['featured_article_id']);
     //削除押したら問い合わせリストから削除される
 }
 if (isset($_POST['add_to_comparison']) && isset($_POST['agent_id'])) {
     array_push($_SESSION['comparison_list'], $_POST['agent_id']);
     //追加押したら比較リストに追加される
-    header("Location:special_detail_index.php?featured_article_id=" . $_GET['featured_article_id']);
+    // header("Location:special_detail_index.php?featured_article_id=" . $_GET['featured_article_id']);
 }
 if (isset($_POST['remove_from_comparison']) && isset($_POST['agent_id'])) {
     $_SESSION['comparison_list'] = array_diff($_SESSION['comparison_list'], array($_POST['agent_id']));
     array_values($_SESSION['comparison_list']);
-    header("Location:special_detail_index.php?featured_article_id=" . $_GET['featured_article_id']);
+    // header("Location:special_detail_index.php?featured_article_id=" . $_GET['featured_article_id']);
     //削除押したら比較リストから削除される
 }
 if(isset($_POST['jump_to_comparison'])){
@@ -86,11 +84,11 @@ if(isset($_POST['jump_to_comparison'])){
                 echo '</p></div>';
             };
             ?>
-            <form method="POST" action="" method="POST" style="display:flex;flex-direction:column;justify-content:center;">
+            <form action="" method="POST" style="display:flex;flex-direction:column;justify-content:center;">
                 <div style="text-align:center;display:flex;justify-content:center;">
                     <input value="<?php echo $featured_article_detail['agent_id']; ?>" name="agent_id" hidden>
                     <?php if (isset($_SESSION['apply_list'])) {
-                        if ($check->exists_in_array($_SESSION['apply_list'], $featured_article_detail['agent_id']== true)) {
+                        if ($check->exists_in_array($_SESSION['apply_list'], $featured_article_detail['agent_id'])== true) {
                             echo '<input type="submit" name="remove_from_apply" class="like-button" value="問い合わせリストから削除">';
                         } else {
                             echo '<input type="submit" name="add_to_apply" class="like-button" value="問い合わせリストに追加">';
@@ -99,7 +97,7 @@ if(isset($_POST['jump_to_comparison'])){
                         echo '<input type="submit" name="add_to_apply" class="like-button" value="問い合わせリストに追加">';
                     }
                     if (isset($_SESSION['comparison_list'])) {
-                        if ($check->exists_in_array($_SESSION['comparison_list'], $featured_article_detail['agent_id'] == true)) {
+                        if ($check->exists_in_array($_SESSION['comparison_list'], $featured_article_detail['agent_id']) == true) {
                             echo '<input type="submit" name="remove_from_comparison" class="top-compare-compare-btn" value="比較リストから削除">';
                         } else {
                             echo '<input type="submit" name="add_to_comparison" class="top-compare-compare-btn" value="比較リストに追加">';
@@ -140,7 +138,7 @@ if (isset($_SESSION['comparison_list'])) {
         <input class="compare-each-close-btn" type="submit" name="remove_from_comparison" value="×">
         <!-- </div> -->
         <div style="display: flex;">
-            <img class="top-compare-each-img" src="../../img/<?php echo $agent_name_picture['picture_url'];?>" alt="<?php echo $agent_name_picture['agent_name'].'の画像';?>">
+            <img class="top-compare-each-img" src="../../img/article/<?php echo $agent_name_picture['picture_url'];?>" alt="<?php echo $agent_name_picture['agent_name'].'の画像';?>">
             <p class="top-compare-each-name"><?php echo $agent_name_picture['agent_name'];?></p>
         </div>
     </form>

@@ -6,25 +6,6 @@ require "../parts/admin_post.php";
 if(!isset($_SESSION['admin_id'])||!isset($_SESSION['login_admin_email'])||!isset($_SESSION['admin_agent_list'])){
     header("Location: /toppage/pages/login.php");
 }
-// require('../dbconnect.php');
-// if (isset($_SESSION['user_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
-//     $_SESSION['time'] = time();
-
-//     if (!empty($_POST)) {
-//         $stmt = $db->prepare('INSERT INTO events SET title=?');
-//         $stmt->execute(array(
-//             $_POST['title']
-//         ));
-
-//         header('Location: http://' . $_SERVER['HTTP_HOST'] . '/admin/index.php');
-//         exit();
-//     }
-// } else {
-//     header('Location: http://' . $_SERVER['HTTP_HOST'] . '/admin/login.php');
-//     exit();
-// }
-//
-
 ?>
 <!DOCTYPE html>
 <html lang="ja">
