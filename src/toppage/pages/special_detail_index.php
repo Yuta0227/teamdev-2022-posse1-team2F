@@ -115,14 +115,12 @@ if (isset($_SESSION['comparison_list'])) {
     if ($_SESSION['comparison_list'] != NULL) {
 
         echo '
+        </div>
         <div id="comparison_box" class="top-compare-over-lay">
-        <span id="close_comparison_popup" class="compare-over-lay-close-btn"><i class="fa-solid fa-xmark compare-close-btn-icon"></i></span>
-        <p class="top-compare-head">
-        比較企業全' . count($_SESSION['comparison_list']) . '件
-        </p>
+        <span id="close_comparison_popup" class="compare-over-lay-close-btn">↓</span>
         <div>
         
-        </div>
+        
         <div class="top-compare-in-box">';
     }
 }
@@ -149,7 +147,7 @@ if (isset($_SESSION['comparison_list'])) {
         echo '
         </div>
         <form action="" method="POST" class="top-compare-btn-box">
-        <input class="top-compare-compare-btn" name="jump_to_comparison" type="submit" value="以上の企業を比較する">
+        <input class="top-compare-compare-btn" name="jump_to_comparison" type="submit" value="以上' . count($_SESSION['comparison_list']) . '件の企業を比較する">
         </form>
         </div>
         ';
