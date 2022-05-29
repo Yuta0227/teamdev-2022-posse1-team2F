@@ -48,7 +48,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
             $subject = "通報";
             $msg = $_SESSION['agent_name'].$_SESSION['agent_branch'].'の'.$_SESSION['assignee_name']."です。\n";
-            foreach ($applicant_data[$index] as $column => $data) {
+            // print_r('<pre>');
+            // var_dump($applicant_data);
+            // print_r('</pre>');
+            foreach ($applicant_data[0] as $column => $data) {
                 $column = $translate->translate_column_to_japanese($column);
                 $msg .= $column . ':' . $data . "\n";
             }
