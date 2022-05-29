@@ -42,9 +42,32 @@
                 //通報されていない場合
                 $current_datetime = new DateTime(date('Y-m-d H:i:s'));
                 $deadline_datetime = new DateTime($new_applies_array[$index]['apply_report_deadline']);
-                $diff = $deadline_datetime->diff($current_datetime);
+                $diff = $current_datetime->diff($deadline_datetime);
+                // $test=new DateTime('2022-06-01 00:00:00');
                 //期限から現在日時をひく
-                if ($diff->format('%a') >= 0) {
+                // print_r('<pre>');
+                // var_dump($current_datetime);
+                // var_dump($deadline_datetime);
+                // var_dump($diff['days']);
+                // var_dump($diff->days);
+                // var_dump(-4>0);
+                // var_dump(+4>=0);
+                // var_dump('-00'>=0);
+                // var_dump($deadline_datetime);
+                // var_dump($diff->format('%R%Y') >= 0);
+                // var_dump($diff->format('%R%M') >= 0);
+                // var_dump($diff->format('%R%D') >= 0);
+                // var_dump($diff->format('%R%H') >= 0);
+                // var_dump($diff->format('%R%I') >= 0);
+                if (($diff->format('%R%Y') >= 0) && ($diff->format('%R%M') >= 0) && ($diff->format('%R%D') >= 0) && ($diff->format('%R%H') >= 0) && ($diff->format('%R%I') >= 0)) {
+                    //期限を過ぎていない
+                    $is_past_deadline = false;
+                } else {
+                    $is_past_deadline = true;
+                }
+                // var_dump(($test->diff($current_datetime)));
+                print_r('</pre>');
+                if ($is_past_deadline == false) {
                     if ($month != 12) {
                         //申込の月が12月ではない場合
                         echo '<div id="new_report' . $index . '"  class="agent-report-not-yet">通報する(' . $year . '年' . ($month + 1) . '月1日23:59まで)</div>';
@@ -75,7 +98,17 @@
 </section>
 
 <script>
-    <?php for ($index = 0; $index < count($new_applies_array); $index++) { ?>
+    <?php for ($index = 0; $index < count($new_applies_array); $index++) {
+        $current_datetime = new DateTime(date('Y-m-d H:i:s'));
+        $deadline_datetime = new DateTime($new_applies_array[$index]['apply_report_deadline']);
+        $diff = $current_datetime->diff($deadline_datetime);
+        if (($diff->format('%R%Y') >= 0) && ($diff->format('%R%M') >= 0) && ($diff->format('%R%D') >= 0) && ($diff->format('%R%H') >= 0) && ($diff->format('%R%I') >= 0)) {
+            //期限を過ぎていない
+            $is_past_deadline = false;
+        } else {
+            $is_past_deadline = true;
+        }
+    ?>
         document.getElementById('open_new_apply<?php echo $index; ?>').addEventListener('click', function() {
             //新着の詳細ボタン押すと
             document.getElementById('close_new_apply<?php echo $index; ?>').removeAttribute('hidden');
@@ -84,15 +117,20 @@
             //新着の詳細ボタンが消える
             document.getElementById('new_apply_detail<?php echo $index; ?>').removeAttribute('hidden');
             //学生の情報が出現
-            <?php if ($new_applies_array[$index]['apply_new_status'] == 0) { ?>
-                //通報済みステータスがゼロの場合==通報していない場合
-                document.getElementById('new_report<?php echo $index; ?>').removeAttribute('hidden');
-                //通報するボタン出現
-            <?php } else { ?>
-                //通報済みの場合
-                document.getElementById('new_reported<?php echo $index; ?>').removeAttribute('hidden');
-                //通報済みボタンが出現
-            <?php } ?>
+            <?php
+            if ($is_past_deadline == false) {
+                if ($new_applies_array[$index]['apply_new_status'] == 0) { ?>
+                    //通報済みステータスがゼロの場合==通報していない場合
+                    document.getElementById('new_report<?php echo $index; ?>').removeAttribute('hidden');
+                    //通報するボタン出現
+                <?php } else { ?>
+                    //通報済みの場合
+                    document.getElementById('new_reported<?php echo $index; ?>').removeAttribute('hidden');
+                    //通報済みボタンが出現
+            <?php
+                }
+            }
+            ?>
         });
         document.getElementById('close_new_apply<?php echo $index; ?>').addEventListener('click', function() {
             //新着の閉じるボタン押すと
@@ -102,29 +140,34 @@
             //新着の詳細ボタン出現
             document.getElementById('new_apply_detail<?php echo $index; ?>').setAttribute('hidden', '');
             //新着の学生の情報出現
-            <?php if ($new_applies_array[$index]['apply_new_status'] == 0) { ?>
-                //通報済みステータスがゼロの場合==通報していない場合
+            <?php
+            if ($is_past_deadline == false) {
+                if ($new_applies_array[$index]['apply_new_status'] == 0) { ?>
+                    //通報済みステータスがゼロの場合==通報していない場合
+                    document.getElementById('new_report<?php echo $index; ?>').setAttribute('hidden', '');
+                    //新着通報するボタンが消える
+                <?php } else { ?>
+                    //通報済みの場合
+                    document.getElementById('new_reported<?php echo $index; ?>').setAttribute('hidden', '');
+                    //新着通報済みボタンが消える
+            <?php }
+            }; ?>
+        });
+        <?php if ($is_past_deadline==false) { ?>
+            document.getElementById('new_report<?php echo $index; ?>').addEventListener('click', function() {
+                //新着通報するボタン押すと
                 document.getElementById('new_report<?php echo $index; ?>').setAttribute('hidden', '');
                 //新着通報するボタンが消える
-            <?php } else { ?>
-                //通報済みの場合
-                document.getElementById('new_reported<?php echo $index; ?>').setAttribute('hidden', '');
-                //新着通報済みボタンが消える
-            <?php }; ?>
-        });
-        document.getElementById('new_report<?php echo $index; ?>').addEventListener('click', function() {
-            //新着通報するボタン押すと
-            document.getElementById('new_report<?php echo $index; ?>').setAttribute('hidden', '');
-            //新着通報するボタンが消える
-            document.getElementById('new_report_reason<?php echo $index; ?>').removeAttribute('hidden');
-            //新着通報理由記入フォーム出現
-        });
-        document.getElementById('cancel_new_report<?php echo $index; ?>').addEventListener('click', function() {
-            //新着通報キャンセル押すと
-            document.getElementById('new_report_reason<?php echo $index; ?>').setAttribute('hidden', '');
-            //新着通報理由記入フォームが消える
-            document.getElementById('new_report<?php echo $index; ?>').removeAttribute('hidden', '');
-            //新着通報するボタン出現
-        });
-    <?php } ?>
+                document.getElementById('new_report_reason<?php echo $index; ?>').removeAttribute('hidden');
+                //新着通報理由記入フォーム出現
+            });
+            document.getElementById('cancel_new_report<?php echo $index; ?>').addEventListener('click', function() {
+                //新着通報キャンセル押すと
+                document.getElementById('new_report_reason<?php echo $index; ?>').setAttribute('hidden', '');
+                //新着通報理由記入フォームが消える
+                document.getElementById('new_report<?php echo $index; ?>').removeAttribute('hidden', '');
+                //新着通報するボタン出現
+            });
+    <?php }
+    } ?>
 </script>
