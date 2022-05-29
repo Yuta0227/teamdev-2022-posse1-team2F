@@ -64,8 +64,9 @@ if(isset($_SESSION['form_sent'])){
 
 <div class="main-informations">
         <section class="modal-size">
+            <div class="below-indecator">
             <?php require "../parts/sort_filter_guide.php"; ?>
-            
+            </div>
             <!--場所変更の可能性大-->
             <?php require "../parts/agent_list.php"; ?>
             <?php require "../parts/guide_popup.php"; ?>

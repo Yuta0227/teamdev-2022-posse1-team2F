@@ -915,10 +915,13 @@
         display: none;
     }
     /* 並び変え、初心者モーダルのCSS */
+    .below-indecator {
+        display: flex;
+        flex-flow: column;
+        padding-left: 5%;
+    }
     .sort-informations {
         justify-content: space-between;
-        padding-left: 5%;
-        height: 5%;
     }
     .sorts {
         background-color: #fff;
@@ -942,7 +945,7 @@
     }
     .result-beginner {
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
         margin-top: 2%;
         align-items: flex-end;
     }
@@ -957,7 +960,7 @@
     }
     .result-number {
         padding-top: 10px;
-        padding-left: 5%;
+        /* padding-left: 5%; */
         font-weight: bolder;
         font-size: x-large;
     }
