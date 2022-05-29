@@ -310,11 +310,7 @@ p {
 
 /* ゆうたが書いた */
 input:invalid {
-    border: 2px dashed red;
-}
-
-input:invalid:focus {
-    background-image: linear-gradient(pink, lightgreen);
+    border: 2px solid red;
 }
 
 
@@ -757,11 +753,7 @@ input:invalid:focus {
     
     /* ゆうたが書いた */
     input:invalid {
-        border: 2px dashed red;
-    }
-    
-    input:invalid:focus {
-        background-image: linear-gradient(pink, lightgreen);
+        border: 2px solid red;
     }
     
     
