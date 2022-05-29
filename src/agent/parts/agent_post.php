@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $column = $translate->translate_column_to_japanese($column);
                 $msg .= $column . ':' . $data . "\n";
             }
-            $msg .= '上記の学生を' . $_POST['new_report_reason' . $index] . 'の理由で通報します';
+            $msg .= '上記の学生を「' . $_POST['new_report_reason' . $index] . '」の理由で通報します';
             $from = $_SESSION['agent_email'];
             $header = "From: {$from}\nReply-To: {$from}\nContent-Transfer-Encoding:8bit\r\nContent-Type: text/plain;charset=UTF-8\r\n";
             if (!mb_send_mail($to, $subject, $msg, $header)) {
@@ -125,7 +125,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $column = $translate->translate_column_to_japanese($column);
                 $msg .= $column . ':' . $data . "\n";
             }
-            $msg .= '上記の学生を' . $_POST['report_reason' . $index] . 'の理由で通報します';
+            $msg .= '上記の学生を「' . $_POST['report_reason' . $index] . '」の理由で通報します';
             $from = $_SESSION['agent_email'];
             $header = "From: {$from}\nReply-To: {$from}\nContent-Transfer-Encoding:8bit\r\nContent-Type: text/plain;charset=UTF-8\r\n";
             if (!mb_send_mail($to, $subject, $msg, $header)) {
