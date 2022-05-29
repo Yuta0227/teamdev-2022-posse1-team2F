@@ -61,11 +61,12 @@
             if (!mb_send_mail($to, $subject, $msg, $header)) {
                 echo 'メール送信失敗';
             }
-            $delete_request_stmt=$db->prepare("insert into delete_request (apply_id,agent_id,request_reason,assignee_email) values (?,?,?,?);");
+            $delete_request_stmt=$db->prepare("insert into delete_request (apply_id,apply_email,agent_id,request_reason,assignee_email) values (?,?,?,?,?);");
             $delete_request_stmt->bindValue(1,$_POST['report_new_apply_id'.$index]);
-            $delete_request_stmt->bindValue(2,$_SESSION['agent_id']);
-            $delete_request_stmt->bindValue(3,$_POST['new_report_reason'.$index]);
-            $delete_request_stmt->bindValue(4,$_SESSION['agent_email']);
+            $delete_request_stmt->bindValue(2,$_POST['report_new_apply_email'.$index]);
+            $delete_request_stmt->bindValue(3,$_SESSION['agent_id']);
+            $delete_request_stmt->bindValue(4,$_POST['new_report_reason'.$index]);
+            $delete_request_stmt->bindValue(5,$_SESSION['agent_email']);
             $delete_request_stmt->execute();
             //通報を通報テーブルに追加
             //通報メールに記入する学生の情報を取得
@@ -133,11 +134,12 @@
             if (!mb_send_mail($to, $subject, $msg, $header)) {
                 echo 'メール送信失敗';
             }
-            $delete_request_stmt=$db->prepare("insert into delete_request (apply_id,agent_id,request_reason,assignee_email) values (?,?,?,?);");
+            $delete_request_stmt=$db->prepare("insert into delete_request (apply_id,apply_email,agent_id,request_reason,assignee_email) values (?,?,?,?,?);");
             $delete_request_stmt->bindValue(1,$_POST['report_apply_id'.$index]);
-            $delete_request_stmt->bindValue(2,$_SESSION['agent_id']);
-            $delete_request_stmt->bindValue(3,$_POST['report_reason'.$index]);
-            $delete_request_stmt->bindValue(4,$_SESSION['agent_email']);
+            $delete_request_stmt->bindValue(2,$_POST['report_apply_email'.$index]);
+            $delete_request_stmt->bindValue(3,$_SESSION['agent_id']);
+            $delete_request_stmt->bindValue(4,$_POST['report_reason'.$index]);
+            $delete_request_stmt->bindValue(5,$_SESSION['agent_email']);
             $delete_request_stmt->execute();
             //通報を通報テーブルに追加
         }

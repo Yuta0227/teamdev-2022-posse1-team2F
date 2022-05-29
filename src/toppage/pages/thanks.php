@@ -70,9 +70,11 @@ if (isset($_POST['send_form'])) {
             //同メアドからの問い合わせはじく
             $check_same_mail_stmt = $db->query("select applicant_email_address from apply_list where agent_id=" . $applied_agent['id'] . ";");
             $check_same_mail = $check_same_mail_stmt->fetchAll();
+            $check_same_mail_delete_stmt=$db->query("select apply_email from delete_request where agent_id=".$applied_agent['id'].";");
+            $check_same_mail_delete=$check_same_mail_delete_stmt->fetchAll();
             $from_stmt = $db->query("select email_address from send_notice_mail;");
             $from = $from_stmt->fetchAll()[0]['email_address'];
-            if ($check->exists_in_multi_array($check_same_mail, 'applicant_email_address', $_SESSION['information_array']['メールアドレス']) == true) {
+            if ($check->exists_in_multi_array($check_same_mail, 'applicant_email_address', $_SESSION['information_array']['メールアドレス']) == true||$check->exists_in_multi_array($check_same_mail_delete,'apply_email',$_SESSION['information_array']['メールアドレス'])==true) {
                 //過去に同じメアドの応募がある場合
                 array_push($_SESSION['already_applied'], $applied_agent['name']);
             } else {

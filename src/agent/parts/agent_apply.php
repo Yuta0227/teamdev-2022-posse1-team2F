@@ -56,6 +56,7 @@
             }
             if ($is_past_deadline == false) {
                 echo '<input hidden name="report_apply_id' . $index . '" value="' . $applies_array[$index]['apply_id'] . '">';
+                echo '<input hidden name="report_apply_email' . $index . '" value="' . $applies_array[$index]['applicant_email_address'] . '">';
                 if ($_GET['month'] == 12) {
                     echo '<div id="report' . $index . '" hidden class="agent-report-not-yet">通報する(' . $_GET['year'] + 1 . '年 1月1日23:59まで)</div>';
                 } else {
