@@ -3,6 +3,10 @@ session_start();
 require "../../dbconnect.php";
 require "../../function.php";
 require "../parts/admin_post.php";
+if(!isset($_SESSION['admin_id'])||!isset($_SESSION['login_admin_email'])||!isset($_SESSION['admin_agent_list'])){
+    //ログイン情報がない
+    header("Location:/toppage/pages/login.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="ja">

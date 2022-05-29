@@ -168,36 +168,6 @@ if (isset($_POST['filter'])) {
 }
 
 $_SESSION['query'] = "select * from agent_public_information" . $_SESSION['save_filter_condition'] . $_SESSION['save_sort_condition'] . ";";
-// print_r('<pre>');
 
-// print_r('</pre>');
 $all_agents_stmt = $db->query($_SESSION['query']);
 $all_agents = $all_agents_stmt->fetchAll();
-// echo $_SESSION['query'];
-// if (isset($_SESSION['save_filter_condition'])) {
-//過去に条件絞り込みをしていたら
-
-    // print_r('<pre>');
-    // var_dump($all_agents);
-    // print_r('</pre>'); 
-    // } 
-    // else {
-    //     //過去に条件絞り込みをしていない場合
-    //             $all_agents_stmt = $db->query("select * from agent_public_information;");
-    //             $all_agents = $all_agents_stmt->fetchAll();
-    //             $_SESSION['all_agents'] = $all_agents;
-    //             // print_r('<pre>');
-    //             // var_dump($all_agents);
-    //             // print_r('</pre>');
-
-    // }
-// } elseif (isset($_SESSION['sort_order'])) {
-//     //過去に並び替えした場合
-//     $all_agents = $_SESSION['all_agents'];
-// } elseif (!isset($_POST['sort'])) {
-//     $all_agents_stmt = $db->query("select * from agent_public_information;");
-//     $all_agents = $all_agents_stmt->fetchAll();
-//     // print_r('<pre>');
-//     // var_dump($all_agents);
-//     // print_r('</pre>');
-// }
