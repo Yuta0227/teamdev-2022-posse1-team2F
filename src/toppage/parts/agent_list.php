@@ -16,8 +16,10 @@
     //=2,1->01,2->23
     if (count($all_agents) == 0) {
         //検索結果が0の場合
+        echo '<div class="agent-list-result-none-texts">';
         echo '<div>検索結果が見つかりませんでした</div>';
         echo '<div>別の条件で探しましょう</div>';
+        echo '</div>';
     } else {
         if ($page_number - 1 != floor(count($all_agents) / $agents_per_page)) {
             //ページ番号が最後以外
