@@ -86,23 +86,35 @@ p {
     object-fit: cover;
     width: 100%;
 }
-
+.check-cart-agent-name-box{
+    display: flex;
+    align-items: center;
+}
 .check-cart-agent-name {
     margin: 10px;
     font-weight: bold;
     font-size: 20px;
 }
-
 .check-cart-agent-delete-btn-box {
     text-align: center;
     padding: 10px 10px 0 10px;
 }
-
-.check-cart-agent-delete-btn {
-    width: 40%;
+.check-cart-agent-detail-btn{
+    display:block;
+    width: 70%;
+    margin: 10px auto;
     padding: 10px;
-    background: red;
-    color: #fff;
+    border-radius: 30px;
+    border: none;
+}
+.check-cart-agent-detail-btn:hover{
+    text-decoration: underline;
+}
+.check-cart-agent-delete-btn {
+    /* width: 40%; */
+    /* padding: 10px; */
+    background: #fff;
+    color: red;
     border: none;
     cursor: pointer;
 }
