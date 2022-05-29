@@ -126,6 +126,7 @@
         width: 20%;
         color: #999999;
         font-weight: bold;
+        z-index: 2;
     }
     .progressbar li:before {
         display: block;
