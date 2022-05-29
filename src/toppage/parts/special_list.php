@@ -2,13 +2,13 @@
 $special_list_array_stmt=$db->query("select featured_article_id,title,agent_name,publish_date,picture from featured_article;");
 $special_list_array=$special_list_array_stmt->fetchAll();
 //データベースから特集記事一覧取得。新しい順で。多次元多次元連想配列
-$specials_per_page = 2;
+$specials_per_page = 1;
 if (isset($_GET["special_list_pagination"])) {
     $specials_pagination = $_GET["special_list_pagination"];
 } else {
     $specials_pagination = 1; //パラメータ未セットの時のバグの対策
 }
-count($special_list_array) == $specials_per_page
+// count($special_list_array) == $specials_per_page
 //この場合バグる。最後のページで表示できるものがないと発生
 
 ?>
