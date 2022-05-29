@@ -99,12 +99,12 @@ if(isset($_POST['jump_to_comparison'])){
                     }
                     if (isset($_SESSION['comparison_list'])) {
                         if ($check->exists_in_array($_SESSION['comparison_list'], $featured_article_detail['agent_id'] == true)) {
-                            echo '<input type="submit" name="remove_from_comparison" class="like-button" value="比較リストから削除">';
+                            echo '<input type="submit" name="remove_from_comparison" class="top-compare-compare-btn" value="比較リストから削除">';
                         } else {
-                            echo '<input type="submit" name="add_to_comparison" class="like-button" value="比較リストに追加">';
+                            echo '<input type="submit" name="add_to_comparison" class="top-compare-compare-btn" value="比較リストに追加">';
                         }
                     } else {
-                        echo '<input type="submit" name="add_to_comparison" class="like-button" value="比較リストに追加">';
+                        echo '<input type="submit" name="add_to_comparison" class="top-compare-compare-btn" value="比較リストに追加">';
                     }; ?>
                 </div>
                 <div class="special-detail-transition" style="display:flex;justify-content:center;">

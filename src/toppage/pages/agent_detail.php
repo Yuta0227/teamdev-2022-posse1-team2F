@@ -148,12 +148,12 @@ if (isset($_POST['remove_from_apply']) && isset($_GET['agent_id'])) {
                 }
                 if (isset($_SESSION['comparison_list'])) {
                     if ($check->exists_in_array($_SESSION['comparison_list'], $_GET['agent_id']) == true) {
-                        echo '<input type="submit" name="remove_from_comparison" class="like-button" value="比較リストから削除">';
+                        echo '<input type="submit" name="remove_from_comparison" class="top-compare-compare-btn" value="比較リストから削除">';
                     } else {
-                        echo '<input type="submit" name="add_to_comparison" class="like-button" value="比較リストに追加">';
+                        echo '<input type="submit" name="add_to_comparison" class="top-compare-compare-btn" value="比較リストに追加">';
                     }
                 } else {
-                    echo '<input type="submit" name="add_to_comparison" class="like-button" value="比較リストに追加">';
+                    echo '<input type="submit" name="add_to_comparison" class="top-compare-compare-btn" value="比較リストに追加">';
                 }; ?>
             </form>
             <?php
