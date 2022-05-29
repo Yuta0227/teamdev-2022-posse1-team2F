@@ -9,7 +9,7 @@ body {
 p {
     margin: 10px;
 }
-
+@media screen and (min-width: 481px) {
 .login-all-box {
     text-align: center;
 }
@@ -432,6 +432,7 @@ input:invalid:focus {
     border: solid 1px;
     width: 20%;
     text-align: center;
+}
 
     /* プライバシーポリシー */
     .privacy-policy-unit {
@@ -454,4 +455,10 @@ input:invalid:focus {
         font-size: 30px;
     }
 
+}
+@media screen and (max-width: 480px) {
+    .privacy-policy-premise-text{
+        margin-top: 110px;
+    }
+}
     

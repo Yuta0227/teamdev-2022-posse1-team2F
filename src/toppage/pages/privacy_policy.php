@@ -18,7 +18,7 @@ session_start();
     <?php require "../parts/header.php";?>
     <section class="privacy-policy-unit">
     <div class="privacy-policy-all-box">
-        <h1>プライバシーポリシー</h1>
+        <h1 class="privacy-policy-premise-text">プライバシーポリシー</h1>
         <p>Boozer（以下，「当社」といいます。）は，本ウェブサイト上で提供するサービス（以下,「本サービス」といいます。）における，ユーザーの個人情報の取扱いについて，以下のとおりプライバシーポリシー（以下，「本ポリシー」といいます。）を定めます。</p>
     <div class="privacy-policy-each-section"> 
         <h2 class="privacy-policy-each-section-head">第1条（個人情報）</h2>
