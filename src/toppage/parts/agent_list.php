@@ -100,21 +100,21 @@
                 echo '<input name="agent_id" value="' . $all_agents[$agents_per_page * ($_GET['agent_list_pagination'] - 1) + $i]['agent_id'] . '" hidden>';
                 if (isset($_SESSION['apply_list'])) {
                     if ($check->exists_in_array($_SESSION['apply_list'], $all_agents[$agents_per_page * ($_GET['agent_list_pagination'] - 1) + $i]['agent_id']) == true) {
-                        echo '<input type="submit" name="remove_from_apply" class="like-button" style="width:100%;" value="問い合わせリストから削除">';
+                        echo '<input type="submit" name="remove_from_apply" class="like-button"  value="問い合わせリストから削除">';
                     } else {
-                        echo '<input type="submit" name="add_to_apply" class="like-button" style="width:100%;" value="問い合わせリストに追加">';
+                        echo '<input type="submit" name="add_to_apply" class="like-button"  value="問い合わせリストに追加">';
                     }
                 } else {
-                    echo '<input type="submit" name="add_to_apply" class="like-button" style="width:100%;" value="問い合わせリストに追加">';
+                    echo '<input type="submit" name="add_to_apply" class="like-button"  value="問い合わせリストに追加">';
                 }
                 if (isset($_SESSION['comparison_list'])) {
                     if ($check->exists_in_array($_SESSION['comparison_list'], $all_agents[$agents_per_page * ($_GET['agent_list_pagination'] - 1) + $i]['agent_id']) == true) {
-                        echo '<input type="submit" name="remove_from_comparison" class="top-compare-compare-btn" style="width:100%;" value="比較リストから削除">';
+                        echo '<input type="submit" name="remove_from_comparison" class="top-compare-compare-btn"  value="比較リストから削除">';
                     } else {
-                        echo '<input type="submit" name="add_to_comparison" class="top-compare-compare-btn" style="width:100%;" value="比較リストに追加">';
+                        echo '<input type="submit" name="add_to_comparison" class="top-compare-compare-btn"  value="比較リストに追加">';
                     }
                 } else {
-                    echo '<input type="submit" name="add_to_comparison" class="top-compare-compare-btn" style="width:100%;" value="比較リストに追加">';
+                    echo '<input type="submit" name="add_to_comparison" class="top-compare-compare-btn"  value="比較リストに追加">';
                 };
 
                 echo '</div>';
