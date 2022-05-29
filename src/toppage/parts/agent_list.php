@@ -3,7 +3,7 @@
     <?php
     require "guide_popup.php";
     $page_number = $_GET['agent_list_pagination']; //URLからとってくる
-    $agents_per_page = 3; //ページ毎に表示するエージェントの個数
+    $agents_per_page = 2; //ページ毎に表示するエージェントの個数
     if (!isset($_SESSION['apply_list'])) {
         //配列のセッション登録されてなかったら初期化
         $_SESSION['apply_list'] = [];
