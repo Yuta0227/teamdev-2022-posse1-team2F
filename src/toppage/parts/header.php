@@ -16,6 +16,9 @@
         <!--ヘッダーの下側の右側-->
         <div class="header-cart-box">
             <a href="check_cart.php">
+                <div class="header-cart-text">
+                問い合わせリスト
+                </div>
                 <div class="header-cart">
                     <i class="fa-solid fa-envelope fa-2x mail-icon"></i>
                     <!--position:relative-->

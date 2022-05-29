@@ -16,6 +16,12 @@
     .header-box {
         background-color: #52a49a;
     }
+    .each-menu{
+        font-weight: bold;
+    }
+    .each-menu:hover{
+        text-decoration: underline;
+    }
     .logo-box {
         text-align: center;
     }
@@ -31,7 +37,7 @@
         /* gap: 20px; */
         display: flex;
         justify-content: space-between;
-        width: 40%;
+        width: 60%;
         color: #fff;
         cursor: pointer;
         margin: 0;
@@ -40,10 +46,26 @@
     .header-cart-box {
         display: inline-block;
         margin-right: 10px;
+        cursor: pointer;
+    }
+    .header-cart-box a{
+        display: flex;
+        align-items: center;
+        text-decoration:none;
+    }
+    .header-cart-box a:hover{
+        text-decoration: underline;
+        text-decoration-color: #fff;
+    }
+    .header-cart-text{
+        display: inline-block;
+        color: #fff;
+        font-weight: bold;
+        text-decoration: none;
     }
     .header-cart {
         display: inline-block;
-        padding: 20px 20px 5px 20px;
+        padding: 20px 20px 20px 10px;
         position: relative;
     }
     .mail-icon {
@@ -88,6 +110,7 @@
     }
     /* indicator */
     .progressbar {
+        background: #fff;
         position: relative;
         padding: 0;
         padding-top: 20px;
@@ -116,7 +139,7 @@
     }
     .progressbar li:after {
         position: absolute;
-        z-index: -1;
+        /* z-index: -1; */
         top: 15px;
         left: -80%;
         width: 125%;
@@ -148,6 +171,7 @@
     }
     .filter-box {
         width: 30%;
+        margin-bottom: 15px;
     }
     /* 絞り込みポップアップ */
     .filter {
@@ -205,6 +229,7 @@
         border-radius: 20px;
         padding: 0 15px 0 15px;
         border: none;
+        background: #fff;
     }
     .beginner-button-sp {
         display: none;
@@ -233,6 +258,7 @@
         border: solid;
         border-color: #999999;
         cursor: pointer;
+        background: #fff;
     }
     .agent-overview-box a {
         color: black;
@@ -756,10 +782,21 @@
         display: inline-block;
         margin-right: 10px;
     }
+    .header-cart-box a{
+        display: flex;
+        align-items: center;
+        text-decoration:none;
+    }
     .header-cart {
         display: inline-block;
-        padding: 20px 20px 5px 20px;
+        padding: 20px 20px 20px 10px;
         position: relative;
+    }
+    .header-cart-text{
+        display: inline-block;
+        color: #fff;
+        /* font-weight: bold; */
+        text-decoration: none;
     }
     .mail-icon {
         color: #fff;
@@ -800,8 +837,10 @@
     }
     /* indicator */
     .progressbar {
+        background: #fff;
         position: relative;
-        margin-top: 110px;
+        margin-top: 100px;
+        padding-top: 10px;
         padding-left: 2%;
         display: flex;
         flex-wrap: wrap;
@@ -829,7 +868,7 @@
     }
     .progressbar li:after {
         position: absolute;
-        z-index: -1;
+        /* z-index: -1; */
         top: 15px;
         left: -80%;
         width: 125%;
@@ -982,6 +1021,7 @@
         cursor: pointer;
         width: 100%;
         margin-bottom: 2%;
+        background: #fff;
     }
     .agent-overview-box a {
         color: black;
