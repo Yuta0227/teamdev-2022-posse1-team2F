@@ -107,26 +107,25 @@ body{
 .agent-pagenation-parent{
     display: inline-block;
     text-align: right;
-    background: #52a49a;
+    background: #00000000;
     margin-right: 10%;
     padding: 10px 10px;
 }
 .agent-pagenation-all-box{
     display:flex;
     justify-content: flex-end;
-    /* margin-right: 10%; */
     gap: 5px;
 }
 .admin-pagenation-number{
     text-align: center;
-    width: 25px;
-    background: #fff;
-    /* border-radius: 20px; */
-    color: #000;
+    width: 35px;
+    border: #52a49a solid;
+    color: #52a49a;
     cursor: pointer;
+    padding: 5px;
 }
 .admin-pagenation-arrow{
-    color: #000;
+    color: #52a49a;
     text-decoration: none;
     vertical-align: middle;
 }
