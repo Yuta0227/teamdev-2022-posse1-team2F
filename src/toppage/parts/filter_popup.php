@@ -12,19 +12,17 @@
         8 => '九州沖縄',
     ];
     $industry_array = ['manufacturer', 'retail', 'service', 'software_transmission', 'trading', 'finance', 'media', 'government'];
-    // print_r('<pre>');
-    // var_dump($filter_prefecture_hokkaidou);
-    // print_r('</pre>');
+
     $conditions_array = [1, 2, 3, 4, 5];
     $conditions_type_array = [1, 2];
     ?>
-    <form action="" method="POST" id="filter" style="width:100%;">
-        <div style="height:100px;align-items:center;display:flex;justify-content:center;position:relative;">
-            <div>条件絞り込み</div>
-            <div id="close-btn" class="close-btn" style="position:absolute;top:0;right:0;border-radius:20px;padding:5px;border:1px solid black;text-align:center;">✕</div>
+    <form action="" method="POST" id="filter" style="width:100%;background:#fff;">
+        <div class="filter-popup-all-head-box">
+            <div class="filter-popup-all-head">絞り込み条件</div>
+            <div id="close-btn" class="close-btn" style="position:absolute;top:5px;right:5px;border-radius:20px;padding:5px;width:30px;text-align:center;">✕</div>
         </div>
 
-        <table style="width:100%;">
+        <table class="filter-popup-table">
             <tr>
                 <th style="border:1px solid black;">拠点地</th>
                 <td style="border:1px solid black;">
@@ -33,8 +31,8 @@
                         echo
                         '<div style="display:flex;width:100%;">
                         <div style="width:80%;box-sizing:border-box;border:1px solid black;">' . $area . '</div>
-                        <div id="open' . $area_id . '" style="border:1px solid black;width:20%;background-color:red;box-sizing:border-box;">▽</div>
-                        <div id="close' . $area_id . '" style="border:1px solid black;width:20%;box-sizing:border-box;" hidden>△</div>
+                        <div id="open' . $area_id . '" class="filter-popup-table-open-close-detail">▽</div>
+                        <div id="close' . $area_id . '"  class="filter-popup-table-open-close-detail" hidden>△</div>
                         </div>';
                         echo '<div id="prefectures' . $area_id . '" hidden>';
                         $filter_prefecture_stmt = $db->query("select * from filter_prefecture where area_id=" . $area_id . ";");
@@ -173,7 +171,8 @@
                 </td>
             </tr>
         </table>
-        <input name="filter" value="この条件で絞り込む" type="submit">
+        <input class="filter-popup-confirm-conditions" name="filter" value="この条件で絞り込む" type="submit">
+        <input class="filter-popup-reset-conditions" name="reset_filter" value="条件リセットする" type="submit">
     </form>
 </section>
 <!--cssやjsは17行から20行を編集すればいい。idつけるなど-->

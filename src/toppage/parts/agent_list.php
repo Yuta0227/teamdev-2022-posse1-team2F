@@ -43,6 +43,8 @@
                 echo '<tr><th style="border:1px solid black;">内定最短期間(週)</th><td style="border:1px solid black;">' . $translate->translate_data_to_japanese('内定最短期間(週)', $all_agents[$agents_per_page * ($_GET['agent_list_pagination'] - 1) + $i]['agent_shortest_period']) . '</td></tr>';
                 echo '<tr><th style="border:1px solid black;">○○向き</th><td style="border:1px solid black;">' . $translate->translate_data_to_japanese('○○向き', $all_agents[$agents_per_page * ($_GET['agent_list_pagination'] - 1) + $i]['agent_recommend_student_type']) . '</td></tr>';
                 echo '</table></div>';
+                echo '</div>';
+                echo '</div>';
                 echo '<div style="text-align: center;">';
                 echo '<input name="agent_id" value="' . $all_agents[$agents_per_page * ($_GET['agent_list_pagination'] - 1) + $i]['agent_id'] . '" hidden>';
                 if (isset($_SESSION['apply_list'])) {
@@ -56,16 +58,13 @@
                 }
                 if (isset($_SESSION['comparison_list'])) {
                     if ($check->exists_in_array($_SESSION['comparison_list'], $all_agents[$agents_per_page * ($_GET['agent_list_pagination'] - 1) + $i]['agent_id']) == true) {
-                        echo '<input type="submit" name="remove_from_comparison" class="like-button" value="比較リストから削除">';
+                        echo '<input type="submit" name="remove_from_comparison" class="top-compare-compare-btn" value="比較リストから削除">';
                     } else {
-                        echo '<input type="submit" name="add_to_comparison" class="like-button" value="比較リストに追加">';
+                        echo '<input type="submit" name="add_to_comparison" class="top-compare-compare-btn" value="比較リストに追加">';
                     }
                 } else {
-                    echo '<input type="submit" name="add_to_comparison" class="like-button" value="比較リストに追加">';
+                    echo '<input type="submit" name="add_to_comparison" class="top-compare-compare-btn" value="比較リストに追加">';
                 };
-                echo '</div>';
-                echo '</label>';
-                echo '</div>';
                 echo '</div>';
                 echo '</a>';
                 echo '</form>';
@@ -95,29 +94,29 @@
                 echo '<tr><th style="border:1px solid black;">内定最短期間(週)</th><td style="border:1px solid black;">' . $translate->translate_data_to_japanese('内定最短期間(週)', $all_agents[$agents_per_page * ($_GET['agent_list_pagination'] - 1) + $i]['agent_shortest_period']) . '</td></tr>';
                 echo '<tr><th style="border:1px solid black;">○○向き</th><td style="border:1px solid black;">' . $translate->translate_data_to_japanese('○○向き', $all_agents[$agents_per_page * ($_GET['agent_list_pagination'] - 1) + $i]['agent_recommend_student_type']) . '</td></tr>';
                 echo '</table></div>';
+                echo '</div>';
+                echo '</div>';
                 echo '<div style="text-align: center;">';
                 echo '<input name="agent_id" value="' . $all_agents[$agents_per_page * ($_GET['agent_list_pagination'] - 1) + $i]['agent_id'] . '" hidden>';
                 if (isset($_SESSION['apply_list'])) {
                     if ($check->exists_in_array($_SESSION['apply_list'], $all_agents[$agents_per_page * ($_GET['agent_list_pagination'] - 1) + $i]['agent_id']) == true) {
-                        echo '<input type="submit" name="remove_from_apply" class="like-button" value="問い合わせリストから削除">';
+                        echo '<input type="submit" name="remove_from_apply" class="like-button"  value="問い合わせリストから削除">';
                     } else {
-                        echo '<input type="submit" name="add_to_apply" class="like-button" value="問い合わせリストに追加">';
+                        echo '<input type="submit" name="add_to_apply" class="like-button"  value="問い合わせリストに追加">';
                     }
                 } else {
-                    echo '<input type="submit" name="add_to_apply" class="like-button" value="問い合わせリストに追加">';
+                    echo '<input type="submit" name="add_to_apply" class="like-button"  value="問い合わせリストに追加">';
                 }
                 if (isset($_SESSION['comparison_list'])) {
                     if ($check->exists_in_array($_SESSION['comparison_list'], $all_agents[$agents_per_page * ($_GET['agent_list_pagination'] - 1) + $i]['agent_id']) == true) {
-                        echo '<input type="submit" name="remove_from_comparison" class="like-button" value="比較リストから削除">';
+                        echo '<input type="submit" name="remove_from_comparison" class="top-compare-compare-btn"  value="比較リストから削除">';
                     } else {
-                        echo '<input type="submit" name="add_to_comparison" class="like-button" value="比較リストに追加">';
+                        echo '<input type="submit" name="add_to_comparison" class="top-compare-compare-btn"  value="比較リストに追加">';
                     }
                 } else {
-                    echo '<input type="submit" name="add_to_comparison" class="like-button" value="比較リストに追加">';
+                    echo '<input type="submit" name="add_to_comparison" class="top-compare-compare-btn"  value="比較リストに追加">';
                 };
-                echo '</div>';
 
-                echo '</div>';
                 echo '</div>';
                 echo '</a>';
                 echo '</form>';

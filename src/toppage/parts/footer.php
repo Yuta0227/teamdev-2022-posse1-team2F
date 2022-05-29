@@ -9,10 +9,10 @@
         <!--中央寄せ-->
         <div class="footer-links">
             <div class="footer-link">
-                <a href="">就活.com</a>
+                <a href="https://reashu.com/"  target="_blank">就活.com</a>
             </div>
             <div class="footer-link">
-                <a href="">プライバシーポリシー</a>
+                <a href="../pages/privacy_policy.php">プライバシーポリシー</a>
             </div>
         </div>
     </div>
