@@ -1,7 +1,9 @@
 <header>
     <div class="admin-header-all">
         <div class="admin-header-logo-box">
-            <img src="../../img/syukatudotcom_logo_white.png" alt="logo">
+            <a href="https://reashu.com/" target="_blank">
+                <img src="../../img/syukatudotcom_logo_white.png" alt="logo">
+            </a>
         </div>
         <div class="admin-header-toplink-box">
             <form name="list_form" action="" method="POST">

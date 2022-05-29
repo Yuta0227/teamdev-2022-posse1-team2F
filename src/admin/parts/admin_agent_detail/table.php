@@ -163,8 +163,8 @@
             $explanation_stmt->bindValue(1, $_GET['agent_id']);
             $explanation_stmt->execute();
             $explanation = $explanation_stmt->fetchAll();
-            echo nl2br($explanation[0]['agent_explanation']);
-            //改行などは;とexplodeなどをつかって対策する。登録のときに工夫してもらう
+            $replace = str_replace('<space>', '&emsp;', nl2br($explanation[0]['agent_explanation']));
+            echo $replace;
             ?>
         </div>
         <div class="admin-agent-detail-explain-edit-btn-box">
@@ -251,7 +251,7 @@
             </tr>
             <tr>
                 <th class="admin-agent-detail-popup-agent-profile-add-table-text">メールアドレス</th>
-                <td class="admin-agent-detail-popup-agent-profile-add-table-content"><input required style="width:100%;" name="add_mail"></td>
+                <td class="admin-agent-detail-popup-agent-profile-add-table-content"><input type="email" required style="width:100%;" name="add_mail"></td>
             </tr>
             <tr>
                 <th class="admin-agent-detail-popup-agent-profile-add-table-text">パスワード</th>

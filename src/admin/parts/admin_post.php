@@ -45,9 +45,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $change_img_file_article_stmt->execute();
             $check_featured_stmt=$db->query("select agent_id from featured_article;");
             $check_featured=$check_featured_stmt->fetchAll();
-            print_r('<pre>');
-            var_dump($check_featured);
-            print_r('</pre>');
             if($check->exists_in_multi_array($check_featured,'agent_id',$_GET['agent_id'])==true){
                 //もし特集記事が存在するなら画像を変える
                 $change_img_file_featured_article_stmt = $db->prepare("update featured_article set picture=? where agent_id=?;");
@@ -56,29 +53,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $change_img_file_featured_article_stmt->execute();
             }
         }
-        //ダウンロードをしたいファイル名のパス
-        // print_r('<pre>');
-        // var_dump($_FILES);
-        // print_r('</pre>');
-        // $file_name = $_FILES['img_file']['name'];
-        // $file_path = $_FILES['img_file']['full_path'];
-        
-        //なぜかphpファイルをダウンロードしてしまう
-
-        // //ダウンロード時のファイル名
-        // $download_file_name = $file_name;
-
-        // //タイプをダウンロードと指定
-        // header('Content-Type: application/force-download;');
-
-        // //ファイルのサイズを取得してダウンロード時間を表示する
-        // header('Content-Length: ' . filesize($file_path));
-
-        // //ダウンロードの指示・ダウンロード時のファイル名を指定
-        // header('Content-Disposition: attachment; filename="' . $file_name . '"');
-
-        // //ファイルを読み込んでダウンロード
-        // readfile($download_file_name);
         //画像編集
         //存在する拠点取得
         $check_prefecture_stmt = $db->prepare("select prefecture_id from agent_address where agent_id=?;");
