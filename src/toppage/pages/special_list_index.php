@@ -18,6 +18,7 @@ require "../../dbconnect.php";
 </head>
 <body>
 <?php require "../parts/header.php"; ?>
+<?php require "../parts/indicator_step1.php"; ?>
     <?php 
     require "../parts/special_list.php";
     require "../parts/special_list_pagination.php";

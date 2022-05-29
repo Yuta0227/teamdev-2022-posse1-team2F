@@ -56,6 +56,7 @@ if(isset($_POST['jump_to_comparison'])){
 
 <body>
     <?php require "../parts/header.php"; ?>
+    <?php require "../parts/indicator_step1.php"; ?>
     <section class="special-detail-all">
         <div class="special-detail-all-box">
             <div style="display:flex;">

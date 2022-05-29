@@ -48,11 +48,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
             $subject = "通報";
             $msg = $_SESSION['agent_name'].$_SESSION['agent_branch'].'の'.$_SESSION['assignee_name']."です。\n";
-            foreach ($applicant_data[$index] as $column => $data) {
+            // print_r('<pre>');
+            // var_dump($applicant_data);
+            // print_r('</pre>');
+            foreach ($applicant_data[0] as $column => $data) {
                 $column = $translate->translate_column_to_japanese($column);
                 $msg .= $column . ':' . $data . "\n";
             }
-            $msg .= '上記の学生を' . $_POST['new_report_reason' . $index] . 'の理由で通報します';
+            $msg .= '上記の学生を「' . $_POST['new_report_reason' . $index] . '」の理由で通報します';
             $from = $_SESSION['agent_email'];
             $header = "From: {$from}\nReply-To: {$from}\nContent-Transfer-Encoding:8bit\r\nContent-Type: text/plain;charset=UTF-8\r\n";
             if (!mb_send_mail($to, $subject, $msg, $header)) {
@@ -89,13 +92,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $update_stmt = $db->prepare("update apply_list set apply_new_status=0 where apply_id=?;");
             $update_stmt->bindValue(1, $_POST['close_apply_id' . $index]);
             $update_stmt->execute();
-            var_dump($_POST);
+            // var_dump($_POST);
             //新着から消す
             break;
         }
         if (isset($_POST['report_apply_id' . $index]) && isset($_POST['report_reason' . $index])) {
             //一覧から通報
-            var_dump($_POST);
+            // var_dump($_POST);
             $applicant_stmt = $db->prepare("select apply_id,agent_id,agent_name,apply_time,applicant_email_address,applicant_name_kanji,applicant_name_furigana,applicant_phone_number,applicant_university,applicant_gakubu,applicant_gakka,applicant_graduation_year,applicant_postal_code,applicant_address,applicant_consultation,applicant_other_agents from apply_list where apply_id=?;");
             $applicant_stmt->bindValue(1, $_POST['report_apply_id' . $index]);
             $applicant_stmt->execute();
@@ -122,7 +125,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $column = $translate->translate_column_to_japanese($column);
                 $msg .= $column . ':' . $data . "\n";
             }
-            $msg .= '上記の学生を' . $_POST['report_reason' . $index] . 'の理由で通報します';
+            $msg .= '上記の学生を「' . $_POST['report_reason' . $index] . '」の理由で通報します';
             $from = $_SESSION['agent_email'];
             $header = "From: {$from}\nReply-To: {$from}\nContent-Transfer-Encoding:8bit\r\nContent-Type: text/plain;charset=UTF-8\r\n";
             if (!mb_send_mail($to, $subject, $msg, $header)) {
