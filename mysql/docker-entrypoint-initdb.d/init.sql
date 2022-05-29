@@ -376,6 +376,7 @@ drop table if exists delete_request;
 
 create table delete_request(
   apply_id int primary key,
+  apply_email varchar(255),
   agent_id int,
   request_reason text,
   assignee_email varchar(255),
