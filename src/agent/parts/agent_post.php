@@ -29,7 +29,6 @@
             $applicant_stmt->bindValue(1, $_POST['report_new_apply_id' . $index]);
             $applicant_stmt->execute();
             $applicant_data = $applicant_stmt->fetchAll();
-
             //通報期限より前なら
             //日数の差を取得
             mb_language("ja");
