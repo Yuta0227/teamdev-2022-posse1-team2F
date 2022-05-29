@@ -148,9 +148,11 @@
         <input name="agent_id" value="<?php echo $agent; ?>" hidden>
         <input class="compare-each-close-btn" type="submit" name="remove_from_comparison" value="×">
         <!-- </div> -->
-        <div style="display: flex;">
-            <img class="top-compare-each-img" src="../../img/article/<?php echo $agent_name_picture['picture_url']; ?>" alt="<?php echo $agent_name_picture['agent_name'] . 'の画像'; ?>">
+        <div class="form-img-p">
             <p class="top-compare-each-name"><?php echo $agent_name_picture['agent_name']; ?></p>
+            <div class="compare-img">
+                <img class="top-compare-each-img" src="../../img/article/<?php echo $agent_name_picture['picture_url']; ?>" alt="<?php echo $agent_name_picture['agent_name'] . 'の画像'; ?>">
+            </div>
         </div>
     </form>
     <!-- </div> -->
