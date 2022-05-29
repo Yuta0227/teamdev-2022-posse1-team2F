@@ -3,23 +3,23 @@
         margin: 0;
         padding: 0;
     }
-    pre{
+    pre {
         margin: 0;
     }
     p {
         margin: 0;
     }
-    body{
-        background:#eaedf2;
+    body {
+        background: #eaedf2;
     }
     /* header */
     .header-box {
         background-color: #52a49a;
     }
-    .each-menu{
+    .each-menu {
         font-weight: bold;
     }
-    .each-menu:hover{
+    .each-menu:hover {
         text-decoration: underline;
     }
     .logo-box {
@@ -48,16 +48,16 @@
         margin-right: 10px;
         cursor: pointer;
     }
-    .header-cart-box a{
+    .header-cart-box a {
         display: flex;
         align-items: center;
-        text-decoration:none;
+        text-decoration: none;
     }
-    .header-cart-box a:hover{
+    .header-cart-box a:hover {
         text-decoration: underline;
         text-decoration-color: #fff;
     }
-    .header-cart-text{
+    .header-cart-text {
         display: inline-block;
         color: #fff;
         font-weight: bold;
@@ -106,7 +106,7 @@
         color: #fff;
         text-decoration: none;
     }
-    .footer-link a:hover{
+    .footer-link a:hover {
         text-decoration: underline;
     }
     /* indicator */
@@ -304,8 +304,8 @@
     /* 企業比較 */
     .top-compare-over-lay {
         border: solid 1px;
-        width: 80%;
-        /* height: 20%; */
+        width: 100%;
+        /* height: 300px; */
         margin: auto;
         bottom: 0;
         position: fixed;
@@ -321,6 +321,7 @@
         width: 30px;
         position: absolute;
         right: 0%;
+        bottom: 0%;
         cursor: pointer;
         font-size: 20px;
         text-align: center;
@@ -332,28 +333,38 @@
     }
     .top-compare-in-box {
         display: flex;
-        flex-wrap: wrap;
+        overflow-x: scroll;
+        /* flex-wrap: wrap; */
     }
     .top-compare-each-box {
-        width: calc((100% - 100px) / 5);
-        display: block;
+        width: 200px;
+        height: 100px;
+        display: flex;
         padding: 0 0px 10px 10px;
         margin: 10px;
         border: solid 1px;
         border-color: #ddd;
     }
+    .top-compare-each-box img {
+        object-fit: fill;
+    }
     .compare-each-close-btn {
         display: block;
         text-align: center;
         width: 24px;
+        height: 24px;
         border-radius: 12px;
         background: #ddd;
         font-size: 16px;
         margin: 5px 5px 0 auto;
+        padding: 0 5px 25px;
+        border: none;
+        color: #fff;
         /* margin-left: auto; */
         right: 0;
     }
     .top-compare-each-img {
+        /* height: 70%; */
         width: 50%;
     }
     .top-compare-each-name {
@@ -371,11 +382,16 @@
         border: none;
         border-radius: 20px;
     }
-    /* ページネーション */
-    .top-pagenation-unit{
-        text-align: right;   
+    .form-img-p {
+        display: flex;
+        flex-flow: column;
+        object-fit: fill;
     }
-    .top-pagenation-parent{
+    /* ページネーション */
+    .top-pagenation-unit {
+        text-align: right;
+    }
+    .top-pagenation-parent {
         display: inline-block;
         text-align: right;
         background: #00000000;
@@ -383,20 +399,20 @@
         padding: 10px 10px;
     }
     .top-pagenation-all-box {
-        display:flex;
+        display: flex;
         justify-content: flex-end;
         gap: 5px;
     }
     .top-pagenation-each-box {
         text-align: center;
         width: 35px;
-        border:#52a49a solid;
-        color: #52a49a ;
+        border: #52a49a solid;
+        color: #52a49a;
         cursor: pointer;
         padding: 5px;
     }
     .top-pagenation-arrow {
-        color: #52a49a ;
+        color: #52a49a;
         text-decoration: none;
         vertical-align: middle;
     }
@@ -636,43 +652,43 @@
         border: none;
     }
     /* 絞り込み */
-    .filter-popup-all-head-box{
+    .filter-popup-all-head-box {
         /* height:100px; */
         padding: 10px;
-        align-items:center;
-        display:flex;
-        justify-content:center;
-        position:relative;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        position: relative;
         background: #80cbc4;
     }
-    .filter-popup-all-head{
+    .filter-popup-all-head {
         font-weight: bold;
         font-size: 20px;
         color: #fff;
     }
-    .filter-popup-table{
-        width:100%;
+    .filter-popup-table {
+        width: 100%;
         background: #fff;
     }
-    .filter-popup-table-open-close-detail{
-        border-bottom:1px solid black;
-        border-top:1px solid black;
-        width:20%;
-        background-color:#efefef;
-        box-sizing:border-box;
+    .filter-popup-table-open-close-detail {
+        border-bottom: 1px solid black;
+        border-top: 1px solid black;
+        width: 20%;
+        background-color: #efefef;
+        box-sizing: border-box;
         cursor: pointer;
     }
-    .filter-popup-reset-conditions{
+    .filter-popup-reset-conditions {
         padding: 5px;
         width: 70%;
         border-radius: 20px;
         border: none;
         background: #00000000;
     }
-    .filter-popup-reset-conditions:hover{
+    .filter-popup-reset-conditions:hover {
         text-decoration: underline;
     }
-    .filter-popup-confirm-conditions{
+    .filter-popup-confirm-conditions {
         margin: 10px 5px 5px 5px;
         padding: 5px;
         width: 80%;
@@ -681,46 +697,46 @@
         background: #eb524f;
         color: #fff;
     }
-    .filter-popup-confirm-conditions:hover{
+    .filter-popup-confirm-conditions:hover {
         text-decoration: underline;
     }
     /* 比較ページCSS */
-    .top-comparison-head{
+    .top-comparison-head {
         padding-top: 10px;
         padding-left: 5%;
         font-weight: bolder;
         font-size: 20px;
     }
-    .comparison-compare-info-all-box{
+    .comparison-compare-info-all-box {
         width: 80%;
         background: #fff;
-        margin: auto; 
-        margin-bottom: 20px;  
+        margin: auto;
+        margin-bottom: 20px;
     }
-    .comparison-compare-info-in-box{
-        display:flex;
+    .comparison-compare-info-in-box {
+        display: flex;
         justify-content: space-evenly;
-        border-bottom:1px solid black; 
+        border-bottom: 1px solid black;
     }
-    .comparison-compare-info-head{
-        width:25%;
+    .comparison-compare-info-head {
+        width: 25%;
         font-weight: bold;
         text-align: center;
         margin: 10px;
         font-size: 20px;
     }
-    .comparison-compare-info-content-img-box{
+    .comparison-compare-info-content-img-box {
         text-align: center;
         width: 25%;
         display: flex;
         justify-content: center;
         align-items: center;
     }
-    .comparison-compare-info-content-img{
+    .comparison-compare-info-content-img {
         width: 70%;
     }
-    .comparison-compare-info-content{
-        width:25%;
+    .comparison-compare-info-content {
+        width: 25%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -728,23 +744,23 @@
         padding: 10px;
         font-size: 18px;
     }
-    .comparison-compare-info-btns{
-        width:25%;
-        display:flex;
+    .comparison-compare-info-btns {
+        width: 25%;
+        display: flex;
         flex-direction: column;
         justify-content: center;
     }
 }
 
 @media screen and (max-width: 480px) {
-    body{
+    body {
         background: #eaedf2;
     }
     * {
         margin: 0;
         padding: 0;
     }
-    pre{
+    pre {
         margin: 0;
     }
     /* header */
@@ -784,17 +800,17 @@
         display: inline-block;
         margin-right: 10px;
     }
-    .header-cart-box a{
+    .header-cart-box a {
         display: flex;
         align-items: center;
-        text-decoration:none;
+        text-decoration: none;
     }
     .header-cart {
         display: inline-block;
         padding: 20px 20px 20px 10px;
         position: relative;
     }
-    .header-cart-text{
+    .header-cart-text {
         display: inline-block;
         color: #fff;
         /* font-weight: bold; */
@@ -949,17 +965,20 @@
     .filter-btn {
         background-color: #fff;
         height: 40px;
-        padding: 10px;
+        padding: 0 10px;
         border: solid 1px;
     }
     .none {
         display: none;
     }
     /* 並び変え、初心者モーダルのCSS */
+    .below-indecator {
+        display: flex;
+        flex-flow: column;
+        padding-left: 5%;
+    }
     .sort-informations {
         justify-content: space-between;
-        padding-left: 5%;
-        height: 5%;
     }
     .sorts {
         background-color: #fff;
@@ -983,7 +1002,7 @@
     }
     .result-beginner {
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
         margin-top: 2%;
         align-items: flex-end;
     }
@@ -998,7 +1017,7 @@
     }
     .result-number {
         padding-top: 10px;
-        padding-left: 5%;
+        /* padding-left: 5%; */
         font-weight: bolder;
         font-size: x-large;
     }
@@ -1065,24 +1084,94 @@
         padding-left: 5px;
         color: red;
     }
+    /* 企業比較 */
+    .top-compare-over-lay {
+        border: solid 1px;
+        width: 100%;
+        /* height: 15%; */
+        margin: auto;
+        bottom: 0;
+        position: fixed;
+        background: #fff;
+        /* height: 10%; */
+    }
+    .top-compare-head {
+        font-size: 22px;
+        font-weight: bold;
+        margin: 0px;
+    }
+    .compare-over-lay-close-btn {
+        margin: 5px;
+        width: 30px;
+        position: absolute;
+        right: 0%;
+        bottom: 0%;
+        cursor: pointer;
+        font-size: 20px;
+        text-align: center;
+        border-radius: 15px;
+        background: #ddd;
+    }
+    .compare-close-btn-icon {
+        color: #fff;
+    }
+    .top-compare-in-box {
+        display: flex;
+        overflow-x: scroll;
+        white-space: nowrap;
+        /* flex-wrap: wrap; */
+    }
+    .top-compare-each-box {
+        width: 300px;
+        height: 100px;
+        display: flex;
+        padding: 0 0px 10px 10px;
+        margin: 10px;
+        border: solid 1px;
+        border-color: #ddd;
+    }
+    .compare-each-close-btn {
+        display: block;
+        text-align: center;
+        width: 24px;
+        height: 24px;
+        border-radius: 12px;
+        background: #ddd;
+        font-size: 16px;
+        margin: 5px 5px 0 auto;
+        padding: 0 5px 25px;
+        border: none;
+        color: #fff;
+        /* margin-left: auto; */
+        right: 0;
+    }
+    .top-compare-each-img {
+        width: 65%;
+    }
+    .top-compare-each-name {
+        display: inline-block;
+    }
     .top-compare-btn-box {
         text-align: center;
     }
     .top-compare-compare-btn {
         padding: 10px 20px;
-        margin: 10px;
-        width: 180px;
-        height: 50px;
+        margin: 10px 0;
+        width: 220px;
         background: #ffab40;
         color: #fff;
         border: none;
-        border-radius: 30px;
+        border-radius: 20px;
+    }
+    .form-img-p {
+        display: flex;
+        flex-flow: column;
     }
     /* ページネーション */
-    .top-pagenation-unit{
-        text-align: right;   
+    .top-pagenation-unit {
+        text-align: right;
     }
-    .top-pagenation-parent{
+    .top-pagenation-parent {
         display: inline-block;
         text-align: right;
         background: #00000000;
@@ -1090,14 +1179,14 @@
         padding: 10px 10px;
     }
     .top-pagenation-all-box {
-        display:flex;
+        display: flex;
         justify-content: flex-end;
         gap: 5px;
     }
     .top-pagenation-each-box {
         text-align: center;
         width: 25px;
-        border:#52a49a solid;
+        border: #52a49a solid;
         color: #52a49a;
         cursor: pointer;
     }
@@ -1341,43 +1430,43 @@
         border-radius: 20px;
         border: none;
     }
-    .filter-popup-all-head-box{
+    .filter-popup-all-head-box {
         /* height:100px; */
         padding: 10px;
-        align-items:center;
-        display:flex;
-        justify-content:center;
-        position:relative;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        position: relative;
         background: #80cbc4;
     }
-    .filter-popup-all-head{
+    .filter-popup-all-head {
         font-weight: bold;
         font-size: 20px;
         color: #fff;
     }
-    .filter-popup-table{
-        width:100%;
+    .filter-popup-table {
+        width: 100%;
         background: #fff;
     }
-    .filter-popup-table-open-close-detail{
-        border-bottom:1px solid black;
-        border-top:1px solid black;
-        width:20%;
-        background-color:#efefef;
-        box-sizing:border-box;
+    .filter-popup-table-open-close-detail {
+        border-bottom: 1px solid black;
+        border-top: 1px solid black;
+        width: 20%;
+        background-color: #efefef;
+        box-sizing: border-box;
         cursor: pointer;
     }
-    .filter-popup-reset-conditions{
+    .filter-popup-reset-conditions {
         padding: 5px;
         width: 70%;
         border-radius: 20px;
         border: none;
         background: #00000000;
     }
-    .filter-popup-reset-conditions:hover{
+    .filter-popup-reset-conditions:hover {
         text-decoration: underline;
     }
-    .filter-popup-confirm-conditions{
+    .filter-popup-confirm-conditions {
         margin: 10px 5px 5px 5px;
         padding: 5px;
         width: 80%;
@@ -1387,25 +1476,25 @@
         color: #fff;
     }
     /* 比較ページCSS */
-    .top-comparison-head{
+    .top-comparison-head {
         padding-top: 10px;
         padding-left: 5%;
         font-weight: bolder;
         font-size: 20px;
     }
-    .comparison-compare-info-all-box{
+    .comparison-compare-info-all-box {
         width: 90%;
         background: #fff;
-        margin: auto; 
-        margin-bottom: 20px;  
+        margin: auto;
+        margin-bottom: 20px;
     }
-    .comparison-compare-info-in-box{
-        display:flex;
+    .comparison-compare-info-in-box {
+        display: flex;
         justify-content: space-evenly;
-        border-bottom:1px solid black; 
+        border-bottom: 1px solid black;
     }
-    .comparison-compare-info-head{
-        width:33%;
+    .comparison-compare-info-head {
+        width: 33%;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -1413,25 +1502,25 @@
         margin: 10px;
         /* font-size: 20px; */
     }
-    .empty-div{
+    .empty-div {
         display: none;
     }
-    .comparison-compare-info-contents-box{
+    .comparison-compare-info-contents-box {
         display: flex;
         flex-wrap: wrap;
     }
-    .comparison-compare-info-content-img-box{
+    .comparison-compare-info-content-img-box {
         text-align: center;
         width: 33%;
         display: flex;
         justify-content: center;
         align-items: center;
     }
-    .comparison-compare-info-content-img{
+    .comparison-compare-info-content-img {
         width: 90%;
     }
-    .comparison-compare-info-content{
-        width:33%;
+    .comparison-compare-info-content {
+        width: 33%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -1439,9 +1528,9 @@
         padding: 10px;
         font-size: 18px;
     }
-    .comparison-compare-info-btns{
-        width:100%;
-        display:flex;
+    .comparison-compare-info-btns {
+        width: 100%;
+        display: flex;
         justify-content: center;
         align-items: center;
     }

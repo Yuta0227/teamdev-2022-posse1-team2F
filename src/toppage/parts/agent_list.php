@@ -130,10 +130,7 @@
 
                 echo '
         <div id="comparison_box" class="top-compare-over-lay">
-        <span id="close_comparison_popup" class="compare-over-lay-close-btn"><i class="fa-solid fa-xmark compare-close-btn-icon"></i></span>
-        <p class="top-compare-head">
-        比較企業全' . count($_SESSION['comparison_list']) . '件
-        </p>
+        <span id="close_comparison_popup" class="compare-over-lay-close-btn">↓</span>
         <div>
         
         </div>
@@ -149,11 +146,13 @@
     <form action="" method="POST" class="top-compare-each-box">
         <!-- <div style="text-align: right;"> -->
         <input name="agent_id" value="<?php echo $agent; ?>" hidden>
-        <input class="compare-each-close-btn" type="submit" name="remove_from_comparison" value="×">
+        <input class="compare-each-close-btn" type="submit" name="remove_from_comparison" value="X">
         <!-- </div> -->
-        <div style="display: flex;">
-            <img class="top-compare-each-img" src="../../img/article/<?php echo $agent_name_picture['picture_url']; ?>" alt="<?php echo $agent_name_picture['agent_name'] . 'の画像'; ?>">
+        <div class="form-img-p">
             <p class="top-compare-each-name"><?php echo $agent_name_picture['agent_name']; ?></p>
+            <div class="compare-img">
+                <img class="top-compare-each-img" src="../../img/article/<?php echo $agent_name_picture['picture_url']; ?>" alt="<?php echo $agent_name_picture['agent_name'] . 'の画像'; ?>">
+            </div>
         </div>
     </form>
     <!-- </div> -->
@@ -163,7 +162,7 @@
                 echo '
         </div>
         <form action="" method="POST" class="top-compare-btn-box">
-        <input class="top-compare-compare-btn" name="jump_to_comparison" type="submit" value="以上の企業を比較する">
+        <input class="top-compare-compare-btn" name="jump_to_comparison" type="submit" value="以上' . count($_SESSION['comparison_list']) . '件の企業を比較する">
         </form>
         </div>
         ';
