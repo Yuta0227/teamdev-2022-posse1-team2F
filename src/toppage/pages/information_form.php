@@ -42,7 +42,7 @@ require "../../dbconnect.php";
         <input value="'.$_SESSION['information_array']['学部名'].'" type="text" required name="applicant_gakubu" class="info-form-each-form">
         <div class="info-form-each-box-text">学科名<span>(必須)</span></div>
         <input value="'.$_SESSION['information_array']['学科名'].'" type="text" required name="applicant_gakka" class="info-form-each-form">
-        <div class="info-form-each-box-text">何年卒<span>(必須)(半角)(例：' .date('Y').'年4月に大学4年生の場合は('. (date('Y') + 1).'年卒)</span></div>
+        <div class="info-form-each-box-text">何年卒<span>(必須)(半角)(例：' .date('Y').'年4月に大学4年生の場合は'. (date('Y') + 1).'と記入</span></div>
         <input value="'.$_SESSION['information_array']['何年卒'].'" type="text" id="graduation_year" maxlength="4" minlength="4" required name="applicant_graduation_year" class="info-form-each-form">
         <div class="info-form-each-box-text">郵便番号<span>(必須)(半角)(ハイフンなし)</span></div>
         <div style="display:flex;">
@@ -100,7 +100,7 @@ require "../../dbconnect.php";
             <input type="text" required name="applicant_gakubu" class="info-form-each-form">
             <div class="info-form-each-box-text">学科名<span>(必須)</span></div>
             <input type="text" required name="applicant_gakka" class="info-form-each-form">
-            <div class="info-form-each-box-text">何年卒<span>(必須)(半角)(例：' .date('Y').'年4月に大学4年生の場合は('. (date('Y') + 1).'年卒)</span></div>
+            <div class="info-form-each-box-text">何年卒<span>(必須)(半角)(例：' .date('Y').'年4月に大学4年生の場合は'. (date('Y') + 1).'と記入</span></div>
             <input type="text" id="graduation_year" maxlength="4" minlength="4" required name="applicant_graduation_year" class="info-form-each-form">
             <div class="info-form-each-box-text">郵便番号<span>(必須)(半角)(ハイフンなし)</span></div>
             <div style="display:flex;">
