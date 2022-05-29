@@ -13,22 +13,26 @@
                 echo '">&lt;</a></div>';//<
             }
         }
+        
         ?>
-        <div class="top-pagenation-each-box">
+        
         <?php
         if(count($all_agents)<=$agents_per_page){
         }//エージェントの数が一ページに表示するエージェントの数と同じだったらページネーション表示しない
         elseif(isset($_GET["agent_list_pagination"])){
+            echo ' <div class="top-pagenation-each-box">';
             if($_GET["agent_list_pagination"]!=NULL){
                 echo $_GET["agent_list_pagination"];//真ん中の数字
             }else{
                 echo 1;
             }
+            echo '</div>';
         }else{
+            echo ' <div class="top-pagenation-each-box">';
             echo 1;
+            echo '</div>';
         }
         ?> 
-    </div>
     <?php 
     if(count($all_agents)<=$agents_per_page){
     }//エージェントの数が一ページに表示するエージェントの数と同じだったらページネーション表示しない
