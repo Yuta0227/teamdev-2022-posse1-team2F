@@ -324,7 +324,7 @@ input:invalid:focus {
     padding: 10px;
     display: flex;
     flex-direction: column;
-    background: #edf6ff;
+    background: #eaedf2;
 }
 
 .check-information-head {
@@ -398,7 +398,7 @@ input:invalid:focus {
 
 /* 送信完了画面 */
 .thanks-unit {
-    background: #edf6ff;
+    background: #eaedf2;
     padding: 20px;
 }
 
@@ -457,8 +457,447 @@ input:invalid:focus {
 
 }
 @media screen and (max-width: 480px) {
-    .privacy-policy-premise-text{
-        margin-top: 110px;
+    .login-all-box {
+        text-align: center;
+    }
+    
+    .login-form {
+        width: 250px;
+        margin: 20px auto 20px auto;
+        border: solid;
+        text-align: center;
+    }
+    
+    .login-form input {
+        padding: 5px;
+        margin-top: 10px;
+    }
+    
+    .help {
+        height: 90%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .help p {
+        text-align: center;
+    }
+    
+    .help-mail {
+        font-size: 20px;
+        font-weight: bold;
+    }
+    
+    /* 申し込みカート内 */
+    .check-cart-unit {
+        background: #eaedf2;
+        padding: 10px;
+    }
+    
+    .check-cart-header {
+        text-align: center;
+        width: 30%;
+        margin: 10px auto;
+        padding: 10px;
+        font-size: 20px;
+        font-weight: bold;
+        background: #fff;
+    }
+    
+    .check-cart-agent-all {
+        margin: 10px;
+        padding: 10px 0;
+    }
+    
+    .check-cart-each-agent-box {
+        padding: 15px;
+        width: 60%;
+        margin: 10px auto;
+        background: #fff;
+    }
+    
+    .check-cart-each-agent-info-box {
+        display: flex;
+        justify-content: center;
+        gap: 10%;
+    }
+    
+    .check-cart-agent-img-box {
+        /* display: inline-block; */
+        width: 40%;
+    }
+    
+    .check-cart-each-agent-box img {
+        /* width: 50%; */
+        object-fit: cover;
+        width: 100%;
+    }
+    .check-cart-agent-name-box{
+        display: flex;
+        align-items: center;
+    }
+    .check-cart-agent-name {
+        margin: 10px;
+        font-weight: bold;
+        font-size: 20px;
+    }
+    .check-cart-agent-delete-btn-box {
+        text-align: center;
+        padding: 10px 10px 0 10px;
+    }
+    .check-cart-agent-detail-btn{
+        display:block;
+        width: 70%;
+        margin: 10px auto;
+        padding: 10px;
+        border-radius: 30px;
+        border: none;
+    }
+    .check-cart-agent-detail-btn:hover{
+        text-decoration: underline;
+    }
+    .check-cart-agent-delete-btn {
+        /* width: 40%; */
+        /* padding: 10px; */
+        background: #fff;
+        color: red;
+        border: none;
+        cursor: pointer;
+    }
+    
+    .check-cart-agent-delete-btn:hover {
+        text-decoration: underline;
+    }
+    
+    .check-cart-next-btn-box {
+        text-align: center;
+        padding-bottom: 10px;
+    }
+    
+    .check-cart-next-btn {
+        width: 50%;
+        background: #2eb2f0;
+        border: none;
+        border-radius: 30px;
+        padding: 10px;
+        cursor: pointer;
+    }
+    
+    .check-cart-next-btn:hover {
+        text-decoration: underline;
+    }
+    
+    .check-cart-next-btn a {
+        color: #fff;
+        text-decoration: none;
+    }
+    
+    /* .check-cart-delete-check-unit{
+        background: #fff;
+        width: 60%;
+        margin: auto;
+    } */
+    .check-cart-delete-check-text {
+        background: #fff;
+        width: 40%;
+        margin: 10px auto;
+        text-align: center;
+        padding: 10px;
+        font-weight: bold;
+    }
+    
+    .check-cart-delete-check-infos {
+        width: 60%;
+        display: flex;
+        margin: auto;
+        background: #fff;
+        align-items: center;
+        /* gap: 10%; */
+    }
+    
+    .check-cart-delete-check-img-box {
+        width: 30%;
+        margin: 15px;
+    }
+    
+    .check-cart-delete-check-img-box img {
+        object-fit: cover;
+        width: 100%;
+    }
+    
+    .check-cart-delete-check-agent-name-box {
+        width: 60%;
+    }
+    
+    .check-cart-delete-check-agent-name {
+        font-weight: bold;
+        font-size: 25px;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .check-cart-delete-check-choices {
+        display: flex;
+        justify-content: center;
+        margin: 10px;
+        gap: 10px;
+    }
+    
+    .check-cart-delete-check-yes {
+        width: 20%;
+        background: #fff;
+        padding: 10px;
+        border: none;
+        color: red;
+        border: solid;
+        border-color: red;
+    }
+    
+    .check-cart-delete-check-no {
+        width: 20%;
+        background: red;
+        padding: 10px;
+        border: none;
+        color: #fff;
+    }
+    
+    .hide {
+        display: none;
+    }
+    
+    /* 情報入力画面 */
+    .info-form-all {
+        background: #eaedf2;
+        padding: 20px 0;
+    }
+    
+    .info-form-head {
+        text-align: left;
+        font-weight: bold;
+        font-size: 20px;
+        padding-bottom: 20px;
+        padding-left: 5%;
+    }
+    
+    .info-form-unit {
+        padding: 10px;
+        background-color: #fff;
+        border: solid;
+        width: 80%;
+        margin: auto;
+    }
+    
+    .info-form-each-box-text {
+        font-weight: bold;
+        margin: 10px;
+    }
+    
+    .info-form-each-form {
+        margin: 0 10px 0 10%;
+        background: #edf6ff;
+        border-width: 1px;
+        padding: 5px;
+        width: 80%;
+    }
+    
+    .info-form-adress-search-btn {
+        padding: 5px;
+        border-width: 1px;
+    }
+    
+    #error {
+        margin: 5px;
+        color: #ff0000;
+        font-size: .84rem;
+        font-weight: bold;
+    }
+    
+    .info-form-privacy-box {
+        text-align: center;
+    }
+    
+    .info-form-privacy {
+        text-decoration: none;
+        color: grey;
+        cursor: pointer;
+    }
+    
+    .info-form-privacy:hover {
+        text-decoration: underline;
+    }
+    
+    .info-form-privacy-agree {
+        display: block;
+        text-align: center;
+        font-weight: bold;
+        font-size: 20px;
+        cursor: pointer;
+    }
+    
+    .info-form-free-box {
+        display: flex;
+        margin-left: 10%;
+    }
+    
+    .info-form-check-btn {
+        margin: 10px auto;
+        padding: 10px;
+        background: #2eb2f0;
+        color: #fff;
+        width: 30%;
+        border: 1px;
+        border-radius: 20px;
+        cursor: pointer;
+    }
+    
+    .info-form-check-btn:hover {
+        text-decoration: underline
+    }
+    
+    /* ゆうたが書いた */
+    input:invalid {
+        border: 2px dashed red;
+    }
+    
+    input:invalid:focus {
+        background-image: linear-gradient(pink, lightgreen);
+    }
+    
+    
+    
+    /* 情報確認画面 */
+    .check-information-unit {
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        background: #eaedf2;
+    }
+    
+    .check-information-head {
+        text-align: left;
+        font-weight: bold;
+        font-size: 20px;
+        padding-left: 5%;
+    }
+    
+    .check-info-alert {
+        background: #fff;
+        color: rgb(250, 103, 103);
+        text-align: center;
+        font-weight: bold;
+        font-size: 18px;
+        display: inline-block;
+        padding: 10px;
+        margin: 20px auto;
+        border: solid 1px;
+    }
+    
+    .check-info-table {
+        background: #fff;
+        text-align: center;
+        width: 80%;
+        margin: auto;
+        border: solid;
+        border-color: grey;
+    }
+    
+    .check-info-table-text {
+        padding: 10px;
+        border: solid 1px;
+        border-color: grey;
+        background: #b5f3ed;
+        /* color: ; */
+    }
+    
+    .check-info-table-content {
+        border: solid 1px;
+        border-color: grey;
+    }
+    
+    .check-info-check-btns {
+        display: flex;
+        justify-content: center;
+        gap: 5%;
+        margin: 20px;
+    }
+    
+    .check-info-back-btn {
+        padding: 10px;
+        color: #2eb2f0;
+        background: #fff;
+        font-weight: bold;
+        border: solid 1px;
+        width: 40%;
+    }
+    
+    .check-info-ok-btn {
+        /* background: #008fb7; */
+        background: #2eb2f0;
+        font-weight: bold;
+        border: solid 1px;
+        width: 40%;
+        padding: 10px;
+        color: #fff;
+    }
+    
+    /* 送信完了画面 */
+    .thanks-unit {
+        background: #eaedf2;
+        padding: 20px;
+    }
+    
+    .thanks-texts {
+        text-align: center;
+        font-weight: bold;
+        font-size: 20px;
+        background: #fff;
+        margin: 20px auto;
+        padding: 20px;
+        width: 80%;
+    }
+    
+    .thanks-message {
+        color: #5bbda5;
+        font-size: 25px;
+    }
+    
+    .thanks-agent-lists {
+        font-weight: normal;
+    
+    }
+    
+    .thanks-top-back-btn {
+        display: block;
+        margin: 10px auto;
+        padding: 10px;
+        color: #2eb2f0;
+        background: #fff;
+        font-weight: bold;
+        border: solid 1px;
+        width: 60%;
+        text-align: center;
+    }
+    /* プライバシーポリシー */
+    .privacy-policy-unit {
+        background: #eaedf2;
+        padding: 20px;
+    }
+
+    .privacy-policy-all-box {
+        width: 80%;
+        background: #fff;
+        margin: auto;
+        margin-top: 100px;
+        padding: 25px;
+    }
+
+    .privacy-policy-each-section {
+        padding: 10px;
+    }
+
+    .privacy-policy-each-section-head {
+        font-size: 30px;
     }
 }
     
